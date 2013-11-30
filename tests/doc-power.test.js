@@ -49,15 +49,17 @@ describe("docpower", function () {
                     "var a = 1;\n" +
                     "a; // > 1";
                 var resultMessage = docPower.runDocTest(code);
-                assert.isNull(resultMessage);
+                assert.isUndefined(resultMessage);
             });
         });
         context("when fail test", function () {
             it("should output message", function () {
                 var code = "var assert=require('power-assert');\n" +
                     "var a = 'test';\n" +
+                    "a; // > 'not match'\n" +
                     "a; // > 'not match'";
                 var resultMessage = docPower.runDocTest(code);
+                console.log("resultMessage", resultMessage);
                 assert.isNotNull(resultMessage);
             });
         });
