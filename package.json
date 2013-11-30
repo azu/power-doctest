@@ -14,7 +14,10 @@
     "escodegen": "~1.0.0",
     "clone": "~0.1.11",
     "estraverse": "~1.5.0",
-    "lodash": "~2.4.0"
+    "lodash": "~2.4.0",
+    "power-assert": "~0.1.5",
+    "empower": "~0.1.6",
+    "espower": "~0.1.6"
   },
   "devDependencies": {
     "mocha": "~1.14.0",
