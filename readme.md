@@ -17,6 +17,8 @@ assert(value === 3);
        15    false
 ```
 
+[![image](http://img.youtube.com/vi/uvcdBLm93aA/0.jpg)](http://www.youtube.com/watch?v=uvcdBLm93aA)
+
 ## Contributing
 
 1. Fork it!
