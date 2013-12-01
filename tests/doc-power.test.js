@@ -16,7 +16,6 @@ describe("docpower", function () {
                         return current + next
                     }, 0);
                 }
-
                 var value = sum([1, 2, 3, 4, 5]);
                 assert(value === 3);
             });

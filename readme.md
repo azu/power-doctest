@@ -8,7 +8,14 @@ DocTest + power-assert
 
 ## Usage
 
-- [ ] Write usage instructions
+``` sh
+$ node bin/doc-power.js example/item03.js
+FAIL # at line: 13
+
+assert(value === 3);
+       |     |
+       15    false
+```
 
 ## Contributing
 
