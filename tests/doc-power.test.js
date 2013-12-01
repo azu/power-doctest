@@ -31,6 +31,15 @@ describe("docpower", function () {
                 assert(2 === 2);
             });
         });
+        it("when equal to object", function () {
+            var code = "var a = {a : 1};\n" +
+                "a; // > {a : 1}"
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                var a = {a: 1};
+                assert(a === {a: 1});
+            });
+        });
         it("When CallExpression", function () {
             var code = "var a = function(){return 1;};" +
                 "a(); // > 1";

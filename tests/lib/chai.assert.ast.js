@@ -14,7 +14,6 @@ exports.equalAstToFn = function (ast, fn2) {
         var ast2 = esprima.parse("!" + fn2.toString());
         expectedAST = extractionBody(ast2);
     } catch (e) {
-
         assert.fail("equalAstToFn Error", e)
     }
     assert.deepEqual(targetAST, expectedAST);
