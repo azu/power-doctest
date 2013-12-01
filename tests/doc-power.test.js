@@ -5,24 +5,44 @@ var escodegen = require("escodegen");
 var vm = require('vm');
 var path = require("path");
 describe("docpower", function () {
-    it("When expression + comment", function () {
-        var code = "var a = 1;" +
-            "a; // > 1";
-        var resultAST = docPower.convertFromCodeToTree(code);
-        assertAST(resultAST, function () {
-            var a = 1;
-            assert(a === 1);
+    describe("#convertFromCodeToTree", function () {
+        it("When expression + comment", function () {
+            var code = "var a = 1;" +
+                "a; // > 1";
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                var a = 1;
+                assert(a === 1);
+            });
         });
-    });
-    it("When CallExpression ", function () {
-        var code = "var a = function(){return 1;};" +
-            "a(); // > 1";
-        var resultAST = docPower.convertFromCodeToTree(code);
-        assertAST(resultAST, function () {
-            var a = function () {
-                return 1;
-            };
-            assert(a() === 1);
+        it("When CallExpression ", function () {
+            var code = "var a = function(){return 1;};" +
+                "a(); // > 1";
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                var a = function () {
+                    return 1;
+                };
+                assert(a() === 1);
+            });
+        });
+        it("When BinaryExpression", function () {
+            var code = "var a = function(){return 1;};" +
+                "a + 1; // > 2";
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                var a = function () {
+                    return 1;
+                };
+                assert(a + 1 === 2);
+            });
+        });
+        it("When BlockComment", function () {
+            var code = "1; /* > 1 */";
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                assert(1 === 1);
+            });
         });
     });
     describe("#regexpExecuted", function () {
