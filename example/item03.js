@@ -9,4 +9,4 @@ function sum(ary) {
 }
 
 var value = sum([1, 2, 3, 4, 5]);
-value;// > 3
+value; // > 5
