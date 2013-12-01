@@ -25,11 +25,12 @@ describe("docpower", function () {
             assert(a() === 1);
         });
     });
-    describe("regexpExecuted", function () {
+    describe("#regexpExecuted", function () {
         beforeEach(function () {
             docPower.regexpExecuted(/\s+==>\s(.*?)$/);
         });
         afterEach(function () {
+            // reset
             docPower.regexpExecuted(/\s+>\s+(.*)$/);
         });
         it("accept regexp comment ", function () {
@@ -42,11 +43,10 @@ describe("docpower", function () {
             });
         });
     });
-    describe("runDocTest", function () {
+    describe("#runDocTest", function () {
         context("when success test", function () {
             it("should not result message", function () {
-                var code = "var assert=require('power-assert');\n" +
-                    "var a = 1;\n" +
+                var code = "var a = 1;\n" +
                     "a; // > 1";
                 var resultMessage = docPower.runDocTest(code);
                 assert.isUndefined(resultMessage);
@@ -54,12 +54,10 @@ describe("docpower", function () {
         });
         context("when fail test", function () {
             it("should output message", function () {
-                var code = "var assert=require('power-assert');\n" +
-                    "var a = 'test';\n" +
+                var code = "var a = 'test';\n" +
                     "a; // > 'not match'\n" +
                     "a; // > 'not match'";
                 var resultMessage = docPower.runDocTest(code);
-                console.log("resultMessage", resultMessage);
                 assert.isNotNull(resultMessage);
             });
         });
