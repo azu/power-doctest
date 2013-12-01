@@ -15,7 +15,23 @@ describe("docpower", function () {
                 assert(a === 1);
             });
         });
-        it("When CallExpression ", function () {
+        it("simple case", function () {
+            var code = "1; // > 1"
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                assert(1 === 1);
+            });
+        });
+        it("when test x 2", function () {
+            var code = "1; // > 1\n" +
+                "2; // > 2\n"
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                assert(1 === 1);
+                assert(2 === 2);
+            });
+        });
+        it("When CallExpression", function () {
             var code = "var a = function(){return 1;};" +
                 "a(); // > 1";
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -44,6 +60,7 @@ describe("docpower", function () {
                 assert(1 === 1);
             });
         });
+
     });
     describe("#regexpExecuted", function () {
         beforeEach(function () {
