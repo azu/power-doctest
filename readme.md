@@ -4,7 +4,9 @@ doctest + power-assert.
 
 ## Installation
 
-- [ ] Describe the installation process
+``` sh
+npm install -g power-doctest
+```
 
 ## Usage
 
