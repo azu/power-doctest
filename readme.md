@@ -23,7 +23,7 @@ var total = sum([1, 2, 3, 4, 5]);
 total; // > 5
 ```
 
-This code expect ``total`` is ``5``.
+This code expect ``total`` to be ``5``.
 
 Result :
 
