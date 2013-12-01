@@ -10,11 +10,28 @@ npm install -g power-doctest
 
 ## Usage
 
+Test code :
+
+``` js
+function sum(ary) {
+    return ary.reduce(function (current, next) {
+        return current + next
+    }, 0);
+}
+
+var total = sum([1, 2, 3, 4, 5]);
+total; // > 5
+```
+
+This code expect ``total`` is ``5``.
+
+Result :
+
 ``` sh
 $ node bin/power-doctest.js example/item03.js
 FAIL # at line: 13
 
-assert(value === 3);
+assert(value === 5);
        |     |
        15    false
 ```
