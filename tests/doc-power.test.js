@@ -55,8 +55,7 @@ describe("docpower", function () {
         context("when fail test", function () {
             it("should output message", function () {
                 var code = "var a = 'test';\n" +
-                    "a; // > 'not match'\n" +
-                    "a; // > 'not match'";
+                    "a; // > 'not match'\n";
                 var resultMessage = docPower.runDocTest(code);
                 assert.isNotNull(resultMessage);
             });
