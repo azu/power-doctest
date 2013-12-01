@@ -7,7 +7,7 @@ var path = require("path");
 describe("docpower", function () {
     describe("#convertFromCodeToTree", function () {
         it("When expression + comment", function () {
-            var code = "var a = 1;" +
+            var code = "var a = 1;\n" +
                 "a; // > 1";
             var resultAST = docPower.convertFromCodeToTree(code);
             assertAST(resultAST, function () {
@@ -43,7 +43,7 @@ describe("docpower", function () {
             });
         });
         it("When BinaryExpression", function () {
-            var code = "var a = function(){return 1;};" +
+            var code = "var a = function(){return 1;};\n" +
                 "a + 1; // > 2";
             var resultAST = docPower.convertFromCodeToTree(code);
             assertAST(resultAST, function () {

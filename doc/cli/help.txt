@@ -1,0 +1,6 @@
+Usage: doc-power [options] /path/to/file.js
+
+Description:
+
+    doctest command
+
