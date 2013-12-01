@@ -1,6 +1,6 @@
-# DocPowerTest
+# power-doctest
 
-DocTest + power-assert
+doctest + power-assert.
 
 ## Installation
 
@@ -9,7 +9,7 @@ DocTest + power-assert
 ## Usage
 
 ``` sh
-$ node bin/doc-power.js example/item03.js
+$ node bin/power-doctest.js example/item03.js
 FAIL # at line: 13
 
 assert(value === 3);

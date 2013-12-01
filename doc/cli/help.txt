@@ -1,4 +1,4 @@
-Usage: doc-power [options] /path/to/file.js
+Usage: power-doctest [options] /path/to/file.js
 
 Description:
 

@@ -1,10 +1,10 @@
 var assertAST = require("./lib/chai.assert.ast").equalAstToFn;
-var docPower = require("../lib/doc-power");
+var docPower = require("../lib/power-doctest");
 var assert = require('chai').assert;
 var escodegen = require("escodegen");
 var vm = require('vm');
 var path = require("path");
-describe("docpower", function () {
+describe("power-doctest", function () {
     describe("#convertFromCodeToTree", function () {
         it("When expression + comment", function () {
             var code = "var a = 1;\n" +
