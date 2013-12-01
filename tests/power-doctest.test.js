@@ -15,6 +15,7 @@ describe("power-doctest", function () {
                 assert(a === 1);
             });
         });
+
         it("simple case", function () {
             var code = "1; // => 1"
             var resultAST = docPower.convertFromCodeToTree(code);
