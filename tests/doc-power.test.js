@@ -6,9 +6,24 @@ var vm = require('vm');
 var path = require("path");
 describe("docpower", function () {
     describe("#convertFromCodeToTree", function () {
+        it("When file load", function () {
+            var fs = require('fs');
+            var code = fs.readFileSync(__dirname + "/../example/item03.js", "utf-8");
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                function sum(ary) {
+                    return ary.reduce(function (current, next) {
+                        return current + next
+                    }, 0);
+                }
+
+                var value = sum([1, 2, 3, 4, 5]);
+                assert(value === 3);
+            });
+        });
         it("When expression + comment", function () {
             var code = "var a = 1;\n" +
-                "a; // > 1";
+                "a;// > 1";
             var resultAST = docPower.convertFromCodeToTree(code);
             assertAST(resultAST, function () {
                 var a = 1;
