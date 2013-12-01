@@ -1,6 +1,6 @@
 # power-doctest
 
-doctest + power-assert.
+doctest + [power-assert](https://github.com/twada/power-assert "power-assert").
 
 ## Installation
 
