@@ -1,35 +1,36 @@
 {
-    "name": "power-doctest",
-    "version": "0.1.2",
-    "description": "doctest + power-assert - comment as testing.",
-    "main": "./lib/power-doctest.js",
-    "bin": {
-        "power-doctest": "./bin/power-doctest.js"
-    },
-    "scripts": {
-        "test": "node_modules/mocha/bin/mocha tests"
-    },
-    "homepage": "https://github.com/azu/power-doctest",
-    "tags": "JavaScript,testing,document,assert,power-assert",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/azu/power-doctest.git"
-    },
-    "author": "azu",
-    "license": "MIT",
-    "dependencies": {
-        "esprima": "~1.0.4",
-        "rocambole": "~0.2.3",
-        "escodegen": "~1.0.0",
-        "clone": "~0.1.11",
-        "estraverse": "~1.5.0",
-        "lodash": "~2.4.0",
-        "power-assert": "~0.1.5",
-        "espower": "~0.1.6",
-        "optimist": "~0.6.0"
-    },
-    "devDependencies": {
-        "mocha": "~1.14.0",
-        "chai": "~1.8.1"
-    }
+  "name": "power-doctest",
+  "version": "0.1.2",
+  "description": "doctest + power-assert - comment as testing.",
+  "main": "./lib/power-doctest.js",
+  "bin": {
+    "power-doctest": "./bin/power-doctest.js"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha tests"
+  },
+  "homepage": "https://github.com/azu/power-doctest",
+  "tags": "JavaScript,testing,document,assert,power-assert",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/power-doctest.git"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "dependencies": {
+    "esprima": "~1.0.4",
+    "rocambole": "~0.2.3",
+    "escodegen": "~1.0.0",
+    "clone": "~0.1.11",
+    "estraverse": "~1.5.0",
+    "lodash": "~2.4.0",
+    "power-assert": "~0.1.5",
+    "espower": "~0.1.6",
+    "optimist": "~0.6.0",
+    "esformatter": "0.0.11"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "chai": "~1.8.1"
+  }
 }

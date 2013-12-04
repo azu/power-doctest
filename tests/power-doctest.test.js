@@ -15,7 +15,6 @@ describe("power-doctest", function () {
                 assert(a === 1);
             });
         });
-
         it("simple case", function () {
             var code = "1; // => 1"
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -70,7 +69,18 @@ describe("power-doctest", function () {
                 assert(1 === 1);
             });
         });
+        it("With call function", function () {
+            var code = "function add(x,y){ return x + y}\n" +
+                "add(1,2);// => 3"
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                function add(x, y) {
+                    return x + y
+                }
 
+                assert(add(1, 2) === 2);
+            });
+        });
     });
     describe("#regexpExecuted", function () {
         beforeEach(function () {
