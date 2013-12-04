@@ -1,6 +1,0 @@
-Usage: power-doctest [options] /path/to/file.js
-
-Description:
-
-    doctest command
-
