@@ -6,7 +6,7 @@ var vm = require('vm');
 var path = require("path");
 describe("power-doctest", function () {
     describe("#convertFromCodeToTree", function () {
-        it("When expression + comment", function () {
+        it("can transform expression// => comment", function () {
             var code = "var a = 1;\n" +
                 "a;// => 1";
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -15,14 +15,14 @@ describe("power-doctest", function () {
                 assert(a === 1);
             });
         });
-        it("simple case", function () {
+        it("is very simple case", function () {
             var code = "1; // => 1"
             var resultAST = docPower.convertFromCodeToTree(code);
             assertAST(resultAST, function () {
                 assert(1 === 1);
             });
         });
-        it("when test x 2", function () {
+        it("can transform multiple doctest", function () {
             var code = "1; // => 1\n" +
                 "2; // => 2\n"
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -31,7 +31,7 @@ describe("power-doctest", function () {
                 assert(2 === 2);
             });
         });
-        it("when equal to object", function () {
+        it("can transform object", function () {
             var code = "var a = {a : 1};\n" +
                 "a; // => {a : 1}"
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -40,7 +40,7 @@ describe("power-doctest", function () {
                 assert(a === {a: 1});
             });
         });
-        it("When CallExpression", function () {
+        it("can transform CallExpression", function () {
             var code = "var a = function(){return 1;};" +
                 "a(); // => 1";
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -51,7 +51,7 @@ describe("power-doctest", function () {
                 assert(a() === 1);
             });
         });
-        it("When BinaryExpression", function () {
+        it("can transform + BinaryExpression", function () {
             var code = "var a = function(){return 1;};\n" +
                 "a + 1; // => 2";
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -62,14 +62,7 @@ describe("power-doctest", function () {
                 assert(a + 1 === 2);
             });
         });
-        it("When BlockComment", function () {
-            var code = "1; /* => 1 */";
-            var resultAST = docPower.convertFromCodeToTree(code);
-            assertAST(resultAST, function () {
-                assert(1 === 1);
-            });
-        });
-        it("With call function", function () {
+        it("can transform CallExpression", function () {
             var code = "function add(x,y){ return x + y}\n" +
                 "add(1,2);// => 3"
             var resultAST = docPower.convertFromCodeToTree(code);
@@ -78,7 +71,14 @@ describe("power-doctest", function () {
                     return x + y
                 }
 
-                assert(add(1, 2) === 2);
+                assert(add(1, 2) === 3);
+            });
+        });
+        it("should get expected data form BlockComment", function () {
+            var code = "1; /* => 1 */";
+            var resultAST = docPower.convertFromCodeToTree(code);
+            assertAST(resultAST, function () {
+                assert(1 === 1);
             });
         });
     });
