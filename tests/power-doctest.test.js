@@ -79,6 +79,21 @@ describe("power-doctest", function () {
             });
         });
     });
+    describe("option.astGenerator", function () {
+        context("when set simple-deepEqual", function () {
+            it("should transform code to deepEqual", function () {
+                var code = "var a = 1;" +
+                    "a; // => 1";
+                var resultAST = docPower.convertFromCodeToTree(code, {
+                    astGenerator: require("../lib/ast-generator/simple-deepEqual")
+                });
+                assertAST(resultAST, function () {
+                    var a = 1;
+                    assert.deepEqual(a, 1);
+                });
+            });
+        });
+    });
     describe("option.regexpExecuted", function () {
         it("accept regexp comment ", function () {
             var code = "var a = 1;" +
