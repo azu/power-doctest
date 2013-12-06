@@ -1,10 +1,16 @@
 var assertAST = require("./lib/chai.assert.ast").equalAstToFn;
-var docPower = require("../lib/power-doctest");
 var assert = require('chai').assert;
 var escodegen = require("escodegen");
-var vm = require('vm');
+var sinon = require("sinon");
 var path = require("path");
 describe("power-doctest", function () {
+    var docPower;
+    beforeEach(function () {
+        docPower = require("../lib/power-doctest");
+    });
+    afterEach(function () {
+        delete(require.cache[path.resolve("../lib/power-doctest")]);
+    });
     describe("#convertFromCodeToTree", function () {
         it("can transform expression// => comment", function () {
             var code = "var a = 1;\n" +
@@ -29,15 +35,6 @@ describe("power-doctest", function () {
             assertAST(resultAST, function () {
                 assert(1 === 1);
                 assert(2 === 2);
-            });
-        });
-        it("can transform object", function () {
-            var code = "var a = {a : 1};\n" +
-                "a; // => {a : 1}"
-            var resultAST = docPower.convertFromCodeToTree(code);
-            assertAST(resultAST, function () {
-                var a = {a: 1};
-                assert(a === {a: 1});
             });
         });
         it("can transform CallExpression", function () {
@@ -82,18 +79,13 @@ describe("power-doctest", function () {
             });
         });
     });
-    describe("#regexpExecuted", function () {
-        beforeEach(function () {
-            docPower.regexpExecuted(/\s+===\s(.*?)$/);
-        });
-        afterEach(function () {
-            // reset
-            docPower.regexpExecuted(/\s+=>\s+(.*)$/);
-        });
+    describe("option.regexpExecuted", function () {
         it("accept regexp comment ", function () {
             var code = "var a = 1;" +
                 "a; // === 1";
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, {
+                regexpExecuted: /\s+===\s(.*?)$/
+            });
             assertAST(resultAST, function () {
                 var a = 1;
                 assert(a === 1);

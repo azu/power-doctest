@@ -27,10 +27,12 @@
     "power-assert": "~0.2.2",
     "espower": "~0.2.1",
     "optimist": "~0.6.0",
-    "esformatter": "0.0.11"
+    "esformatter": "0.0.11",
+    "escope": "~1.0.1"
   },
   "devDependencies": {
     "mocha": "~1.15.1",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "sinon": "~1.7.3"
   }
 }
