@@ -128,6 +128,7 @@ describe("power-doctest", function () {
                 var code = "var a = 'test';\n" +
                     "a; // => 'not match'\n";
                 var resultMessage = docPower.runDocTest({
+                    filePath: __filename,
                     fileData: code
                 });
                 assert.isFalse(resultMessage);

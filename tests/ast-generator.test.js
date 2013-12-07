@@ -18,7 +18,6 @@ describe("power-doctest", function () {
             var resultAST = docPower.convertFromCodeToTree(code, {
                 astGenerator: require("../lib/ast-generator/mixin-assert-loc")
             });
-            console.log("escodegen.generate(resultAST)", escodegen.generate(resultAST));
             assertAST(resultAST, function () {
                 var a = 1;
                 try {
