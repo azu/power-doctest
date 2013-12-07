@@ -20,7 +20,7 @@
   "dependencies": {
     "esprima": "~1.0.4",
     "rocambole": "~0.2.3",
-    "escodegen": "~1.0.0",
+    "escodegen": "~1.0.1",
     "clone": "~0.1.11",
     "estraverse": "~1.5.0",
     "lodash": "~2.4.1",
