@@ -18,11 +18,13 @@ describe("power-doctest", function () {
             var resultAST = docPower.convertFromCodeToTree(code, {
                 astGenerator: require("../lib/ast-generator/mixin-assert-loc")
             });
+            console.log("escodegen.generate(resultAST)", escodegen.generate(resultAST));
             assertAST(resultAST, function () {
                 var a = 1;
                 try {
-                    if (typeof a === 'object' && typeof 1 === 'object') {
-                        assert.deepEqual(a, 1);
+                    var expected = 1;
+                    if (typeof a === 'object' && typeof expected === 'object') {
+                        assert.deepEqual(a, expected);
                     } else {
                         assert(a === 1);
                     }

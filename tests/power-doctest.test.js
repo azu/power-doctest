@@ -12,10 +12,13 @@ describe("power-doctest", function () {
         delete(require.cache[path.resolve("../lib/power-doctest")]);
     });
     describe("#convertFromCodeToTree", function () {
+        var options = {
+            astGenerator: require("../lib/ast-generator/simple-assert")
+        };
         it("can transform expression// => comment", function () {
             var code = "var a = 1;\n" +
                 "a;// => 1";
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 var a = 1;
                 assert(a === 1);
@@ -23,7 +26,7 @@ describe("power-doctest", function () {
         });
         it("is very simple case", function () {
             var code = "1; // => 1"
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 assert(1 === 1);
             });
@@ -31,7 +34,7 @@ describe("power-doctest", function () {
         it("can transform multiple doctest", function () {
             var code = "1; // => 1\n" +
                 "2; // => 2\n"
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 assert(1 === 1);
                 assert(2 === 2);
@@ -40,7 +43,7 @@ describe("power-doctest", function () {
         it("can transform CallExpression", function () {
             var code = "var a = function(){return 1;};" +
                 "a(); // => 1";
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 var a = function () {
                     return 1;
@@ -51,7 +54,7 @@ describe("power-doctest", function () {
         it("can transform + BinaryExpression", function () {
             var code = "var a = function(){return 1;};\n" +
                 "a + 1; // => 2";
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 var a = function () {
                     return 1;
@@ -62,7 +65,7 @@ describe("power-doctest", function () {
         it("can transform CallExpression", function () {
             var code = "function add(x,y){ return x + y}\n" +
                 "add(1,2);// => 3"
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 function add(x, y) {
                     return x + y
@@ -73,7 +76,7 @@ describe("power-doctest", function () {
         });
         it("should get expected data form BlockComment", function () {
             var code = "1; /* => 1 */";
-            var resultAST = docPower.convertFromCodeToTree(code);
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 assert(1 === 1);
             });
@@ -95,12 +98,14 @@ describe("power-doctest", function () {
         });
     });
     describe("option.regexpExecuted", function () {
+        var options = {
+            regexpExecuted: /\s+===\s(.*?)$/,
+            astGenerator: require("../lib/ast-generator/simple-assert")
+        };
         it("accept regexp comment ", function () {
             var code = "var a = 1;" +
                 "a; // === 1";
-            var resultAST = docPower.convertFromCodeToTree(code, {
-                regexpExecuted: /\s+===\s(.*?)$/
-            });
+            var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 var a = 1;
                 assert(a === 1);
@@ -112,16 +117,20 @@ describe("power-doctest", function () {
             it("should not result message", function () {
                 var code = "var a = 1;\n" +
                     "a; // => 1";
-                var resultMessage = docPower.runDocTest(code);
-                assert.isUndefined(resultMessage);
+                var resultMessage = docPower.runDocTest({
+                    fileData: code
+                });
+                assert.isTrue(resultMessage);
             });
         });
         context("when fail test", function () {
             it("should output message", function () {
                 var code = "var a = 'test';\n" +
                     "a; // => 'not match'\n";
-                var resultMessage = docPower.runDocTest(code);
-                assert.isNotNull(resultMessage);
+                var resultMessage = docPower.runDocTest({
+                    fileData: code
+                });
+                assert.isFalse(resultMessage);
             });
         });
     });
