@@ -1,3 +1,5 @@
 var object = {};
 
-object.not.found; // => Error
+throw new Error(); // => Error
+
+1; // => Error

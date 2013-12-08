@@ -28,7 +28,8 @@ describe("power-doctest", function () {
                         assert(a === 1);
                     }
                 } catch (error) {
-                    var newError = new Error(error.message);
+                    var newError = error;
+                    newError.__doctest = "DocTestError";
                     newError.loc = {
                         start: {
                             column: 10,
