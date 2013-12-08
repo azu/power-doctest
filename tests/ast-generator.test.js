@@ -1,7 +1,6 @@
 var assertAST = require("./lib/chai.assert.ast").equalAstToFn;
 var assert = require('chai').assert;
 var escodegen = require("escodegen");
-var sinon = require("sinon");
 var path = require("path");
 describe("power-doctest", function () {
     var docPower;
