@@ -1,5 +1,4 @@
-var object = {};
-
 throw new Error(); // => Error
 
-1; // => Error
+var object = {};
+object.not.found;// => Error

@@ -36,12 +36,27 @@ Result :
 
 ``` sh
 $ node bin/power-doctest.js example/item03.js
-FAIL # at line: 13
+example/item03.js:8:0
+AssertionError
 
-assert(value === 5);
-       |     |
-       15    false
+        assert(total === 5);
+               |     |
+               15    false
 ```
+
+![assert-test](http://gyazo.com/075b4afe13003bd8691a85b371f84afe.gif)
+
+### Exception Test
+
+Look like `=> Error` is `assert.throw()`.
+
+``` js
+throw new Error(); // => Error
+obj.not.found;// => Error
+```
+
+![error-test](http://gyazo.com/0c2bbc62f796288e94ddb3344581eb63.gif)
+
 
 [![image](http://img.youtube.com/vi/uvcdBLm93aA/0.jpg)](http://www.youtube.com/watch?v=uvcdBLm93aA)
 
