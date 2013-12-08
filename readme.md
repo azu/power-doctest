@@ -1,4 +1,4 @@
-# power-doctest
+# power-doctest [![Build Status](https://travis-ci.org/azu/power-doctest.png?branch=master)](https://travis-ci.org/azu/power-doctest)
 
 doctest + [power-assert](https://github.com/twada/power-assert "power-assert").
 
