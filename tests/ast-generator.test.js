@@ -16,7 +16,7 @@ describe("power-doctest", function () {
             var code = "var a = 1;" +
                 "a; // => 1";
             var resultAST = docPower.convertFromCodeToTree(code, {
-                astGenerator: require("../lib/ast-generator/mixin-assert-loc")
+                astGenerator: require("../lib/ast-generator/mixin-assert")
             });
             assertAST(resultAST, function () {
                 var a = 1;
@@ -28,7 +28,7 @@ describe("power-doctest", function () {
                         assert(a === 1);
                     }
                 } catch (error) {
-                    var newError = new Error(error.message);
+                    var newError = error;
                     newError.loc = {
                         start: {
                             column: 10,

@@ -117,22 +117,61 @@ describe("power-doctest", function () {
             it("should not result message", function () {
                 var code = "var a = 1;\n" +
                     "a; // => 1";
-                var resultMessage = docPower.runDocTest({
+                var resultMessages = docPower.runDocTest({
                     fileData: code
                 });
-                assert.isTrue(resultMessage);
+                assert.isArray(resultMessages);
+                assert.lengthOf(resultMessages, 0);
             });
         });
         context("when fail test", function () {
+            function assertDocTestError(error) {
+                assert.equal(error.name, "AssertionError");
+            }
+
             it("should output message", function () {
                 var code = "var a = 'test';\n" +
                     "a; // => 'not match'\n";
-                var resultMessage = docPower.runDocTest({
+                var resultMessages = docPower.runDocTest({
                     filePath: __filename,
                     fileData: code
                 });
-                assert.isFalse(resultMessage);
+                assert.isArray(resultMessages);
+                assert.lengthOf(resultMessages, 1)
+            });
+            context("Case assertion fail exception", function () {
+                var code = "var a = 'test';\n" +
+                    "a; // => 'not match'\n";
+                it("should return doctest type errors", function () {
+                    var results = docPower.runDocTest({
+                        fileData: code
+                    });
+                    var error = results[0];
+                    assertDocTestError(error)
+                });
+            });
+            context("Case exception test", function () {
+                var code = "1; // => Error";
+                it("should return doctest type errors", function () {
+                    var results = docPower.runDocTest({
+                        fileData: code
+                    });
+                    var error = results[0];
+                    assert.lengthOf(results, 1);
+                    assertDocTestError(error);
+                });
+            });
+            context("Case other error(syntax error?)", function () {
+                var code = "throw new Error();";
+                it("should throw exception", function () {
+                    assert.throw(function () {
+                        docPower.runDocTest({
+                            fileData: code
+                        });
+                    });
+                });
             });
         });
+
     });
 });
