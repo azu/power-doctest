@@ -29,7 +29,6 @@ describe("power-doctest", function () {
                     }
                 } catch (error) {
                     var newError = error;
-                    newError.__doctest = "DocTestError";
                     newError.loc = {
                         start: {
                             column: 10,

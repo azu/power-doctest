@@ -126,7 +126,7 @@ describe("power-doctest", function () {
         });
         context("when fail test", function () {
             function assertDocTestError(error) {
-                assert.equal(error.__doctest, "DocTestError");
+                assert.equal(error.name, "AssertionError");
             }
 
             it("should output message", function () {
