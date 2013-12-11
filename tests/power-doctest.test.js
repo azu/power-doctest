@@ -136,7 +136,7 @@ describe("power-doctest", function () {
                     fileData: code
                 });
                 assert.isArray(resultMessages);
-                assert.lengthOf(resultMessages, 1)
+                assert.lengthOf(resultMessages, 1);
             });
             context("Case assertion fail exception", function () {
                 var code = "var a = 'test';\n" +

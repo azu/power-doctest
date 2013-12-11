@@ -11,6 +11,17 @@ describe("power-doctest", function () {
         delete(require.cache[path.resolve("../lib/power-doctest")]);
     });
     describe("mixin-assert", function () {
+        context("when test mutable method", function () {
+            var code = "var ary = [1,2];\n"
+                + "ary.pop(); // => 2"
+            it("should work expected test", function () {
+                var results = docPower.runDocTest({
+                    fileData: code
+                });
+                assert.isArray(results);
+                assert.lengthOf(results, 0);
+            });
+        });
         it("should transform code to deepEqual", function () {
             var code = "var a = 1;" +
                 "a; // => 1";
@@ -20,11 +31,12 @@ describe("power-doctest", function () {
             assertAST(resultAST, function () {
                 var a = 1;
                 try {
+                    var actual = a;
                     var expected = 1;
-                    if (typeof a === 'object' && typeof expected === 'object') {
-                        assert.deepEqual(a, expected);
+                    if (typeof actual === 'object' && typeof expected === 'object') {
+                        assert.deepEqual(actual, expected);
                     } else {
-                        assert(a === 1);
+                        assert(actual === expected);
                     }
                 } catch (error) {
                     var newError = error;
