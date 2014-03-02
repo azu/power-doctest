@@ -80,6 +80,19 @@ describe("power-doctest", function () {
                 assert(1 === 1);
             });
         });
+        context("When extract console.log option", function () {
+            it("should extract value from console.log", function () {
+                var options = {
+                    astGenerator: require("../lib/ast-generator/simple-assert"),
+                    extractConsole: true
+                };
+                var code = "console.log(1); /* => 1 */";
+                var resultAST = docPower.convertFromCodeToTree(code, options);
+                assertAST(resultAST, function () {
+                    assert(1 === 1);
+                });
+            });
+        });
     });
     describe("option.astGenerator", function () {
         context("when set simple-deepEqual", function () {
