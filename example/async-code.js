@@ -1,5 +1,5 @@
 "use strict";
 var a = "string";
 setTimeout(function () {
-    a;// => "ss";
+    a;// => "string";
 }, 1);
