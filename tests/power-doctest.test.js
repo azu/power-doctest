@@ -20,14 +20,14 @@ describe("power-doctest", function () {
             var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 var a = 1;
-                assert(a === 1);
+                assert.ok(a === 1);
             });
         });
         it("is very simple case", function () {
             var code = "1; // => 1"
             var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
-                assert(1 === 1);
+                assert.ok(1 === 1);
             });
         });
         it("can transform multiple doctest", function () {
@@ -35,8 +35,8 @@ describe("power-doctest", function () {
                 "2; // => 2\n"
             var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
-                assert(1 === 1);
-                assert(2 === 2);
+                assert.ok(1 === 1);
+                assert.ok(2 === 2);
             });
         });
         it("can transform CallExpression", function () {
@@ -47,7 +47,7 @@ describe("power-doctest", function () {
                 var a = function () {
                     return 1;
                 };
-                assert(a() === 1);
+                assert.ok(a() === 1);
             });
         });
         it("can transform + BinaryExpression", function () {
@@ -58,7 +58,7 @@ describe("power-doctest", function () {
                 var a = function () {
                     return 1;
                 };
-                assert(a + 1 === 2);
+                assert.ok(a + 1 === 2);
             });
         });
         it("can transform CallExpression", function () {
@@ -70,14 +70,14 @@ describe("power-doctest", function () {
                     return x + y
                 }
 
-                assert(add(1, 2) === 3);
+                assert.ok(add(1, 2) === 3);
             });
         });
         it("should get expected data form BlockComment", function () {
             var code = "1; /* => 1 */";
             var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
-                assert(1 === 1);
+                assert.ok(1 === 1);
             });
         });
         context("When extract console.log option", function () {
@@ -89,7 +89,7 @@ describe("power-doctest", function () {
                 var code = "console.log(1); /* => 1 */";
                 var resultAST = docPower.convertFromCodeToTree(code, options);
                 assertAST(resultAST, function () {
-                    assert(1 === 1);
+                    assert.ok(1 === 1);
                 });
             });
         });
@@ -120,20 +120,47 @@ describe("power-doctest", function () {
             var resultAST = docPower.convertFromCodeToTree(code, options);
             assertAST(resultAST, function () {
                 var a = 1;
-                assert(a === 1);
+                assert.ok(a === 1);
             });
         });
     });
     describe("#runDocTest", function () {
-        context("when success test", function () {
-            it("should not result message", function () {
+        context("when no assert code", function () {
+            it("should pass assert count = 0", function () {
+                var code = "var a = 1;";
+                return docPower.runDocTestAsPromise(code).then(function (result) {
+                    var assertCount = 0;
+                    assert.equal(result, assertCount);
+                });
+            });
+        });
+        context("when sync code", function () {
+            it("should pass assert count", function () {
                 var code = "var a = 1;\n" +
                     "a; // => 1";
-                var resultMessages = docPower.runDocTest({
-                    fileData: code
+                return docPower.runDocTestAsPromise(code).then(function (result) {
+                    var assertCount = 1;
+                    assert.equal(result, assertCount);
                 });
-                assert.isArray(resultMessages);
-                assert.lengthOf(resultMessages, 0);
+            });
+            it("could handle object", function () {
+                var code = "var a = [1];\n" +
+                    "a; // => [1]";
+                return docPower.runDocTestAsPromise(code).then(function (result) {
+                    assert.equal(result, 1);
+                });
+            });
+        });
+        context("when async code", function () {
+            it("should pass assert count", function () {
+                var code = "setTimeout(function(){" +
+                    "var a = 1;\n" +
+                    "a; // => 1\n" +
+                    "},1);";
+                return docPower.runDocTestAsPromise(code).then(function (result) {
+                    var assertCount = 1;
+                    assert.equal(result, assertCount);
+                });
             });
         });
         context("when fail test", function () {
@@ -144,43 +171,43 @@ describe("power-doctest", function () {
             it("should output message", function () {
                 var code = "var a = 'test';\n" +
                     "a; // => 'not match'\n";
-                var resultMessages = docPower.runDocTest({
-                    filePath: __filename,
-                    fileData: code
+                return docPower.runDocTestAsPromise(code, {
+                    filePath: __filename
+                }).catch(function (error) {
+                    assertDocTestError(error);
                 });
-                assert.isArray(resultMessages);
-                assert.lengthOf(resultMessages, 1);
             });
             context("Case assertion fail exception", function () {
                 var code = "var a = 'test';\n" +
                     "a; // => 'not match'\n";
                 it("should return doctest type errors", function () {
-                    var results = docPower.runDocTest({
-                        fileData: code
+                    return  docPower.runDocTestAsPromise(code).then(function (value) {
+                        console.log(value);
+                    }).catch(function (error) {
+                        assertDocTestError(error)
                     });
-                    var error = results[0];
-                    assertDocTestError(error)
                 });
             });
             context("Case exception test", function () {
                 var code = "1; // => Error";
                 it("should return doctest type errors", function () {
-                    var results = docPower.runDocTest({
-                        fileData: code
+                    return docPower.runDocTestAsPromise(code).catch(function (error) {
+                        assertDocTestError(error)
                     });
-                    var error = results[0];
-                    assert.lengthOf(results, 1);
-                    assertDocTestError(error);
                 });
             });
             context("Case other error(syntax error?)", function () {
-                var code = "throw new Error();";
                 it("should throw exception", function () {
-                    assert.throw(function () {
-                        docPower.runDocTest({
-                            fileData: code
-                        });
+                    var code = "throw new Error('message');";
+                    return docPower.runDocTestAsPromise(code).catch(function (error) {
+                        assert.equal(error.message, "message");
                     });
+                });
+                it("should SyntaxError", function () {
+                    var code = "1++1+++";
+                    assert.throw(function () {
+                        docPower.runDocTestAsPromise(code)
+                    }, Error);
                 });
             });
         });
