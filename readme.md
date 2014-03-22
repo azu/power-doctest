@@ -8,6 +8,10 @@ doctest + [power-assert](https://github.com/twada/power-assert "power-assert").
 npm install -g power-doctest
 ```
 
+### Task
+
+* [azu/gulp-power-doctest](https://github.com/azu/gulp-power-doctest "azu/gulp-power-doctest")
+
 ## Usage
 
     Usage: power-doctest [options] /path/to/file.js
@@ -59,6 +63,10 @@ obj.not.found;// => Error
 
 
 [![image](http://img.youtube.com/vi/uvcdBLm93aA/0.jpg)](http://www.youtube.com/watch?v=uvcdBLm93aA)
+
+### Async Test
+
+* [azu/power-doctest-promised-example](https://github.com/azu/power-doctest-promised-example "azu/power-doctest-promised-example")
 
 ## Contributing
 
