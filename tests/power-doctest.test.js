@@ -125,7 +125,16 @@ describe("power-doctest", function () {
         });
     });
     describe("#runDocTest", function () {
-        context("when success test", function () {
+        context("when no assert code", function () {
+            it("should pass assert count = 0", function () {
+                var code = "var a = 1;";
+                return docPower.runDocTestAsPromise(code).then(function (result) {
+                    var assertCount = 0;
+                    assert.equal(result, assertCount);
+                });
+            });
+        });
+        context("when sync code", function () {
             it("should pass assert count", function () {
                 var code = "var a = 1;\n" +
                     "a; // => 1";
@@ -139,6 +148,18 @@ describe("power-doctest", function () {
                     "a; // => [1]";
                 return docPower.runDocTestAsPromise(code).then(function (result) {
                     assert.equal(result, 1);
+                });
+            });
+        });
+        context("when async code", function () {
+            it("should pass assert count", function () {
+                var code = "setTimeout(function(){" +
+                    "var a = 1;\n" +
+                    "a; // => 1\n" +
+                    "},1);";
+                return docPower.runDocTestAsPromise(code).then(function (result) {
+                    var assertCount = 1;
+                    assert.equal(result, assertCount);
                 });
             });
         });
