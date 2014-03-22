@@ -181,9 +181,7 @@ describe("power-doctest", function () {
                 var code = "var a = 'test';\n" +
                     "a; // => 'not match'\n";
                 it("should return doctest type errors", function () {
-                    return  docPower.runDocTestAsPromise(code).then(function (value) {
-                        console.log(value);
-                    }).catch(function (error) {
+                    return  docPower.runDocTestAsPromise(code).catch(function (error) {
                         assertDocTestError(error)
                     });
                 });
