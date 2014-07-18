@@ -180,9 +180,12 @@ describe("power-doctest", function () {
             context("Case assertion fail exception", function () {
                 var code = "var a = 'test';\n" +
                     "a; // => 'not match'\n";
-                it("should return doctest type errors", function () {
-                    return  docPower.runDocTestAsPromise(code).catch(function (error) {
-                        assertDocTestError(error)
+                it("should return doctest type errors", function (done) {
+                    return  docPower.runDocTestAsPromise(code).then(function () {
+                        done(new Error());
+                    }).catch(function (error) {
+                        assertDocTestError(error);
+                        done();
                     });
                 });
             });
