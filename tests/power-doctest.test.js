@@ -199,9 +199,9 @@ describe("power-doctest", function () {
             });
             context("Case other error(syntax error?)", function () {
                 it("should throw exception", function () {
-                    var code = "throw new Error('message');";
+                    var code = "throw new Error('ErrorMessage');";
                     return docPower.runDocTestAsPromise(code).catch(function (error) {
-                        assert.equal(error.message, "message");
+                        assert.match(error.message, /ErrorMessage/);
                     });
                 });
                 it("should SyntaxError", function () {
@@ -212,6 +212,5 @@ describe("power-doctest", function () {
                 });
             });
         });
-
     });
 });
