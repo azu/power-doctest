@@ -1,0 +1,39 @@
+{
+  "name": "comment-to-assert",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/comment-to-assert.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/azu/comment-to-assert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/comment-to-assert/issues"
+  },
+  "version": "1.0.0",
+  "description": "convert single line comment to assert.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ast",
+    "testing"
+  ],
+  "dependencies": {
+    "escodegen": "^1.6.1",
+    "esprima": "^2.5.0",
+    "estraverse": "^4.1.0",
+    "esutils": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel": "^5.8.20",
+    "espower-babel": "^3.2.0",
+    "mocha": "^2.2.5",
+    "power-assert": "^0.11.0"
+  }
+}
