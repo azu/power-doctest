@@ -2,7 +2,7 @@ import assert from "power-assert"
 import {
     commentToAssertFromCode,
     commentToAssertFromAST
-} from "../src/comment-to-assert"
+    } from "../src/comment-to-assert"
 import {parse} from "esprima"
 import {astEqual} from "./lib/ast-equal"
 
@@ -28,6 +28,11 @@ describe("comment-to-assert", function () {
             var result = commentToAssertFromCode(code);
             assert(typeof result === "string");
             astEqual(result, code);
+        });
+        it("should keep code mean", function () {
+            var code = "1;// => 1";
+            var result = commentToAssertFromCode(code);
+            assert.equal(result, "assert.equal(1, 1);");
         });
     });
     describe("#commentToAssertFromAST", function () {

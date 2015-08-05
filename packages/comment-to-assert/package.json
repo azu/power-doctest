@@ -13,12 +13,18 @@
   },
   "version": "1.0.0",
   "description": "convert single line comment to assert.",
-  "main": "index.js",
+  "main": "lib/comment-to-assert.js",
+  "files": [
+    "lib"
+  ],
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "test": "mocha test/*",
+    "example": "npm i && npm run build && cd example && npm test"
   },
   "keywords": [
     "ast",

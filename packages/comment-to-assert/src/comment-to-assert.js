@@ -8,7 +8,15 @@ import {
     wrapAssert
     } from "./ast-utils"
 export function commentToAssertFromCode(code) {
-    return code;
+    var parseOption = {
+        loc: true,
+        range: true,
+        comment: true,
+        attachComment: true
+    };
+    var AST = parse(code, parseOption);
+    var modifiedAST = commentToAssertFromAST(AST);
+    return generate(modifiedAST);
 }
 export function commentToAssertFromAST(ast) {
     estraverse.replace(ast, {
