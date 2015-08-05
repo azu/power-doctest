@@ -33,5 +33,22 @@ describe("ast-utils", function () {
             var expected = `"string";var a;`;
             astEqual(astNode, expected);
         });
+        it("support function expression", function () {
+            var nodeForInline = {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "defaults": [],
+                "body": {
+                    "type": "BlockStatement",
+                    "body": []
+                },
+                "generator": false,
+                "expression": false
+            };
+            var astNode = toAST`var a = ${nodeForInline};`;
+            var expected = `var a = function (){};`;
+            astEqual(astNode, expected);
+        });
     });
 });
