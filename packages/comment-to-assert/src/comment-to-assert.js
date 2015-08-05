@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
+import assert from "assert"
 import {parse} from "esprima"
 import {generate} from "escodegen"
 import estraverse from "estraverse"
@@ -7,6 +8,7 @@ import {
     tryGetCodeFromComments,
     wrapAssert
 } from "./ast-utils"
+
 export function commentToAssertFromCode(code) {
     var parseOption = {
         loc: true,
@@ -22,8 +24,9 @@ export function commentToAssertFromCode(code) {
     return generate(modifiedAST, generateOption);
 }
 export function commentToAssertFromAST(ast) {
+    assert(ast && typeof ast.comments !== "undefined", "AST must has to comments nodes");
     estraverse.replace(ast, {
-        enter: function (node, parent) {
+        enter: function (node) {
             if (node.trailingComments) {
                 let commentExpression = tryGetCodeFromComments(node.trailingComments);
                 if (commentExpression) {
