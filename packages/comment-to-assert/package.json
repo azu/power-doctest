@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "escodegen": "^1.6.1",
+    "espree": "^2.2.3",
     "esprima": "^2.5.0",
     "estraverse": "^4.1.0",
     "esutils": "^2.0.2"
