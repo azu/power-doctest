@@ -6,7 +6,7 @@ import estraverse from "estraverse"
 import {
     tryGetCodeFromComments,
     wrapAssert
-    } from "./ast-utils"
+} from "./ast-utils"
 export function commentToAssertFromCode(code) {
     var parseOption = {
         loc: true,
@@ -14,9 +14,12 @@ export function commentToAssertFromCode(code) {
         comment: true,
         attachComment: true
     };
+    var generateOption = {
+        comment: true
+    };
     var AST = parse(code, parseOption);
     var modifiedAST = commentToAssertFromAST(AST);
-    return generate(modifiedAST);
+    return generate(modifiedAST, generateOption);
 }
 export function commentToAssertFromAST(ast) {
     estraverse.replace(ast, {

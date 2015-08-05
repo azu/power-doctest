@@ -29,7 +29,7 @@ describe("comment-to-assert", function () {
             assert(typeof result === "string");
             astEqual(result, code);
         });
-        it("should keep code mean", function () {
+        it("should convert to assert", function () {
             var code = "1;// => 1";
             var result = commentToAssertFromCode(code);
             assert.equal(result, "assert.equal(1, 1);");
