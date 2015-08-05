@@ -28,7 +28,8 @@
   },
   "keywords": [
     "ast",
-    "testing"
+    "testing",
+    "doctest"
   ],
   "dependencies": {
     "escodegen": "^1.6.1",
