@@ -24,18 +24,6 @@ function astToCode(expression) {
         ]
     }, {
         format: {
-            indent: {
-                style: '    ',
-                base: 0,
-                adjustMultilineComment: false
-            },
-            newline: '\n',
-            space: ' ',
-            json: false,
-            renumber: false,
-            hexadecimal: false,
-            quotes: 'single',
-            escapeless: false,
             compact: false,
             parentheses: true,
             semicolons: false,
@@ -46,15 +34,15 @@ function astToCode(expression) {
 function extractionBody(ast) {
     return ast.body[0];
 }
-function tag(strings, ...values) {
+export function toAST(strings, ...astNodes) {
     var concatCode = strings.map((string, index) => {
-        var code = (values[index] ? astToCode(values[index]) : "");
+        var code = (astNodes[index] ? astToCode(astNodes[index]) : "");
         return string + code;
     }).join("");
     var concatAST = parse(concatCode);
-    return extractionBody(concatAST);
+    return concatAST;
 }
 
-export function wrapNode(node) {
-    return tag`assert(${node})`;
+export function wrapAssert(node) {
+    return toAST`assert(${node})`;
 }
