@@ -9,8 +9,9 @@ describe("ast-utils", function () {
     describe("#wrapNode", function () {
         it("should return ast", function () {
             var expressionNode = parse("1");
-            var results = wrapAssert(expressionNode);
-            var expected = "assert(1)";
+            var node = expressionNode.body[0].expression;
+            var results = wrapAssert(node, node);
+            var expected = "assert.equal(1, 1)";
             astEqual(results, expected);
         });
     });
