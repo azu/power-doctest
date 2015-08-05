@@ -3,7 +3,7 @@
 import {parse} from "esprima"
 import {generate} from "escodegen"
 import {Syntax} from "estraverse"
-
+import assert from "assert"
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
 export function tryGetCodeFromComments(comments) {
     if (comments.length === 0) {
@@ -41,17 +41,16 @@ export function toAST(strings, ...astNodes) {
         var code = (astNodes[index] ? astToCode(astNodes[index]) : "");
         return string + code;
     }).join("");
-    console.log(concatCode);
     return parse(concatCode);
 }
 
 export function wrapAssert(actualNode, expectedNode) {
+    assert(typeof expectedNode !== "undefined");
     var type = expectedNode.type || extractionBody(expectedNode).type;
     if (type === Syntax.Identifier && expectedNode.name === "Error") {
-        return toAST`
-assert.throws(function() {
-    ${actualNode}
-}, ${expectedNode})`;
+        return toAST`assert.throws(function() {
+                    ${actualNode}
+               }, ${expectedNode})`;
     } else if (type === Syntax.Literal) {
         return toAST`assert.equal(${actualNode}, ${expectedNode})`;
     } else {
