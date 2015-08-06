@@ -8,7 +8,12 @@ import {
     tryGetCodeFromComments,
     wrapAssert
 } from "./ast-utils"
-
+/**
+ * transform code to asserted code
+ * if want to source map, use toAssertFromAST.
+ * @param {string} code
+ * @returns {string}
+ */
 export function toAssertFromSource(code) {
     var parseOption = {
         loc: true,
@@ -17,13 +22,18 @@ export function toAssertFromSource(code) {
         attachComment: true
     };
     var generateOption = {
-        comment: true
+        comment: true,
+        sourcemap: true
     };
     var AST = parse(code, parseOption);
     var modifiedAST = toAssertFromAST(AST);
     return generate(modifiedAST, generateOption);
 }
-
+/**
+ * transform AST to asserted AST.
+ * @param {ESTree.Node} ast
+ * @returns {ESTree.Node}
+ */
 export function toAssertFromAST(ast) {
     assert(ast && typeof ast.comments !== "undefined", "AST must has to comments nodes");
     estraverse.replace(ast, {

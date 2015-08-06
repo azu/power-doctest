@@ -2,29 +2,54 @@
 
 Convert comment to `assert()` function.
 
-## Installation
-
-- [ ] Describe the installation process
-
-## Usage
-
-- [ ] Write usage instructions
-
 ```js
 var foo = 1;
 foo;// => 1
 ```
 
-This convert to:
+Convert this to:
 
 ```js
 var foo = 1;
 assert.equal(foo, 1);
 ```
 
+## Installation
+
+    npm install comment-to-assert
+    
+## Usage
+
+### toAssertFromSource(source : string): string
+
+Return string that transformed source string of arguments.
+
+```js
+import {
+    toAssertFromSource,
+    toAssertFromAST
+} from "comment-to-assert"
+toAssertFromSource("1;// => 1");// => "assert.equal(1, 1)"
+```
+
+### toAssertFromAST(AST : object): object
+
+Return AST object that transformed AST of arguments.
+
+```js
+var AST = parse(`var a = [1];
+                          a;// => [1]`);
+var resultOfAST = toAssertFromAST(AST);
+generate(resultOfAST);
+/*
+var a = [1];
+assert.deepEqual(a, [1]);
+*/
+```
+
 ## Tests
 
-- [ ] Write How to Tests
+    npm test
 
 ## Contributing
 
