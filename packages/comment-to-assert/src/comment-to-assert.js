@@ -9,7 +9,7 @@ import {
     wrapAssert
 } from "./ast-utils"
 
-export function commentToAssertFromCode(code) {
+export function toAssertFromSource(code) {
     var parseOption = {
         loc: true,
         range: true,
@@ -20,10 +20,10 @@ export function commentToAssertFromCode(code) {
         comment: true
     };
     var AST = parse(code, parseOption);
-    var modifiedAST = commentToAssertFromAST(AST);
+    var modifiedAST = toAssertFromAST(AST);
     return generate(modifiedAST, generateOption);
 }
-export function commentToAssertFromAST(ast) {
+export function toAssertFromAST(ast) {
     assert(ast && typeof ast.comments !== "undefined", "AST must has to comments nodes");
     estraverse.replace(ast, {
         enter: function (node) {
