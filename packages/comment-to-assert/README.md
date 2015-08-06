@@ -32,6 +32,9 @@ import {
 toAssertFromSource("1;// => 1");// => "assert.equal(1, 1)"
 ```
 
+`toAssertFromSource` only support transform source code.
+if want to source map, should use `toAssertFromAST` with own parser and generator.
+
 ### toAssertFromAST(AST : object): object
 
 Return AST object that transformed AST of arguments.
@@ -46,6 +49,7 @@ var a = [1];
 assert.deepEqual(a, [1]);
 */
 ```
+
 
 ## Tests
 
