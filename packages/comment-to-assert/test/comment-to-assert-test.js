@@ -4,7 +4,7 @@ import {
     toAssertFromAST
 } from "../src/comment-to-assert"
 import {parse} from "esprima"
-import {astEqual} from "./lib/ast-equal"
+import astEqual from "ast-equal"
 
 function parseToAST(code) {
     var parseOption = {

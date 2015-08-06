@@ -4,6 +4,7 @@ import {parse} from "esprima"
 import {generate} from "escodegen"
 import {Syntax} from "estraverse"
 import assert from "assert"
+import toAST from "tagged-template-to-ast"
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
 export function tryGetCodeFromComments(comments) {
     if (comments.length === 0) {
@@ -17,33 +18,6 @@ export function tryGetCodeFromComments(comments) {
         return matchResult[1];
     }
 }
-
-function astToCode(expression) {
-    return generate({
-        "type": "Program",
-        "body": [
-            expression
-        ]
-    }, {
-        format: {
-            compact: false,
-            parentheses: true,
-            semicolons: false,
-            safeConcatenation: false
-        }
-    });
-}
-function extractionBody(ast) {
-    return ast.body[0];
-}
-export function toAST(strings, ...astNodes) {
-    var concatCode = strings.map((string, index) => {
-        var code = (astNodes[index] ? astToCode(astNodes[index]) : "");
-        return string + code;
-    }).join("");
-    return parse(concatCode);
-}
-
 export function wrapAssert(actualNode, expectedNode) {
     assert(typeof expectedNode !== "undefined");
     var type = expectedNode.type || extractionBody(expectedNode).type;

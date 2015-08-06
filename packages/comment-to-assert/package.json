@@ -36,9 +36,11 @@
     "espree": "^2.2.3",
     "esprima": "^2.5.0",
     "estraverse": "^4.1.0",
-    "esutils": "^2.0.2"
+    "esutils": "^2.0.2",
+    "tagged-template-to-ast": "^1.0.1"
   },
   "devDependencies": {
+    "ast-equal": "^1.0.1",
     "babel": "^5.8.20",
     "espower-babel": "^3.2.0",
     "mocha": "^2.2.5",
