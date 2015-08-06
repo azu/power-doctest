@@ -23,7 +23,7 @@
   "scripts": {
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
-    "test": "mocha test/*",
+    "test": "mocha test/* && npm run example",
     "example": "npm i && npm run build && cd example && npm test"
   },
   "keywords": [

@@ -2,7 +2,7 @@ import assert from "power-assert"
 import {
     toAssertFromSource,
     toAssertFromAST
-    } from "../src/comment-to-assert"
+} from "../src/comment-to-assert"
 import {parse} from "esprima"
 import {astEqual} from "./lib/ast-equal"
 

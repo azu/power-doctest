@@ -23,6 +23,7 @@ export function toAssertFromSource(code) {
     var modifiedAST = toAssertFromAST(AST);
     return generate(modifiedAST, generateOption);
 }
+
 export function toAssertFromAST(ast) {
     assert(ast && typeof ast.comments !== "undefined", "AST must has to comments nodes");
     estraverse.replace(ast, {
