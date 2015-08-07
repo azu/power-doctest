@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import assert from "power-assert"
-import {wrapAssert,toAST} from "../src/ast-utils"
+import {wrapAssert} from "../src/ast-utils"
 import {parse} from "esprima"
 import astEqual from "ast-equal"
 import {ast} from "esutils"
