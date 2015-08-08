@@ -4,6 +4,7 @@ import assert from "assert"
 import {parse} from "esprima"
 import {generate} from "escodegen"
 import estraverse from "estraverse"
+import ASTSource from "ast-source"
 import {
     tryGetCodeFromComments,
     wrapAssert
@@ -12,22 +13,15 @@ import {
  * transform code to asserted code
  * if want to source map, use toAssertFromAST.
  * @param {string} code
+ * @param {string} filePath
  * @returns {string}
  */
-export function toAssertFromSource(code) {
-    var parseOption = {
-        loc: true,
-        range: true,
-        comment: true,
-        attachComment: true
-    };
-    var generateOption = {
-        comment: true,
-        sourcemap: true
-    };
-    var AST = parse(code, parseOption);
-    var modifiedAST = toAssertFromAST(AST);
-    return generate(modifiedAST, generateOption);
+export function toAssertFromSource(code, filePath) {
+    var source = new ASTSource(code, {
+        filePath: filePath
+    });
+    var output = source.transform(toAssertFromAST).output();
+    return output.codeWithMap;
 }
 /**
  * transform AST to asserted AST.

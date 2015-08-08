@@ -14,8 +14,12 @@
   "version": "1.0.1",
   "description": "convert line comment to assert.",
   "main": "lib/comment-to-assert.js",
+  "bin": {
+    "comment-to-assert": "./bin/cmd.js"
+  },
   "files": [
-    "lib"
+    "lib",
+    "bin"
   ],
   "directories": {
     "test": "test"
@@ -23,6 +27,7 @@
   "scripts": {
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build",
     "test": "mocha && npm run example",
     "example": "npm i && npm run build && cd example && npm test"
   },
@@ -32,6 +37,8 @@
     "doctest"
   ],
   "dependencies": {
+    "ast-source": "^1.0.1",
+    "concat-stream": "^1.5.0",
     "escodegen": "^1.6.1",
     "espree": "^2.2.3",
     "esprima": "^2.5.0",
