@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "example.js",
+  "scripts": {
+    "test": "npm rm power-doctest && npm i && power-doctest example.js"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "dependencies": {
+    "power-doctest": "file:.."
+  }
+}
