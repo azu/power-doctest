@@ -1,6 +1,6 @@
 # power-doctest [![Build Status](https://travis-ci.org/azu/power-doctest.png?branch=master)](https://travis-ci.org/azu/power-doctest)
 
-doctest + [power-assert](https://github.com/twada/power-assert "power-assert").
+Doctest + [power-assert](https://github.com/twada/power-assert "power-assert").
 
 ## Installation
 
@@ -14,12 +14,7 @@ npm install -g power-doctest
 
 ## Usage
 
-    Usage: power-doctest [options] /path/to/file.js
-
-    Options:
-      -h, --help    Display help and usage details.
-      -o, --output  Output Path
-
+    Usage: power-doctest /path/to/file.js
 
 Test code :
 
@@ -31,7 +26,7 @@ function sum(ary) {
 }
 
 var total = sum([1, 2, 3, 4, 5]);
-total; // > 5
+total; // => 5
 ```
 
 This code expect ``total`` to be ``5``.
@@ -39,13 +34,37 @@ This code expect ``total`` to be ``5``.
 Result :
 
 ``` sh
-$ node bin/power-doctest.js example/item03.js
-example/item03.js:8:0
-AssertionError
+$ power-doctest example/example.js
+var assert = require('power-assert');
+function sum(ary) {
+    return ary.reduce(function (current, next) {
+        return current + next;
+    }, 0);
+}
+var total = sum([
+    1,
+    2,
+    3,
+    4,
+    5
+]);
+assert.equal(assert._expr(assert._capt(total, 'arguments/0'), {
+    content: 'assert.equal(total, 5)',
+    line: 14
+}), 5);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZXNDb250ZW50IjpbXX0
+```
 
-        assert(total === 5);
-               |     |
-               15    false
+And execute this transformed code:
+
+```sh
+$ power-doctest example/example.js | node -p
+AssertionError:   # at line: 14
+
+  assert.equal(total, 5)
+               |
+               15
+
 ```
 
 ![assert-test](http://gyazo.com/075b4afe13003bd8691a85b371f84afe.gif)
@@ -56,17 +75,22 @@ Look like `=> Error` is `assert.throw()`.
 
 ``` js
 throw new Error(); // => Error
+var object = {};
 obj.not.found;// => Error
 ```
 
-![error-test](http://gyazo.com/0c2bbc62f796288e94ddb3344581eb63.gif)
+Covert this case to:
 
-
-[![image](http://img.youtube.com/vi/uvcdBLm93aA/0.jpg)](http://www.youtube.com/watch?v=uvcdBLm93aA)
-
-### Async Test
-
-* [azu/power-doctest-promised-example](https://github.com/azu/power-doctest-promised-example "azu/power-doctest-promised-example")
+```js
+var assert = require('power-assert');
+assert.throws(function () {
+    throw new Error();
+}, Error);
+var object = {};
+assert.throws(function () {
+    object.not.found;
+}, Error);
+```
 
 ## Contributing
 
