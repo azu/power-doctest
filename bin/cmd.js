@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var convertCode = require('../').convertCode;
+var convertCode = require('../lib/power-doctest').convertCode;
 var concat = require('concat-stream');
 var fs = require('fs');
 var path = require("path");
