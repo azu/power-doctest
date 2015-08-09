@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "doctest + power-assert - comment as testing.",
   "main": "./lib/power-doctest.js",
+  "files": [
+    "bin",
+    "src",
+    "lib"
+  ],
   "bin": {
     "power-doctest": "./bin/cmd.js"
   },
