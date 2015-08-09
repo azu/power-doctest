@@ -64,6 +64,12 @@ And execute this transformed code:
 
 ```sh
 $ power-doctest example/example.js | node -p
+AssertionError:   # at line: 14
+
+  assert.equal(total, 5)
+               |
+               15
+
 ```
 
 ![assert-test](http://gyazo.com/075b4afe13003bd8691a85b371f84afe.gif)
