@@ -17,7 +17,12 @@ assert.equal(foo, 1);
 ## Installation
 
     npm install comment-to-assert
-    
+
+### CLI Installation
+
+    npm install -g comment-to-assert
+    comment-to-assert target.js > modify.js
+
 ## Usage
 
 ### toAssertFromSource(source : string): string
@@ -50,6 +55,18 @@ assert.deepEqual(a, [1]);
 */
 ```
 
+### Example
+
+See [example/](example/)
+
+```
+"use strict";
+var assert = require("assert");
+var toAssertFromSource = require("comment-to-assert").toAssertFromSource;
+toAssertFromSource("1;// => 1");// => 'assert.equal(1, 1);'
+toAssertFromSource("[1];// => [1]");// => 'assert.deepEqual([1], [1]);'
+toAssertFromSource("var foo=1;foo;// => 1");// => 'var foo = 1;\nassert.equal(foo, 1);'
+```
 
 ## Tests
 
