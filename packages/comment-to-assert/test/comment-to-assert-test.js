@@ -68,6 +68,12 @@ describe("comment-to-assert", function () {
             assert.equal(a, "str");`;
             astEqual(result, expected);
         });
+        it("could handle BlockComment", function () {
+            var AST = parseToAST(`1; /* => 1 */`);
+            var result = toAssertFromAST(AST);
+            var expected = `assert.equal(1, 1)`;
+            astEqual(result, expected);
+        });
         it("could handle object", function () {
             var AST = parseToAST(`var a = [1];
             a;// => [1]`);

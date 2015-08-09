@@ -11,7 +11,7 @@ export function tryGetCodeFromComments(comments) {
         return;
     }
     var comment = comments[0];
-    if (comment.type === "Line") {
+    if (comment.type === "Line" || comment.type === "Block") {
         var matchResult = comment.value.match(commentCodeRegExp);
     }
     if (matchResult && matchResult[1]) {
