@@ -9,7 +9,7 @@
     "lib"
   ],
   "bin": {
-    "power-doctest": "./bin/cmd.js"
+    "power-doctest": "bin/cmd.js"
   },
   "scripts": {
     "build": "babel src --out-dir lib --source-maps",
@@ -36,13 +36,13 @@
     "concat-stream": "^1.5.0",
     "espower": "^1.0.6",
     "estraverse": "^4.1.0",
+    "esprima": "^2.5.0",
     "power-assert-formatter": "^1.0.1"
   },
   "devDependencies": {
     "ast-equal": "^1.0.2",
     "babel": "^5.8.21",
     "espower-babel": "^3.2.0",
-    "esprima": "^2.5.0",
     "mocha": "^2.2.5",
     "power-assert": "^0.11.0"
   },
