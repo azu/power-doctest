@@ -68,6 +68,38 @@ describe("comment-to-assert", function () {
             assert.equal(a, "str");`;
             astEqual(result, expected);
         });
+        it("can transform multiple comments", function () {
+            var AST = parseToAST("1; // => 1\n" +
+                "2; // => 2\n");
+            var resultAST = toAssertFromAST(AST);
+            astEqual(resultAST, `
+            assert.equal(1, 1);
+            assert.equal(2, 2);
+            `);
+        });
+        it("can transform + BinaryExpression", function () {
+            var AST = parseToAST("var a = function(){return 1;};\n" +
+                "a + 1; // => 2");
+            var resultAST = toAssertFromAST(AST);
+            astEqual(resultAST, `
+                var a = function () {
+                    return 1;
+                };
+                assert.equal(a + 1 , 2);
+            `);
+        });
+        it("can transform CallExpression", function () {
+            var AST = parseToAST("function add(x,y){ return x + y}\n" +
+                "add(1,2);// => 3");
+            var resultAST = toAssertFromAST(AST);
+            astEqual(resultAST, `
+                function add(x, y) {
+                    return x + y
+                }
+
+                assert.equal(add(1, 2), 3);
+            `);
+        });
         it("could handle BlockComment", function () {
             var AST = parseToAST(`1; /* => 1 */`);
             var result = toAssertFromAST(AST);
