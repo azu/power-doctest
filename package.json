@@ -4,7 +4,7 @@
   "description": "doctest + power-assert - comment as testing.",
   "main": "./lib/power-doctest.js",
   "bin": {
-    "power-doctest": "./bin/power-doctest.js"
+    "power-doctest": "./bin/cmd.js"
   },
   "scripts": {
     "build": "babel src --out-dir lib --source-maps",
@@ -27,26 +27,15 @@
   "license": "MIT",
   "dependencies": {
     "ast-source": "^1.0.6",
-    "bluebird": "^2.2.2",
-    "clone": "^1.0.2",
     "comment-to-assert": "^1.0.2",
     "empower": "^1.0.0",
-    "escodegen": "^1.6.1",
-    "espower": "^1.0.6",
-    "esprima": "^2.5.0",
-    "estraverse": "^4.1.0",
-    "lodash": "^3.10.1",
-    "optimist": "~0.6.0",
-    "power-assert": "^0.11.0",
-    "rocambole": "^0.6.0"
+    "estraverse": "^4.1.0"
   },
   "devDependencies": {
     "ast-equal": "^1.0.2",
     "babel": "^5.8.21",
-    "chai": "^3.2.0",
     "espower-babel": "^3.2.0",
     "esprima": "^2.5.0",
-    "mocha": "^2.2.5",
-    "power-assert": "^0.11.0"
+    "mocha": "^2.2.5"
   }
 }
