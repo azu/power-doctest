@@ -74,6 +74,7 @@ Look like `=> Error` is `assert.throw()`.
 
 ``` js
 throw new Error(); // => Error
+var object = {};
 obj.not.found;// => Error
 ```
 
