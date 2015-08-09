@@ -14,12 +14,7 @@ npm install -g power-doctest
 
 ## Usage
 
-    Usage: power-doctest [options] /path/to/file.js
-
-    Options:
-      -h, --help    Display help and usage details.
-      -o, --output  Output Path
-
+    Usage: power-doctest /path/to/file.js
 
 Test code :
 
