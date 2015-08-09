@@ -24,6 +24,7 @@ export function toAssertFromSource(code, filePath) {
     var output = source.transform(toAssertFromAST).output();
     return output.codeWithMap;
 }
+
 /**
  * transform AST to asserted AST.
  * @param {ESTree.Node} ast

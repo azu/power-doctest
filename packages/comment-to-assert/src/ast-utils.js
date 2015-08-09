@@ -18,6 +18,9 @@ export function tryGetCodeFromComments(comments) {
         return matchResult[1];
     }
 }
+function extractionBody(ast) {
+    return ast.body[0];
+}
 export function wrapAssert(actualNode, expectedNode) {
     assert(typeof expectedNode !== "undefined");
     var type = expectedNode.type || extractionBody(expectedNode).type;
