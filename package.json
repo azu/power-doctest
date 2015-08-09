@@ -26,11 +26,12 @@
   "author": "azu",
   "license": "MIT",
   "dependencies": {
-    "ast-source": "^1.0.6",
+    "ast-source": "^1.1.0",
     "comment-to-assert": "^1.0.2",
     "concat-stream": "^1.5.0",
-    "empower": "^1.0.0",
-    "estraverse": "^4.1.0"
+    "espower": "^1.0.6",
+    "estraverse": "^4.1.0",
+    "power-assert-formatter": "^1.0.1"
   },
   "devDependencies": {
     "ast-equal": "^1.0.2",
@@ -39,7 +40,5 @@
     "esprima": "^2.5.0",
     "mocha": "^2.2.5"
   },
-  "peerDependecies":{
-    
-  }
+  "peerDependecies": {}
 }

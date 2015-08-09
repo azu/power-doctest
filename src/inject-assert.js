@@ -2,34 +2,9 @@
 "use strict";
 import traverse from "estraverse"
 import {Syntax} from "estraverse"
+import {parse} from "esprima"
 export function injectAssertModule(AST) {
-    var powerAssertDeclaration = {
-        "type": "VariableDeclaration",
-        "declarations": [
-            {
-                "type": "VariableDeclarator",
-                "id": {
-                    "type": "Identifier",
-                    "name": "assert"
-                },
-                "init": {
-                    "type": "CallExpression",
-                    "callee": {
-                        "type": "Identifier",
-                        "name": "require"
-                    },
-                    "arguments": [
-                        {
-                            "type": "Literal",
-                            "value": "power-assert",
-                            "raw": "\"power-assert\""
-                        }
-                    ]
-                }
-            }
-        ],
-        "kind": "var"
-    };
-    AST.body.unshift(powerAssertDeclaration);
+    var powerAssertDeclaration = parse(`var assert = require("power-assert")`);
+    AST.body.unshift(powerAssertDeclaration.body[0]);
     return AST;
 }
