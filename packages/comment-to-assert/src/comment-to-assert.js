@@ -18,7 +18,8 @@ import {
  */
 export function toAssertFromSource(code, filePath) {
     var source = new ASTSource(code, {
-        filePath: filePath
+        filePath: filePath,
+        disableSourceMap: typeof filePath === "undefined"
     });
     var output = source.transform(toAssertFromAST).output();
     return output.codeWithMap;
