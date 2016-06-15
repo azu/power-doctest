@@ -32,9 +32,11 @@
   "license": "MIT",
   "dependencies": {
     "ast-source": "^2.0.0",
-    "comment-to-assert": "^1.0.2",
+    "comment-to-assert": "^1.1.0",
     "concat-stream": "^1.5.0",
+    "escodegen": "^1.8.0",
     "espower": "^1.0.6",
+    "espree": "^3.1.5",
     "esprima": "^2.5.0",
     "estraverse": "^4.1.0",
     "power-assert-formatter": "^1.0.1"

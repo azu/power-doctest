@@ -4,7 +4,7 @@ import {toAssertFromAST} from "comment-to-assert"
 import {injectAssertModule} from "./inject-assert"
 import espower from "espower"
 import assert from "assert"
-import ASTSource from "ast-source"
+import ASTSource from "ast-source";
 import {ASTDataContainer} from "ast-source"
 export function convertCode(code, filePath) {
     var source = new ASTSource(code, {
