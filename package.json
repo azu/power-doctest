@@ -31,20 +31,23 @@
   "author": "azu",
   "license": "MIT",
   "dependencies": {
-    "ast-source": "^1.1.0",
+    "ast-source": "^2.0.0",
     "comment-to-assert": "^1.0.2",
     "concat-stream": "^1.5.0",
     "espower": "^1.0.6",
-    "estraverse": "^4.1.0",
     "esprima": "^2.5.0",
+    "estraverse": "^4.1.0",
     "power-assert-formatter": "^1.0.1"
   },
   "devDependencies": {
     "ast-equal": "^1.0.2",
-    "babel": "^5.8.21",
-    "espower-babel": "^3.2.0",
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-jsdoc-to-assert": "^2.0.1",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.9.0",
     "mocha": "^2.2.5",
-    "power-assert": "^0.11.0"
+    "power-assert": "^1.4.1"
   },
   "peerDependecies": {}
 }
