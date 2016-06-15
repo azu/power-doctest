@@ -1,7 +1,5 @@
 // LICENSE : MIT
 "use strict";
-import {parse} from "esprima"
-import {generate} from "escodegen"
 import {Syntax} from "estraverse"
 import assert from "assert"
 import toAST from "tagged-template-to-ast"

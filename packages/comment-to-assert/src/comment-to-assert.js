@@ -1,10 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert"
-import {parse} from "esprima"
-import {generate} from "escodegen"
+import {parse} from "acorn"
+import escodegen from "escodegen"
 import estraverse from "estraverse"
-import ASTSource from "ast-source"
 import {
     tryGetCodeFromComments,
     wrapAssert
@@ -17,12 +15,19 @@ import {
  * @returns {string}
  */
 export function toAssertFromSource(code, filePath) {
-    var source = new ASTSource(code, {
+    const comments = [];
+    const tokens = [];
+    const ast = parse(code, {
         filePath: filePath,
-        disableSourceMap: typeof filePath === "undefined"
+        ecmaVersion: 7,
+        sourceType: "module",
+        ranges: true,
+        onComment: comments,
+        onToken: tokens
     });
-    var output = source.transform(toAssertFromAST).output();
-    return output.codeWithMap;
+    escodegen.attachComments(ast, comments, tokens);
+    const output = toAssertFromAST(ast);
+    return escodegen.generate(output, {comment: true});
 }
 
 /**
@@ -31,7 +36,6 @@ export function toAssertFromSource(code, filePath) {
  * @returns {ESTree.Node}
  */
 export function toAssertFromAST(ast) {
-    assert(ast && typeof ast.comments !== "undefined", "AST must has to comments nodes");
     estraverse.replace(ast, {
         enter: function (node) {
             if (node.trailingComments) {
