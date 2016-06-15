@@ -32,6 +32,13 @@ describe("comment-to-assert", function () {
             var result = toAssertFromSource(code, "file.js");
             assert(typeof result === "string");
         });
+
+        it("should handle module", function () {
+            var code = "const a = 1;" +
+                "a;// => 1";
+            var result = toAssertFromSource(code, "file.js");
+            assert(typeof result === "string");
+        });
     });
     describe("#toAssertFromAST", function () {
         it("should return AST", function () {
@@ -121,6 +128,13 @@ describe("comment-to-assert", function () {
                 throw new Error("error");
             }, Error);`;
             astEqual(result, expected);
+        });
+        it("can transform console comments", function () {
+            var AST = parseToAST("console.log(1); // => 1");
+            var resultAST = toAssertFromAST(AST);
+            astEqual(resultAST, `
+            assert.deepEqual(1, 1);
+            `);
         });
     });
 });

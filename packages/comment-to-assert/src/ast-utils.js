@@ -16,6 +16,25 @@ export function tryGetCodeFromComments(comments) {
         return matchResult[1];
     }
 }
+function isConsole(node) {
+    const expression = node.expression;
+    if (!expression) {
+        return false;
+    }
+    if (expression.type !== "CallExpression") {
+        return false;
+    }
+    const callee = expression.callee;
+    if (!callee) {
+        return false
+    }
+    if (!callee.object) {
+        return false
+    }
+    if (callee.object.name === "console") {
+        return true;
+    }
+}
 function extractionBody(ast) {
     return ast.body[0];
 }
@@ -26,6 +45,10 @@ export function wrapAssert(actualNode, expectedNode) {
         return toAST`assert.throws(function() {
                     ${actualNode}
                }, ${expectedNode})`;
+    } else if (isConsole(actualNode)) {
+        const args = actualNode.expression.arguments;
+        const firstArg = args[0];
+        return toAST`assert.deepEqual(${firstArg}, ${expectedNode})`;
     } else if (type === Syntax.Literal) {
         return toAST`assert.equal(${actualNode}, ${expectedNode})`;
     } else {

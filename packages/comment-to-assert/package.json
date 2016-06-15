@@ -26,7 +26,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --source-maps",
+    "build": "NODE_ENV=production babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "test": "mocha && npm run example",
@@ -41,15 +41,17 @@
     "acorn": "^3.2.0",
     "concat-stream": "^1.5.0",
     "escodegen": "^1.6.1",
+    "espree": "^3.1.5",
     "estraverse": "^4.1.0",
     "esutils": "^2.0.2",
-    "tagged-template-to-ast": "^1.0.1"
+    "tagged-template-to-ast": "^2.0.0"
   },
   "devDependencies": {
     "ast-equal": "^1.0.1",
-    "babel": "^5.8.20",
-    "espower-babel": "^3.2.0",
+    "babel-cli": "^6.10.1",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.9.0",
     "mocha": "^2.2.5",
-    "power-assert": "^0.11.0"
+    "power-assert": "^1.4.1"
   }
 }

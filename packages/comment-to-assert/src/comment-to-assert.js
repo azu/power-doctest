@@ -1,12 +1,41 @@
 // LICENSE : MIT
 "use strict";
-import {parse} from "acorn"
+const espree = require("espree");
 import escodegen from "escodegen"
 import estraverse from "estraverse"
 import {
     tryGetCodeFromComments,
     wrapAssert
 } from "./ast-utils"
+const parseOptions = {
+    // attach range information to each node
+    range: true,
+    // attach line/column location information to each node
+    loc: true,
+    // create a top-level comments array containing all comments
+    comment: true,
+    // attach comments to the closest relevant node as leadingComments and
+    // trailingComments
+    attachComment: true,
+    // create a top-level tokens array containing all tokens
+    tokens: true,
+    // specify the language version (3, 5, 6, or 7, default is 5)
+    ecmaVersion: 6,
+    // specify which type of script you're parsing (script or module, default is script)
+    sourceType: "module",
+    // specify additional language features
+    ecmaFeatures: {
+        // enable JSX parsing
+        jsx: true,
+        // enable return in global scope
+        globalReturn: true,
+        // enable implied strict mode (if ecmaVersion >= 5)
+        impliedStrict: true,
+        // allow experimental object rest/spread
+        experimentalObjectRestSpread: true
+    }
+};
+
 /**
  * transform code to asserted code
  * if want to source map, use toAssertFromAST.
@@ -15,17 +44,7 @@ import {
  * @returns {string}
  */
 export function toAssertFromSource(code, filePath) {
-    const comments = [];
-    const tokens = [];
-    const ast = parse(code, {
-        filePath: filePath,
-        ecmaVersion: 7,
-        sourceType: "module",
-        ranges: true,
-        onComment: comments,
-        onToken: tokens
-    });
-    escodegen.attachComments(ast, comments, tokens);
+    const ast = espree.parse(code, parseOptions);
     const output = toAssertFromAST(ast);
     return escodegen.generate(output, {comment: true});
 }
@@ -41,7 +60,7 @@ export function toAssertFromAST(ast) {
             if (node.trailingComments) {
                 let commentExpression = tryGetCodeFromComments(node.trailingComments);
                 if (commentExpression) {
-                    let commentExpressionAST = parse(commentExpression);
+                    let commentExpressionAST = espree.parse(commentExpression, parseOptions);
                     return wrapAssert(node, commentExpressionAST.body[0].expression);
                 }
             }
