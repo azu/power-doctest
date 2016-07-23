@@ -45,6 +45,8 @@ export function wrapAssert(actualNode, expectedNode) {
         return toAST`assert.throws(function() {
                     ${actualNode}
                }, ${expectedNode})`;
+    } else if (type === Syntax.Identifier && expectedNode.name === "NaN") {
+        return toAST`assert(isNaN(${actualNode}));`;
     } else if (isConsole(actualNode)) {
         const args = actualNode.expression.arguments;
         const firstArg = args[0];
