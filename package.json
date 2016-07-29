@@ -1,6 +1,6 @@
 {
   "name": "power-doctest",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "doctest + power-assert - comment as testing.",
   "main": "./lib/power-doctest.js",
   "files": [
