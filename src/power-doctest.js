@@ -5,21 +5,22 @@ import {injectAssertModule} from "./inject-assert"
 import espower from "espower"
 import assert from "assert"
 import ASTSource from "ast-source";
-import {ASTDataContainer} from "ast-source"
+import {ASTDataContainer, ParserTypes} from "ast-source"
 export function convertCode(code, filePath) {
     var source = new ASTSource(code, {
         filePath: filePath,
         disableSourceMap: typeof filePath === "undefined"
     });
-    var output = source.transform(convertAST).output();
+    var transform = source.transform(convertAST);
+    var output = transform.output();
     return output.codeWithMap;
 }
 
 export function convertAST(AST) {
     var empowerOptions = {
-        destructive: true,
-        modifyMessageOnRethrow: true,
-        saveContextOnRethrow: true,
+        destructive: false,
+        modifyMessageOnRethrow: false,
+        saveContextOnRethrow: false,
         patterns: [
             'assert(value, [message])',
             'assert.ok(value, [message])',
@@ -37,12 +38,13 @@ export function convertAST(AST) {
         var source = new ASTDataContainer(AST);
         var options = {
             loc: true,
-            range: true
+            range: true,
+            parserType: ParserTypes.Esprima
         };
         source.transformStrict(AST => {
-            return espower(AST, empowerOptions);
+            return espower(AST);
         }, options);
-        return source.cloneValue();
+        return source.value;
     };
     var modifyMapFunctionList = [toAssertFromAST, injectAssertModule, boundEspower];
     return modifyMapFunctionList.reduce((AST, modify, index) => {

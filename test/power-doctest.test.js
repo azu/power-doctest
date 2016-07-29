@@ -1,5 +1,6 @@
+const assert = require("assert");
 import astEqual from "ast-equal"
-import {convertAST} from "../src/power-doctest"
+import {convertAST, convertCode} from "../src/power-doctest"
 import {parse} from "esprima"
 function parseAndConvert(code) {
     var options = {
@@ -13,33 +14,48 @@ function parseAndConvert(code) {
     return convertAST(AST);
 }
 
-describe("power-doctest", function () {
-    describe("#convertAST", function () {
-        it("add assert module to header", function () {
+describe("power-doctest", function() {
+    describe("#convertCode", function() {
+        it("should convert code to code", function() {
+            var code = `function addPrefix(text, prefix = "デフォルト:") {
+                return prefix + text;
+            }`;
+            var result = convertCode(code);
+            assert.equal(result, `
+var assert = require('power-assert');
+function addPrefix(text, prefix = 'デフォルト:') {
+    return prefix + text;
+} 
+            `.trim());
+        });
+    });
+    describe("#convertAST", function() {
+        it("add assert module to header", function() {
             var code = "var a = 1;";
             var resultAST = parseAndConvert(code);
             astEqual(resultAST, `
-                var assert = require("power-assert");
-                var a = 1;
+            var assert = require("power-assert");
+            var a = 1;
             `);
         });
-        it("module type", function () {
+        it("module type", function() {
             var code = `
-export default function hello(){
-    var a = 1;
-}
-            `;
+            export default function hello() {
+                var a = 1;
+            }
+                `;
             var resultAST = parseAndConvert(code);
             astEqual(resultAST, `
             var assert = require("power-assert");
-            export default function hello(){
+            export default function hello() {
                 var a = 1;
             }
-            `);
+                `);
         });
-        it("convert assert to power-assert format", function () {
-            var code = `var a = 1;
-                            a; // => 1`;
+        it("convert assert to power-assert format", function() {
+            var code = `
+            var a = 1;
+            a; // => 1`;
             var resultAST = parseAndConvert(code);
             astEqual(resultAST, `
                 var assert = require("power-assert");
