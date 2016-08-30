@@ -41,10 +41,10 @@ function extractionBody(ast) {
 export function wrapAssert(actualNode, expectedNode) {
     assert(typeof expectedNode !== "undefined");
     var type = expectedNode.type || extractionBody(expectedNode).type;
-    if (type === Syntax.Identifier && expectedNode.name === "Error") {
+    if (type === Syntax.Identifier && /^[a-zA-Z]*?Error$/.test(expectedNode.name)) {
         return toAST`assert.throws(function() {
                     ${actualNode}
-               }, ${expectedNode})`;
+               })`;
     } else if (type === Syntax.Identifier && expectedNode.name === "NaN") {
         return toAST`assert(isNaN(${actualNode}));`;
     } else if (isConsole(actualNode)) {
