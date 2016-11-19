@@ -7,7 +7,7 @@ import {parse} from "esprima"
 import astEqual from "ast-equal"
 
 function parseToAST(code) {
-    var parseOption = {
+    const parseOption = {
         loc: true,
         range: true,
         comment: true,
@@ -26,7 +26,7 @@ describe("comment-to-assert", function() {
                 }, 0);
             }
 
-            var x = 1, y, z = 10;
+            let x = 1, y, z = 10;
             assert.throws(function() {
                 sum(x, y, z);
             }, Error);
@@ -80,6 +80,14 @@ describe("comment-to-assert", function() {
             var result = toAssertFromAST(AST);
             var expected = `var a = 1;
             assert.equal(a, 1);`;
+            astEqual(result, expected);
+        });
+        it("could handle object literal", function() {
+            var AST = parseToAST(`var a = { a : 1 };
+            a;// => { a : 1 }`);
+            var result = toAssertFromAST(AST);
+            var expected = `var a = { a: 1 };
+            assert.deepEqual(a, { a : 1 });`;
             astEqual(result, expected);
         });
         it("could handle string", function() {

@@ -46,9 +46,20 @@ const parseOptions = {
 export function toAssertFromSource(code, filePath) {
     const ast = espree.parse(code, parseOptions);
     const output = toAssertFromAST(ast);
-    return escodegen.generate(output, {comment: true});
+    return escodegen.generate(output, { comment: true });
 }
 
+function getExpressionNodeFromCommentValue(string) {
+    // support { } object literal
+    const commentExpression = `0, ${string}`;
+    try {
+        const AST = espree.parse(commentExpression, parseOptions);
+        return AST.body[0].expression.expressions[1];
+    } catch (e) {
+        console.error(`Not parsable comments // => expression`);
+        console.error(e);
+    }
+}
 /**
  * transform AST to asserted AST.
  * @param {ESTree.Node} ast
@@ -56,12 +67,12 @@ export function toAssertFromSource(code, filePath) {
  */
 export function toAssertFromAST(ast) {
     estraverse.replace(ast, {
-        enter: function (node) {
+        enter: function(node) {
             if (node.trailingComments) {
-                let commentExpression = tryGetCodeFromComments(node.trailingComments);
+                const commentExpression = tryGetCodeFromComments(node.trailingComments);
                 if (commentExpression) {
-                    let commentExpressionAST = espree.parse(commentExpression, parseOptions);
-                    return wrapAssert(node, commentExpressionAST.body[0].expression);
+                    const commentExpressionNode = getExpressionNodeFromCommentValue(commentExpression);
+                    return wrapAssert(node, commentExpressionNode);
                 }
             }
         }
