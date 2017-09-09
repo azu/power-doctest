@@ -1,10 +1,7 @@
-import assert from "power-assert"
-import {
-    toAssertFromSource,
-    toAssertFromAST
-} from "../src/comment-to-assert"
-import {parse} from "esprima"
-import astEqual from "ast-equal"
+import assert from "power-assert";
+import { toAssertFromSource, toAssertFromAST } from "../src/comment-to-assert";
+import { parse } from "esprima";
+import astEqual from "ast-equal";
 
 function parseToAST(code) {
     const parseOption = {
@@ -18,19 +15,19 @@ function parseToAST(code) {
 describe("comment-to-assert", function() {
     describe("#toAssertFromSource", function() {
         it("test", function() {
-
             function sum(...values) {
                 return values.reduce((total, value) => {
-                    console.assert(Number.isFinite(value), `${ value }は有限数ではありません`);
+                    console.assert(Number.isFinite(value), `${value}は有限数ではありません`);
                     return total + Number(value);
                 }, 0);
             }
 
-            let x = 1, y, z = 10;
+            let x = 1,
+                y,
+                z = 10;
             assert.throws(function() {
                 sum(x, y, z);
             }, Error);
-
         });
         it("should return code", function() {
             var code = "var a = 1;";
@@ -49,8 +46,7 @@ describe("comment-to-assert", function() {
         });
 
         it("should handle module", function() {
-            var code = "const a = 1;" +
-                "a;// => 1";
+            var code = "const a = 1;" + "a;// => 1";
             var result = toAssertFromSource(code, "file.js");
             assert(typeof result === "string");
         });
@@ -99,36 +95,42 @@ describe("comment-to-assert", function() {
             astEqual(result, expected);
         });
         it("can transform multiple comments", function() {
-            var AST = parseToAST("1; // => 1\n" +
-                "2; // => 2\n");
+            var AST = parseToAST("1; // => 1\n" + "2; // => 2\n");
             var resultAST = toAssertFromAST(AST);
-            astEqual(resultAST, `
+            astEqual(
+                resultAST,
+                `
             assert.equal(1, 1);
             assert.equal(2, 2);
-            `);
+            `
+            );
         });
         it("can transform + BinaryExpression", function() {
-            var AST = parseToAST("var a = function(){return 1;};\n" +
-                "a + 1; // => 2");
+            var AST = parseToAST("var a = function(){return 1;};\n" + "a + 1; // => 2");
             var resultAST = toAssertFromAST(AST);
-            astEqual(resultAST, `
+            astEqual(
+                resultAST,
+                `
                 var a = function () {
                     return 1;
                 };
                 assert.equal(a + 1 , 2);
-            `);
+            `
+            );
         });
         it("can transform CallExpression", function() {
-            var AST = parseToAST("function add(x,y){ return x + y}\n" +
-                "add(1,2);// => 3");
+            var AST = parseToAST("function add(x,y){ return x + y}\n" + "add(1,2);// => 3");
             var resultAST = toAssertFromAST(AST);
-            astEqual(resultAST, `
+            astEqual(
+                resultAST,
+                `
                 function add(x, y) {
                     return x + y
                 }
 
                 assert.equal(add(1, 2), 3);
-            `);
+            `
+            );
         });
         it("could handle BlockComment", function() {
             var AST = parseToAST(`1; /* => 1 */`);
@@ -152,6 +154,14 @@ describe("comment-to-assert", function() {
             });`;
             astEqual(result, expected);
         });
+        it("could handle Error with message", function() {
+            var AST = parseToAST(`throw new Error("x is not defined");// => ReferenceError: x is not defined`);
+            var result = toAssertFromAST(AST);
+            var expected = `assert.throws(function() {
+                throw new Error("x is not defined");
+            });`;
+            astEqual(result, expected);
+        });
         it("could handle NaN", function() {
             var AST = parseToAST(`+"str";// => NaN`);
             var result = toAssertFromAST(AST);
@@ -161,9 +171,12 @@ describe("comment-to-assert", function() {
         it("can transform console comments", function() {
             var AST = parseToAST("console.log(1); // => 1");
             var resultAST = toAssertFromAST(AST);
-            astEqual(resultAST, `
+            astEqual(
+                resultAST,
+                `
             assert.deepEqual(1, 1);
-            `);
+            `
+            );
         });
     });
 });

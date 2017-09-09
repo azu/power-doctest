@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import {Syntax} from "estraverse"
-import assert from "assert"
-import toAST from "tagged-template-to-ast"
+import { Syntax } from "estraverse";
+import assert from "assert";
+import toAST from "tagged-template-to-ast";
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
 export function tryGetCodeFromComments(comments) {
     if (comments.length === 0) {
@@ -26,10 +26,10 @@ function isConsole(node) {
     }
     const callee = expression.callee;
     if (!callee) {
-        return false
+        return false;
     }
     if (!callee.object) {
-        return false
+        return false;
     }
     if (callee.object.name === "console") {
         return true;
@@ -38,10 +38,11 @@ function isConsole(node) {
 function extractionBody(ast) {
     return ast.body[0];
 }
+export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
 export function wrapAssert(actualNode, expectedNode) {
     assert(typeof expectedNode !== "undefined");
     var type = expectedNode.type || extractionBody(expectedNode).type;
-    if (type === Syntax.Identifier && /^[a-zA-Z]*?Error$/.test(expectedNode.name)) {
+    if (type === Syntax.Identifier && ERROR_COMMENT_PATTERN.test(expectedNode.name)) {
         return toAST`assert.throws(function() {
                     ${actualNode}
                })`;

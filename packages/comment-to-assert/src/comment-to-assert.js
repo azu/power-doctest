@@ -1,12 +1,11 @@
 // LICENSE : MIT
 "use strict";
 const espree = require("espree");
-import escodegen from "escodegen"
-import estraverse from "estraverse"
-import {
-    tryGetCodeFromComments,
-    wrapAssert
-} from "./ast-utils"
+import escodegen from "escodegen";
+import estraverse from "estraverse";
+import { ERROR_COMMENT_PATTERN, tryGetCodeFromComments, wrapAssert } from "./ast-utils";
+import { Syntax } from "estraverse";
+
 const parseOptions = {
     // attach range information to each node
     range: true,
@@ -50,16 +49,25 @@ export function toAssertFromSource(code, filePath) {
 }
 
 function getExpressionNodeFromCommentValue(string) {
+    const message = string.trim();
+    if (ERROR_COMMENT_PATTERN.test(message)) {
+        const match = message.match(ERROR_COMMENT_PATTERN);
+        return {
+            type: Syntax.Identifier,
+            name: match[1]
+        };
+    }
     // support { } object literal
     const commentExpression = `0, ${string}`;
     try {
         const AST = espree.parse(commentExpression, parseOptions);
         return AST.body[0].expression.expressions[1];
     } catch (e) {
-        console.error(`Not parsable comments // => expression`);
+        console.error(`Can't parse comments // => expression`);
         console.error(e);
     }
 }
+
 /**
  * transform AST to asserted AST.
  * @param {ESTree.Node} ast
