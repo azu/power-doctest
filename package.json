@@ -37,7 +37,7 @@
     "escodegen": "^1.8.0",
     "espower": "^2.0.1",
     "espree": "^3.1.5",
-    "esprima": "^3.1.1",
+    "esprima": "^4.0.0",
     "estraverse": "^4.1.0",
     "power-assert-formatter": "^1.0.1"
   },
