@@ -4,7 +4,7 @@
   "description": "",
   "main": "example.js",
   "scripts": {
-    "test": "npm rm power-doctest && npm i && power-doctest example.js"
+    "test": "npm i && power-doctest example.js"
   },
   "author": "azu",
   "license": "MIT",
