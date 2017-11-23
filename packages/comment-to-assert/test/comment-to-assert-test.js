@@ -12,6 +12,7 @@ function parseToAST(code) {
     };
     return parse(code, parseOption);
 }
+
 describe("comment-to-assert", function() {
     describe("#toAssertFromSource", function() {
         it("test", function() {
@@ -92,6 +93,18 @@ describe("comment-to-assert", function() {
             var result = toAssertFromAST(AST);
             var expected = `var a = "str";
             assert.equal(a, "str");`;
+            astEqual(result, expected);
+        });
+        it("could handle undefined", function() {
+            var AST = parseToAST(`this; // => undefined`);
+            var result = toAssertFromAST(AST);
+            var expected = `assert.equal(this, undefined);`;
+            astEqual(result, expected);
+        });
+        it("could handle null", function() {
+            var AST = parseToAST(`this; // => null`);
+            var result = toAssertFromAST(AST);
+            var expected = `assert.equal(this, null);`;
             astEqual(result, expected);
         });
         it("can transform multiple comments", function() {

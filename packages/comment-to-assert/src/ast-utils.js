@@ -3,7 +3,9 @@
 import { Syntax } from "estraverse";
 import assert from "assert";
 import toAST from "tagged-template-to-ast";
+
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
+
 export function tryGetCodeFromComments(comments) {
     if (comments.length === 0) {
         return;
@@ -16,6 +18,7 @@ export function tryGetCodeFromComments(comments) {
         return matchResult[1];
     }
 }
+
 function isConsole(node) {
     const expression = node.expression;
     if (!expression) {
@@ -35,19 +38,24 @@ function isConsole(node) {
         return true;
     }
 }
+
 function extractionBody(ast) {
     return ast.body[0];
 }
+
 export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
+
 export function wrapAssert(actualNode, expectedNode) {
     assert(typeof expectedNode !== "undefined");
-    var type = expectedNode.type || extractionBody(expectedNode).type;
+    const type = expectedNode.type || extractionBody(expectedNode).type;
     if (type === Syntax.Identifier && ERROR_COMMENT_PATTERN.test(expectedNode.name)) {
         return toAST`assert.throws(function() {
                     ${actualNode}
                })`;
     } else if (type === Syntax.Identifier && expectedNode.name === "NaN") {
         return toAST`assert(isNaN(${actualNode}));`;
+    } else if (expectedNode.name === "undefined" || expectedNode.name === "null") {
+        return toAST`assert.equal(${actualNode}, ${expectedNode})`;
     } else if (isConsole(actualNode)) {
         const args = actualNode.expression.arguments;
         const firstArg = args[0];

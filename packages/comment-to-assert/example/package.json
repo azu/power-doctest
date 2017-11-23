@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm rm comment-to-assert && npm i && node example.js"
+    "test": "npm i && node example.js"
   },
   "author": "azu",
   "license": "MIT",
