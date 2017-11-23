@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/comment-to-assert/issues"
   },
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "convert line comment to assert.",
   "main": "lib/comment-to-assert.js",
   "bin": {
