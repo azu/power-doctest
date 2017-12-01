@@ -92,6 +92,14 @@ assert.throws(function () {
 }, Error);
 ```
 
+## UseCase
+
+It will be useful for writing document or book.
+Example code should be tested, but it is difficult.
+power-doctest help to introduce automatic testing for example code.
+
+- [markdown-doc-test.js](https://github.com/asciidwango/js-primer/blob/b41fa8c8e93714570195934f9beb77557a636647/test/markdown-doc-test.js "markdown-doc-test.js")
+
 ## Contributing
 
 1. Fork it!
