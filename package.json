@@ -39,6 +39,7 @@
     "espree": "^3.1.5",
     "esprima": "^4.0.0",
     "estraverse": "^4.1.0",
+    "power-assert": "^1.4.1",
     "power-assert-formatter": "^1.0.1"
   },
   "devDependencies": {
@@ -48,8 +49,7 @@
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.9.0",
-    "mocha": "^4.0.1",
-    "power-assert": "^1.4.1"
+    "mocha": "^4.0.1"
   },
   "peerDependecies": {}
 }
