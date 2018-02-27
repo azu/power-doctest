@@ -6,7 +6,6 @@
     "development": {
       "presets": [
         "jsdoc-to-assert",
-        "power-assert",
         "power-assert"
       ]
     }

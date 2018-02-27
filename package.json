@@ -12,7 +12,7 @@
     "power-doctest": "bin/cmd.js"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --source-maps",
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "test": "mocha && (cd example && npm test)"
@@ -39,6 +39,7 @@
     "espree": "^3.1.5",
     "esprima": "^4.0.0",
     "estraverse": "^4.1.0",
+    "power-assert": "^1.4.1",
     "power-assert-formatter": "^1.0.1"
   },
   "devDependencies": {
@@ -48,8 +49,8 @@
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.9.0",
-    "mocha": "^4.0.1",
-    "power-assert": "^1.4.1"
+    "cross-env": "^5.1.3",
+    "mocha": "^4.0.1"
   },
   "peerDependecies": {}
 }
