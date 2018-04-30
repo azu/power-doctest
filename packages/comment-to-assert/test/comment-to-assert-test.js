@@ -15,21 +15,6 @@ function parseToAST(code) {
 
 describe("comment-to-assert", function() {
     describe("#toAssertFromSource", function() {
-        it("test", function() {
-            function sum(...values) {
-                return values.reduce((total, value) => {
-                    console.assert(Number.isFinite(value), `${value}は有限数ではありません`);
-                    return total + Number(value);
-                }, 0);
-            }
-
-            let x = 1,
-                y,
-                z = 10;
-            assert.throws(function() {
-                sum(x, y, z);
-            }, Error);
-        });
         it("should return code", function() {
             var code = "var a = 1;";
             var result = toAssertFromSource(code, "file.js");
