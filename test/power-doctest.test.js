@@ -53,6 +53,19 @@ function addPrefix(text, prefix = 'デフォルト:') {
             }
                 `);
         });
+
+        it("should support async function", function() {
+            var code = `
+            async function hello() {
+                var a = 1;
+                console.log(a); // => 1
+            }
+            hello();
+                `;
+            const resultAST = parseAndConvert(code);
+            const resultCode = generate(resultAST);
+            assert(resultCode.indexOf("assert.deepEqual") !== -1);
+        });
         it("convert assert to power-assert format, it contain assert function", function() {
             var code = `
             var a = 1;

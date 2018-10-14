@@ -4,7 +4,7 @@
   "description": "",
   "main": "example.js",
   "scripts": {
-    "test": "npm i && power-doctest example.js"
+    "test": "npm i --no-package-lock && power-doctest example.js"
   },
   "author": "azu",
   "license": "MIT",
