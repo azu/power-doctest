@@ -1,10 +1,10 @@
 // LICENSE : MIT
 "use strict";
 const espree = require("espree");
-import escodegen from "escodegen";
-import estraverse from "estraverse";
+const escodegen = require("escodegen");
+const estraverse = require("estraverse");
+const { Syntax } = require("estraverse");
 import { ERROR_COMMENT_PATTERN, PROMISE_COMMENT_PATTERN, tryGetCodeFromComments, wrapAssert } from "./ast-utils";
-import { Syntax } from "estraverse";
 
 const parseOptions = {
     // attach range information to each node
@@ -42,16 +42,19 @@ const parseOptions = {
  * @param {string} filePath
  * @returns {string}
  */
-export function toAssertFromSource(code, filePath) {
+export function toAssertFromSource(code: string) {
     const ast = espree.parse(code, parseOptions);
     const output = toAssertFromAST(ast);
     return escodegen.generate(output, { comment: true });
 }
 
-function getExpressionNodeFromCommentValue(string) {
+function getExpressionNodeFromCommentValue(string: string): { type: string } & { [index: string]: any } {
     const message = string.trim();
     if (ERROR_COMMENT_PATTERN.test(message)) {
         const match = message.match(ERROR_COMMENT_PATTERN);
+        if (!match) {
+            throw new Error(`Can not Parse: // => Error: "message"`);
+        }
         return {
             type: Syntax.Identifier,
             name: match[1]
@@ -59,6 +62,10 @@ function getExpressionNodeFromCommentValue(string) {
     }
     if (PROMISE_COMMENT_PATTERN.test(message)) {
         const match = message.match(PROMISE_COMMENT_PATTERN);
+        if (!match) {
+            throw new Error("Can not Parse: // => Promise: value");
+        }
+
         return {
             type: "Promise",
             value: getExpressionNodeFromCommentValue(match[1])
@@ -71,7 +78,7 @@ function getExpressionNodeFromCommentValue(string) {
         return AST.body[0].expression.expressions[1];
     } catch (e) {
         console.error(`Can't parse comments // => expression`);
-        console.error(e);
+        throw e;
     }
 }
 
@@ -80,9 +87,9 @@ function getExpressionNodeFromCommentValue(string) {
  * @param {ESTree.Node} ast
  * @returns {ESTree.Node}
  */
-export function toAssertFromAST(ast) {
+export function toAssertFromAST(ast: any) {
     estraverse.replace(ast, {
-        enter: function(node) {
+        enter: function(node: any) {
             if (node.trailingComments) {
                 const commentExpression = tryGetCodeFromComments(node.trailingComments);
                 if (commentExpression) {

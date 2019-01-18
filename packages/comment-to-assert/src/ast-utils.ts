@@ -1,12 +1,13 @@
 // LICENSE : MIT
 "use strict";
-import { Syntax } from "estraverse";
-import assert from "assert";
-import toAST from "tagged-template-to-ast";
+const { Syntax } = require("estraverse");
+import * as assert from "assert";
+
+const toAST = require("tagged-template-to-ast");
 
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
 
-export function tryGetCodeFromComments(comments) {
+export function tryGetCodeFromComments(comments: any[]) {
     if (comments.length === 0) {
         return;
     }
@@ -19,7 +20,7 @@ export function tryGetCodeFromComments(comments) {
     }
 }
 
-function isConsole(node) {
+function isConsole(node: any): node is { type: "?"; expression: any } {
     const expression = node.expression;
     if (!expression) {
         return false;
@@ -34,20 +35,18 @@ function isConsole(node) {
     if (!callee.object) {
         return false;
     }
-    if (callee.object.name === "console") {
-        return true;
-    }
+    return callee.object.name === "console";
 }
 
-function extractionBody(ast) {
+function extractionBody(ast: any) {
     return ast.body[0];
 }
 
 export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
 export const PROMISE_COMMENT_PATTERN = /^Promise:\s*(.*?)\s*$/;
 
-export function wrapAssert(actualNode, expectedNode) {
-    assert(typeof expectedNode !== "undefined");
+export function wrapAssert(actualNode: any, expectedNode: any): any {
+    assert.notEqual(typeof expectedNode, "undefined");
     const type = expectedNode.type || extractionBody(expectedNode).type;
     if (type === Syntax.Identifier && ERROR_COMMENT_PATTERN.test(expectedNode.name)) {
         return toAST`assert.throws(function() {
@@ -72,4 +71,5 @@ export function wrapAssert(actualNode, expectedNode) {
     } else {
         return toAST`assert.deepEqual(${actualNode}, ${expectedNode})`;
     }
+    throw new Error("Unknown pattern: " + actualNode);
 }
