@@ -1,18 +1,48 @@
 # comment-to-assert
 
-Convert comment to `assert()` function.
+Convert comment to `assert` function.
 
 ```js
-var foo = 1;
+const foo = 1;
 foo;// => 1
 ```
 
 Convert this to:
 
 ```js
-var foo = 1;
-assert.equal(foo, 1);
+const foo = 1;
+assert.strictEqual(foo, 1);
 ```
+
+## Syntax
+
+This library support following format.
+
+```
+expression; // => expected value
+```
+
+or
+
+```
+console.log(expression); // => expected value
+```
+
+**Special handling**:
+
+Error:
+
+```js
+throw new Error("message"); // Error: "message"
+```
+
+Promise:
+
+```js
+Promise.resolve(1); // => Promise: 1
+```
+
+If you need to callback for promise, use `asyncCallbackName` option.
 
 ## Installation
 
@@ -25,7 +55,7 @@ assert.equal(foo, 1);
 
 ## Usage
 
-### toAssertFromSource(source : string): string
+### toAssertFromSource(source : string, options: toAssertFromSourceOptions): string
 
 Return string that transformed source string of arguments.
 
@@ -40,7 +70,21 @@ toAssertFromSource("1;// => 1");// => "assert.equal(1, 1)"
 `toAssertFromSource` only support transform source code.
 if want to source map, should use `toAssertFromAST` with own parser and generator.
 
-### toAssertFromAST(AST : object): object
+**Options:**
+
+- `asyncCallbackName`: callback name when promise is resolved or rejected
+- `babel`: [@babel/core](https://babeljs.io/docs/en/babel-core) option
+
+```
+interface toAssertFromSourceOptions {
+    asyncCallbackName?: string;
+    babel?: {
+        plugins: string[];
+    };
+}
+```
+
+### toAssertFromAST(AST : object, options: toAssertFromASTOptions): object
 
 Return AST object that transformed AST of arguments.
 
@@ -53,6 +97,17 @@ generate(resultOfAST);
 var a = [1];
 assert.deepEqual(a, [1]);
 */
+```
+
+
+**Options:**
+
+- `asyncCallbackName`: callback name when promise is resolved or rejected
+
+```
+export interface toAssertFromASTOptions {
+    asyncCallbackName?: string;
+}
 ```
 
 ### Example

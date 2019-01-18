@@ -34,7 +34,8 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
 }
 
 export interface toAssertFromSourceOptions {
-    babel: {
+    asyncCallbackName?: string;
+    babel?: {
         plugins: string[];
     };
 }
@@ -47,12 +48,18 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     const ast = parse(code, {
         // parse in strict mode and allow module declarations
         sourceType: "module",
-        plugins: (options && options.babel.plugins) || []
+        plugins: (options && options.babel && options.babel.plugins) || []
     });
     if (!ast) {
         throw new Error("Can not parse the code");
     }
-    const output = toAssertFromAST(ast);
+    const toAssertOptions =
+        options && options.asyncCallbackName !== undefined
+            ? {
+                  asyncCallbackName: options.asyncCallbackName
+              }
+            : {};
+    const output = toAssertFromAST(ast, toAssertOptions);
     const babelFileResult = transformFromAstSync(output, code, { comments: true });
     if (!babelFileResult) {
         throw new Error("can not generate from ast: " + JSON.stringify(output));
@@ -60,10 +67,14 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     return babelFileResult.code;
 }
 
+export interface toAssertFromASTOptions {
+    asyncCallbackName?: string;
+}
+
 /**
  * transform AST to asserted AST.
  */
-export function toAssertFromAST(ast: ParseResult) {
+export function toAssertFromAST(ast: ParseResult, options: toAssertFromASTOptions = {}) {
     const replaceSet = new Set();
     traverse(ast, {
         exit(path) {
@@ -72,7 +83,7 @@ export function toAssertFromAST(ast: ParseResult) {
                 if (commentExpression) {
                     const commentExpressionNode = getExpressionNodeFromCommentValue(commentExpression);
                     const actualNode = isExpressionStatement(path.node) ? path.node.expression : path.node;
-                    const replacement = wrapAssert(actualNode, commentExpressionNode);
+                    const replacement = wrapAssert(actualNode, commentExpressionNode, options);
                     path.replaceWith(replacement);
                     replaceSet.add(path.node);
                 }

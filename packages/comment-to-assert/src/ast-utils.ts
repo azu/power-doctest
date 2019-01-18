@@ -31,7 +31,11 @@ function extractionBody(ast: any) {
 export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
 export const PROMISE_COMMENT_PATTERN = /^Promise:\s*(.*?)\s*$/;
 
-export function wrapAssert(actualNode: any, expectedNode: any): any {
+export interface wrapAssertOptions {
+    asyncCallbackName?: string;
+}
+
+export function wrapAssert(actualNode: any, expectedNode: any, options: wrapAssertOptions = {}): any {
     assert.notEqual(typeof expectedNode, "undefined");
     const type = expectedNode.type || extractionBody(expectedNode).type;
     const ACTUAL_NODE = actualNode;
@@ -48,12 +52,26 @@ export function wrapAssert(actualNode: any, expectedNode: any): any {
         });
     } else if (type === "Promise") {
         const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
-        return template`Promise.resolve(ARGS).then(v => {
+        // support callback
+        const asyncCallbackName = options.asyncCallbackName;
+        if (asyncCallbackName) {
+            return template`Promise.resolve(ARGS).then(v => {
+            ${wrapAssert({ type: "Identifier", name: "v" }, expectedNode.node)}
+            ${asyncCallbackName}(null, v);
+            return v;
+        }).catch(error => {
+            ${asyncCallbackName}(error);
+        })`({
+                ARGS
+            });
+        } else {
+            return template`Promise.resolve(ARGS).then(v => {
             ${wrapAssert({ type: "Identifier", name: "v" }, expectedNode.node)}
             return v;
         });`({
-            ARGS
-        });
+                ARGS
+            });
+        }
     } else if (isIdentifier(expectedNode) && expectedNode.name === "NaN") {
         return template`assert.ok(isNaN(ACTUAL_NODE));`({
             ACTUAL_NODE
