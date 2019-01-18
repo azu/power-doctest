@@ -44,6 +44,7 @@ function extractionBody(ast) {
 }
 
 export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
+export const PROMISE_COMMENT_PATTERN = /^Promise:\s*(.*?)\s*$/;
 
 export function wrapAssert(actualNode, expectedNode) {
     assert(typeof expectedNode !== "undefined");
@@ -52,6 +53,12 @@ export function wrapAssert(actualNode, expectedNode) {
         return toAST`assert.throws(function() {
                     ${actualNode}
                })`;
+    } else if (type === "Promise") {
+        const args = isConsole(actualNode) ? actualNode.expression.arguments[0] : actualNode;
+        return toAST`Promise.resolve(${args}).then(v => {
+            ${wrapAssert({ type: "Identifier", name: "v" }, expectedNode.value)}
+            return v;
+        });`;
     } else if (type === Syntax.Identifier && expectedNode.name === "NaN") {
         return toAST`assert(isNaN(${actualNode}));`;
     } else if (expectedNode.name === "undefined" || expectedNode.name === "null") {

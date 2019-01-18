@@ -3,7 +3,7 @@
 const espree = require("espree");
 import escodegen from "escodegen";
 import estraverse from "estraverse";
-import { ERROR_COMMENT_PATTERN, tryGetCodeFromComments, wrapAssert } from "./ast-utils";
+import { ERROR_COMMENT_PATTERN, PROMISE_COMMENT_PATTERN, tryGetCodeFromComments, wrapAssert } from "./ast-utils";
 import { Syntax } from "estraverse";
 
 const parseOptions = {
@@ -55,6 +55,13 @@ function getExpressionNodeFromCommentValue(string) {
         return {
             type: Syntax.Identifier,
             name: match[1]
+        };
+    }
+    if (PROMISE_COMMENT_PATTERN.test(message)) {
+        const match = message.match(PROMISE_COMMENT_PATTERN);
+        return {
+            type: "Promise",
+            value: getExpressionNodeFromCommentValue(match[1])
         };
     }
     // support { } object literal

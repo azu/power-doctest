@@ -176,5 +176,31 @@ describe("comment-to-assert", function() {
             `
             );
         });
+        it("can transform promise comments", function() {
+            var AST = parseToAST("Promise.resolve(1); // => Promise: 1");
+            var resultAST = toAssertFromAST(AST);
+            astEqual(
+                resultAST,
+                `
+Promise.resolve(Promise.resolve(1)).then(v => {
+    assert.equal(v, 1);
+    return v;
+});
+            `
+            );
+        });
+        it("can transform console promise comments", function() {
+            var AST = parseToAST("console.log(Promise.resolve(1)); // => Promise: 1");
+            var resultAST = toAssertFromAST(AST);
+            astEqual(
+                resultAST,
+                `
+Promise.resolve(Promise.resolve(1)).then(v => {
+    assert.equal(v, 1);
+    return v;
+});
+            `
+            );
+        });
     });
 });
