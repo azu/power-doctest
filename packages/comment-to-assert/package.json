@@ -1,50 +1,44 @@
 {
   "name": "comment-to-assert",
+  "version": "1.5.1",
+  "description": "convert line comment to assert.",
+  "keywords": [
+    "ast",
+    "doctest",
+    "testing"
+  ],
+  "homepage": "https://github.com/azu/comment-to-assert",
+  "bugs": {
+    "url": "https://github.com/azu/comment-to-assert/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/comment-to-assert.git"
   },
-  "author": "azu",
-  "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/comment-to-assert",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/azu/comment-to-assert/issues"
-  },
-  "version": "1.5.1",
-  "description": "convert line comment to assert.",
-  "main": "lib/comment-to-assert.js",
-  "bin": {
-    "comment-to-assert": "./bin/cmd.js"
-  },
+  "author": "azu",
   "files": [
     "lib",
     "src",
     "bin"
   ],
+  "main": "lib/comment-to-assert.js",
+  "types": "lib/comment-to-assert.d.ts",
+  "bin": {
+    "comment-to-assert": "./bin/cmd.js"
+  },
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "precommit": "lint-staged",
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "example": "npm i && npm run build && cd example && npm test",
     "postcommit": "git reset",
-    "build": "NODE_ENV=production babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
+    "precommit": "lint-staged",
     "prepublish": "npm run --if-present build",
-    "test": "mocha && npm run example",
-    "example": "npm i && npm run build && cd example && npm test"
+    "test": "mocha \"test/**/*.{js,ts}\"",
+    "watch": "tsc -p . --watch"
   },
-  "lint-staged": {
-    "*.{js,ts,tsx,css}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "keywords": [
-    "ast",
-    "testing",
-    "doctest"
-  ],
   "dependencies": {
     "acorn": "^4.0.3",
     "concat-stream": "^1.5.0",
@@ -55,15 +49,24 @@
     "tagged-template-to-ast": "^2.0.0"
   },
   "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
     "ast-equal": "^1.0.1",
-    "babel-cli": "^6.10.1",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-power-assert": "^1.0.0",
-    "babel-register": "^6.9.0",
+    "cross-env": "^5.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.1.3",
-    "mocha": "^3.1.2",
+    "mocha": "^5.2.0",
     "power-assert": "^1.4.1",
-    "prettier": "^1.6.1"
+    "prettier": "^1.6.1",
+    "ts-node": "^7.0.1",
+    "ts-node-test-register": "^4.0.0",
+    "typescript": "^3.2.4"
+  },
+  "email": "azuciao@gmail.com",
+  "lint-staged": {
+    "*.{js,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
