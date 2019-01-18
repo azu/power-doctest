@@ -1,0 +1,1 @@
+assert.equal(null, null); // => null

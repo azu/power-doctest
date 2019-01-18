@@ -58,10 +58,13 @@ export function wrapAssert(actualNode: any, expectedNode: any): any {
         return template`assert(isNaN(ACTUAL_NODE));`({
             ACTUAL_NODE
         });
-    } else if (isNullLiteral(expectedNode) || (isIdentifier(expectedNode) && expectedNode.name === "undefined")) {
-        return template`assert.equal(ACTUAL_NODE, EXPECTED_NODE)`({
-            ACTUAL_NODE,
-            EXPECTED_NODE
+    } else if (isNullLiteral(expectedNode)) {
+        return template`assert.equal(ACTUAL_NODE, null)`({
+            ACTUAL_NODE
+        });
+    } else if (isIdentifier(expectedNode) && expectedNode.name === "undefined") {
+        return template`assert.equal(ACTUAL_NODE, undefined)`({
+            ACTUAL_NODE
         });
     } else if (isLiteral(expectedNode)) {
         return template`assert.equal(ACTUAL_NODE, EXPECTED_NODE)`({

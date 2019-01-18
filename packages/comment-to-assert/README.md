@@ -72,6 +72,10 @@ toAssertFromSource("var foo=1;foo;// => 1");// => 'var foo = 1;\nassert.equal(fo
 
     npm test
 
+Update snapshots if you need.
+
+    npm run updateSnapshot
+
 ## Contributing
 
 1. Fork it!

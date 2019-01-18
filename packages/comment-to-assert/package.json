@@ -36,7 +36,8 @@
     "postcommit": "git reset",
     "precommit": "lint-staged",
     "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.{js,ts}\"",
+    "test": "mocha \"test/**/*.ts\"",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
     "watch": "tsc -p . --watch"
   },
   "dependencies": {
@@ -57,7 +58,6 @@
     "husky": "^0.14.3",
     "lint-staged": "^4.1.3",
     "mocha": "^5.2.0",
-    "power-assert": "^1.4.1",
     "prettier": "^1.6.1",
     "ts-node": "^7.0.1",
     "ts-node-test-register": "^4.0.0",
@@ -65,7 +65,7 @@
   },
   "email": "azuciao@gmail.com",
   "lint-staged": {
-    "*.{js,ts,tsx,css}": [
+    "*.{ts,tsx,css}": [
       "prettier --write",
       "git add"
     ]

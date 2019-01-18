@@ -1,0 +1,1 @@
+assert(isNaN(NaN)); // => NaN
