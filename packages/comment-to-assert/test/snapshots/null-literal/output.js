@@ -1,1 +1,1 @@
-assert.equal(null, null); // => null
+assert.strictEqual(null, null); // => null

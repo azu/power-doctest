@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
+import * as vm from "vm";
 import { toAssertFromSource } from "../src/comment-to-assert";
 
 const fixturesDir = path.join(__dirname, "snapshots");
@@ -28,6 +29,14 @@ ${fixtureDir}
 ${JSON.stringify(actual)}
 `
             );
+            if (typeof actual === "string") {
+                vm.runInContext(
+                    actual,
+                    vm.createContext({
+                        assert
+                    })
+                );
+            }
         });
     });
 });

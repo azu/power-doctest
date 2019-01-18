@@ -1,6 +1,6 @@
 var a = {
   a: 1
 };
-assert.deepEqual(a, {
+assert.deepStrictEqual(a, {
   a: 1
 }); // => { a : 1 }

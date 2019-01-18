@@ -1,1 +1,1 @@
-assert(isNaN(NaN)); // => NaN
+assert.ok(isNaN(NaN)); // => NaN

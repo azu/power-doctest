@@ -1,6 +1,6 @@
-assert.equal(null, null); // => null
+assert.strictEqual(null, null); // => null
 
-assert.equal(1, 1); // => 1
+assert.strictEqual(1, 1); // => 1
 
 const a = "str";
-assert.equal(a, "str"); // => "str"
+assert.strictEqual(a, "str"); // => "str"

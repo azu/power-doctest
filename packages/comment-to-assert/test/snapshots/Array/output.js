@@ -1,2 +1,2 @@
 var a = [1];
-assert.deepEqual(a, [1]); // => [1]
+assert.deepStrictEqual(a, [1]); // => [1]

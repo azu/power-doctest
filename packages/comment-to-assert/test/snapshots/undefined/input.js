@@ -1,1 +1,1 @@
-this; // => undefined
+undefined; // => undefined

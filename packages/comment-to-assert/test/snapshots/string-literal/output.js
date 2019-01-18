@@ -1,2 +1,2 @@
 // avoid to directive literal
-assert.equal("str", "str"); // =>"str"
+assert.strictEqual("str", "str"); // =>"str"
