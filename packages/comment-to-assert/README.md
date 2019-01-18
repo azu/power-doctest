@@ -18,13 +18,13 @@ assert.strictEqual(foo, 1);
 
 This library support following format.
 
-```
+```js
 expression; // => expected value
 ```
 
 or
 
-```
+```js
 console.log(expression); // => expected value
 ```
 
