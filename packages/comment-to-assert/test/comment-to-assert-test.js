@@ -28,23 +28,23 @@ describe("comment-to-assert", function() {
     describe("#toAssertFromSource", function() {
         it("should return code", function() {
             var code = "var a = 1;";
-            var result = toAssertFromSource(code, "file.js");
+            var result = toAssertFromSource(code);
             assert(typeof result === "string");
         });
         it("should keep code mean", function() {
             var code = "var a = 1;// comment";
-            var result = toAssertFromSource(code, "file.js");
+            var result = toAssertFromSource(code);
             assert(typeof result === "string");
         });
         it("should convert to assert", function() {
             var code = "1;// => 1";
-            var result = toAssertFromSource(code, "file.js");
+            var result = toAssertFromSource(code);
             assert(typeof result === "string");
         });
 
         it("should handle module", function() {
             var code = "const a = 1;" + "a;// => 1";
-            var result = toAssertFromSource(code, "file.js");
+            var result = toAssertFromSource(code);
             assert(typeof result === "string");
         });
     });

@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { Comment, isLiteral, isIdentifier, isNullLiteral, isCallExpression, CallExpression } from "@babel/types";
+import { CallExpression, Comment, isCallExpression, isIdentifier, isLiteral, isNullLiteral } from "@babel/types";
 import template from "@babel/template";
 
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
@@ -49,7 +49,7 @@ export function wrapAssert(actualNode: any, expectedNode: any): any {
     } else if (type === "Promise") {
         const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
         return template`Promise.resolve(ARGS).then(v => {
-            ${wrapAssert({ type: "Identifier", name: "v" }, expectedNode.value)}
+            ${wrapAssert({ type: "Identifier", name: "v" }, expectedNode.node)}
             return v;
         });`({
             ARGS
