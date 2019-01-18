@@ -1,16 +1,27 @@
-import assert from "power-assert";
+import * as assert from "power-assert";
 import { toAssertFromSource, toAssertFromAST } from "../src/comment-to-assert";
-import { parse } from "esprima";
-import astEqual from "ast-equal";
+import { parse } from "@babel/core";
+import generate from "@babel/generator";
+
+const astEqual = (a, b) => {
+    assert.strictEqual(
+        generate(a, {
+            comments: false
+        }).code,
+        typeof b === "string"
+            ? generate(parseToAST(b), {
+                  comments: false
+              }).code
+            : generate(b, {
+                  comments: false
+              }).code
+    );
+};
 
 function parseToAST(code) {
-    const parseOption = {
-        loc: true,
-        range: true,
-        comment: true,
-        attachComment: true
-    };
-    return parse(code, parseOption);
+    return parse(code, {
+        sourceType: "module"
+    });
 }
 
 describe("comment-to-assert", function() {
@@ -39,11 +50,7 @@ describe("comment-to-assert", function() {
     });
     describe("#toAssertFromAST", function() {
         it("should return AST", function() {
-            var AST = parse("var a = 1;", {
-                loc: true,
-                range: true,
-                comment: true
-            });
+            var AST = parse("var a = 1;");
             var result = toAssertFromAST(AST);
             assert(typeof result === "object");
             astEqual(result, AST);
@@ -61,7 +68,7 @@ describe("comment-to-assert", function() {
             a;// => 1`);
             var result = toAssertFromAST(AST);
             var expected = `var a = 1;
-            assert.equal(a, 1);`;
+            assert.equal(a, 1); // => 1`;
             astEqual(result, expected);
         });
         it("could handle object literal", function() {
@@ -172,7 +179,7 @@ describe("comment-to-assert", function() {
             astEqual(
                 resultAST,
                 `
-            assert.deepEqual(1, 1);
+            assert.equal(1, 1);
             `
             );
         });

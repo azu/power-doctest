@@ -40,18 +40,19 @@
     "watch": "tsc -p . --watch"
   },
   "dependencies": {
-    "acorn": "^4.0.3",
-    "concat-stream": "^1.5.0",
-    "escodegen": "^1.6.1",
-    "espree": "^3.1.5",
-    "estraverse": "^4.1.0",
-    "esutils": "^2.0.2",
-    "tagged-template-to-ast": "^2.0.0"
+    "@babel/core": "^7.2.2",
+    "@babel/template": "^7.2.2",
+    "@babel/traverse": "^7.2.3",
+    "@babel/types": "^7.2.2",
+    "concat-stream": "^1.5.0"
   },
   "devDependencies": {
+    "@types/babel__core": "^7.0.4",
+    "@types/babel__generator": "^7.0.1",
+    "@types/babel__template": "^7.0.1",
+    "@types/babel__traverse": "^7.0.4",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.12.18",
-    "ast-equal": "^1.0.1",
     "cross-env": "^5.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.1.3",

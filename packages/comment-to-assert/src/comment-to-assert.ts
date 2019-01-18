@@ -1,51 +1,29 @@
 // LICENSE : MIT
 "use strict";
-const espree = require("espree");
-const escodegen = require("escodegen");
-const estraverse = require("estraverse");
-const { Syntax } = require("estraverse");
 import { ERROR_COMMENT_PATTERN, PROMISE_COMMENT_PATTERN, tryGetCodeFromComments, wrapAssert } from "./ast-utils";
-
-const parseOptions = {
-    // attach range information to each node
-    range: true,
-    // attach line/column location information to each node
-    loc: true,
-    // create a top-level comments array containing all comments
-    comment: true,
-    // attach comments to the closest relevant node as leadingComments and
-    // trailingComments
-    attachComment: true,
-    // create a top-level tokens array containing all tokens
-    tokens: true,
-    // specify the language version (3, 5, 6, or 7, default is 5)
-    ecmaVersion: 6,
-    // specify which type of script you're parsing (script or module, default is script)
-    sourceType: "module",
-    // specify additional language features
-    ecmaFeatures: {
-        // enable JSX parsing
-        jsx: true,
-        // enable return in global scope
-        globalReturn: true,
-        // enable implied strict mode (if ecmaVersion >= 5)
-        impliedStrict: true,
-        // allow experimental object rest/spread
-        experimentalObjectRestSpread: true
-    }
-};
+import { parse, transformFromAstSync } from "@babel/core";
+import { identifier, isExpressionStatement } from "@babel/types";
+import * as template from "@babel/template";
+import traverse from "@babel/traverse";
 
 /**
  * transform code to asserted code
  * if want to source map, use toAssertFromAST.
  * @param {string} code
- * @param {string} filePath
  * @returns {string}
  */
 export function toAssertFromSource(code: string) {
-    const ast = espree.parse(code, parseOptions);
+    const ast = parse(code, {
+        // parse in strict mode and allow module declarations
+        sourceType: "module",
+        plugins: []
+    });
     const output = toAssertFromAST(ast);
-    return escodegen.generate(output, { comment: true });
+    const babelFileResult = transformFromAstSync(output, code, { comments: true });
+    if (!babelFileResult) {
+        throw new Error("can not generate from ast: " + JSON.stringify(output));
+    }
+    return babelFileResult.code;
 }
 
 function getExpressionNodeFromCommentValue(string: string): { type: string } & { [index: string]: any } {
@@ -55,27 +33,20 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
         if (!match) {
             throw new Error(`Can not Parse: // => Error: "message"`);
         }
-        return {
-            type: Syntax.Identifier,
-            name: match[1]
-        };
+        return identifier(match[1]);
     }
     if (PROMISE_COMMENT_PATTERN.test(message)) {
         const match = message.match(PROMISE_COMMENT_PATTERN);
         if (!match) {
             throw new Error("Can not Parse: // => Promise: value");
         }
-
         return {
             type: "Promise",
             value: getExpressionNodeFromCommentValue(match[1])
         };
     }
-    // support { } object literal
-    const commentExpression = `0, ${string}`;
     try {
-        const AST = espree.parse(commentExpression, parseOptions);
-        return AST.body[0].expression.expressions[1];
+        return template.expression(string)();
     } catch (e) {
         console.error(`Can't parse comments // => expression`);
         throw e;
@@ -84,17 +55,19 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
 
 /**
  * transform AST to asserted AST.
- * @param {ESTree.Node} ast
- * @returns {ESTree.Node}
  */
 export function toAssertFromAST(ast: any) {
-    estraverse.replace(ast, {
-        enter: function(node: any) {
-            if (node.trailingComments) {
-                const commentExpression = tryGetCodeFromComments(node.trailingComments);
+    const replaceSet = new Set();
+    traverse(ast, {
+        exit(path) {
+            if (!replaceSet.has(path.node) && path.node.trailingComments) {
+                const commentExpression = tryGetCodeFromComments(path.node.trailingComments);
                 if (commentExpression) {
                     const commentExpressionNode = getExpressionNodeFromCommentValue(commentExpression);
-                    return wrapAssert(node, commentExpressionNode);
+                    const actualNode = isExpressionStatement(path.node) ? path.node.expression : path.node;
+                    const replacement = wrapAssert(actualNode, commentExpressionNode);
+                    path.replaceWith(replacement);
+                    replaceSet.add(path.node);
                 }
             }
         }
