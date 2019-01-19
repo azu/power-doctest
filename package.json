@@ -2,56 +2,67 @@
   "name": "power-doctest",
   "version": "1.4.0",
   "description": "doctest + power-assert - comment as testing.",
-  "main": "./lib/power-doctest.js",
+  "homepage": "https://github.com/azu/power-doctest",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/power-doctest.git"
+  },
+  "license": "MIT",
+  "author": "azu",
   "files": [
     "bin",
     "src",
     "lib"
   ],
+  "main": "./lib/power-doctest.js",
+  "types": "lib/power-doctest.d.ts",
   "bin": {
     "power-doctest": "bin/cmd.js"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
+    "build": "cross-env NODE_ENV=production tsc -p .",
     "prepublish": "npm run --if-present build",
-    "test": "mocha && (cd example && npm test)"
+    "test": "mocha \"test/**/*.{js,ts}\"",
+    "watch": "tsc -p . --watch"
   },
-  "homepage": "https://github.com/azu/power-doctest",
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/parser": "^7.2.3",
+    "@babel/template": "^7.2.2",
+    "@babel/traverse": "^7.2.3",
+    "ast-source": "^3.0.0",
+    "babel-plugin-espower": "^3.0.1",
+    "comment-to-assert": "^2.0.0",
+    "concat-stream": "^2.0.0",
+    "escodegen": "^1.11.0",
+    "espower": "^2.1.2",
+    "espree": "^5.0.0",
+    "esprima": "^4.0.1",
+    "estraverse": "^4.1.0",
+    "power-assert": "^1.6.1"
+  },
+  "devDependencies": {
+    "@babel/generator": "^7.2.2",
+    "@types/babel__core": "^7.0.4",
+    "@types/babel__generator": "^7.0.1",
+    "@types/babel__template": "^7.0.1",
+    "@types/babel__traverse": "^7.0.4",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "ast-equal": "^1.0.2",
+    "babel-preset-jsdoc-to-assert": "^5.0.0",
+    "babel-preset-power-assert": "^3.0.0",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "ts-node-test-register": "^4.0.0",
+    "typescript": "^3.2.4"
+  },
+  "peerDependecies": {},
   "tags": [
     "doctest",
     "power-assert",
     "testing",
     "AST"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/azu/power-doctest.git"
-  },
-  "author": "azu",
-  "license": "MIT",
-  "dependencies": {
-    "ast-source": "^3.0.0",
-    "comment-to-assert": "^1.5.1",
-    "concat-stream": "^1.6.2",
-    "escodegen": "^1.11.0",
-    "espower": "^2.1.1",
-    "espree": "^4.0.0",
-    "esprima": "^4.0.1",
-    "estraverse": "^4.1.0",
-    "power-assert": "^1.6.1",
-    "power-assert-formatter": "^1.0.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/register": "^7.0.0",
-    "ast-equal": "^1.0.2",
-    "babel-preset-jsdoc-to-assert": "^5.0.0",
-    "babel-preset-power-assert": "^3.0.0",
-    "cross-env": "^5.2.0",
-    "mocha": "^5.2.0"
-  },
-  "peerDependecies": {}
+  ]
 }
