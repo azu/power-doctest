@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import { ERROR_COMMENT_PATTERN, PROMISE_COMMENT_PATTERN, tryGetCodeFromComments, wrapAssert } from "./ast-utils";
-import { parse, ParseResult, transformFromAstSync } from "@babel/core";
-import { identifier, isExpressionStatement } from "@babel/types";
-import * as template from "@babel/template";
+import { transformFromAstSync } from "@babel/core";
+import { identifier, isExpressionStatement, File } from "@babel/types";
+import { parse, parseExpression, ParserOptions } from "@babel/parser";
 import traverse from "@babel/traverse";
 
 function getExpressionNodeFromCommentValue(string: string): { type: string } & { [index: string]: any } {
@@ -26,7 +26,7 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
         };
     }
     try {
-        return template.expression(string)();
+        return parseExpression(string);
     } catch (e) {
         console.error(`Can't parse comments // => expression`);
         throw e;
@@ -35,9 +35,7 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
 
 export interface toAssertFromSourceOptions {
     asyncCallbackName?: string;
-    babel?: {
-        plugins: string[];
-    };
+    babel?: ParserOptions;
 }
 
 /**
@@ -48,7 +46,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     const ast = parse(code, {
         // parse in strict mode and allow module declarations
         sourceType: "module",
-        plugins: (options && options.babel && options.babel.plugins) || []
+        ...options && options.babel ? options.babel : {}
     });
     if (!ast) {
         throw new Error("Can not parse the code");
@@ -74,7 +72,7 @@ export interface toAssertFromASTOptions {
 /**
  * transform AST to asserted AST.
  */
-export function toAssertFromAST(ast: ParseResult, options: toAssertFromASTOptions = {}) {
+export function toAssertFromAST(ast: File, options: toAssertFromASTOptions = {}) {
     const replaceSet = new Set();
     traverse(ast, {
         exit(path) {

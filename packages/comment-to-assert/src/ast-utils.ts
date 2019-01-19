@@ -1,7 +1,15 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { CallExpression, Comment, isCallExpression, isIdentifier, isLiteral, isNullLiteral } from "@babel/types";
+import {
+    CallExpression,
+    Comment,
+    isCallExpression,
+    isIdentifier,
+    isLiteral,
+    isNullLiteral,
+    isDirective
+} from "@babel/types";
 import template from "@babel/template";
 
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
@@ -85,10 +93,18 @@ export function wrapAssert(actualNode: any, expectedNode: any, options: wrapAsse
             ACTUAL_NODE
         });
     } else if (isLiteral(expectedNode)) {
-        return template`assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE)`({
-            ACTUAL_NODE,
-            EXPECTED_NODE
-        });
+        // Handle Directive Prorogue as string literal
+        if (isDirective(ACTUAL_NODE)) {
+            return template`assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE)`({
+                ACTUAL_NODE: (ACTUAL_NODE.value as any).extra.raw,
+                EXPECTED_NODE
+            });
+        } else {
+            return template`assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE)`({
+                ACTUAL_NODE,
+                EXPECTED_NODE
+            });
+        }
     } else {
         return template`assert.deepStrictEqual(ACTUAL_NODE, EXPECTED_NODE)`({
             ACTUAL_NODE,
