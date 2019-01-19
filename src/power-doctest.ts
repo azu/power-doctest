@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { parse } from "@babel/parser";
+import { parse, ParserOptions } from "@babel/parser";
 import { File } from "@babel/types";
 import { transformFromAst } from "@babel/core";
 import generate from "@babel/generator";
@@ -8,9 +8,14 @@ import assert from "assert"
 import { toAssertFromAST } from "comment-to-assert"
 import { injectAssertModule } from "./inject-assert"
 
-export function convertCode(code: string): string {
+export interface convertCodeOption {
+    babel?: ParserOptions;
+}
+
+export function convertCode(code: string, options: convertCodeOption = {}): string {
     const AST = parse(code, {
-        sourceType: "module"
+        sourceType: "module",
+        ...options.babel ? options.babel : {}
     });
     const output = convertAST(AST);
     return generate(output, {
