@@ -39,6 +39,14 @@ function addPrefix(text, prefix = "デフォルト:") {
             var a = 1;
             `);
         });
+        it("add assert module to ", function() {
+            var code = "var a = 1;";
+            var resultAST = parseAndConvert(code);
+            astEqual(resultAST, `
+            var assert = require("power-assert");
+            var a = 1;
+            `);
+        });
         it("module type", function() {
             var code = `
             export default function hello() {
