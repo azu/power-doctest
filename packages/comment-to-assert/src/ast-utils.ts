@@ -32,20 +32,12 @@ function isConsole(node: any): node is CallExpression & { expression: any } {
     return isCallExpression(node) && (node.callee as any).object && (node.callee as any).object.name === "console";
 }
 
-function extractionBody(ast: any) {
-    return ast.body[0];
-}
-
 export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
-export const PROMISE_COMMENT_PATTERN = /^Promise:\s*(.*?)\s*$/;
+export const PROMISE_RESOLVE_COMMENT_PATTERN = /^Resolve:\s*(.*?)\s*$/;
+export const PROMISE_REJECT_COMMENT_PATTERN = /^Reject:\s*(.*?)\s*$/;
 
-export interface wrapAssertOptions {
-    asyncCallbackName?: string;
-}
-
-export function wrapAssert(actualNode: any, expectedNode: any, options: wrapAssertOptions = {}): any {
-    assert.notEqual(typeof expectedNode, "undefined");
-    const type = expectedNode.type || extractionBody(expectedNode).type;
+export function wrapAssert(actualNode: any, expectedNode: any): any {
+    assert.notStrictEqual(typeof expectedNode, "undefined");
     const ACTUAL_NODE = actualNode;
     const EXPECTED_NODE = expectedNode;
     if (isConsole(actualNode)) {
@@ -58,28 +50,20 @@ export function wrapAssert(actualNode: any, expectedNode: any, options: wrapAsse
                })`({
             ACTUAL_NODE
         });
-    } else if (type === "Promise") {
+    } else if (expectedNode.type === "Resolve") {
+        // getExpressionNodeFromCommentValue define the type
         const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
-        // support callback
-        const asyncCallbackName = options.asyncCallbackName;
-        if (asyncCallbackName) {
-            return template`Promise.resolve(ARGS).then(v => {
-            ${wrapAssert({ type: "Identifier", name: "v" }, expectedNode.node)}
-            ${asyncCallbackName}(null, v);
-            return v;
-        }).catch(error => {
-            ${asyncCallbackName}(error);
-        })`({
-                ARGS
-            });
-        } else {
-            return template`Promise.resolve(ARGS).then(v => {
+        return template`Promise.resolve(ARGS).then(v => {
             ${wrapAssert({ type: "Identifier", name: "v" }, expectedNode.node)}
             return v;
         });`({
-                ARGS
-            });
-        }
+            ARGS
+        });
+    } else if (expectedNode.type === "Reject") {
+        const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
+        return template`assert.rejects(ARGS)`({
+            ARGS
+        });
     } else if (isIdentifier(expectedNode) && expectedNode.name === "NaN") {
         return template`assert.ok(isNaN(ACTUAL_NODE));`({
             ACTUAL_NODE

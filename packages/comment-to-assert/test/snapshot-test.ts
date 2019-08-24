@@ -5,6 +5,10 @@ import * as vm from "vm";
 import { toAssertFromSource } from "../src/comment-to-assert";
 
 const fixturesDir = path.join(__dirname, "snapshots");
+const trim = (s: unknown): string => {
+    return typeof s === "string" ? s.trim() : "";
+};
+
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir).map(caseName => {
         const normalizedTestName = caseName.replace(/-/g, " ");
@@ -24,8 +28,8 @@ describe("Snapshot testing", () => {
             }
             const expected = fs.readFileSync(expectedFilePath, "utf-8");
             assert.deepStrictEqual(
-                actual,
-                expected,
+                trim(actual),
+                trim(expected),
                 `
 ${fixtureDir}
 ${JSON.stringify(actual)}

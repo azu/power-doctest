@@ -39,10 +39,10 @@ throw new Error("message"); // Error: "message"
 Promise:
 
 ```js
-Promise.resolve(1); // => Promise: 1
+Promise.resolve(1); // => Resolve: 1
+Promise.reject(new Error("message")); // => Reject: message
 ```
 
-If you need to callback for promise, use `asyncCallbackName` option.
 
 ## Installation
 
@@ -72,12 +72,10 @@ if want to source map, should use `toAssertFromAST` with own parser and generato
 
 **Options:**
 
-- `asyncCallbackName`: callback name when promise is resolved or rejected
 - `babel`: [@babel/core](https://babeljs.io/docs/en/babel-core) option
 
 ```
 interface toAssertFromSourceOptions {
-    asyncCallbackName?: string;
     babel?: {
         plugins: string[];
     };

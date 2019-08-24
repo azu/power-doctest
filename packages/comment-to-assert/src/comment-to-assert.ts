@@ -1,6 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import { ERROR_COMMENT_PATTERN, PROMISE_COMMENT_PATTERN, tryGetCodeFromComments, wrapAssert } from "./ast-utils";
+import {
+    ERROR_COMMENT_PATTERN,
+    PROMISE_REJECT_COMMENT_PATTERN,
+    PROMISE_RESOLVE_COMMENT_PATTERN,
+    tryGetCodeFromComments,
+    wrapAssert
+} from "./ast-utils";
 import { transformFromAstSync } from "@babel/core";
 import { identifier, isExpressionStatement, File } from "@babel/types";
 import { parse, parseExpression, ParserOptions } from "@babel/parser";
@@ -15,13 +21,22 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
         }
         return identifier(match[1]);
     }
-    if (PROMISE_COMMENT_PATTERN.test(message)) {
-        const match = message.match(PROMISE_COMMENT_PATTERN);
+    if (PROMISE_RESOLVE_COMMENT_PATTERN.test(message)) {
+        const match = message.match(PROMISE_RESOLVE_COMMENT_PATTERN);
         if (!match) {
-            throw new Error("Can not Parse: // => Promise: value");
+            throw new Error("Can not Parse: // => Resolve: value");
         }
         return {
-            type: "Promise",
+            type: "Resolve",
+            node: getExpressionNodeFromCommentValue(match[1])
+        };
+    } else if (PROMISE_REJECT_COMMENT_PATTERN.test(message)) {
+        const match = message.match(PROMISE_REJECT_COMMENT_PATTERN);
+        if (!match) {
+            throw new Error("Can not Parse: // => Reject: value");
+        }
+        return {
+            type: "Reject",
             node: getExpressionNodeFromCommentValue(match[1])
         };
     }
@@ -34,7 +49,6 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
 }
 
 export interface toAssertFromSourceOptions {
-    asyncCallbackName?: string;
     babel?: ParserOptions;
 }
 
@@ -51,13 +65,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     if (!ast) {
         throw new Error("Can not parse the code");
     }
-    const toAssertOptions =
-        options && options.asyncCallbackName !== undefined
-            ? {
-                  asyncCallbackName: options.asyncCallbackName
-              }
-            : {};
-    const output = toAssertFromAST(ast, toAssertOptions);
+    const output = toAssertFromAST(ast);
     const babelFileResult = transformFromAstSync(output, code, { comments: true });
     if (!babelFileResult) {
         throw new Error("can not generate from ast: " + JSON.stringify(output));
@@ -65,14 +73,12 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     return babelFileResult.code;
 }
 
-export interface toAssertFromASTOptions {
-    asyncCallbackName?: string;
-}
+export interface toAssertFromASTOptions {}
 
 /**
  * transform AST to asserted AST.
  */
-export function toAssertFromAST(ast: File, options: toAssertFromASTOptions = {}) {
+export function toAssertFromAST(ast: File, _options: toAssertFromASTOptions = {}) {
     const replaceSet = new Set();
     traverse(ast, {
         exit(path) {
@@ -81,7 +87,7 @@ export function toAssertFromAST(ast: File, options: toAssertFromASTOptions = {})
                 if (commentExpression) {
                     const commentExpressionNode = getExpressionNodeFromCommentValue(commentExpression);
                     const actualNode = isExpressionStatement(path.node) ? path.node.expression : path.node;
-                    const replacement = wrapAssert(actualNode, commentExpressionNode, options);
+                    const replacement = wrapAssert(actualNode, commentExpressionNode);
                     path.replaceWith(replacement);
                     replaceSet.add(path.node);
                 }
