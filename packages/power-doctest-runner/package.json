@@ -32,8 +32,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
     "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "updateSnapshot": "FORCE_COLOR=0 UPDATE_SNAPSHOT=1 npm test",
+    "test": "mocha \"test/**/*.ts\"",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
     "watch": "tsc -p . --watch",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
@@ -50,6 +50,7 @@
     "lint-staged": "^9.2.3",
     "mocha": "^6.2.0",
     "prettier": "^1.18.2",
+    "strip-color": "^0.1.0",
     "ts-node": "^8.3.0",
     "ts-node-test-register": "^8.0.1",
     "typescript": "^3.5.3"
