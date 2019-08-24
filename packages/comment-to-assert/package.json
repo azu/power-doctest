@@ -33,36 +33,34 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
     "example": "npm i && npm run build && cd example && npm test",
-    "postcommit": "git reset",
-    "precommit": "lint-staged",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
     "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
     "watch": "tsc -p . --watch"
   },
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/parser": "^7.2.3",
-    "@babel/template": "^7.2.2",
-    "@babel/traverse": "^7.2.3",
-    "@babel/types": "^7.2.2",
-    "concat-stream": "^1.5.0"
+    "@babel/core": "^7.5.5",
+    "@babel/parser": "^7.5.5",
+    "@babel/template": "^7.4.4",
+    "@babel/traverse": "^7.5.5",
+    "@babel/types": "^7.5.5",
+    "concat-stream": "^2.0.0"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.0.4",
-    "@types/babel__generator": "^7.0.1",
-    "@types/babel__template": "^7.0.1",
-    "@types/babel__traverse": "^7.0.4",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
+    "@types/babel__core": "^7.1.2",
+    "@types/babel__generator": "^7.0.2",
+    "@types/babel__template": "^7.0.2",
+    "@types/babel__traverse": "^7.0.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
     "cross-env": "^5.2.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^4.1.3",
-    "mocha": "^5.2.0",
-    "prettier": "^1.6.1",
-    "ts-node": "^7.0.1",
-    "ts-node-test-register": "^4.0.0",
-    "typescript": "^3.2.4"
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
+    "mocha": "^6.2.0",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.5.3"
   },
   "email": "azuciao@gmail.com",
   "lint-staged": {
@@ -70,5 +68,11 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "git reset",
+      "pre-commit": "lint-staged"
+    }
   }
 }

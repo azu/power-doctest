@@ -8,7 +8,7 @@ import {
     wrapAssert,
     wrapAssertOptions
 } from "./ast-utils";
-import { transformFromAstSync } from "@babel/core";
+import { transformFromAstSync, Node } from "@babel/core";
 import { identifier, isExpressionStatement, File } from "@babel/types";
 import { parse, parseExpression, ParserOptions } from "@babel/parser";
 import traverse from "@babel/traverse";
@@ -61,13 +61,13 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     const ast = parse(code, {
         // parse in strict mode and allow module declarations
         sourceType: "module",
-        ...options && options.babel ? options.babel : {}
+        ...(options && options.babel ? options.babel : {})
     });
     if (!ast) {
         throw new Error("Can not parse the code");
     }
     const output = toAssertFromAST(ast, options);
-    const babelFileResult = transformFromAstSync(output, code, { comments: true });
+    const babelFileResult = transformFromAstSync(output as Node, code, { comments: true });
     if (!babelFileResult) {
         throw new Error("can not generate from ast: " + JSON.stringify(output));
     }
@@ -77,7 +77,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
 /**
  * transform AST to asserted AST.
  */
-export function toAssertFromAST(ast: File, options: wrapAssertOptions = {}) {
+export function toAssertFromAST(ast: File, options: wrapAssertOptions = {}): File {
     const replaceSet = new Set();
     let id = 0;
     traverse(ast, {
