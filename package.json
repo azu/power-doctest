@@ -16,7 +16,7 @@
     "prettier": "^1.18.2"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap && yarn run build",
     "build": "lerna run build",
     "test": "lerna run test",
     "versionup": "lerna version --conventional-commits",
