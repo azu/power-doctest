@@ -42,12 +42,6 @@
     "estraverse": "^4.3.0",
     "power-assert": "^1.6.1"
   },
-  "resolutions": {
-    "@types/babel__core": "7.1.2",
-    "@types/babel__generator": "7.0.2",
-    "@types/babel__template": "7.0.2",
-    "@types/babel__traverse": "7.0.7"
-  },
   "devDependencies": {
     "@babel/generator": "^7.5.5",
     "@types/babel__core": "^7.1.2",
