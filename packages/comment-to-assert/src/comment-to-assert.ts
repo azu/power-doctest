@@ -77,7 +77,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
 /**
  * transform AST to asserted AST.
  */
-export function toAssertFromAST(ast: File, options: wrapAssertOptions = {}): File {
+export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptions = {}): T {
     const replaceSet = new Set();
     let id = 0;
     traverse(ast, {
