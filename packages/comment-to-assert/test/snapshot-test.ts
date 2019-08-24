@@ -38,12 +38,23 @@ ${JSON.stringify(actual)}
             if (typeof actual !== "string") {
                 throw new Error("actual is not string");
             }
-            if (options.asyncCallbackName) {
+            if (options.assertAfterCallbackName && options.assertBeforeCallbackName) {
+                // finish after all called
+                let actualCallCount = 0;
+                const totalCountOfAssert = actual.split(options.assertBeforeCallbackName).length - 1;
                 vm.runInContext(
                     actual,
                     vm.createContext({
                         assert,
-                        done
+                        [options.assertBeforeCallbackName]: () => {
+                            // nope
+                        },
+                        [options.assertAfterCallbackName]: () => {
+                            actualCallCount++;
+                            if (actualCallCount === totalCountOfAssert) {
+                                done();
+                            }
+                        }
                     })
                 );
             } else {

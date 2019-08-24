@@ -5,7 +5,8 @@ import {
     PROMISE_REJECT_COMMENT_PATTERN,
     PROMISE_RESOLVE_COMMENT_PATTERN,
     tryGetCodeFromComments,
-    wrapAssert
+    wrapAssert,
+    wrapAssertOptions
 } from "./ast-utils";
 import { transformFromAstSync } from "@babel/core";
 import { identifier, isExpressionStatement, File } from "@babel/types";
@@ -48,9 +49,9 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
     }
 }
 
-export interface toAssertFromSourceOptions {
+export type toAssertFromSourceOptions = {
     babel?: ParserOptions;
-}
+} & wrapAssertOptions;
 
 /**
  * transform code to asserted code
@@ -65,7 +66,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     if (!ast) {
         throw new Error("Can not parse the code");
     }
-    const output = toAssertFromAST(ast);
+    const output = toAssertFromAST(ast, options);
     const babelFileResult = transformFromAstSync(output, code, { comments: true });
     if (!babelFileResult) {
         throw new Error("can not generate from ast: " + JSON.stringify(output));
@@ -73,13 +74,12 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     return babelFileResult.code;
 }
 
-export interface toAssertFromASTOptions {}
-
 /**
  * transform AST to asserted AST.
  */
-export function toAssertFromAST(ast: File, _options: toAssertFromASTOptions = {}) {
+export function toAssertFromAST(ast: File, options: wrapAssertOptions = {}) {
     const replaceSet = new Set();
+    let id = 0;
     traverse(ast, {
         exit(path) {
             if (!replaceSet.has(path.node) && path.node.trailingComments) {
@@ -87,8 +87,22 @@ export function toAssertFromAST(ast: File, _options: toAssertFromASTOptions = {}
                 if (commentExpression) {
                     const commentExpressionNode = getExpressionNodeFromCommentValue(commentExpression);
                     const actualNode = isExpressionStatement(path.node) ? path.node.expression : path.node;
-                    const replacement = wrapAssert(actualNode, commentExpressionNode);
-                    path.replaceWith(replacement);
+                    const replacement = wrapAssert(
+                        {
+                            actualNode: actualNode,
+                            expectedNode: commentExpressionNode,
+                            commentExpression,
+                            id: String(`id:${id++}`)
+                        },
+                        options
+                    );
+                    if (Array.isArray(replacement)) {
+                        // prevent ∞ loop
+                        path.node.trailingComments = null;
+                        path.replaceWithMultiple(replacement);
+                    } else {
+                        path.replaceWith(replacement);
+                    }
                     replaceSet.add(path.node);
                 }
             }
