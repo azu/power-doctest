@@ -9,8 +9,9 @@ import { toAssertFromAST } from "comment-to-assert"
 import { injectAssertModule } from "./inject-assert"
 
 export interface convertCodeOption {
-    asyncCallbackName?: string;
     babel?: ParserOptions;
+    assertBeforeCallbackName?: string;
+    assertAfterCallbackName?: string;
 }
 
 /**
@@ -24,15 +25,17 @@ export function convertCode(code: string, options: convertCodeOption = {}): stri
         ...options.babel ? options.babel : {}
     });
     const output = convertAST(AST, {
-        asyncCallbackName: options.asyncCallbackName
+        assertBeforeCallbackName: options.assertBeforeCallbackName,
+        assertAfterCallbackName: options.assertAfterCallbackName
     });
-    return generate(output, {
+    return generate(output as any, {
         comments: true
     }).code;
 }
 
-export interface convertASTOption {
-    asyncCallbackName?: string;
+export interface convertASTOptions {
+    assertBeforeCallbackName?: string;
+    assertAfterCallbackName?: string;
 }
 
 /**
@@ -40,7 +43,7 @@ export interface convertASTOption {
  * @param AST
  * @param options
  */
-export function convertAST<T extends File>(AST: T, options: convertASTOption = {}): T {
+export function convertAST<T extends File>(AST: T, options: convertASTOptions = {}): T {
     const boundEspower = (AST: T) => {
         const transformed = (transformFromAst as any)(AST, {
             plugins: ['babel-plugin-espower']
