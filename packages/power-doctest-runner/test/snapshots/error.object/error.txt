@@ -1,7 +1,7 @@
-Input A expected to strictly deep-equal input B:
-+ expected - actual
+Expected values to be strictly deep-equal:
++ actual - expected
 
   {
--   a: 1
-+   b: 2
++   a: 1
+-   b: 2
   }
