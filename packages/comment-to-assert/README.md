@@ -100,12 +100,44 @@ assert.deepEqual(a, [1]);
 
 **Options:**
 
-- `asyncCallbackName`: callback name when promise is resolved or rejected
+- `assertBeforeCallbackName`: callback name before assertion
+- `assertAfterCallbackName`: callback name after assertion
 
 ```
 export interface toAssertFromASTOptions {
-    asyncCallbackName?: string;
+    assertBeforeCallbackName?: string;
+    assertAfterCallbackName?: string;
 }
+```
+
+```js
+1; // => 1
+"str"; // => "str"
+[1, 2, 3]; // => [1,2,3]
+Promise.resolve(1); // => Resolve: 1
+```
+
+to be
+
+```js
+beforeCallback("id:0");
+assert.strictEqual(1, 1);
+afterCallback("id:0");
+// => 1
+beforeCallback("id:1");
+assert.strictEqual("str", "str");
+afterCallback("id:1");
+// => "str"
+beforeCallback("id:2");
+assert.deepStrictEqual([1, 2, 3], [1, 2, 3]);
+afterCallback("id:2");
+// => [1,2,3]
+Promise.resolve(Promise.resolve(1)).then(v => {
+  beforeCallback("id:3");
+  assert.strictEqual(v, 1);
+  afterCallback("id:3");
+  return v;
+}); // => Resolve: 1
 ```
 
 ### Example
