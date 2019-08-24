@@ -1,0 +1,11 @@
+*~
+*.swp
+*.swo
+*.swn
+*.swm
+.tern-port
+node_modules
+tags
+.idea/
+
+lib

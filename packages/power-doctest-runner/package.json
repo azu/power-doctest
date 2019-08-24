@@ -1,0 +1,74 @@
+{
+  "name": "power-doctest-runner",
+  "version": "1.0.0",
+  "description": "A Test Runner for power-doctest.",
+  "keywords": [
+    "doctest",
+    "node.js",
+    "testing",
+    "vm"
+  ],
+  "homepage": "https://github.com/azu/power-doctest-runner",
+  "bugs": {
+    "url": "https://github.com/azu/power-doctest-runner/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/power-doctest-runner.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/power-doctest-runner.js",
+  "types": "lib/power-doctest-runner.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.ts\"",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+    "watch": "tsc -p . --watch",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
+  },
+  "dependencies": {
+    "consolemock": "^1.1.0",
+    "power-doctest": "^2.2.0",
+    "vm2": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
+    "cross-env": "^5.2.0",
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
+    "mocha": "^6.2.0",
+    "prettier": "^1.18.2",
+    "strip-color": "^0.1.0",
+    "ts-node": "^8.3.0",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.5.3"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

@@ -1,75 +1,56 @@
 {
-  "name": "power-doctest",
-  "version": "2.2.0",
-  "description": "doctest + power-assert - comment as testing.",
-  "homepage": "https://github.com/azu/power-doctest",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/azu/power-doctest.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "files": [
-    "bin",
-    "src",
-    "lib"
-  ],
-  "main": "./lib/power-doctest.js",
-  "types": "lib/power-doctest.d.ts",
-  "bin": {
-    "power-doctest": "bin/cmd.js"
-  },
-  "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
-    "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "tsc -p . --watch"
-  },
-  "dependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/parser": "^7.5.5",
-    "@babel/template": "^7.4.4",
-    "@babel/traverse": "^7.5.5",
-    "@babel/types": "^7.5.5",
-    "ast-source": "^3.0.0",
-    "babel-plugin-espower": "^3.0.1",
-    "comment-to-assert": "^2.1.2",
-    "concat-stream": "^2.0.0",
-    "escodegen": "^1.12.0",
-    "espower": "^2.1.2",
-    "espree": "^6.1.1",
-    "esprima": "^4.0.1",
-    "estraverse": "^4.3.0",
-    "power-assert": "^1.6.1"
-  },
-  "resolutions": {
-    "@types/babel__core": "7.1.2",
-    "@types/babel__generator": "7.0.2",
-    "@types/babel__template": "7.0.2",
-    "@types/babel__traverse": "7.0.7"
+  "private": true,
+  "name": "root",
+  "version": "1.0.0",
+  "description": "monorepo root",
+  "main": "index.js",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "devDependencies": {
-    "@babel/generator": "^7.5.5",
-    "@types/babel__core": "^7.1.2",
-    "@types/babel__generator": "^7.0.2",
-    "@types/babel__template": "^7.0.2",
-    "@types/babel__traverse": "^7.0.7",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.2",
-    "ast-equal": "^1.0.2",
-    "babel-preset-jsdoc-to-assert": "^5.0.0",
-    "babel-preset-power-assert": "^3.0.0",
-    "cross-env": "^5.2.0",
-    "mocha": "^6.2.0",
-    "ts-node": "^8.3.0",
-    "ts-node-test-register": "^8.0.1",
-    "typescript": "^3.5.3"
+    "husky": "^3.0.4",
+    "lerna": "^3.16.4",
+    "lint-staged": "^9.2.3",
+    "prettier": "^1.18.2"
   },
-  "peerDependecies": {},
-  "tags": [
-    "doctest",
-    "power-assert",
-    "testing",
-    "AST"
-  ]
+  "scripts": {
+    "bootstrap": "lerna bootstrap && yarn run build",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "versionup": "lerna version --conventional-commits",
+    "versionup:patch": "lerna version patch --conventional-commits",
+    "versionup:minor": "lerna version minor --conventional-commits",
+    "versionup:major": "lerna version major --conventional-commits",
+    "release": "lerna publish from-package",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/azu/power-doctest.git"
+  },
+  "keywords": [],
+  "author": "azu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/power-doctest/issues"
+  },
+  "homepage": "https://github.com/azu/power-doctest",
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
