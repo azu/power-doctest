@@ -1,6 +1,6 @@
 {
   "name": "power-doctest",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "doctest + power-assert - comment as testing.",
   "homepage": "https://github.com/azu/power-doctest",
   "repository": {
