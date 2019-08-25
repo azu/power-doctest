@@ -1,6 +1,6 @@
 {
   "name": "comment-to-assert",
-  "version": "3.0.0",
+  "version": "3.3.0",
   "description": "convert line comment to assert.",
   "keywords": [
     "ast",
