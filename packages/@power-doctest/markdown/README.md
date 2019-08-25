@@ -10,17 +10,11 @@ Run doctest for Markdown's CodeBlock.
     Following code is tested by power-doctest.    
 
     
-    `js` CodeBlock
+    `js` or `javascript` CodeBlock
     
     ```js
     console.log(1); // => 1
-    ```
-    
-    `javascript` codeBlock
-    
-    ```javascript
-    console.log("str"); // => "str"
-    ```
+    ```    
 
 
 ## Install
@@ -44,8 +38,10 @@ Install with [npm](https://www.npmjs.com/):
     Invalid JavaScript Example
     
     ```js
-    console.log("ok"); // => "ng"
+    const array = [1, 2, 3];
+    console.log(array); // => [1, 44, 3]
     ```
+
 Example test code
 
 ```js
@@ -63,10 +59,14 @@ describe("run markdown", function() {
             assert.strictEqual(aggregatedError.message, "Throw 1 error in 2 code blocks");
             assert.strictEqual(aggregatedError.errors.length, 1);
             const [error] = aggregatedError.errors;
-            assert.strictEqual(error.message, `Expected values to be strictly equal:
+            assert.strictEqual(error.message, `  # default.js:4
+  
+  assert.deepStrictEqual(array, [1, 44, 3])
+                         |      |          
+                         |      [1,44,3]   
+                         [1,2,3]           
+  `)
 
-'ok' !== 'ng'
-`);
         });
     });
 });

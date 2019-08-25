@@ -12,7 +12,13 @@ describe("run markdown", function() {
             assert.strictEqual(aggregatedError.message, "Throw 1 error in 2 code blocks");
             assert.strictEqual(aggregatedError.errors.length, 1);
             const [error] = aggregatedError.errors;
-            assert.ok(typeof error.message, "string");
+            assert.strictEqual(error.message, `  # default.js:4
+  
+  assert.deepStrictEqual(array, [1, 44, 3])
+                         |      |          
+                         |      [1,44,3]   
+                         [1,2,3]           
+  `)
         });
     });
 });
