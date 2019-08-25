@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/javascript",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "A power-doctest Runner using for JavaScript.",
   "keywords": [
     "doctest",
@@ -38,7 +38,7 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
-    "power-doctest": "^2.2.0",
+    "power-doctest": "^3.0.0",
     "vm2": "^3.8.3"
   },
   "devDependencies": {
