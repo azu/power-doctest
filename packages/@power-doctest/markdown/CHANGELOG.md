@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/azu/power-doctest/compare/v3.0.0...v3.0.1) (2019-08-25)
+
+
+### Bug Fixes
+
+* **@power-doctest:** fix main ([c2baef9](https://github.com/azu/power-doctest/commit/c2baef9))
+
+
+
+
+
 # 3.0.0 (2019-08-25)
 
 
