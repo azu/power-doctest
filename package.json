@@ -20,6 +20,7 @@
     "bootstrap": "lerna bootstrap && yarn run build",
     "build": "lerna run build",
     "test": "lerna run test",
+    "updateSnapshot": "lerna run updateSnapshot",
     "versionup": "lerna version --conventional-commits",
     "versionup:patch": "lerna version patch --conventional-commits",
     "versionup:minor": "lerna version minor --conventional-commits",

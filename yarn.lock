@@ -1822,13 +1822,6 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
-consolemock@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/consolemock/-/consolemock-1.1.0.tgz#10271cf7fb81702ff2b8a9c22dea8209bd23d324"
-  integrity sha512-FM2fLT3ywRLg9cfxogbjlG9QjkrZ2jwGGaIBMByRxBsqdy2otK1xpmP5Ju3sU6+FP/C6mIuU+B1mhxCaeFQ6jg==
-  dependencies:
-    stringify-object "^3.1.0"
-
 conventional-changelog-angular@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-5.0.3.tgz#299fdd43df5a1f095283ac16aeedfb0a682ecab0"
@@ -5993,7 +5986,7 @@ stringify-entities@^2.0.0:
     is-decimal "^1.0.2"
     is-hexadecimal "^1.0.0"
 
-stringify-object@^3.1.0, stringify-object@^3.3.0:
+stringify-object@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/stringify-object/-/stringify-object-3.3.0.tgz#703065aefca19300d3ce88af4f5b3956d7556629"
   integrity sha512-rHqiFh1elqCQ9WPLIC8I0Q/g/wj5J1eMkyoiD6eoQApWHP0FtlK7rqnhmabL5VUY9JQCcqwwvlOaSuutekgyrw==

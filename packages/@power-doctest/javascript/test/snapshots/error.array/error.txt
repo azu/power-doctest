@@ -1,11 +1,17 @@
-Expected values to be strictly deep-equal:
-+ actual - expected
+Input A expected to strictly deep-equal input B:
++ expected - actual
 
   [
-+   1,
-+   2,
-+   3
+-   1,
+-   2,
 -   3,
--   4,
--   5
+-   '0': 1,
+-   '1': 2,
+-   '2': 3
++   3,
++   4,
++   5,
++   '0': 3,
++   '1': 4,
++   '2': 5
   ]

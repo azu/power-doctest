@@ -33,12 +33,11 @@
     "build": "cross-env NODE_ENV=production tsc -p .",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
-    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+    "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",
     "watch": "tsc -p . --watch",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
-    "consolemock": "^1.1.0",
     "power-doctest": "^2.2.0",
     "vm2": "^3.8.3"
   },

@@ -18,9 +18,9 @@ describe("Snapshot testing", () => {
                 const actualOptions = fs.existsSync(actualOptionFilePath)
                     ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
                     : {};
-                const actual = strip(await run(actualContent, actualOptions).catch(error => {
-                    return error.message;
-                }) || "NO ERROR");
+                const actual = await run(actualContent, actualOptions).catch(error => {
+                    return strip(error.message);
+                }) || "NO ERROR";
                 const expectedFilePath = path.join(fixtureDir, "error.txt");
                 // Usage: update snapshots
                 // UPDATE_SNAPSHOT=1 npm test
