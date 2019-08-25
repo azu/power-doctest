@@ -77,8 +77,8 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
         };
         const restoreListener = () => {
             isSettled = true;
-            process.off("uncaughtException", uncaughtException);
-            process.off("unhandledRejection", unhandledRejection);
+            process.removeListener("uncaughtException", uncaughtException);
+            process.removeListener("unhandledRejection", unhandledRejection);
             // restore
             const currentUncaughtException = process.listeners("uncaughtException");
             const currentUnhandledRejection = process.listeners("unhandledRejection");
