@@ -32,9 +32,9 @@ Test
 
     yarn test
     
-Release
+Release: use npm
 
-    yarn run versionup
+    npm run versionup
     # GH_TOKEN="${GITHUB_TOKEN}" yarn run versionup:patch --create-release=github
     # prepare release note
-    yarn relase
+    npm relase
