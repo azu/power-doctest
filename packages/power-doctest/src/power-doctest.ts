@@ -55,10 +55,11 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
         });
         const result = transformSync(code, {
             plugins: ["babel-plugin-espower"],
-            filename: "./file.js",
-            sourceFileName: "./file.js",
+            filename: options.filePath,
+            sourceFileName: options.filePath,
             ast: true,
-            code: false
+            code: false,
+            configFile: false
         });
         if (!result) {
             throw new Error("Fail to convert espower in power-doctest");
