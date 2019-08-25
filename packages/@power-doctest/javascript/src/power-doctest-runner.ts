@@ -31,7 +31,7 @@ export interface PowerDoctestRunnerOptions {
     // transform function
     // set code => code function if need
     // Apply this transform before power-doctest transform
-    preTransform?: (code:string) => string;
+    preTransform?: (code: string) => string;
     // Internal Option
     powerDoctestCallbackFunctionName?: string;
 }
@@ -121,5 +121,9 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
         });
         const script = new VMScript(poweredCode, options.filePath);
         vm.run(script);
+        // No assertion code
+        if (totalAssertionCount === 0) {
+            resolve();
+        }
     });
 }
