@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/azu/power-doctest-runner/compare/v3.1.1...v3.2.0) (2019-08-25)
+
+
+### Features
+
+* **markdown:** support `runCodeBlockNode` function ([657b1ed](https://github.com/azu/power-doctest-runner/commit/657b1ed))
+
+
+
+
+
 ## [3.1.1](https://github.com/azu/power-doctest-runner/compare/v3.1.0...v3.1.1) (2019-08-25)
 
 
