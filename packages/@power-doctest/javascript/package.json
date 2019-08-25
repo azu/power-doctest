@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/javascript",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "description": "A power-doctest Runner using for JavaScript.",
   "keywords": [
     "doctest",
