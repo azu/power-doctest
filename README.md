@@ -9,9 +9,11 @@ power-doctest is a project that provide doctest system for JavaScript.
 - [comment-to-assert](./packages/comment-to-assert)
     - `// => expression` to `assert`
 - [power-doctest](./packages/power-doctest)
-    - Convert code to doctest ready code
-- [power-doctest-runner](./packages/power-doctest-runner)
-    - Run doctest ready code
+    - Convert code to doctest-ready code
+- [@power-doctest/jacvascript](./packages/@power-doctest/javascript)
+    - Run JavaScript code as doctest
+- [@power-doctest/markdown](./packages/@power-doctest/markdown)
+    - Run markdown code block as doctest
 
 ## Development
 
