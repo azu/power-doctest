@@ -4,7 +4,10 @@ import * as assert from "assert";
 // transform function
 import { run } from "../src/power-doctest-runner";
 
-const strip = require("strip-color");
+const normalizeErrorName = (error: string) => {
+    const match = error.match(/(.*Error)/);
+    return match && match[1];
+};
 const fixturesDir = path.join(__dirname, "snapshots");
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir)
@@ -19,7 +22,7 @@ describe("Snapshot testing", () => {
                     ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
                     : {};
                 const actual = await run(actualContent, actualOptions).catch(error => {
-                    return strip(error.name);
+                    return normalizeErrorName(error.name);
                 }) || "NO ERROR";
                 const expectedFilePath = path.join(fixtureDir, "error.txt");
                 // Usage: update snapshots

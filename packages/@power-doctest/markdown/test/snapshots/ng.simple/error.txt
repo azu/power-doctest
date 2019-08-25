@@ -2,10 +2,10 @@
     "message": "Throw 2 error in 2 code blocks",
     "errors": [
         {
-            "name": "AssertionError [ERR_ASSERTION]"
+            "name": "AssertionError"
         },
         {
-            "name": "AssertionError [ERR_ASSERTION]"
+            "name": "AssertionError"
         }
     ]
 }

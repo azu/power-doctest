@@ -4,7 +4,10 @@ import * as assert from "assert";
 // transform function
 import { run } from "../src";
 
-const strip = require("strip-color");
+const normalizeErrorName = (name: string) => {
+    const match = name.match(/(.*Error)/);
+    return match && match[1];
+};
 const fixturesDir = path.join(__dirname, "snapshots");
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir)
@@ -30,7 +33,7 @@ describe("Snapshot testing", () => {
                                     ...(error.meta ? {
                                         meta: error.meta
                                     } : {}),
-                                    name: strip(error.name)
+                                    name: normalizeErrorName(error.name)
                                 };
                             })
                         };
