@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/azu/power-doctest-runner/compare/v3.2.0...v3.2.1) (2019-08-25)
+
+
+### Bug Fixes
+
+* **power-doctest/javascript:** add filepath to run method ([40678bb](https://github.com/azu/power-doctest-runner/commit/40678bb))
+
+
+
+
+
 # [3.2.0](https://github.com/azu/power-doctest-runner/compare/v3.1.1...v3.2.0) (2019-08-25)
 
 
