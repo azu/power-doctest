@@ -133,8 +133,13 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
                 }
             }
         });
-        const script = new VMScript(poweredCode, options.filePath);
-        vm.run(script, options.filePath);
+        try {
+            const script = new VMScript(poweredCode, options.filePath);
+            vm.run(script, options.filePath);
+        } catch (error) {
+            restoreListener();
+            reject(error);
+        }
         // No assertion code
         if (totalAssertionCount === 0) {
             restoreListener();
