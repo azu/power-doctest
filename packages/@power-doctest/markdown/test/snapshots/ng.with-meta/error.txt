@@ -5,7 +5,7 @@
             "meta": {
                 "ECMAScript": 2020
             },
-            "message": "Identifier directly after number (1:10)"
+            "name": "SyntaxError"
         }
     ]
 }

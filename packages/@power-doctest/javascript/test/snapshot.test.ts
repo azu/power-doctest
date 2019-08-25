@@ -19,7 +19,7 @@ describe("Snapshot testing", () => {
                     ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
                     : {};
                 const actual = await run(actualContent, actualOptions).catch(error => {
-                    return strip(error.message);
+                    return strip(error.name);
                 }) || "NO ERROR";
                 const expectedFilePath = path.join(fixtureDir, "error.txt");
                 // Usage: update snapshots

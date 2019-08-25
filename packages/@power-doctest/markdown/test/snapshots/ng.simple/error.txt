@@ -2,10 +2,10 @@
     "message": "Throw 2 error in 2 code blocks",
     "errors": [
         {
-            "message": "Input A expected to strictly equal input B:\n+ expected - actual\n\n- 1\n+ 2"
+            "name": "AssertionError [ERR_ASSERTION]"
         },
         {
-            "message": "Input A expected to strictly equal input B:\n+ expected - actual\n\n- 'str'\n+ 'ng'"
+            "name": "AssertionError [ERR_ASSERTION]"
         }
     ]
 }

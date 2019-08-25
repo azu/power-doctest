@@ -2,7 +2,7 @@
     "message": "Throw 1 error in 1 code blocks",
     "errors": [
         {
-            "message": "Timeout error\n\nIf you use { \"runMode\": \"all\" }, you should check all condition flow is passed. Maybe\nAlso, you should consider to use { \"runMode\": \"any\" }"
+            "name": "Error"
         }
     ]
 }

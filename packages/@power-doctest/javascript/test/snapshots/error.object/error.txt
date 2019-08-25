@@ -1,7 +1,1 @@
-Input A expected to strictly deep-equal input B:
-+ expected - actual
-
-  {
--   a: 1
-+   b: 2
-  }
+AssertionError [ERR_ASSERTION]

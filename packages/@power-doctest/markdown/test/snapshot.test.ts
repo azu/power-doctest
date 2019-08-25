@@ -30,7 +30,7 @@ describe("Snapshot testing", () => {
                                     ...(error.meta ? {
                                         meta: error.meta
                                     } : {}),
-                                    message: strip(error.message)
+                                    name: strip(error.name)
                                 };
                             })
                         };
