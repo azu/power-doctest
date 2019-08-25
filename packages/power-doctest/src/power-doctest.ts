@@ -59,7 +59,9 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
             sourceFileName: options.filePath,
             ast: true,
             code: false,
-            configFile: false
+            configFile: false,
+            babelrc: false,
+            sourceType: "module"
         });
         if (!result) {
             throw new Error("Fail to convert espower in power-doctest");
