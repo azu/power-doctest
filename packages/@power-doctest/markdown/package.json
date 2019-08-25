@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/markdown",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "description": "A power-doctest Runner using for Markdown.",
   "keywords": [
     "doctest",
@@ -58,7 +58,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@power-doctest/javascript": "^3.3.1",
+    "@power-doctest/javascript": "^3.3.2",
     "@types/unist": "^2.0.3",
     "promise.allsettled": "^1.0.1",
     "remark": "^11.0.1",
