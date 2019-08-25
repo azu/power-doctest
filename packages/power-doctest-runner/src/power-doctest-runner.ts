@@ -28,7 +28,7 @@ export interface PowerDoctestRunnerOptions {
     powerDoctestCallbackFunctionName?: string;
 }
 
-const CALLBACK_FUNCTION_NAME = "__power_doctest_callback__";
+const CALLBACK_FUNCTION_NAME = "__power_doctest_runner_callback__";
 
 export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
     const runMode = options.runMode || "all";
