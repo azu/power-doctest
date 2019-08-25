@@ -49,43 +49,12 @@ export const run = async (markdown: string, options: PowerDoctestRunnerOptions =
     );
     // try to eval
     const promises = codeBlocks.map(async (codeBlock: UnistNode) => {
-        const codeValue = codeBlock.value;
-        if (typeof codeValue !== "string") {
-            return;
-        }
-        const comments = getComments(codeBlock.parent, codeBlock);
-        const docTestController = new DocTestController(comments);
-        // <!-- doctest:disale -->
-        if (docTestController.isDisabled) {
-            return;
-        }
-        const inlineOptions = docTestController.doctestOptions;
-        return runJavaScript(codeValue, {
-            ...options,
-            ...inlineOptions
-        }).catch(error => {
-            // <!-- doctest:SyntaxError -->
-            if (docTestController.isExpectedError(error)) {
-                return Promise.resolve();
-            }
-            // <!-- doctest:metadata:{...} -->
-            const metadata = docTestController.doctestMetadata;
-            if (codeBlock.position) {
-                error.fileName = options.filePath ? options.filePath : error.fileName;
-                error.lineNumber = codeBlock.position.start.line;
-                error.columnNumber = codeBlock.position.start.column;
-            }
-            if (metadata) {
-                error.meta = metadata;
-            }
-            return Promise.reject(error);
-        });
+        return runCodeBlockNode(codeBlock, options);
     });
     const isRejected = (promise: Fulfilled | Rejected): promise is Rejected => {
         return promise.status === "rejected";
     };
-    //
-    // <!-- doctest:runMode=all -->
+    // return all errors by default
     const errors = await allSettled(promises).then((promises: (Fulfilled | Rejected)[]) => {
         return promises.filter(isRejected).map((rejected: Rejected) => {
             return rejected.reason;
@@ -100,4 +69,43 @@ export const run = async (markdown: string, options: PowerDoctestRunnerOptions =
             errors
         });
     }
+};
+/**
+ * Run a code of CodeBlockNode that is unist node.
+ * It required a UnistNode that is parsed by marked
+ * @param codeBlock
+ * @param options
+ */
+export const runCodeBlockNode = async (codeBlock: UnistNode, options: PowerDoctestRunnerOptions = {}) => {
+    const codeValue = codeBlock.value;
+    if (typeof codeValue !== "string") {
+        return;
+    }
+    const comments = getComments(codeBlock.parent, codeBlock);
+    const docTestController = new DocTestController(comments);
+    // <!-- doctest:disale -->
+    if (docTestController.isDisabled) {
+        return;
+    }
+    const inlineOptions = docTestController.doctestOptions;
+    return runJavaScript(codeValue, {
+        ...options,
+        ...inlineOptions
+    }).catch(error => {
+        // <!-- doctest:SyntaxError -->
+        if (docTestController.isExpectedError(error)) {
+            return Promise.resolve();
+        }
+        // <!-- doctest:metadata:{...} -->
+        const metadata = docTestController.doctestMetadata;
+        if (codeBlock.position) {
+            error.fileName = options.filePath ? options.filePath : error.fileName;
+            error.lineNumber = codeBlock.position.start.line;
+            error.columnNumber = codeBlock.position.start.column;
+        }
+        if (metadata) {
+            error.meta = metadata;
+        }
+        return Promise.reject(error);
+    });
 };

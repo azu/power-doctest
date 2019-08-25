@@ -53,7 +53,11 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
             restoreListener();
             reject(new Error(`Timeout error
 
-${runMode === "all" ? `If you use { "runMode": "all" }, you should check all condition flow is passed. Maybe
+${runMode === "all" ? `If you use { "runMode": "all" }, you should check all condition flow is passed.
+
+Total Assertion: ${totalAssertionCount}
+Executed Assertion: ${countOfExecutedAssertion}
+
 Also, you should consider to use { "runMode": "any" }` : ""}`));
         }, timeout);
         // Test Runner like mocha listen unhandledRejection and uncaughtException
@@ -75,10 +79,19 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
             process.off("uncaughtException", uncaughtException);
             process.off("unhandledRejection", unhandledRejection);
             // restore
-            originalUncaughtException.forEach(listener => {
+
+            const currentUncaughtException = process.listeners("uncaughtException");
+            const currentUnhandledRejection = process.listeners("unhandledRejection");
+            originalUncaughtException.filter(listener => {
+                // remove duplicated
+                return currentUncaughtException.includes(listener);
+            }).forEach(listener => {
                 process.addListener("uncaughtException", listener);
             });
-            originalUnhandledRejection.forEach(listener => {
+            originalUnhandledRejection.filter(listener => {
+                // remove duplicated
+                return currentUnhandledRejection.includes(listener);
+            }).forEach(listener => {
                 process.addListener("unhandledRejection", listener);
             });
             // clearTimeout
