@@ -2,10 +2,16 @@
     "message": "Throw 2 error in 2 code blocks",
     "errors": [
         {
-            "name": "AssertionError"
+            "name": "AssertionError",
+            "fileName": "input.md",
+            "lineNumber": 5,
+            "columnNumber": 1
         },
         {
-            "name": "AssertionError"
+            "name": "AssertionError",
+            "fileName": "input.md",
+            "lineNumber": 11,
+            "columnNumber": 1
         }
     ]
 }

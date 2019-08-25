@@ -18,9 +18,15 @@ describe("Snapshot testing", () => {
                 const actualFilePath = path.join(fixtureDir, "input.md");
                 const actualContent = fs.readFileSync(actualFilePath, "utf-8");
                 const actualOptionFilePath = path.join(fixtureDir, "options.json");
-                const actualOptions = fs.existsSync(actualOptionFilePath)
-                    ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
-                    : {};
+                const actualOptions = {
+                    filePath: path.relative(fixtureDir, actualFilePath),
+                    ...(
+                        fs.existsSync(actualOptionFilePath)
+                            ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
+                            // relative
+                            : {}
+                    )
+                };
                 const actual = await run(actualContent, actualOptions)
                     .then(() => {
                         return "PASS";
@@ -33,7 +39,16 @@ describe("Snapshot testing", () => {
                                     ...(error.meta ? {
                                         meta: error.meta
                                     } : {}),
-                                    name: normalizeErrorName(error.name)
+                                    name: normalizeErrorName(error.name),
+                                    ...(error.fileName && error.lineNumber >= 0 && error.columnNumber >= 0
+                                            ? {
+
+                                                fileName: error.fileName,
+                                                lineNumber: error.lineNumber,
+                                                columnNumber: error.columnNumber
+                                            }
+                                            : {}
+                                    )
                                 };
                             })
                         };

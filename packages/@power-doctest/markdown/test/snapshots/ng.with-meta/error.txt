@@ -5,7 +5,10 @@
             "meta": {
                 "ECMAScript": 2020
             },
-            "name": "SyntaxError"
+            "name": "SyntaxError",
+            "fileName": "input.md",
+            "lineNumber": 4,
+            "columnNumber": 1
         }
     ]
 }

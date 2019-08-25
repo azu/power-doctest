@@ -2,7 +2,10 @@
     "message": "Throw 1 error in 1 code blocks",
     "errors": [
         {
-            "name": "Error"
+            "name": "Error",
+            "fileName": "input.md",
+            "lineNumber": 4,
+            "columnNumber": 1
         }
     ]
 }

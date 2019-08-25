@@ -1,4 +1,4 @@
-import { run as runJavaScript, PowerDoctestRunnerOptions } from "@power-doctest/javascript";
+import { PowerDoctestRunnerOptions, run as runJavaScript } from "@power-doctest/javascript";
 import { DocTestController } from "./DocTestController";
 
 const allSettled = require("promise.allsettled");
@@ -70,6 +70,11 @@ export const run = async (markdown: string, options: PowerDoctestRunnerOptions =
             }
             // <!-- doctest:metadata:{...} -->
             const metadata = docTestController.doctestMetadata;
+            if (codeBlock.position) {
+                error.fileName = options.filePath ? options.filePath : error.fileName;
+                error.lineNumber = codeBlock.position.start.line;
+                error.columnNumber = codeBlock.position.start.column;
+            }
             if (metadata) {
                 error.meta = metadata;
             }
