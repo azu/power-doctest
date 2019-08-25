@@ -1,0 +1,11 @@
+{
+    "message": "Throw 1 error in 1 code blocks",
+    "errors": [
+        {
+            "meta": {
+                "ECMAScript": 2020
+            },
+            "message": "Identifier directly after number (1:10)"
+        }
+    ]
+}

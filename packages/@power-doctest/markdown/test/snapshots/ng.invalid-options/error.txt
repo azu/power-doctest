@@ -1,0 +1,8 @@
+{
+    "message": "Throw 1 error in 2 code blocks",
+    "errors": [
+        {
+            "message": "Can not parsed the options.\n\ndoctest:options:{ ... } should be json string.\n\nActual: doctest:options:{ a: 1 },{ a: 1 }\n"
+        }
+    ]
+}

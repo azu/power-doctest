@@ -1,17 +1,17 @@
-# power-doctest-runner
+# @power-doctest/javascript
 
-A Test Runner for power-doctest.
+A power-doctest Runner using for JavaScript.
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install power-doctest-runner
+    npm install @power-doctest/javascript
 
 ## Usage
 
 ```js
-import { run } from "power-doctest-runner"
+import { run } from "@power-doctest/javascript"
 run(`
 console.log(1); // => 1
 console.log("string"); // => "string"

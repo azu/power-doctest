@@ -1,7 +1,7 @@
 {
-  "name": "power-doctest-runner",
+  "name": "@power-doctest/javascript",
   "version": "1.0.0",
-  "description": "A Test Runner for power-doctest.",
+  "description": "A power-doctest Runner using for JavaScript.",
   "keywords": [
     "doctest",
     "node.js",
@@ -70,5 +70,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

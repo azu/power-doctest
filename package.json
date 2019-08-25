@@ -6,7 +6,8 @@
   "main": "index.js",
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "packages/@power-doctest/*"
     ]
   },
   "devDependencies": {

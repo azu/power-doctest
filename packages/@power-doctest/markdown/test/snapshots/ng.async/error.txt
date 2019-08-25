@@ -1,0 +1,11 @@
+{
+    "message": "Throw 2 error in 2 code blocks",
+    "errors": [
+        {
+            "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'setTimeout'\n- '???'"
+        },
+        {
+            "message": "Expected values to be strictly equal:\n\n1 !== 2\n"
+        }
+    ]
+}

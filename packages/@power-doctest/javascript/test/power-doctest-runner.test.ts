@@ -85,5 +85,15 @@ setTimeout(() => {
             runMode: "any"
         }));
     });
-
+    it("does timeout because all assertion never called", () => {
+        return assert.rejects(run(`
+if( true ) {
+  1; // => 1
+} else{
+  2; // => 2
+}
+`, {
+            timeout: 100 // 100ms
+        }));
+    });
 });

@@ -20,6 +20,9 @@ export interface PowerDoctestRunnerOptions {
     // console.log(1); // => 1
     // ```
     console?: boolean;
+    // Timeout
+    // Default: 2000ms
+    timeout?: number
     // Default: all
     // If runMode is all, all assertions are finished and resolve it
     // If runMode is any, anyone assertion is finished and resolve it
@@ -32,9 +35,21 @@ const CALLBACK_FUNCTION_NAME = "__power_doctest_runner_callback__";
 
 export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
     const runMode = options.runMode || "all";
+    const timeout = options.timeout !== undefined ? options.timeout : 2000;
     const postCallbackName = options.powerDoctestCallbackFunctionName || CALLBACK_FUNCTION_NAME;
     const context = options.context || {};
     return new Promise((resolve, reject) => {
+        let isSettled = false;
+        const timeoutId = setTimeout(() => {
+            if (isSettled) {
+                return;
+            }
+            restoreListener();
+            reject(new Error(`Timeout error
+
+${runMode === "all" ? `If you use { "runMode": "all" }, you should check all condition flow is passed. Maybe
+Also, you should consider to use { "runMode": "any" }` : ""}`));
+        }, timeout);
         // Test Runner like mocha listen unhandledRejection and uncaughtException
         // Disable these listener before running code
         const originalUnhandledRejection = process.listeners("unhandledRejection");
@@ -50,6 +65,7 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
             reject(error);
         };
         const restoreListener = () => {
+            isSettled = true;
             process.off("uncaughtException", uncaughtException);
             process.off("unhandledRejection", unhandledRejection);
             // restore
@@ -59,6 +75,8 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
             originalUnhandledRejection.forEach(listener => {
                 process.addListener("unhandledRejection", listener);
             });
+            // clearTimeout
+            clearTimeout(timeoutId);
         };
         process.on("uncaughtException", uncaughtException);
         process.on("unhandledRejection", unhandledRejection as any);
@@ -71,6 +89,7 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
         let countOfExecutedAssertion = 0;
         const vm = new NodeVM({
             console: options.console ? "inherit" : "off",
+            timeout: timeout,
             sandbox: {
                 [postCallbackName]: (_id: string) => {
                     countOfExecutedAssertion++;
