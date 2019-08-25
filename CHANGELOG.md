@@ -49,7 +49,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **assert:** assertion is strict by default
 
 
-
 # 2.2.0 (2019-08-24)
 
 

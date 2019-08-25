@@ -22,8 +22,8 @@
     "lib/",
     "src/"
   ],
-  "main": "lib/markdown.js",
-  "types": "lib/markdown.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
