@@ -14,9 +14,15 @@ describe("Snapshot testing", () => {
                 const actualFilePath = path.join(fixtureDir, "input.js");
                 const actualContent = fs.readFileSync(actualFilePath, "utf-8");
                 const actualOptionFilePath = path.join(fixtureDir, "options.json");
-                const actualOptions = fs.existsSync(actualOptionFilePath)
-                    ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
-                    : {};
+                const actualOptions = {
+                    ...{
+                        filePath: actualFilePath
+                    },
+                    ...(fs.existsSync(actualOptionFilePath)
+                        ? {
+                            ...JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
+                        } : {})
+                };
                 const actual = convertCode(actualContent, actualOptions);
                 const expectedFilePath = path.join(fixtureDir, "output.js");
                 // Usage: update snapshots

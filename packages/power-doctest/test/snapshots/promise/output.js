@@ -8,7 +8,7 @@ Promise.resolve(Promise.resolve(1)).then(v => {
 
   assert.strictEqual(_rec._expr(_rec._capt(v, "arguments/0"), {
     content: "assert.strictEqual(v, 1)",
-    filepath: "file.js",
+    filepath: "test/snapshots/promise/input.js",
     line: 4,
     ast: "{\"type\":\"CallExpression\",\"callee\":{\"type\":\"MemberExpression\",\"object\":{\"type\":\"Identifier\",\"name\":\"assert\",\"range\":[0,6]},\"property\":{\"type\":\"Identifier\",\"name\":\"strictEqual\",\"range\":[7,18]},\"computed\":false,\"range\":[0,18]},\"arguments\":[{\"type\":\"Identifier\",\"name\":\"v\",\"range\":[19,20]},{\"type\":\"NumericLiteral\",\"value\":1,\"range\":[22,23]}],\"range\":[0,24]}",
     tokens: "[{\"type\":{\"label\":\"name\"},\"value\":\"assert\",\"range\":[0,6]},{\"type\":{\"label\":\".\"},\"range\":[6,7]},{\"type\":{\"label\":\"name\"},\"value\":\"strictEqual\",\"range\":[7,18]},{\"type\":{\"label\":\"(\"},\"range\":[18,19]},{\"type\":{\"label\":\"name\"},\"value\":\"v\",\"range\":[19,20]},{\"type\":{\"label\":\",\"},\"range\":[20,21]},{\"type\":{\"label\":\"num\"},\"value\":1,\"range\":[22,23]},{\"type\":{\"label\":\")\"},\"range\":[23,24]}]",

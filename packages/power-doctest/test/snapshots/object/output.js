@@ -21,14 +21,14 @@ const objectB = {
 };
 assert.deepStrictEqual(_rec._expr(_rec._capt(objectA, "arguments/0"), {
   content: "assert.deepStrictEqual(objectA, objectB)",
-  filepath: "file.js",
+  filepath: "test/snapshots/object/input.js",
   line: 17,
   ast: "{\"type\":\"CallExpression\",\"callee\":{\"type\":\"MemberExpression\",\"object\":{\"type\":\"Identifier\",\"name\":\"assert\",\"range\":[0,6]},\"property\":{\"type\":\"Identifier\",\"name\":\"deepStrictEqual\",\"range\":[7,22]},\"computed\":false,\"range\":[0,22]},\"arguments\":[{\"type\":\"Identifier\",\"name\":\"objectA\",\"range\":[23,30]},{\"type\":\"Identifier\",\"name\":\"objectB\",\"range\":[32,39]}],\"range\":[0,40]}",
   tokens: "[{\"type\":{\"label\":\"name\"},\"value\":\"assert\",\"range\":[0,6]},{\"type\":{\"label\":\".\"},\"range\":[6,7]},{\"type\":{\"label\":\"name\"},\"value\":\"deepStrictEqual\",\"range\":[7,22]},{\"type\":{\"label\":\"(\"},\"range\":[22,23]},{\"type\":{\"label\":\"name\"},\"value\":\"objectA\",\"range\":[23,30]},{\"type\":{\"label\":\",\"},\"range\":[30,31]},{\"type\":{\"label\":\"name\"},\"value\":\"objectB\",\"range\":[32,39]},{\"type\":{\"label\":\")\"},\"range\":[39,40]}]",
   visitorKeys: _powerAssertVisitorKeys
 }), _rec2._expr(_rec2._capt(objectB, "arguments/1"), {
   content: "assert.deepStrictEqual(objectA, objectB)",
-  filepath: "file.js",
+  filepath: "test/snapshots/object/input.js",
   line: 17,
   ast: "{\"type\":\"CallExpression\",\"callee\":{\"type\":\"MemberExpression\",\"object\":{\"type\":\"Identifier\",\"name\":\"assert\",\"range\":[0,6]},\"property\":{\"type\":\"Identifier\",\"name\":\"deepStrictEqual\",\"range\":[7,22]},\"computed\":false,\"range\":[0,22]},\"arguments\":[{\"type\":\"Identifier\",\"name\":\"objectA\",\"range\":[23,30]},{\"type\":\"Identifier\",\"name\":\"objectB\",\"range\":[32,39]}],\"range\":[0,40]}",
   tokens: "[{\"type\":{\"label\":\"name\"},\"value\":\"assert\",\"range\":[0,6]},{\"type\":{\"label\":\".\"},\"range\":[6,7]},{\"type\":{\"label\":\"name\"},\"value\":\"deepStrictEqual\",\"range\":[7,22]},{\"type\":{\"label\":\"(\"},\"range\":[22,23]},{\"type\":{\"label\":\"name\"},\"value\":\"objectA\",\"range\":[23,30]},{\"type\":{\"label\":\",\"},\"range\":[30,31]},{\"type\":{\"label\":\"name\"},\"value\":\"objectB\",\"range\":[32,39]},{\"type\":{\"label\":\")\"},\"range\":[39,40]}]",
