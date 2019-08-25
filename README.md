@@ -1,4 +1,4 @@
-# power-doctest
+# power-doctest [![Build Status](https://travis-ci.org/azu/power-doctest.svg?branch=master)](https://travis-ci.org/azu/power-doctest)
 
 A monorepo for power-doctest.
 
