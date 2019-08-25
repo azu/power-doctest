@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/azu/power-doctest-runner/compare/v3.0.1...v3.1.0) (2019-08-25)
+
+
+### Bug Fixes
+
+* **@power-doctest/javascript:** support No assertion code ([b00d3e3](https://github.com/azu/power-doctest-runner/commit/b00d3e3))
+
+
+
+
+
 # 3.0.0 (2019-08-25)
 
 
