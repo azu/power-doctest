@@ -10,7 +10,26 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+```js
+import { run } from "power-doctest-runner"
+run(`
+console.log(1); // => 1
+console.log("string"); // => "string"
+console.log([1, 2, 3]); // => [1, 2, 3]
+console.log({ key: "value" }); // => { key: "value" }
+console.log(NaN); // => NaN
+console.log(null); // => null
+// Special Case
+throw new Error("message"); // => Error: "message"
+// Promise
+Promise.resolve(1); // => Resolve: 1
+Promise.reject(new Error("message")); // => Reject: "message"
+`).then(() => {
+    console.log("Pass");
+}).catch(error => {
+    console.log("failed");
+})
+```
 
 ## Changelog
 

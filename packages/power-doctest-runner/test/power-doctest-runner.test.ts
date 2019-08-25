@@ -1,7 +1,22 @@
-import { run } from "../src/power-doctest-runner"
-import * as assert from "assert"
+import { run } from "../src/power-doctest-runner";
+import * as assert from "assert";
 
 describe("run", () => {
+    it("run example code", () => {
+        return run(`
+console.log(1); // => 1
+console.log("string"); // => "string"
+console.log([1, 2, 3]); // => [1, 2, 3]
+console.log({ key: "value" }); // => { key: "value" }
+console.log(NaN); // => NaN
+console.log(null); // => null
+// Special Case
+throw new Error("message"); // => Error: "message"
+// Promise
+Promise.resolve(1); // => Resolve: 1
+Promise.reject(new Error("message")); // => Reject: "message"
+`);
+    });
     it("run throw code", () => {
         return run(`
 throw new Error("message from code");
