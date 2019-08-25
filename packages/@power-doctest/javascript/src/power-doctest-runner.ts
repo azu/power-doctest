@@ -123,6 +123,7 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
         vm.run(script);
         // No assertion code
         if (totalAssertionCount === 0) {
+            restoreListener();
             resolve();
         }
     });
