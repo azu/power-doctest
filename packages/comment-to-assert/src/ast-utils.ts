@@ -103,7 +103,9 @@ export function wrapAssert(
         });
     } else if (expectedNode.type === "Reject") {
         const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
-        return template`BEFORE_CALLBACK;assert.rejects(ARGS);AFTER_CALLBACK;`({
+        return template`BEFORE_CALLBACK;assert.rejects(ARGS).then(() => {
+        AFTER_CALLBACK;
+});`({
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
             ARGS

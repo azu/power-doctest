@@ -39,6 +39,7 @@ export interface PowerDoctestRunnerOptions {
 const CALLBACK_FUNCTION_NAME = "__power_doctest_runner_callback__";
 
 export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
+    const filePath = options.filePath || "default.js";
     const runMode = options.runMode || "all";
     const timeout = options.timeout !== undefined ? options.timeout : 2000;
     const postCallbackName = options.powerDoctestCallbackFunctionName || CALLBACK_FUNCTION_NAME;
@@ -79,18 +80,17 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
             process.off("uncaughtException", uncaughtException);
             process.off("unhandledRejection", unhandledRejection);
             // restore
-
             const currentUncaughtException = process.listeners("uncaughtException");
             const currentUnhandledRejection = process.listeners("unhandledRejection");
             originalUncaughtException.filter(listener => {
                 // remove duplicated
-                return currentUncaughtException.includes(listener);
+                return !currentUncaughtException.includes(listener);
             }).forEach(listener => {
                 process.addListener("uncaughtException", listener);
             });
             originalUnhandledRejection.filter(listener => {
                 // remove duplicated
-                return currentUnhandledRejection.includes(listener);
+                return !currentUnhandledRejection.includes(listener);
             }).forEach(listener => {
                 process.addListener("unhandledRejection", listener);
             });
@@ -100,7 +100,8 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
         process.on("uncaughtException", uncaughtException);
         process.on("unhandledRejection", unhandledRejection as any);
         const poweredCode = convertCode(preTransform(code), {
-            assertAfterCallbackName: postCallbackName
+            assertAfterCallbackName: postCallbackName,
+            filePath: filePath
         });
         // total count of assert
         const totalAssertionCount = poweredCode.split(CALLBACK_FUNCTION_NAME).length - 1;

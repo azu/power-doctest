@@ -9,5 +9,5 @@ Promise.resolve(1); // => Resolve: 2
 ```javascript
 setTimeout(() => {
     console.log("setTimeout"); // => "???"
-})
+}, 100);
 ```
