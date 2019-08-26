@@ -14,9 +14,8 @@ npm install -g power-doctest
 
 ## Usage
 
-    Usage: power-doctest /path/to/file.js
 
-Test code :
+power-doctest convert following code
 
 ``` js
 function sum(ary) {
@@ -29,12 +28,9 @@ var total = sum([1, 2, 3, 4, 5]);
 total; // => 5
 ```
 
-This code expect ``total`` to be ``5``.
+to
 
-Result :
-
-``` sh
-$ power-doctest example/example.js
+``` js
 var assert = require('power-assert');
 function sum(ary) {
     return ary.reduce(function (current, next) {
@@ -58,7 +54,7 @@ assert.equal(assert._expr(assert._capt(total, 'arguments/0'), {
 And execute this transformed code:
 
 ```sh
-$ power-doctest example/example.js | node -p
+$ node example/transformed.js
 AssertionError:   # at line: 14
 
   assert.equal(total, 5)
@@ -68,6 +64,21 @@ AssertionError:   # at line: 14
 ```
 
 ![assert-test](http://gyazo.com/075b4afe13003bd8691a85b371f84afe.gif)
+
+### Syntax
+
+| Syntax                                            | Transformed                                                  |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| `1; // => 2`                                      | `assert.strictEqual(1, 2)`                                   |
+| `console.log(1); // => 2`                         | `assert.strictEqual(1, 2)`                                   |
+| `a; // => b`                                      | `assert.strictEqual(a, b)`                                   |
+| `[1, 2, 3]; // => [3, 4, 5]`                      | `assert.strictDeepEqual([1, 2, 3], [3, 4, 5])`               |
+| `console.log({ a: 1 }): //=> { b: 2 }`            | `assert.strictDeepEqual({ a: 1 }, { b: 2 })`                 |
+| `throw new Error("message"); // Error: "message"` | `assert.throws(function() {throw new Error("message"); });"` |
+| `Promise.resolve(1); // Resolve: 2`               | `Promise.resolve(Promise.resolve(1)).then(v => { assert.strictEqual(1, 2) } ` |
+| `Promise.reject(1); // Reject: 2`                 | `assert.rejects(Promise.reject(1))`                          |
+
+For more details, see [comment-to-assert](https://www.npmjs.com/package/comment-to-assert).
 
 ### Exception Test
 
