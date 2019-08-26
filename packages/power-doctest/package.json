@@ -16,9 +16,6 @@
   ],
   "main": "./lib/power-doctest.js",
   "types": "lib/power-doctest.d.ts",
-  "bin": {
-    "power-doctest": "bin/cmd.js"
-  },
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
     "prepublish": "npm run --if-present build",
@@ -35,7 +32,6 @@
     "ast-source": "^3.0.0",
     "babel-plugin-espower": "^3.0.1",
     "comment-to-assert": "^3.3.0",
-    "concat-stream": "^2.0.0",
     "escodegen": "^1.12.0",
     "espower": "^2.1.2",
     "espree": "^6.1.1",
