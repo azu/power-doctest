@@ -1,13 +1,14 @@
 import * as fs from "fs";
 import * as path from "path";
 import { test } from "@power-doctest/tester";
-import { parse as javascriptParse } from "@power-doctest/javascript";
-import { parse as markdownParse } from "@power-doctest/markdown";
+import { parse as parseJavaScript } from "@power-doctest/javascript";
+import { parse as parseMarkdown } from "@power-doctest/markdown";
+import { parse as parseAsciidoctor } from "@power-doctest/asciidoctor";
 
 const allSettled = require("promise.allsettled");
 
-export interface testOptions {
-    contentType: "javascript" | "markdown";
+export interface RunPowerDoctestOption {
+    contentType: "javascript" | "markdown" | "asciidoctor";
     content: string;
     filePath: string;
     packageDir: string;
@@ -36,17 +37,23 @@ export const createMockRequire = (packageDir: string, pkg?: any) => {
     };
 };
 
-export async function runPowerDoctest(options: testOptions): Promise<{ status: "fulfilled" | "rejected"; code: string; value?: any; reason?: Error }[]> {
+export async function runPowerDoctest(options: RunPowerDoctestOption): Promise<{ status: "fulfilled" | "rejected"; code: string; value?: any; reason?: Error }[]> {
     const requireMock = createMockRequire(options.packageDir, options.packageJSON);
     const results = (() => {
         if (options.contentType === "javascript") {
-            return javascriptParse({
+            return parseJavaScript({
                 content: options.content,
                 filePath: options.filePath
             });
         }
         if (options.contentType === "markdown") {
-            return markdownParse({
+            return parseMarkdown({
+                content: options.content,
+                filePath: options.filePath
+            });
+        }
+        if (options.contentType === "asciidoctor") {
+            return parseAsciidoctor({
                 content: options.content,
                 filePath: options.filePath
             });

@@ -1,12 +1,12 @@
 import * as fs from "fs";
 import * as path from "path";
 import meow from "meow";
-import { runPowerDoctest } from "./power-doctest";
+import { runPowerDoctest, RunPowerDoctestOption } from "./power-doctest";
 
 export async function run() {
     const cli = meow(`
 	Usage
-	  $ power-doctest /path/to/file.{js,md}
+	  $ power-doctest /path/to/file.{js,md,adoc}
 
 	Options
 	  --packageDir  Current Working directory. Should put package.json in the directory.
@@ -14,6 +14,7 @@ export async function run() {
 
 	Examples
 	  $ power-doctest ./README.md
+	  $ power-doctest ./README.adoc
 	  $ power-doctest ./src/main.js
 `, {
         flags: {
@@ -31,15 +32,19 @@ export async function run() {
         throw new Error("Should pass file");
     }
     const content = fs.readFileSync(input, "utf-8");
+    const asciidoctExt = [".adoc", ".asc", ".asciidoctor"];
     const markdownFileExts = [".md", ".mkd", ".markdown"];
     const jsFileExts = [".js", ".mjs"];
-    const contentType = (() => {
+    const contentType: RunPowerDoctestOption["contentType"] | null = (() => {
         const ext = path.extname(input);
         if (markdownFileExts.includes(ext)) {
             return "markdown";
         }
         if (jsFileExts.includes(ext)) {
             return "javascript";
+        }
+        if (asciidoctExt.includes(ext)) {
+            return "asciidoctor";
         }
         return null;
     })();

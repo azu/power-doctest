@@ -4,6 +4,12 @@ A monorepo for power-doctest.
 
 power-doctest is a project that provide doctest system for JavaScript.
 
+## Features
+
+- Run Comments as Assertions
+- Support JavaScript, Markdown Code Block, Asciidoctor Code Block
+- Control doctest behavior from comments 
+
 ## Packages
 
 - [comment-to-assert](./packages/comment-to-assert)

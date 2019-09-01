@@ -13,7 +13,7 @@ Install with [npm](https://www.npmjs.com/):
 ### CLI
 
 	Usage
-	  $ power-doctest /path/to/file.{js,md}
+	  $ power-doctest /path/to/file.{js,md,adoc}
 
 	Options
 	  --packageDir  Current Working directory. Should put package.json in the directory.
@@ -21,6 +21,7 @@ Install with [npm](https://www.npmjs.com/):
 
 	Examples
 	  $ power-doctest ./README.md
+	  $ power-doctest ./README.adoc
 	  $ power-doctest ./src/main.js
 
 ### Node Modules

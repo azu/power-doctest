@@ -66,6 +66,7 @@
   "dependencies": {
     "@power-doctest/javascript": "^5.0.1",
     "@power-doctest/markdown": "^5.0.1",
+    "@power-doctest/asciidoctor": "^5.0.1",
     "@power-doctest/tester": "^5.0.1",
     "meow": "^5.0.0",
     "promise.allsettled": "^1.0.1"
