@@ -7,7 +7,7 @@ import generate from "@babel/generator";
 import assert from "assert";
 import { toAssertFromAST } from "comment-to-assert";
 import { injectAssertModule } from "./inject-assert";
-
+const babelPluginEspower = require("babel-plugin-espower");
 export interface convertCodeOption {
     filePath: string;
     babel?: ParserOptions;
@@ -54,7 +54,7 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
             comments: true
         });
         const result = transformSync(code, {
-            plugins: ["babel-plugin-espower"],
+            plugins: [babelPluginEspower],
             filename: options.filePath,
             sourceFileName: options.filePath,
             ast: true,
