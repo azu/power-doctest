@@ -35,19 +35,32 @@ export interface PowerDoctestRunnerOptions {
 
 const CALLBACK_FUNCTION_NAME = "__power_doctest_runner_callback__";
 
-export function test(testOptions: ParsedCode): Promise<void> {
-    return run(testOptions.code, testOptions.doctestOptions).catch(error => {
+export interface testOptions {
+    // if it is true and Each testOptions.state is "none", run the test
+    // if it is false and Each testOptions.state is "none", do not run the test
+    // Default: false
+    disableRunning: boolean;
+}
+
+export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<void> {
+    if (parsedCode.state === "disabled") {
+        return Promise.resolve();
+    }
+    if (oprions && oprions.disableRunning && parsedCode.state === "none") {
+        return Promise.resolve();
+    }
+    return run(parsedCode.code, parsedCode.doctestOptions).catch(error => {
         // if it is expected error, resolve it
-        if (testOptions.expectedError && error.name === testOptions.expectedError) {
+        if (parsedCode.expectedError && error.name === parsedCode.expectedError) {
             return Promise.resolve();
         }
-        const doctestOptions: PowerDoctestRunnerOptions | undefined = testOptions.doctestOptions;
+        const doctestOptions: PowerDoctestRunnerOptions | undefined = parsedCode.doctestOptions;
         error.fileName = doctestOptions && doctestOptions.filePath
             ? doctestOptions.filePath
             : error.fileName;
-        error.lineNumber = testOptions.location.start.line;
-        error.columnNumber = testOptions.location.start.column;
-        const metadata = testOptions.metadata;
+        error.lineNumber = parsedCode.location.start.line;
+        error.columnNumber = parsedCode.location.start.column;
+        const metadata = parsedCode.metadata;
         if (metadata) {
             error.meta = metadata;
         }
