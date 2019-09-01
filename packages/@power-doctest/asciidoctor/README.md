@@ -1,12 +1,12 @@
-# @power-doctest/javascript
+# @power-doctest/asciidoctor
 
-A JavaScript parser for power-doctest.
+A power-doctest Runner using for Asciidoctor.
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install @power-doctest/javascript
+    npm install @power-doctest/asciidoctor
 
 ## Usage
 

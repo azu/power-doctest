@@ -1,0 +1,20 @@
+[
+    {
+        "code": "++++++++;",
+        "location": {
+            "start": {
+                "line": 4,
+                "column": 1
+            },
+            "end": {
+                "line": 6,
+                "column": 4
+            }
+        },
+        "state": "none",
+        "expectedError": "SyntaxError",
+        "doctestOptions": {
+            "filePath": "input.md"
+        }
+    }
+]

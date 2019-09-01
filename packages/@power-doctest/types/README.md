@@ -1,12 +1,12 @@
-# @power-doctest/javascript
+# @power-doctest/types
 
-A JavaScript parser for power-doctest.
+Shared types of @power-doctest
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install @power-doctest/javascript
+    npm install @power-doctest/types
 
 ## Usage
 

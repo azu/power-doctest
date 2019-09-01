@@ -1,6 +1,6 @@
 # @power-doctest/markdown
 
-A power-doctest Runner using for Markdown.
+A Markdown parser for power-doctest.
 
 ## Features
 

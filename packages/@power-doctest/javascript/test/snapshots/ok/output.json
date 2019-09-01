@@ -1,0 +1,19 @@
+[
+    {
+        "code": "const array = [1, 2, 3];\nconsole.log(array); // => [1,2,3]\n",
+        "location": {
+            "start": {
+                "line": 1,
+                "column": 0
+            },
+            "end": {
+                "line": 2,
+                "column": 33
+            }
+        },
+        "state": "none",
+        "doctestOptions": {
+            "filePath": "input.js"
+        }
+    }
+]

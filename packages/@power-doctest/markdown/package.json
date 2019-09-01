@@ -1,7 +1,7 @@
 {
   "name": "@power-doctest/markdown",
   "version": "3.3.3",
-  "description": "A power-doctest Runner using for Markdown.",
+  "description": "A Markdown parser for power-doctest.",
   "keywords": [
     "doctest",
     "javascript",
@@ -59,8 +59,8 @@
   },
   "dependencies": {
     "@power-doctest/javascript": "^3.3.3",
+    "@power-doctest/types": "^1.0.0",
     "@types/unist": "^2.0.3",
-    "promise.allsettled": "^1.0.1",
     "remark": "^11.0.1",
     "unist-util-find-all-between": "^1.0.6",
     "unist-util-find-before": "^2.0.4",

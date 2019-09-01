@@ -1,12 +1,13 @@
 {
-  "name": "@power-doctest/javascript",
+  "name": "@power-doctest/asciidoctor",
   "version": "1.0.0",
-  "description": "A JavaScript parser for power-doctest.",
+  "description": "A power-doctest Runner using for Asciidoctor.",
   "keywords": [
-    "parser",
-    "power-doctest"
+    "asciidoc",
+    "asciidoctor",
+    "doctest"
   ],
-  "homepage": "https://github.com/azu/power-doctest/tree/master/packages/@power-doctest/javascript/",
+  "homepage": "https://github.com/azu/power-doctest/tree/master/packages/@power-doctest/asciidoctor/",
   "bugs": {
     "url": "https://github.com/azu/power-doctest/issues"
   },
@@ -29,7 +30,6 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
-    "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",
     "clean": "rimraf lib/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
@@ -42,14 +42,12 @@
     "tabWidth": 4
   },
   "dependencies": {
-    "@power-doctest/types": "^1.0.0",
-    "@types/structured-source": "^3.0.0",
-    "structured-source": "^3.0.2"
+    "asciidoctor": "^2.0.3"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.3",
-    "cross-env": "^5.2.1",
+    "cross-env": "^5.2.0",
     "mocha": "^6.2.0",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
