@@ -10,6 +10,20 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
+### CLI
+
+	Usage
+	  $ power-doctest /path/to/file.{js,md}
+
+	Options
+	  --packageDir  Current Workind directory. Should put package.json in the directory.
+
+	Examples
+	  $ power-doctest ./README.md
+	  $ power-doctest ./src/main.js
+
+### Node Modules
+
 ```js
 const { testContent } = require("@power-doctest/cli");
 testContent({

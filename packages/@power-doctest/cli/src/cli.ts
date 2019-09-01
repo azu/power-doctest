@@ -12,8 +12,8 @@ export async function run() {
 	  --packageDir  Current Workind directory. Should put package.json in the directory.
 
 	Examples
-	  $ foo unicorns --rainbow
-	  🌈 unicorns 🌈
+	  $ power-doctest ./README.md
+	  $ power-doctest ./src/main.js
 `, {
         flags: {
             packageDir: {
