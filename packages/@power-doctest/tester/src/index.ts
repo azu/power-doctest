@@ -1,5 +1,6 @@
 import { NodeVM, VMScript } from "vm2";
 import { convertCode } from "power-doctest";
+import { ParsedCode } from "@power-doctest/types";
 
 const assert = require("power-assert");
 
@@ -38,7 +39,28 @@ export interface PowerDoctestRunnerOptions {
 
 const CALLBACK_FUNCTION_NAME = "__power_doctest_runner_callback__";
 
-export function run(code: string, options: PowerDoctestRunnerOptions = {}) {
+export function test(testOptions: ParsedCode): Promise<void> {
+    return run(testOptions.code, testOptions.doctestOptions).catch(error => {
+        // if it is expected error, resolve it
+        if (testOptions.expectedError && error.name === testOptions.expectedError) {
+            return Promise.resolve();
+        }
+        const doctestOptions: PowerDoctestRunnerOptions | undefined = testOptions.doctestOptions;
+        error.fileName = doctestOptions && doctestOptions.filePath
+            ? doctestOptions.filePath
+            : error.fileName;
+        error.lineNumber = testOptions.location.start.line;
+        error.columnNumber = testOptions.location.start.column;
+        const metadata = testOptions.metadata;
+        if (metadata) {
+            error.meta = metadata;
+        }
+        return Promise.reject(error);
+    });
+}
+
+
+export function run(code: string, options: PowerDoctestRunnerOptions = {}): Promise<void> {
     const filePath = options.filePath || "default.js";
     const runMode = options.runMode || "all";
     const timeout = options.timeout !== undefined ? options.timeout : 2000;

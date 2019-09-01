@@ -1,7 +1,8 @@
 // MIT © 2017 azu
 "use strict";
 
-const DISABLE_PATTERN = /doctest:\s*?disable/;
+const DISABLE_PATTERN = /doctest:\s*?disable(:?d)?/;
+const ENABLE_PATTERN = /doctest:\s*?enable(:?d)?/;
 const DOCTEST_OPTIONS = /doctest:\w*?options:({[^}]+})/;
 const DOCTEST_METADATA = /doctest:\w*?meta:({[^}]+})/;
 const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
@@ -29,7 +30,7 @@ const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
  */
 export class DocTestController {
     private comments: string[];
-    private _expectedErrorName: undefined | (null | string);
+    private _expectedErrorName: undefined | string;
 
     /**
      * @param {string[]} comments
@@ -40,13 +41,18 @@ export class DocTestController {
     }
 
     /**
-     * Return true if `this.comments` include DISABLE_PATTERN
-     * @returns {boolean}
+     * Return state of @power-doctest/types
      */
-    get isDisabled() {
-        return this.comments.some(comment => {
-            return DISABLE_PATTERN.test(comment);
-        });
+    get state() {
+        for (const comment of this.comments) {
+            if (ENABLE_PATTERN.test(comment)) {
+                return "enabled";
+            } else if (DISABLE_PATTERN.test(comment)) {
+                return "disabled";
+            }
+        }
+        // not defined
+        return "none";
     }
 
     /**
@@ -135,7 +141,7 @@ Actual: ${optionString}
      * @returns {string|undefined}
      * @private
      */
-    _getExpectedErrorName(comments: string[]) {
+    _getExpectedErrorName(comments: string[]): string | undefined {
         const expectedErrorTypeComment = comments.find(comment => {
             return ERROR_TYPE_PATTERN.test(comment);
         });
@@ -143,6 +149,7 @@ Actual: ${optionString}
             return;
         }
         const match = expectedErrorTypeComment.match(ERROR_TYPE_PATTERN);
-        return match && match[1];
+        const matched = match && match[1];
+        return matched ? matched : undefined;
     }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@power-doctest/javascript",
+  "name": "@power-doctest/tester",
   "version": "3.3.3",
-  "description": "A power-doctest Runner using for JavaScript.",
+  "description": "A power-doctest Teser",
   "keywords": [
     "doctest",
     "node.js",
@@ -23,8 +23,8 @@
     "lib/",
     "src/"
   ],
-  "main": "lib/power-doctest-runner.js",
-  "types": "lib/power-doctest-runner.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -38,6 +38,7 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
+    "@power-doctest/types": "^1.0.0",
     "power-doctest": "^3.3.2",
     "vm2": "^3.8.3"
   },

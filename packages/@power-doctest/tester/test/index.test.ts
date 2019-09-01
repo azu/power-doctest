@@ -1,4 +1,4 @@
-import { run } from "../src/power-doctest-runner";
+import { run } from "../src/index";
 import * as assert from "assert";
 
 describe("run", () => {
@@ -78,7 +78,7 @@ setTimeout(() => {
     it("does resolve when anyone asserted", () => {
         return assert.doesNotReject(run(`
 1; // => 1
-// anyone is reoslve then finish the code
+// anyone is resolve then finish the code
 2; // => "ng"
 3; // => "ng"
 `, {

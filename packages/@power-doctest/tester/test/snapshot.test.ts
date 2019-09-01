@@ -1,8 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
-// transform function
-import { run } from "../src/power-doctest-runner";
+import { run } from "../src";
 
 const normalizeErrorName = (error: string) => {
     const match = error.match(/(.*Error)/);
