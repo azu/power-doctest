@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/azu/power-doctest/compare/v4.1.0...v4.1.1) (2019-09-01)
+
+
+### Bug Fixes
+
+* **asciidoctor:** compute position form string match ([7eedda1](https://github.com/azu/power-doctest/commit/7eedda1))
+
+
+
+
+
 # [4.0.0](https://github.com/azu/power-doctest/compare/v3.3.3...v4.0.0) (2019-09-01)
 
 
