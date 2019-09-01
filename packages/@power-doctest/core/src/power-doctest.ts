@@ -64,7 +64,7 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
             sourceType: "module"
         });
         if (!result) {
-            throw new Error("Fail to convert espower in core");
+            throw new Error("Fail to convert espower in power-doctest");
         }
         return result.ast;
     };
