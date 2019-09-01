@@ -12,9 +12,6 @@
             }
         },
         "state": "none",
-        "expectedError": "SyntaxError",
-        "doctestOptions": {
-            "filePath": "input.js"
-        }
+        "expectedError": "SyntaxError"
     }
 ]

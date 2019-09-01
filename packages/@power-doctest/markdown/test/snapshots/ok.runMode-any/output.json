@@ -13,6 +13,7 @@
         },
         "state": "none",
         "doctestOptions": {
+            "filePath": "input.md",
             "runMode": "any"
         }
     }
