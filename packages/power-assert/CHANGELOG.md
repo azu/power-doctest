@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/azu/power-doctest/compare/v5.1.0...v5.1.1) (2019-09-01)
+
+
+### Bug Fixes
+
+* **cli:** rename @power-doctest/cli to power-doctest ([1c5060b](https://github.com/azu/power-doctest/commit/1c5060b))
+
+
+
+
+
 # [5.1.0](https://github.com/azu/power-doctest/compare/v5.0.1...v5.1.0) (2019-09-01)
 
 
