@@ -4,12 +4,12 @@
         "state": "none",
         "location": {
             "start": {
-                "line": 5,
-                "column": 0
+                "line": 0,
+                "column": null
             },
             "end": {
-                "line": 6,
-                "column": 0
+                "line": 1,
+                "column": 15
             }
         },
         "doctestOptions": {

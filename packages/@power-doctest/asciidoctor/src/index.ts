@@ -1,3 +1,4 @@
+import StructuredSource from "structured-source";
 import { ParsedCode, ParsedResults, ParserArgs } from "@power-doctest/types";
 import * as fs from "fs";
 import * as path from "path";
@@ -61,6 +62,7 @@ const inlineCode = (code: string, baseFilePath: string): string => {
 };
 
 export function parse(args: ParserArgs): ParsedResults {
+    const structuredSource = new StructuredSource(args.content);
     const doc = asciidoctor.load(args.content);
     return doc.getBlocks()
         .filter((block: any) => {
@@ -68,24 +70,21 @@ export function parse(args: ParserArgs): ParsedResults {
             return attributes.style === "source" && (attributes.language === "js" || attributes.language === "javascript");
         })
         .map((block: any) => {
-            const lineNumber: number = block.document.getReader().lineno;
-            const attributes: {} = block.getAttributes();
+            // FIXME: workaround get lineno
+            // asciidoctor.js does not suport lineno for the block
             const code: string = block.getSource();
-            const lines: string[] = block.getSourceLines();
+            const index = args.content.indexOf(code);
+            const startPosition = structuredSource.indexToPosition(index);
+            const endPostion = structuredSource.indexToPosition(index + code.length);
+            const attributes: {} = block.getAttributes();
             const meta = getMeta(attributes);
             const doctestOptions = getOptions(attributes);
             const parsedCode: ParsedCode = {
                 code: inlineCode(code, args.filePath),
                 state: getState(attributes),
                 location: {
-                    start: {
-                        line: lineNumber,
-                        column: 0
-                    },
-                    end: {
-                        line: lineNumber + lines.length,
-                        column: 0
-                    }
+                    start: startPosition,
+                    end: endPostion
                 },
                 metadata: meta,
                 doctestOptions: doctestOptions ? {

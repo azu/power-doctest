@@ -4,12 +4,12 @@
         "state": "none",
         "location": {
             "start": {
-                "line": 6,
+                "line": 3,
                 "column": 0
             },
             "end": {
-                "line": 8,
-                "column": 0
+                "line": 4,
+                "column": 17
             }
         },
         "metadata": {

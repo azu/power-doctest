@@ -44,9 +44,11 @@
   },
   "dependencies": {
     "@power-doctest/types": "^4.0.0",
-    "asciidoctor": "^2.0.3"
+    "asciidoctor": "^2.0.3",
+    "structured-source": "^3.0.2"
   },
   "devDependencies": {
+    "@types/structured-source": "^3.0.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.3",
     "cross-env": "^5.2.0",

@@ -1850,6 +1850,18 @@ commander@^2.20.0, commander@~2.20.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
   integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
 
+comment-to-assert@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/comment-to-assert/-/comment-to-assert-3.3.0.tgz#90c55a63ee8c2300892f9254b5ffd6e2434267b4"
+  integrity sha512-mKPMIJtTNBAkwgwm/ndYP4DurVW1iaVOY3pfN/3nc/9foYgy1rgauaWU7eTHVFA01JfJJDjH5Zvqcu1hQmfSKg==
+  dependencies:
+    "@babel/core" "^7.5.5"
+    "@babel/parser" "^7.5.5"
+    "@babel/template" "^7.4.4"
+    "@babel/traverse" "^7.5.5"
+    "@babel/types" "^7.5.5"
+    concat-stream "^2.0.0"
+
 compare-func@^1.3.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/compare-func/-/compare-func-1.3.2.tgz#99dd0ba457e1f9bc722b12c08ec33eeab31fa648"
@@ -5258,6 +5270,27 @@ power-assert@^1.6.1:
     power-assert-formatter "^1.4.1"
     universal-deep-strict-equal "^1.2.1"
     xtend "^4.0.0"
+
+power-doctest@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/power-doctest/-/power-doctest-3.3.2.tgz#0b82c227b8f534790da4fb527bb04d2f23b4e108"
+  integrity sha512-rBoTlM5ZnjUgnmNeb7a95D1hTaU5OhCnew7YLSxLh1p1Mkv7mHn2GSR+6c75fSNa7llLMBqyt5BhhkMfLyRgZg==
+  dependencies:
+    "@babel/core" "^7.5.5"
+    "@babel/parser" "^7.5.5"
+    "@babel/template" "^7.4.4"
+    "@babel/traverse" "^7.5.5"
+    "@babel/types" "^7.5.5"
+    ast-source "^3.0.0"
+    babel-plugin-espower "^3.0.1"
+    comment-to-assert "^3.3.0"
+    concat-stream "^2.0.0"
+    escodegen "^1.12.0"
+    espower "^2.1.2"
+    espree "^6.1.1"
+    esprima "^4.0.1"
+    estraverse "^4.3.0"
+    power-assert "^1.6.1"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
