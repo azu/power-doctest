@@ -39,7 +39,9 @@
     "clean": "rimraf lib/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.ts\"",
+    "test": "npm run test:unit && npm run test:readme",
+    "test:unit": "mocha \"test/**/*.ts\"",
+    "test:readme": "npm run build && ./bin/cmd.js README.md",
     "watch": "tsc -p . --watch"
   },
   "prettier": {

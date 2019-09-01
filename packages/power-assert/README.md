@@ -27,12 +27,12 @@ Install with [npm](https://www.npmjs.com/):
 ### Node Modules
 
 ```js
-const { testContent } = require("power-doctest");
-testContent({
+const { runPowerDoctest } = require("power-doctest");
+runPowerDoctest({
     content: "1; // => 2",
     contentType: "javascript",
     filePath: "test.js",
-    disableRunning: true
+    disableRunning: false
 }).then(results => {
     console.log(results[0].status); // => "rejected"
 });
