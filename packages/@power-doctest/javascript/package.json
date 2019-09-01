@@ -1,7 +1,7 @@
 {
   "name": "@power-doctest/javascript",
   "version": "1.0.0",
-  "description": "A parser for power-doctest.",
+  "description": "A JavaScript parser for power-doctest.",
   "keywords": [
     "parser",
     "power-doctest"

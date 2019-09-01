@@ -1,6 +1,6 @@
 # @power-doctest/javascript
 
-A parser for power-doctest.
+A JavaScript parser for power-doctest.
 
 ## Install
 

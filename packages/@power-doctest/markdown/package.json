@@ -1,7 +1,7 @@
 {
   "name": "@power-doctest/markdown",
   "version": "3.3.3",
-  "description": "A power-doctest Runner using for Markdown.",
+  "description": "A Markdown parser for power-doctest.",
   "keywords": [
     "doctest",
     "javascript",
