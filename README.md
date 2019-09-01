@@ -128,6 +128,69 @@ ${codeValue}
 
 - <https://github.com/asciidwango/js-primer/blob/master/test/markdown-doc-test.js>
 
+### Doctest JavaScript in Asciidoctor
+
+Use [@power-doctest/tester](./packages/@power-doctest/tester) and [@power-doctest/asciidoctor](./packages/@power-doctest/asciidoctor) in [Mocha](https://mochajs.org/).
+
+```js
+const { test } = require("@power-doctest/tester");
+const { parse } = require("@power-doctest/asciidoctor");
+const globby = require("globby");
+const fs = require("fs");
+const path = require("path");
+// Avoid "do not support nested sections" Error
+// Replace Header with Dummy text
+const replaceDummyHeader = (content) => {
+    return content.split("\n").map(line => {
+        return line.replace(/^(=+)/g, (all, match) => {
+            return "♪".repeat(match.length);
+        });
+    }).join("\n");
+};
+// doctest for source/**/*.adoc
+describe("doctest:adoc", function () {
+    const sourceDir = path.join(__dirname, "..", "source");
+    const files = globby.sync([
+        `${sourceDir}/**/*.adoc`,
+        `!**/node_modules{,/**}`,
+    ]);
+    files.forEach(filePath => {
+        const normalizeFilePath = filePath.replace(sourceDir, "");
+        describe(`${normalizeFilePath}`, function () {
+            const content = fs.readFileSync(filePath, "utf-8");
+            const parsedCodes = parse({
+                filePath,
+                content: replaceDummyHeader(content)
+            });
+            console.log("parsedCodes", parsedCodes);
+            // try to eval
+            const dirName = path.dirname(filePath).split(path.sep).pop();
+            parsedCodes.forEach((parsedCode, index) => {
+                const codeValue = parsedCode.code;
+                const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
+                it(dirName + ": " + testCaseName, function () {
+                    return test(parsedCode).catch(error => {
+                        const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
+                        console.error(`Asciidoc Doctest is failed
+  at ${filePathLineColumn}
+
+----------
+${codeValue}
+----------
+`);
+                        return Promise.reject(error);
+                    });
+                });
+            });
+        });
+    });
+});
+```
+
+**Example**
+
+- <https://github.com/azu/promises-book/blob/7db237e6274a3af8db3b5cb92a2dd8574d9890e5/test/doctest.js>
+
 ## Development
 
 Require [Yarn](https://yarnpkg.com/)
