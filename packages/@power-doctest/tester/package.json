@@ -53,7 +53,9 @@
     "strip-color": "^0.1.0",
     "ts-node": "^8.3.0",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "@power-doctest/javascript": "^1.0.0",
+    "promise.allsettled": "^1.0.1"
   },
   "prettier": {
     "singleQuote": false,

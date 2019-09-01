@@ -1,0 +1,32 @@
+[
+    {
+        "code": "console.log(1); // => 1",
+        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ok.simple/input.md",
+        "location": {
+            "start": {
+                "line": 5,
+                "column": 1
+            },
+            "end": {
+                "line": 7,
+                "column": 4
+            }
+        },
+        "state": "none"
+    },
+    {
+        "code": "console.log(\"str\"); // => \"str\"",
+        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ok.simple/input.md",
+        "location": {
+            "start": {
+                "line": 11,
+                "column": 1
+            },
+            "end": {
+                "line": 13,
+                "column": 4
+            }
+        },
+        "state": "none"
+    }
+]

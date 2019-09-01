@@ -1,0 +1,19 @@
+[
+    {
+        "code": "const value = \"no assert code\";\n",
+        "location": {
+            "start": {
+                "line": 1,
+                "column": 0
+            },
+            "end": {
+                "line": 1,
+                "column": 31
+            }
+        },
+        "state": "none",
+        "doctestOptions": {
+            "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/javascript/test/snapshots/ok.no-assert/input.js"
+        }
+    }
+]

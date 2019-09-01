@@ -1,0 +1,32 @@
+[
+    {
+        "code": "Promise.resolve(1); // => Resolve: 2",
+        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ng.async/input.md",
+        "location": {
+            "start": {
+                "line": 3,
+                "column": 1
+            },
+            "end": {
+                "line": 5,
+                "column": 4
+            }
+        },
+        "state": "none"
+    },
+    {
+        "code": "setTimeout(() => {\n    console.log(\"setTimeout\"); // => \"???\"\n}, 100);",
+        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ng.async/input.md",
+        "location": {
+            "start": {
+                "line": 9,
+                "column": 1
+            },
+            "end": {
+                "line": 13,
+                "column": 4
+            }
+        },
+        "state": "none"
+    }
+]
