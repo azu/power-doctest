@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/asciidoctor",
-  "version": "4.1.2",
+  "version": "5.0.0",
   "description": "A Asciidoctor parser for power-doctest.",
   "keywords": [
     "asciidoc",
@@ -43,7 +43,7 @@
     "tabWidth": 4
   },
   "dependencies": {
-    "@power-doctest/types": "^4.0.0",
+    "@power-doctest/types": "^5.0.0",
     "asciidoctor": "^2.0.3",
     "structured-source": "^3.0.2"
   },
