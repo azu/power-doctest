@@ -1,6 +1,6 @@
 {
   "name": "power-doctest",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "A command line tool for power-doctest.",
   "keywords": [
     "cli",
@@ -69,7 +69,7 @@
     "@power-doctest/asciidoctor": "^5.0.1",
     "@power-doctest/javascript": "^5.0.1",
     "@power-doctest/markdown": "^5.0.1",
-    "@power-doctest/tester": "^5.0.1",
+    "@power-doctest/tester": "^5.1.2",
     "meow": "^5.0.0",
     "promise.allsettled": "^1.0.1"
   },
