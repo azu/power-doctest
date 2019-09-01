@@ -1,4 +1,4 @@
-# @power-doctest/javascript
+# @power-doctest/tester
 
 A Test Runner for A power-doctest.
 
@@ -6,12 +6,12 @@ A Test Runner for A power-doctest.
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install @power-doctest/javascript
+    npm install @power-doctest/tester
 
 ## Usage
 
 ```js
-import { run } from "@power-doctest/javascript"
+import { run } from "@power-doctest/tester"
 run(`
 console.log(1); // => 1
 console.log("string"); // => "string"
@@ -29,6 +29,43 @@ Promise.reject(new Error("message")); // => Reject: "message"
 }).catch(error => {
     console.log("failed");
 })
+```
+
+## Options
+
+```ts
+export interface PowerDoctestRunnerOptions {
+    // pseudo file path for code
+    filePath?: string;
+    // sandbox context for code
+    // context defined global variables
+    context?: {
+        [index: string]: any
+    }
+    // sandbox require mock for code
+    requireMock?: {
+        [index: string]: any
+    }
+    // If it is true, console.log output to console
+    // If you want to mock console, please pass `console` to `context: { console: consoleMock }`
+    //
+    // Exception:
+    // Always suppress console and assertion, because it is converted to assert function
+    // ```
+    // console.log(1); // => 1
+    // ```
+    console?: boolean;
+    // Timeout millisecond
+    // Default: 2000
+    timeout?: number
+    // Default: all
+    // If runMode is all, all assertions are finished and resolve it
+    // If runMode is any, anyone assertion is finished and resolve it
+    // In Both, anyone is failed and reject it
+    runMode?: "any" | "all";
+    // Internal Option
+    powerDoctestCallbackFunctionName?: string;
+}
 ```
 
 ## Changelog

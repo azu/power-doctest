@@ -36,7 +36,7 @@ export const createMockRequire = (packageDir: string, pkg?: any) => {
     };
 };
 
-export async function testContent(options: testOptions): Promise<{ status: "fulfilled" | "rejected"; code: string; value?: any; reason?: Error }[]> {
+export async function runPowerDoctest(options: testOptions): Promise<{ status: "fulfilled" | "rejected"; code: string; value?: any; reason?: Error }[]> {
     const requireMock = createMockRequire(options.packageDir, options.packageJSON);
     const results = (() => {
         if (options.contentType === "javascript") {

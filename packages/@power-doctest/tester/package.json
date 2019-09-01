@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@power-doctest/types": "^4.0.0",
-    "power-doctest": "^4.0.0",
+    "@power-doctest/core": "^4.0.0",
     "vm2": "^3.8.3"
   },
   "devDependencies": {

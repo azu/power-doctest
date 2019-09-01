@@ -1,19 +1,17 @@
 [
     {
-        "code": "const str = \"string\";\nconsole.log(str); // => \"string\"",
+        "code": "+++++++",
         "state": "none",
+        "expectedError": "SyntaxError",
         "location": {
             "start": {
-                "line": 3,
+                "line": 4,
                 "column": 0
             },
             "end": {
                 "line": 4,
-                "column": 32
+                "column": 7
             }
-        },
-        "metadata": {
-            "ECMAScript": 2017
         },
         "doctestOptions": {
             "filePath": "input.adoc"

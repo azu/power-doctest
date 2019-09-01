@@ -9,11 +9,49 @@ power-doctest is a project that provide doctest system for JavaScript.
 - [comment-to-assert](./packages/comment-to-assert)
     - `// => expression` to `assert`
 - [power-doctest](./packages/power-doctest)
-    - Convert code to doctest-ready code
-- [@power-doctest/cli](./packages/@power-doctest/cli)
     - A command line tool for power-doctest
+    - Convert code and Run the code as doctest
+- [@power-doctest/core](packages/@power-doctest/core)
+    - Convert code to doctest-ready code
 - [@power-doctest/tester](./packages/@power-doctest/tester)
     - A Test Runner for A power-doctest.
+- [@power-doctest/javascript](./packages/@power-doctest/javascript)
+    - A JavaScript parser for power-doctest.
+- [@power-doctest/markdown](./packages/@power-doctest/markdown)
+    - A Markdown parser for power-doctest.
+- [@power-doctest/asciidoctor](./packages/@power-doctest/asciidoctor)
+    - A Asciidoctor parser for power-doctest.
+
+## power-doctest
+
+power-doctest is consisted of two parts.
+
+- Comment Assertion Syntax
+- Doctest Control Annotation 
+
+### Comment Assertion Syntax
+
+You can write following comment in your JavaScript code.
+These comment will be canistered to assertion.
+
+| Syntax                                            | Transformed                                                  |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| `1; // => 2`                                      | `assert.strictEqual(1, 2)`                                   |
+| `console.log(1); // => 2`                         | `assert.strictEqual(1, 2)`                                   |
+| `a; // => b`                                      | `assert.deepStrictEqual(a, b)`                                   |
+| `[1, 2, 3]; // => [3, 4, 5]`                      | `assert.deepStrictEqual([1, 2, 3], [3, 4, 5])`               |
+| `console.log({ a: 1 }): //=> { b: 2 }`            | `assert.deepStrictEqual({ a: 1 }, { b: 2 })`                 |
+| `throw new Error("message"); // Error: "message"` | `assert.throws(function() {throw new Error("message"); });"` |
+| `Promise.resolve(1); // Resolve: 2`               | `Promise.resolve(Promise.resolve(1)).then(v => { assert.strictEqual(1, 2) }) ` |
+| `Promise.reject(1); // Reject: 2`                 | `assert.rejects(Promise.reject(1))`                          |
+
+For more details, see [comment-to-assert](https://www.npmjs.com/package/comment-to-assert).
+
+### Doctest Control Annotation
+
+Doctest Control Annotation is defined in Language specific plugin.
+For more details, see following package's README.
+
 - [@power-doctest/javascript](./packages/@power-doctest/javascript)
     - A JavaScript parser for power-doctest.
 - [@power-doctest/markdown](./packages/@power-doctest/markdown)

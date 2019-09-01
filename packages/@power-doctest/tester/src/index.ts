@@ -1,5 +1,5 @@
 import { NodeVM, VMScript } from "vm2";
-import { convertCode } from "power-doctest";
+import { convertCode } from "@power-doctest/core";
 import { ParsedCode } from "@power-doctest/types";
 
 const assert = require("power-assert");
@@ -25,8 +25,8 @@ export interface PowerDoctestRunnerOptions {
     // console.log(1); // => 1
     // ```
     console?: boolean;
-    // Timeout
-    // Default: 2000ms
+    // Timeout millisecond
+    // Default: 2000
     timeout?: number
     // Default: all
     // If runMode is all, all assertions are finished and resolve it

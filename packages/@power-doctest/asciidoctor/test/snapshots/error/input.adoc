@@ -1,0 +1,5 @@
+[doctest-error="SyntaxError"]
+[source,javascript]
+----
++++++++
+----

@@ -20,7 +20,7 @@ const astEqual = (a: any, b: any) => {
     assert.strictEqual(generate(a).code, generate(ast as any).code);
 };
 
-describe("power-doctest", function() {
+describe("core", function() {
     describe("#convertCode", function() {
         it("should convert code to code", function() {
             var code = `function addPrefix(text, prefix = "デフォルト:") {

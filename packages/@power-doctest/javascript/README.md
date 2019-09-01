@@ -10,7 +10,51 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+### Doctest Control Annotation
+
+Write Doctest Control Annotation as comment
+
+#### Enable doctest
+
+Enable doctest for the source code.
+
+```js
+// doctest-enabled
+```
+
+#### Disable doctest
+
+Disable doctest for the source code.
+
+```js
+// doctest-disbaled
+```
+
+### Expected Error
+
+If the expected error is not match the result, throw error.
+
+```js
+// doctest-error: SyntaxError
+
+++SHOULD BE SyntaxError++
+```
+
+#### Options
+
+Pass `options` to [@power-doctest/tester](https://www.npmjs.com/package/@power-doctest/tester)
+The inline options is preferred constructor options.
+```js
+// doctest-options:{ "runMode": "any" }
+```
+
+#### Metadata
+
+Write metadata to doctest.
+
+```js
+// doctest-meta:{ "key": "value" }
+```
 
 ## Changelog
 
