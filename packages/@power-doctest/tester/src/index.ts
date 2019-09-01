@@ -169,6 +169,7 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
             },
             require: {
                 external: true,
+                builtin: ["*"],
                 mock: {
                     "power-assert": assert,
                     ...options.requireMock
