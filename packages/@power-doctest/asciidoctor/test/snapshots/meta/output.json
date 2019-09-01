@@ -1,6 +1,6 @@
 [
     {
-        "code": "const str = \"string\";\nconsole.log(str);",
+        "code": "const str = \"string\";\nconsole.log(str); // => \"string\"",
         "state": "none",
         "location": {
             "start": {
@@ -9,7 +9,7 @@
             },
             "end": {
                 "line": 4,
-                "column": 17
+                "column": 32
             }
         },
         "metadata": {
