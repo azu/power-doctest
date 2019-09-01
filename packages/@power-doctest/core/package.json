@@ -62,5 +62,8 @@
     "power-assert",
     "testing",
     "AST"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
