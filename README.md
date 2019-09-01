@@ -14,7 +14,7 @@ power-doctest is a project that provide doctest system for JavaScript.
     - A command line tool for power-doctest
 - [@power-doctest/tester](./packages/@power-doctest/tester)
     - A Test Runner for A power-doctest.
-- [@power-doctest/jacvascript](./packages/@power-doctest/javascript)
+- [@power-doctest/javascript](./packages/@power-doctest/javascript)
     - A JavaScript parser for power-doctest.
 - [@power-doctest/markdown](./packages/@power-doctest/markdown)
     - A Markdown parser for power-doctest.
@@ -25,7 +25,7 @@ power-doctest is a project that provide doctest system for JavaScript.
 ## Development
 
 Require [Yarn](https://yarnpkg.com/)
-
+ 
 Install project
 
     yarn install
