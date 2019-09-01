@@ -29,10 +29,6 @@ export interface PowerDoctestRunnerOptions {
     // If runMode is any, anyone assertion is finished and resolve it
     // In Both, anyone is failed and reject it
     runMode?: "any" | "all";
-    // transform function
-    // set code => code function if need
-    // Apply this transform before power-doctest transform
-    preTransform?: (code: string) => string;
     // Internal Option
     powerDoctestCallbackFunctionName?: string;
 }
@@ -65,7 +61,6 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}): Prom
     const runMode = options.runMode || "all";
     const timeout = options.timeout !== undefined ? options.timeout : 2000;
     const postCallbackName = options.powerDoctestCallbackFunctionName || CALLBACK_FUNCTION_NAME;
-    const preTransform = options.preTransform ? options.preTransform : (code: string) => code;
     const context = options.context || {};
     return new Promise((resolve, reject) => {
         let isSettled = false;
@@ -121,7 +116,7 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
         };
         process.on("uncaughtException", uncaughtException);
         process.on("unhandledRejection", unhandledRejection as any);
-        const poweredCode = convertCode(preTransform(code), {
+        const poweredCode = convertCode(code, {
             assertAfterCallbackName: postCallbackName,
             filePath: filePath
         });
