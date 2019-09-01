@@ -1,6 +1,6 @@
 # @power-doctest/asciidoctor
 
-A power-doctest Runner using for Asciidoctor.
+A [Asciidoctor](https://asciidoctor.org/) parser for power-doctest.
 
 ## Install
 

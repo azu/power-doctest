@@ -1,0 +1,5 @@
+[source,js]
+----
+const str = "string";
+console.log(str);
+----

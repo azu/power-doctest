@@ -1,0 +1,5 @@
+[source,javascript,doctest-state="enabled"]
+----
+const str = "string";
+console.log(str);
+----

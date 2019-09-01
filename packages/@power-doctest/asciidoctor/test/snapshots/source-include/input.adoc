@@ -1,0 +1,4 @@
+[source,javascript]
+----
+include::source.js[]
+----

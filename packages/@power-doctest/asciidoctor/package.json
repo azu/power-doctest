@@ -1,7 +1,7 @@
 {
   "name": "@power-doctest/asciidoctor",
   "version": "1.0.0",
-  "description": "A power-doctest Runner using for Asciidoctor.",
+  "description": "A Asciidoctor parser for power-doctest.",
   "keywords": [
     "asciidoc",
     "asciidoctor",
@@ -30,6 +30,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
+    "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",
     "clean": "rimraf lib/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
@@ -42,6 +43,7 @@
     "tabWidth": 4
   },
   "dependencies": {
+    "@power-doctest/types": "^1.0.0",
     "asciidoctor": "^2.0.3"
   },
   "devDependencies": {

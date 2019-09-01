@@ -1,0 +1,5 @@
+[source,javascript,doctest-meta={ "ECMAScript": 2017 }]
+----
+const str = "string";
+console.log(str);
+----
