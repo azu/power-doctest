@@ -21,6 +21,112 @@ power-doctest is a project that provide doctest system for JavaScript.
 - [@power-doctest/asciidoctor](./packages/@power-doctest/asciidoctor)
     - A Asciidoctor parser for power-doctest.
 
+## Recipes
+
+### Doctest JavaScript Code
+
+Use [@power-doctest/tester](./packages/@power-doctest/tester) and [@power-doctest/javascript](./packages/@power-doctest/javascript) in [Mocha](https://mochajs.org/).
+
+```js
+import { test } from "@power-doctest/tester";
+import { parse } from "@power-doctest/javascript";
+const globby = require("globby");
+const fs = require("fs");
+const path = require("path");
+// doctest for source/**/*.js
+describe("doctest:js", function() {
+    const sourceDir = path.join(__dirname, "..", "source");
+    const files = globby.sync([
+        `${sourceDir}/**/*.js`,
+        `!${sourceDir}/**/node_modules{,/**}`
+    ]);
+    files.forEach(filePath => {
+        const normalizeFilePath = filePath.replace(sourceDir, "");
+        it(`doctest:js ${normalizeFilePath}`, function() {
+            const content = fs.readFileSync(filePath, "utf-8");
+            const parsedResults = parse({
+                content,
+                filePath
+            });
+            const parsedCode = parsedResults[0];
+            return test(parsedCode).catch(error => {
+                // Stack Trace like
+                console.error(`StrictEvalError: strict eval is failed
+    at strictEval (${filePath}:1:1)`);
+                return Promise.reject(error);
+            });
+        });
+    });
+});
+```
+
+**Example**
+
+- <https://github.com/asciidwango/js-primer/blob/master/test/example-test.js>
+
+### Doctest JavaScript Code in Markdown
+
+Use [@power-doctest/tester](./packages/@power-doctest/tester) and [@power-doctest/markdown](./packages/@power-doctest/markdown) in [Mocha](https://mochajs.org/).
+
+```js
+import { test } from "@power-doctest/tester";
+import { parse } from "@power-doctest/markdown";
+const globby = require("globby");
+const fs = require("fs");
+const path = require("path");
+const transform = (code) => {
+    return code; // you need pre transform for the code if needed.
+};
+// doctest for source/**/*.md
+describe("doctest:md", function() {
+    const sourceDir = path.join(__dirname, "..", "source");
+    const files = globby.sync([
+        `${sourceDir}/**/*.md`,
+        `!${sourceDir}/**/node_modules{,/**}`,
+    ]);
+    files.forEach(filePath => {
+        const normalizeFilePath = filePath.replace(sourceDir, "");
+        describe(`${normalizeFilePath}`, function() {
+            const content = fs.readFileSync(filePath, "utf-8");
+            const parsedCodes = parse({
+                filePath,
+                content
+            });
+            // try to eval
+            const dirName = path.dirname(filePath).split(path.sep).pop();
+            parsedCodes.forEach((parsedCode, index) => {
+                const codeValue = parsedCode.code;
+                const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
+                it(dirName + ": " + testCaseName, function() {
+                    return test({
+                        ...parsedCode,
+                        code: transform(parsedCode.code)
+                    }, {
+                        defaultDoctestRunnerOptions: {
+                            // Default timeout: 2sec
+                            timeout: 1000 * 2
+                        }
+                    }).catch(error => {
+                        const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
+                        console.error(`Markdown Doctest is failed
+  at ${filePathLineColumn}
+
+----------
+${codeValue}
+----------
+`);
+                        return Promise.reject(error);
+                    });
+                });
+            });
+        });
+    });
+});
+```
+
+**Example**
+
+- <https://github.com/asciidwango/js-primer/blob/master/test/markdown-doc-test.js>
 
 ## Development
 
