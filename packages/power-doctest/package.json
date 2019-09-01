@@ -1,6 +1,6 @@
 {
   "name": "power-doctest",
-  "version": "3.3.2",
+  "version": "4.0.0",
   "description": "doctest + power-assert - comment as testing.",
   "homepage": "https://github.com/azu/power-doctest",
   "repository": {
@@ -31,7 +31,7 @@
     "@babel/types": "^7.5.5",
     "ast-source": "^3.0.0",
     "babel-plugin-espower": "^3.0.1",
-    "comment-to-assert": "^3.3.0",
+    "comment-to-assert": "^4.0.0",
     "escodegen": "^1.12.0",
     "espower": "^2.1.2",
     "espree": "^6.1.1",

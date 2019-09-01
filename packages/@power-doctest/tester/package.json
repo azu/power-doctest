@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/tester",
-  "version": "3.3.3",
+  "version": "4.0.0",
   "description": "A Test Runner for A power-doctest.",
   "keywords": [
     "doctest",
@@ -38,11 +38,12 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
-    "@power-doctest/types": "^1.0.0",
-    "power-doctest": "^3.3.2",
+    "@power-doctest/types": "^4.0.0",
+    "power-doctest": "^4.0.0",
     "vm2": "^3.8.3"
   },
   "devDependencies": {
+    "@power-doctest/javascript": "^4.0.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.2",
     "cross-env": "^5.2.0",
@@ -50,12 +51,11 @@
     "lint-staged": "^9.2.3",
     "mocha": "^6.2.0",
     "prettier": "^1.18.2",
+    "promise.allsettled": "^1.0.1",
     "strip-color": "^0.1.0",
     "ts-node": "^8.3.0",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "^3.5.3",
-    "@power-doctest/javascript": "^1.0.0",
-    "promise.allsettled": "^1.0.1"
+    "typescript": "^3.5.3"
   },
   "prettier": {
     "singleQuote": false,

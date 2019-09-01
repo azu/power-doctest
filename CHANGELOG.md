@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/azu/power-doctest/compare/v3.3.3...v4.0.0) (2019-09-01)
+
+
+### Bug Fixes
+
+* **power-doctest:** add try-catch ([5e5e8da](https://github.com/azu/power-doctest/commit/5e5e8da))
+* **tester:** remove preTransform options ([c5fb80a](https://github.com/azu/power-doctest/commit/c5fb80a))
+* fix tester requireMock ([a4e0574](https://github.com/azu/power-doctest/commit/a4e0574))
+
+
+### Features
+
+* **@power-doctest/asciidoctor:** add asciidoctor parser ([ffb3a9e](https://github.com/azu/power-doctest/commit/ffb3a9e))
+* **@power-doctest/javascript:** add package ([79927f5](https://github.com/azu/power-doctest/commit/79927f5))
+* **cli:** add CLI ([4bb1f7a](https://github.com/azu/power-doctest/commit/4bb1f7a))
+* **tester:** add default state ([9fc3aa8](https://github.com/azu/power-doctest/commit/9fc3aa8))
+
+
+
+
+
 ## [3.3.3](https://github.com/azu/power-doctest/compare/v3.3.2...v3.3.3) (2019-08-25)
 
 
