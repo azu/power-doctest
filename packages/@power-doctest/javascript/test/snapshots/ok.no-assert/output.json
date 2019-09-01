@@ -11,6 +11,9 @@
                 "column": 31
             }
         },
-        "state": "none"
+        "state": "none",
+        "doctestOptions": {
+            "filePath": "input.js"
+        }
     }
 ]

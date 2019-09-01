@@ -31,7 +31,7 @@ testContent({
     content: "1; // => 2",
     contentType: "javascript",
     filePath: "test.js",
-    defaultRunning: true
+    disableRunning: true
 }).then(results => {
     console.log(results[0].status); // => "rejected"
 });

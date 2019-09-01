@@ -69,7 +69,9 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
                     filePath,
                     ...options
                 }
-                : options
+                : {
+                    filePath
+                }
         }
     ];
 };

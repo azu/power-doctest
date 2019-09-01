@@ -163,7 +163,8 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
             require: {
                 external: true,
                 mock: {
-                    "power-assert": assert
+                    "power-assert": assert,
+                    ...options.requireMock
                 }
             }
         });
