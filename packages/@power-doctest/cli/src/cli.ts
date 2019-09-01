@@ -9,7 +9,8 @@ export async function run() {
 	  $ power-doctest /path/to/file.{js,md}
 
 	Options
-	  --packageDir  Current Workind directory. Should put package.json in the directory.
+	  --packageDir  Current Working directory. Should put package.json in the directory.
+	  --disableRunning Disable running test case that has not state.
 
 	Examples
 	  $ power-doctest ./README.md
@@ -24,7 +25,7 @@ export async function run() {
             }
         }
     });
-    const defaultRunning = cli.flags.defaultRunning;
+    const disableRunning = cli.flags.disableRunning;
     const input = cli.input[0];
     if (!input) {
         throw new Error("Should pass file");
@@ -60,7 +61,7 @@ export async function run() {
         packageDir: cwd,
         packageJSON: pkg,
         filePath: input,
-        defaultRunning
+        disableRunning: disableRunning
     });
     const passed = results.filter(result => {
         return result.status === "fulfilled";

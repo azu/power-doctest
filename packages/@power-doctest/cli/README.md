@@ -16,7 +16,8 @@ Install with [npm](https://www.npmjs.com/):
 	  $ power-doctest /path/to/file.{js,md}
 
 	Options
-	  --packageDir  Current Workind directory. Should put package.json in the directory.
+	  --packageDir  Current Working directory. Should put package.json in the directory.
+	  --disableRunning Disable running test case that has not state.
 
 	Examples
 	  $ power-doctest ./README.md

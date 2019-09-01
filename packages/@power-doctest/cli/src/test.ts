@@ -12,7 +12,7 @@ export interface testOptions {
     filePath: string;
     packageDir: string;
     packageJSON?: {};
-    defaultRunning: boolean;
+    disableRunning: boolean;
 }
 
 export const createMockRequire = (packageDir: string, pkg?: any) => {
@@ -60,6 +60,8 @@ export async function testContent(options: testOptions): Promise<{ status: "fulf
                 ...result.doctestOptions,
                 requireMock
             }
+        }, {
+            disableRunning: options.disableRunning
         });
     });
     const settledResults = await allSettled(promises);
