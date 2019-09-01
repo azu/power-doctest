@@ -20,6 +20,9 @@
   },
   "license": "MIT",
   "author": "azu",
+  "bin": {
+    "power-doctest": "./bin/cmd.js"
+  },
   "files": [
     "bin/",
     "lib/",
