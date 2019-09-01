@@ -14,7 +14,7 @@
         "state": "none",
         "expectedError": "SyntaxError",
         "doctestOptions": {
-            "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/javascript/test/snapshots/expected-error/input.js"
+            "filePath": "input.js"
         }
     }
 ]

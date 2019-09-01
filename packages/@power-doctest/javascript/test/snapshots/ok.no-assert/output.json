@@ -13,7 +13,7 @@
         },
         "state": "none",
         "doctestOptions": {
-            "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/javascript/test/snapshots/ok.no-assert/input.js"
+            "filePath": "input.js"
         }
     }
 ]

@@ -1,7 +1,6 @@
 [
     {
         "code": "console.log(1); // => 2",
-        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ng.simple/input.md",
         "location": {
             "start": {
                 "line": 5,
@@ -12,11 +11,13 @@
                 "column": 4
             }
         },
-        "state": "none"
+        "state": "none",
+        "doctestOptions": {
+            "filePath": "input.md"
+        }
     },
     {
         "code": "console.log(\"str\"); // => \"ng\"",
-        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ng.simple/input.md",
         "location": {
             "start": {
                 "line": 11,
@@ -27,6 +28,9 @@
                 "column": 4
             }
         },
-        "state": "none"
+        "state": "none",
+        "doctestOptions": {
+            "filePath": "input.md"
+        }
     }
 ]

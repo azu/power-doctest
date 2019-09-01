@@ -13,7 +13,7 @@
         },
         "state": "enabled",
         "doctestOptions": {
-            "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/javascript/test/snapshots/enabled/input.js"
+            "filePath": "input.js"
         }
     }
 ]

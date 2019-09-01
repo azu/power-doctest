@@ -1,7 +1,6 @@
 [
     {
         "code": "if (1 === 1) {\n    console.log(1); // => 1\n} else{\n    console.log(2); // => 2\n}",
-        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ng.runMode-all-timeout/input.md",
         "location": {
             "start": {
                 "line": 4,
@@ -12,6 +11,9 @@
                 "column": 4
             }
         },
-        "state": "none"
+        "state": "none",
+        "doctestOptions": {
+            "filePath": "input.md"
+        }
     }
 ]

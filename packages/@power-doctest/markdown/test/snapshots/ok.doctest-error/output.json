@@ -1,7 +1,6 @@
 [
     {
         "code": "++++++++;",
-        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ok.doctest-error/input.md",
         "location": {
             "start": {
                 "line": 4,
@@ -13,6 +12,9 @@
             }
         },
         "state": "none",
-        "expectedError": "SyntaxError"
+        "expectedError": "SyntaxError",
+        "doctestOptions": {
+            "filePath": "input.md"
+        }
     }
 ]

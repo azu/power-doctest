@@ -1,7 +1,6 @@
 [
     {
         "code": "console.log(true); // => \"not eval\"",
-        "filePath": "/Users/azu/.ghq/github.com/azu/power-doctest/packages/@power-doctest/markdown/test/snapshots/ok.disable/input.md",
         "location": {
             "start": {
                 "line": 4,
@@ -12,6 +11,9 @@
                 "column": 4
             }
         },
-        "state": "disabled"
+        "state": "disabled",
+        "doctestOptions": {
+            "filePath": "input.md"
+        }
     }
 ]
