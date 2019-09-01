@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/tester",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A Test Runner for A power-doctest.",
   "keywords": [
     "doctest",
@@ -38,12 +38,12 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
-    "@power-doctest/core": "^5.0.0",
-    "@power-doctest/types": "^5.0.0",
+    "@power-doctest/core": "^5.0.1",
+    "@power-doctest/types": "^5.0.1",
     "vm2": "^3.8.3"
   },
   "devDependencies": {
-    "@power-doctest/javascript": "^5.0.0",
+    "@power-doctest/javascript": "^5.0.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.2",
     "cross-env": "^5.2.0",
@@ -75,5 +75,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
 }

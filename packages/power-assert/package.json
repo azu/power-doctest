@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/cli",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A command line tool for power-doctest.",
   "keywords": [
     "cli",
@@ -64,10 +64,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@power-doctest/javascript": "^5.0.0",
-    "@power-doctest/markdown": "^5.0.0",
-    "@power-doctest/tester": "^5.0.0",
+    "@power-doctest/javascript": "^5.0.1",
+    "@power-doctest/markdown": "^5.0.1",
+    "@power-doctest/tester": "^5.0.1",
     "meow": "^5.0.0",
     "promise.allsettled": "^1.0.1"
-  }
+  },
+  "gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
 }
