@@ -41,7 +41,7 @@ export class DocTestController {
     }
 
     /**
-     * Return state of @power-doctest/types
+     * Return state of @core/types
      */
     get state() {
         for (const comment of this.comments) {

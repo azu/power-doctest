@@ -1,5 +1,5 @@
 import { NodeVM, VMScript } from "vm2";
-import { convertCode } from "power-doctest";
+import { convertCode } from "@power-doctest/core";
 import { ParsedCode } from "@power-doctest/types";
 
 const assert = require("power-assert");

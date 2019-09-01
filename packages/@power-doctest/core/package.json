@@ -1,7 +1,7 @@
 {
-  "name": "power-doctest",
+  "name": "@power-doctest/core",
   "version": "4.0.0",
-  "description": "doctest + power-assert - comment as testing.",
+  "description": "power-doctest core library",
   "homepage": "https://github.com/azu/power-doctest",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "src",
     "lib"
   ],
-  "main": "./lib/power-doctest.js",
+  "main": "lib/power-doctest.js",
   "types": "lib/power-doctest.d.ts",
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",

@@ -1,4 +1,4 @@
-# @power-doctest/cli
+# power-doctest
 
 A command line tool for power-doctest.
 
@@ -6,7 +6,7 @@ A command line tool for power-doctest.
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install @power-doctest/cli
+    npm install power-doctest -g
 
 ## Usage
 
@@ -26,7 +26,7 @@ Install with [npm](https://www.npmjs.com/):
 ### Node Modules
 
 ```js
-const { testContent } = require("@power-doctest/cli");
+const { testContent } = require("power-doctest");
 testContent({
     content: "1; // => 2",
     contentType: "javascript",

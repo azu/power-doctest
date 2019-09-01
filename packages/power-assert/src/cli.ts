@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import meow from "meow";
-import { testContent } from "./test";
+import { runPowerDoctest } from "./power-doctest";
 
 export async function run() {
     const cli = meow(`
@@ -55,7 +55,7 @@ export async function run() {
             return;
         }
     })();
-    const results = await testContent({
+    const results = await runPowerDoctest({
         content,
         contentType,
         packageDir: cwd,

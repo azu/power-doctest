@@ -1,19 +1,20 @@
-# power-doctest [![Build Status](https://travis-ci.org/azu/power-doctest.png?branch=master)](https://travis-ci.org/azu/power-doctest)
+# @power-doctest/core
 
-Doctest + [power-assert](https://github.com/twada/power-assert "power-assert").
+power-doctest core library.
+
+## Features
+
+- Convert Code to power-doctest ready code.
+- power-doctest use [comment-to-assert](https://www.npmjs.com/package/comment-to-assert) and [power-assert](https://github.com/twada/power-assert "power-assert")
+
 
 ## Installation
 
 ``` sh
-npm install -g power-doctest
+npm install @power-doctest/core
 ```
 
-### Task
-
-* [azu/gulp-power-doctest](https://github.com/azu/gulp-power-doctest "azu/gulp-power-doctest")
-
 ## Usage
-
 
 power-doctest convert following code
 
@@ -65,6 +66,39 @@ AssertionError:   # at line: 14
 
 ![assert-test](http://gyazo.com/075b4afe13003bd8691a85b371f84afe.gif)
 
+### API
+
+- `convertCode`: Convert code to code
+- `convertAST`: Convert Babel's AST to AST
+
+```ts
+import { ParserOptions } from "@babel/parser";
+import { File } from "@babel/types";
+export interface convertCodeOption {
+    filePath: string;
+    babel?: ParserOptions;
+    assertBeforeCallbackName?: string;
+    assertAfterCallbackName?: string;
+}
+/**
+ * Convert Code to Code
+ * @param code
+ * @param options
+ */
+export declare function convertCode(code: string, options: convertCodeOption): string;
+export interface convertASTOptions {
+    assertBeforeCallbackName?: string;
+    assertAfterCallbackName?: string;
+    filePath: string;
+}
+/**
+ * Convert AST to AST
+ * @param AST
+ * @param options
+ */
+export declare function convertAST<T extends File>(AST: T, options: convertASTOptions): T;
+```
+
 ### Syntax
 
 | Syntax                                            | Transformed                                                  |
@@ -102,14 +136,6 @@ assert.throws(function () {
     object.not.found;
 }, Error);
 ```
-
-## UseCase
-
-It will be useful for writing document or book.
-Example code should be tested, but it is difficult.
-power-doctest help to introduce automatic testing for example code.
-
-- [markdown-doc-test.js](https://github.com/asciidwango/js-primer/blob/b41fa8c8e93714570195934f9beb77557a636647/test/markdown-doc-test.js "markdown-doc-test.js")
 
 ## Contributing
 

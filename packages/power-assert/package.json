@@ -28,8 +28,8 @@
     "lib/",
     "src/"
   ],
-  "main": "lib/test.js",
-  "types": "lib/test.d.ts",
+  "main": "lib/power-doctest.js",
+  "types": "lib/power-doctest.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"

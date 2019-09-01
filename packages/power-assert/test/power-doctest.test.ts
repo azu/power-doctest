@@ -1,10 +1,10 @@
 import * as path from "path";
-import { testContent } from "../src/test";
+import { runPowerDoctest } from "../src/power-doctest";
 import assert = require("assert");
 
-describe("cli", function() {
+describe("runPowerDoctest", function() {
     it("should test", () => {
-        return testContent({
+        return runPowerDoctest({
             content: `
 const { name } = require("test-module");
 console.log(name); // => "test-module"
