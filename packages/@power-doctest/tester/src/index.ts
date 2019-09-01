@@ -44,7 +44,11 @@ export interface testOptions {
     // if it is false and Each testOptions.state is "none", do not run the test
     // Default: false
     disableRunning: boolean;
+    // default values for doctestRunnerOptions
+    // It is override by test case's `doctestRunnerOptions`.
+    defaultDoctestRunnerOptions?: PowerDoctestRunnerOptions;
 }
+
 
 export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<void> {
     if (parsedCode.state === "disabled") {
@@ -53,7 +57,10 @@ export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<voi
     if (oprions && oprions.disableRunning && parsedCode.state === "none") {
         return Promise.resolve();
     }
-    return run(parsedCode.code, parsedCode.doctestOptions).catch(error => {
+    return run(parsedCode.code, {
+        ...(oprions && oprions.defaultDoctestRunnerOptions ? oprions.defaultDoctestRunnerOptions : {}),
+        ...parsedCode.doctestOptions
+    }).catch(error => {
         // if it is expected error, resolve it
         if (parsedCode.expectedError && error.name === parsedCode.expectedError) {
             return Promise.resolve();
