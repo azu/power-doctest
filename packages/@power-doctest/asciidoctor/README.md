@@ -10,7 +10,76 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+## Doctest Control Annotation
+
+`@power-doctest/asciidoctor` support Doctest Control Annotation as attributes.
+
+### Enable Doctest
+
+Enable doctest for the source code.
+
+```asciidoc
+[doctest="enabled"]
+[source,javascript]
+----
+const str = "string";
+console.log(str); // => "string"
+----
+```
+
+### Disable Doctest
+
+Disable doctest for the source code.
+
+```asciidoc
+[doctest="disabled"]
+[source,javascript]
+----
+const str = "string";
+console.log(str); // => "string"
+----
+```
+
+### Expected error
+
+If the expected error is not match the result, throw error.
+
+```asciidoc
+[doctest-error="SyntaxError"]
+[source,javascript]
+----
++++++INVALID SYNTAX++++
+----
+```
+
+### Doctest options
+
+Pass `options` to [@power-doctest/tester](https://www.npmjs.com/package/@power-doctest/tester)
+The inline options is preferred constructor options.
+
+    <!-- doctest:options:{ "runMode": "any" } -->
+    ```js
+    if (1 === 1) {
+        console.log(1); // => 1
+    } else{
+        console.log(2); // => 2
+    }
+    ```
+
+### Metadata
+
+Attach metadata to doctest error of [@power-doctest/tester](https://www.npmjs.com/package/@power-doctest/tester).
+It is useful for implementing original behavior.
+
+     
+```asciidoc
+[doctest-meta={ "ECMAScript": 2017 }]
+[source,javascript]
+----
+const str = "string";
+console.log(str); // => "string"
+----
+```
 
 ## Changelog
 

@@ -1,11 +1,13 @@
 // MIT © 2017 azu
 "use strict";
-
-const DISABLE_PATTERN = /doctest:\s*?disable(:?d)?/;
-const ENABLE_PATTERN = /doctest:\s*?enable(:?d)?/;
-const DOCTEST_OPTIONS = /doctest:\w*?options:({[^}]+})/;
-const DOCTEST_METADATA = /doctest:\w*?meta:({[^}]+})/;
-const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
+// Support doctest:xxx and doctest-xxx
+// doctest:xxx is back compatible syntax.
+const DISABLE_PATTERN = /doctest[:-]\s*?disable(:?d)?/;
+const ENABLE_PATTERN = /doctest[:-]\s*?enable(:?d)?/;
+const DOCTEST_OPTIONS = /doctest[:-]\w*?options:({[^}]+})/;
+const DOCTEST_METADATA = /doctest[:-]\w*?meta:({[^}]+})/;
+// doctest-error:SyntaxError
+const ERROR_TYPE_PATTERN = /(?:doctest|doctest-error):\s*([\w\s]*?Error)/;
 
 /**
  * CodeBlockの手前に該当するHTMLコメントはdoctestの制御コードとして扱える

@@ -25,8 +25,8 @@ export interface PowerDoctestRunnerOptions {
     // console.log(1); // => 1
     // ```
     console?: boolean;
-    // Timeout
-    // Default: 2000ms
+    // Timeout millisecond
+    // Default: 2000
     timeout?: number
     // Default: all
     // If runMode is all, all assertions are finished and resolve it

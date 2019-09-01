@@ -73,9 +73,9 @@ describe("run markdown", function() {
 ```
 
 
-## Options
+## Doctest Control Annotation
 
-`@power-doctest/markdown` support some options with HTML comments.
+`@power-doctest/markdown` support Doctest Control Annotation as HTML comments.
 
 ### Disable Doctest: `<!-- doctest:disable -->`
 
@@ -138,7 +138,6 @@ And `errors` include `meta` property
     ]
 }
 ```
-
 
 ## Changelog
 

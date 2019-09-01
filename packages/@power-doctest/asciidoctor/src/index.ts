@@ -9,7 +9,7 @@ type Attributes = {
     [index: string]: string;
 }
 const getState = (attributes: Attributes): "none" | "enabled" | "disabled" => {
-    const state = attributes["doctest-state"];
+    const state = attributes["doctest-state"] || attributes["doctest"];
     if (!state) {
         return "none";
     }
@@ -19,6 +19,19 @@ const getState = (attributes: Attributes): "none" | "enabled" | "disabled" => {
         return "disabled";
     }
     return "none";
+};
+
+const getExpectedError = (attributes: Attributes): string | undefined => {
+    const error = attributes["doctest-error"] || attributes["doctest"];
+    if (!error) {
+        return;
+    }
+    const pattern = /(\w+Error)/;
+    const match = error.match(pattern);
+    if (match && match[1]) {
+        return match[1];
+    }
+    return;
 };
 
 const getMeta = (attributes: Attributes): {} | undefined => {
@@ -82,6 +95,7 @@ export function parse(args: ParserArgs): ParsedResults {
             const parsedCode: ParsedCode = {
                 code: inlineCode(code, args.filePath),
                 state: getState(attributes),
+                expectedError: getExpectedError(attributes),
                 location: {
                     start: startPosition,
                     end: endPostion
