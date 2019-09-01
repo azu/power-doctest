@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/azu/power-doctest/compare/v4.0.1...v4.1.0) (2019-09-01)
+
+
+### Features
+
+* **tester:** add `defaultDoctestRunnerOptions` ([3bcf8ed](https://github.com/azu/power-doctest/commit/3bcf8ed))
+
+
+
+
+
 ## [4.0.1](https://github.com/azu/power-doctest/compare/v4.0.0...v4.0.1) (2019-09-01)
 
 
