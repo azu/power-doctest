@@ -1,7 +1,7 @@
 {
   "name": "@power-doctest/tester",
   "version": "3.3.3",
-  "description": "A power-doctest Teser",
+  "description": "A Test Runner for A power-doctest.",
   "keywords": [
     "doctest",
     "node.js",

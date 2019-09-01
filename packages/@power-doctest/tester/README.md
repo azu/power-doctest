@@ -1,6 +1,6 @@
 # @power-doctest/javascript
 
-A power-doctest Runner using for JavaScript.
+A Test Runner for A power-doctest.
 
 ## Install
 

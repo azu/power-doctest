@@ -10,10 +10,17 @@ power-doctest is a project that provide doctest system for JavaScript.
     - `// => expression` to `assert`
 - [power-doctest](./packages/power-doctest)
     - Convert code to doctest-ready code
+- [@power-doctest/cli](./packages/@power-doctest/cli)
+    - A command line tool for power-doctest
+- [@power-doctest/tester](./packages/@power-doctest/tester)
+    - A Test Runner for A power-doctest.
 - [@power-doctest/jacvascript](./packages/@power-doctest/javascript)
-    - Run JavaScript code as doctest
+    - A JavaScript parser for power-doctest.
 - [@power-doctest/markdown](./packages/@power-doctest/markdown)
-    - Run markdown code block as doctest
+    - A Markdown parser for power-doctest.
+- [@power-doctest/asciidoctor](./packages/@power-doctest/asciidoctor)
+    - A Asciidoctor parser for power-doctest.
+
 
 ## Development
 
