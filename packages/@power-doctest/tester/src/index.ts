@@ -12,6 +12,10 @@ export interface PowerDoctestRunnerOptions {
     context?: {
         [index: string]: any
     }
+    // sandbox require mock for code
+    requireMock?: {
+        [index: string]: any
+    }
     // If it is true, console.log output to console
     // If you want to mock console, please pass `console` to `context: { console: consoleMock }`
     //

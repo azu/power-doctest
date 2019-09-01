@@ -1,0 +1,70 @@
+{
+  "name": "@power-doctest/cli",
+  "version": "1.0.0",
+  "description": "A command line tool for power-doctest.",
+  "keywords": [
+    "cli",
+    "doctest",
+    "javascript",
+    "npm",
+    "readme",
+    "test"
+  ],
+  "homepage": "https://github.com/azu/power-doctest/tree/master/packages/@power-doctest/cli/",
+  "bugs": {
+    "url": "https://github.com/azu/power-doctest/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/power-doctest.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/test.js",
+  "types": "lib/test.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "clean": "rimraf lib/",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.ts\"",
+    "watch": "tsc -p . --watch"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "devDependencies": {
+    "@types/meow": "^5.0.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.3",
+    "@types/promise.allsettled": "^1.0.1",
+    "cross-env": "^5.2.1",
+    "mocha": "^6.2.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.3.0",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@power-doctest/javascript": "^1.0.0",
+    "@power-doctest/markdown": "^3.0.0",
+    "@power-doctest/tester": "^3.0.0",
+    "meow": "^5.0.0",
+    "promise.allsettled": "^1.0.1"
+  }
+}

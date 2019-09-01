@@ -19,8 +19,41 @@ const getExpectedError = (code: string): string | undefined => {
     return;
 };
 
+
+const getMeta = (code: string): {} | undefined => {
+    const pattern = /\/\/\s*doctest-meta:{(.*)}/;
+    const match = code.match(pattern);
+    const metaString = match && match[1];
+    if (!metaString) {
+        return;
+    }
+    try {
+        return JSON.parse(metaString);
+    } catch (error) {
+        // parse error
+        throw new Error(`Can not parsed. // doctest-meta:{...} should be JSON object: ${error}`);
+    }
+};
+
+const getOptions = (code: string): {} | undefined => {
+    const pattern = /\/\/\s*doctest-options:{(.*)}/;
+    const match = code.match(pattern);
+    const metaString = match && match[1];
+    if (!metaString) {
+        return;
+    }
+    try {
+        return JSON.parse(metaString);
+    } catch (error) {
+        // parse error
+        throw new Error(`Can not parsed. // doctest-options:{...} should be JSON object: ${error}`);
+    }
+};
+
 export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
     const source = new StructuredSource(content);
+    const meta = getMeta(content);
+    const options = getOptions(content);
     return [
         {
             code: content,
@@ -30,9 +63,13 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
             },
             state: getState(content),
             expectedError: getExpectedError(content),
-            doctestOptions: {
-                filePath
-            }
+            metadata: meta,
+            doctestOptions: options
+                ? {
+                    filePath,
+                    ...options
+                }
+                : options
         }
     ];
 };

@@ -39,7 +39,7 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
         const state = docTestController.state;
         const doctestOptions = docTestController.doctestOptions;
         const expectedError = docTestController.expectedErrorName;
-        const metada = docTestController.doctestMetadata;
+        const metadata = docTestController.doctestMetadata;
         return {
             code: codeValue,
             location: codeBlock.position ? {
@@ -63,9 +63,9 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
             },
             state: state,
             expectedError: expectedError,
-            metadata: metada,
+            metadata: metadata,
             doctestOptions: doctestOptions ? {
-                filePath: doctestOptions.filePath,
+                filePath: filePath,
                 ...doctestOptions
             } : {
                 filePath

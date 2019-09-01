@@ -6,12 +6,12 @@
     "esModuleInterop": true,
     "newLine": "LF",
     "outDir": "./lib/",
-    "target": "es2015",
+    "target": "es5",
     "sourceMap": true,
     "declaration": true,
     "jsx": "preserve",
     "lib": [
-      "es2018",
+      "esnext",
       "dom"
     ],
     /* Strict Type-Checking Options */
