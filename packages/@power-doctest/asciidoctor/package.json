@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/asciidoctor",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "A Asciidoctor parser for power-doctest.",
   "keywords": [
     "asciidoc",

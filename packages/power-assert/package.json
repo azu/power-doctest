@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/cli",
-  "version": "4.1.0",
+  "version": "4.1.2",
   "description": "A command line tool for power-doctest.",
   "keywords": [
     "cli",
@@ -64,9 +64,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@power-doctest/javascript": "^4.0.0",
-    "@power-doctest/markdown": "^4.0.0",
-    "@power-doctest/tester": "^4.1.0",
+    "@power-doctest/javascript": "^4.1.2",
+    "@power-doctest/markdown": "^4.1.2",
+    "@power-doctest/tester": "^4.1.2",
     "meow": "^5.0.0",
     "promise.allsettled": "^1.0.1"
   }

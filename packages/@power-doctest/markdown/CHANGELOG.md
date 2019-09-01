@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/azu/power-doctest/compare/v4.1.1...v4.1.2) (2019-09-01)
+
+**Note:** Version bump only for package @power-doctest/markdown
+
+
+
+
+
 # [4.0.0](https://github.com/azu/power-doctest/compare/v3.3.3...v4.0.0) (2019-09-01)
 
 
