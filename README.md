@@ -46,8 +46,8 @@ These comment will be canistered to assertion.
 | `console.log(1); // => 2`                         | `assert.strictEqual(1, 2)`                                   |
 | `a; // => b`                                      | `assert.deepStrictEqual(a, b)`                                   |
 | `[1, 2, 3]; // => [3, 4, 5]`                      | `assert.deepStrictEqual([1, 2, 3], [3, 4, 5])`               |
-| `console.log({ a: 1 }): //=> { b: 2 }`            | `assert.deepStrictEqual({ a: 1 }, { b: 2 })`                 |
-| `throw new Error("message"); // Error: "message"` | `assert.throws(function() {throw new Error("message"); });"` |
+| `console.log({ a: 1 }): // => { b: 2 }`            | `assert.deepStrictEqual({ a: 1 }, { b: 2 })`                 |
+| `throw new Error("message"); // => Error: "message"` | `assert.throws(function() {throw new Error("message"); });"` |
 | `Promise.resolve(1); // Resolve: 2`               | `Promise.resolve(Promise.resolve(1)).then(v => { assert.strictEqual(1, 2) }) ` |
 | `Promise.reject(1); // Reject: 2`                 | `assert.rejects(Promise.reject(1))`                          |
 
