@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/tester",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "A Test Runner for A power-doctest.",
   "keywords": [
     "doctest",
