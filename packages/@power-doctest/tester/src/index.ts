@@ -82,8 +82,13 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}): Prom
     const timeout = options.timeout !== undefined ? options.timeout : 2000;
     const postCallbackName = options.powerDoctestCallbackFunctionName || CALLBACK_FUNCTION_NAME;
     const context = options.context || {};
+    // total count of assert
+    let totalAssertionCount = 0;
+    // current count of assert
+    let countOfExecutedAssertion = 0;
     return new Promise((resolve, reject) => {
         let isSettled = false;
+
         const timeoutId = setTimeout(() => {
             if (isSettled) {
                 return;
@@ -151,9 +156,9 @@ Also, you should consider to use { "runMode": "any" }`
             filePath: filePath
         });
         // total count of assert
-        const totalAssertionCount = poweredCode.split(CALLBACK_FUNCTION_NAME).length - 1;
+        totalAssertionCount = poweredCode.split(CALLBACK_FUNCTION_NAME).length - 1;
         // current count of assert
-        let countOfExecutedAssertion = 0;
+        countOfExecutedAssertion = 0;
         const vm = new NodeVM({
             console: options.console ? "inherit" : "off",
             timeout: timeout,
