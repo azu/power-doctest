@@ -1,10 +1,10 @@
 import { ParserArgs, ParsedResults } from "@power-doctest/types";
 import { DocTestController } from "./DocTestController";
 
-type UnistParentNode = import("unist").Parent
+type UnistParentNode = import("unist").Parent;
 // unist-util-parents
 type UnistNode = import("unist").Node & {
-    parent: UnistParentNode
+    parent: UnistParentNode;
 };
 
 const remark = require("remark")();
@@ -42,34 +42,38 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
         const metadata = docTestController.doctestMetadata;
         return {
             code: codeValue,
-            location: codeBlock.position ? {
-                start: {
-                    line: codeBlock.position.start.line,
-                    column: codeBlock.position.start.column
-                },
-                end: {
-                    line: codeBlock.position.end.line,
-                    column: codeBlock.position.end.column
-                }
-            } : {
-                start: {
-                    line: 1,
-                    column: 0
-                },
-                end: {
-                    line: 1,
-                    column: 0
-                }
-            },
+            location: codeBlock.position
+                ? {
+                      start: {
+                          line: codeBlock.position.start.line,
+                          column: codeBlock.position.start.column
+                      },
+                      end: {
+                          line: codeBlock.position.end.line,
+                          column: codeBlock.position.end.column
+                      }
+                  }
+                : {
+                      start: {
+                          line: 1,
+                          column: 0
+                      },
+                      end: {
+                          line: 1,
+                          column: 0
+                      }
+                  },
             state: state,
             expectedError: expectedError,
             metadata: metadata,
-            doctestOptions: doctestOptions ? {
-                filePath: filePath,
-                ...doctestOptions
-            } : {
-                filePath
-            }
+            doctestOptions: doctestOptions
+                ? {
+                      filePath: filePath,
+                      ...doctestOptions
+                  }
+                : {
+                      filePath
+                  }
         };
     });
 };

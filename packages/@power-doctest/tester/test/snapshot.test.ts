@@ -14,52 +14,53 @@ const normalizeErrorName = (error: string) => {
 };
 const fixturesDir = path.join(__dirname, "snapshots");
 describe("Snapshot testing", () => {
-    fs.readdirSync(fixturesDir)
-        .map(caseName => {
-            const normalizedTestName = caseName.replace(/-/g, " ");
-            it(`Run ${normalizedTestName}`, async function() {
-                const fixtureDir = path.join(fixturesDir, caseName);
-                const actualFilePath = path.join(fixtureDir, "input.js");
-                const actualContent = fs.readFileSync(actualFilePath, "utf-8");
-                const actualOptionFilePath = path.join(fixtureDir, "options.json");
-                const actualOptions = fs.existsSync(actualOptionFilePath)
-                    ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
-                    : {};
-                const actual = await run(actualContent, actualOptions).catch(error => {
+    fs.readdirSync(fixturesDir).map(caseName => {
+        const normalizedTestName = caseName.replace(/-/g, " ");
+        it(`Run ${normalizedTestName}`, async function() {
+            const fixtureDir = path.join(fixturesDir, caseName);
+            const actualFilePath = path.join(fixtureDir, "input.js");
+            const actualContent = fs.readFileSync(actualFilePath, "utf-8");
+            const actualOptionFilePath = path.join(fixtureDir, "options.json");
+            const actualOptions = fs.existsSync(actualOptionFilePath)
+                ? JSON.parse(fs.readFileSync(actualOptionFilePath, "utf-8"))
+                : {};
+            const actual =
+                (await run(actualContent, actualOptions).catch(error => {
                     return normalizeErrorName(error.name);
-                }) || "NO ERROR";
-                const expectedFilePath = path.join(fixtureDir, "error.txt");
-                // Usage: update snapshots
-                // UPDATE_SNAPSHOT=1 npm test
-                if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
-                    fs.writeFileSync(expectedFilePath, actual);
-                    this.skip(); // skip when updating snapshots
-                    return;
-                }
-                // compare input and output
-                const expectedContent = fs.readFileSync(expectedFilePath, "utf-8");
-                assert.deepStrictEqual(
-                    actual,
-                    expectedContent,
-                    `
+                })) || "NO ERROR";
+            const expectedFilePath = path.join(fixtureDir, "error.txt");
+            // Usage: update snapshots
+            // UPDATE_SNAPSHOT=1 npm test
+            if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
+                fs.writeFileSync(expectedFilePath, actual);
+                this.skip(); // skip when updating snapshots
+                return;
+            }
+            // compare input and output
+            const expectedContent = fs.readFileSync(expectedFilePath, "utf-8");
+            assert.deepStrictEqual(
+                actual,
+                expectedContent,
+                `
 ${fixtureDir}
 ${actual}
 `
-                );
+            );
+        });
+        it(`Test ${normalizedTestName}`, async function() {
+            const fixtureDir = path.join(fixturesDir, caseName);
+            const actualFilePath = path.join(fixtureDir, "input.js");
+            const actualContent = fs.readFileSync(actualFilePath, "utf-8");
+            const parsedResults = parse({
+                content: actualContent,
+                filePath: actualFilePath
             });
-            it(`Test ${normalizedTestName}`, async function() {
-                const fixtureDir = path.join(fixturesDir, caseName);
-                const actualFilePath = path.join(fixtureDir, "input.js");
-                const actualContent = fs.readFileSync(actualFilePath, "utf-8");
-                const parsedResults = parse({
-                    content: actualContent,
-                    filePath: actualFilePath
-                });
-                const promises = parsedResults.map(result => {
-                    return test(result);
-                });
-                const actual = await allSettled(promises);
-                const results = trimUndefinedProperty(actual.map((result: any) => {
+            const promises = parsedResults.map(result => {
+                return test(result);
+            });
+            const actual = await allSettled(promises);
+            const results = trimUndefinedProperty(
+                actual.map((result: any) => {
                     if (result.status === "rejected") {
                         return {
                             status: result.status,
@@ -67,21 +68,19 @@ ${actual}
                         };
                     }
                     return result;
-                }));
-                const expectedFilePath = path.join(fixtureDir, "output.json");
-                // Usage: update snapshots
-                // UPDATE_SNAPSHOT=1 npm test
-                if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
-                    fs.writeFileSync(expectedFilePath, JSON.stringify(results, null, 4));
-                    this.skip(); // skip when updating snapshots
-                    return;
-                }
-                // compare input and output
-                const expectedContent = JSON.parse(fs.readFileSync(expectedFilePath, "utf-8"));
-                assert.deepStrictEqual(
-                    results,
-                    expectedContent
-                );
-            });
+                })
+            );
+            const expectedFilePath = path.join(fixtureDir, "output.json");
+            // Usage: update snapshots
+            // UPDATE_SNAPSHOT=1 npm test
+            if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
+                fs.writeFileSync(expectedFilePath, JSON.stringify(results, null, 4));
+                this.skip(); // skip when updating snapshots
+                return;
+            }
+            // compare input and output
+            const expectedContent = JSON.parse(fs.readFileSync(expectedFilePath, "utf-8"));
+            assert.deepStrictEqual(results, expectedContent);
         });
+    });
 });

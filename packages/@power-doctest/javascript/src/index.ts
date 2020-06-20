@@ -19,7 +19,6 @@ const getExpectedError = (code: string): string | undefined => {
     return;
 };
 
-
 const getMeta = (code: string): {} | undefined => {
     const pattern = /\/\/\s*doctest-meta:{(.*)}/;
     const match = code.match(pattern);
@@ -66,12 +65,12 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
             metadata: meta,
             doctestOptions: options
                 ? {
-                    filePath,
-                    ...options
-                }
+                      filePath,
+                      ...options
+                  }
                 : {
-                    filePath
-                }
+                      filePath
+                  }
         }
     ];
 };

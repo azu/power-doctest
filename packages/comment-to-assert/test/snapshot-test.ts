@@ -22,7 +22,7 @@ describe("Snapshot testing", () => {
             const expectedFilePath = path.join(fixtureDir, "output.js");
             // UPDATE_SNAPSHOT=1 npm test
             if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
-                fs.writeFileSync(expectedFilePath, actual);
+                fs.writeFileSync(expectedFilePath, String(actual));
                 this.skip();
                 return;
             }

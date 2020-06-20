@@ -2,6 +2,4 @@ var _powerAssertVisitorKeys = "{\"ArrayExpression\":[\"elements\"],\"AssignmentE
 
 var assert = require("power-assert");
 
-setTimeout(() => {
-  assert.strictEqual("???", "???"); // => "???"
-}, 100);
+assert.strictEqual(1n, 1n); // => 1n

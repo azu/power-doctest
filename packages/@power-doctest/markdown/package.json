@@ -43,22 +43,22 @@
     "tabWidth": 4
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.2",
-    "cross-env": "^5.2.0",
-    "mocha": "^6.2.0",
-    "prettier": "^1.18.2",
-    "rimraf": "^3.0.0",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.13",
+    "cross-env": "^7.0.2",
+    "mocha": "^8.0.1",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
     "strip-color": "^0.1.0",
-    "ts-node": "^8.3.0",
+    "ts-node": "^8.10.2",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.9.5"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@power-doctest/javascript": "^3.3.3",
+    "@power-doctest/javascript": "^5.0.1",
     "@power-doctest/types": "^5.0.1",
     "@types/unist": "^2.0.3",
     "remark": "^11.0.1",
