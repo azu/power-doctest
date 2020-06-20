@@ -5,6 +5,7 @@ describe("run", () => {
     it("run example code", () => {
         return run(`
 console.log(1); // => 1
+console.log(1n); // => 1n
 console.log("string"); // => "string"
 console.log([1, 2, 3]); // => [1, 2, 3]
 console.log({ key: "value" }); // => { key: "value" }

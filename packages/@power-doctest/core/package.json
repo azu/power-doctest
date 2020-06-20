@@ -32,11 +32,9 @@
     "ast-source": "^3.0.0",
     "babel-plugin-espower": "^3.0.1",
     "comment-to-assert": "^5.2.0",
-    "escodegen": "^1.12.0",
     "espower": "^2.1.2",
     "espree": "^6.1.1",
     "esprima": "^4.0.1",
-    "estraverse": "^4.3.0",
     "power-assert": "^1.6.1"
   },
   "devDependencies": {
