@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/tester",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "A Test Runner for A power-doctest.",
   "keywords": [
     "doctest",
@@ -38,7 +38,7 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
-    "@power-doctest/core": "^5.2.0",
+    "@power-doctest/core": "^5.2.2",
     "@power-doctest/types": "^5.2.0",
     "vm2": "^3.8.3"
   },
