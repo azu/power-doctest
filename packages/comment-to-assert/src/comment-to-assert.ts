@@ -80,7 +80,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
 export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptions = {}): T {
     const replaceSet = new Set();
     let id = 0;
-    traverse(ast, {
+    traverse(ast as Node, {
         exit(path) {
             if (!replaceSet.has(path.node) && path.node.trailingComments) {
                 const commentExpression = tryGetCodeFromComments(path.node.trailingComments);

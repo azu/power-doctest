@@ -10,12 +10,12 @@ export interface PowerDoctestRunnerOptions {
     // sandbox context for code
     // context defined global variables
     context?: {
-        [index: string]: any
-    }
+        [index: string]: any;
+    };
     // sandbox require mock for code
     requireMock?: {
-        [index: string]: any
-    }
+        [index: string]: any;
+    };
     // If it is true, console.log output to console
     // If you want to mock console, please pass `console` to `context: { console: consoleMock }`
     //
@@ -27,7 +27,7 @@ export interface PowerDoctestRunnerOptions {
     console?: boolean;
     // Timeout millisecond
     // Default: 2000
-    timeout?: number
+    timeout?: number;
     // Default: all
     // If runMode is all, all assertions are finished and resolve it
     // If runMode is any, anyone assertion is finished and resolve it
@@ -49,7 +49,6 @@ export interface testOptions {
     defaultDoctestRunnerOptions?: PowerDoctestRunnerOptions;
 }
 
-
 export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<void> {
     if (parsedCode.state === "disabled") {
         return Promise.resolve();
@@ -66,9 +65,7 @@ export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<voi
             return Promise.resolve();
         }
         const doctestOptions: PowerDoctestRunnerOptions | undefined = parsedCode.doctestOptions;
-        error.fileName = doctestOptions && doctestOptions.filePath
-            ? doctestOptions.filePath
-            : error.fileName;
+        error.fileName = doctestOptions && doctestOptions.filePath ? doctestOptions.filePath : error.fileName;
         error.lineNumber = parsedCode.location.start.line;
         error.columnNumber = parsedCode.location.start.column;
         const metadata = parsedCode.metadata;
@@ -78,7 +75,6 @@ export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<voi
         return Promise.reject(error);
     });
 }
-
 
 export function run(code: string, options: PowerDoctestRunnerOptions = {}): Promise<void> {
     const filePath = options.filePath || "default.js";
@@ -93,14 +89,20 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}): Prom
                 return;
             }
             restoreListener();
-            reject(new Error(`Timeout error
+            reject(
+                new Error(`Timeout error
 
-${runMode === "all" ? `If you use { "runMode": "all" }, you should check all condition flow is passed.
+${
+                    runMode === "all"
+                        ? `If you use { "runMode": "all" }, you should check all condition flow is passed.
 
 Total Assertion: ${totalAssertionCount}
 Executed Assertion: ${countOfExecutedAssertion}
 
-Also, you should consider to use { "runMode": "any" }` : ""}`));
+Also, you should consider to use { "runMode": "any" }`
+                        : ""
+                }`)
+            );
         }, timeout);
         // Test Runner like mocha listen unhandledRejection and uncaughtException
         // Disable these listener before running code
@@ -123,18 +125,22 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
             // restore
             const currentUncaughtException = process.listeners("uncaughtException");
             const currentUnhandledRejection = process.listeners("unhandledRejection");
-            originalUncaughtException.filter(listener => {
-                // remove duplicated
-                return !currentUncaughtException.includes(listener);
-            }).forEach(listener => {
-                process.addListener("uncaughtException", listener);
-            });
-            originalUnhandledRejection.filter(listener => {
-                // remove duplicated
-                return !currentUnhandledRejection.includes(listener);
-            }).forEach(listener => {
-                process.addListener("unhandledRejection", listener);
-            });
+            originalUncaughtException
+                .filter(listener => {
+                    // remove duplicated
+                    return !currentUncaughtException.includes(listener);
+                })
+                .forEach(listener => {
+                    process.addListener("uncaughtException", listener);
+                });
+            originalUnhandledRejection
+                .filter(listener => {
+                    // remove duplicated
+                    return !currentUnhandledRejection.includes(listener);
+                })
+                .forEach(listener => {
+                    process.addListener("unhandledRejection", listener);
+                });
             // clearTimeout
             clearTimeout(timeoutId);
         };
@@ -177,8 +183,10 @@ Also, you should consider to use { "runMode": "any" }` : ""}`));
             }
         });
         try {
-            const script = new VMScript(poweredCode, options.filePath);
-            vm.run(script, options.filePath);
+            const script = new VMScript(poweredCode, {
+                filename: options.filePath
+            });
+            vm.run(script);
         } catch (error) {
             restoreListener();
             reject(error);

@@ -7,7 +7,7 @@ const Asciidoctor = require("asciidoctor");
 const asciidoctor = Asciidoctor();
 type Attributes = {
     [index: string]: string;
-}
+};
 const getState = (attributes: Attributes): "none" | "enabled" | "disabled" => {
     const state = attributes["doctest-state"] || attributes["doctest"];
     if (!state) {
@@ -77,10 +77,13 @@ const inlineCode = (code: string, baseFilePath: string): string => {
 export function parse(args: ParserArgs): ParsedResults {
     const structuredSource = new StructuredSource(args.content);
     const doc = asciidoctor.load(args.content);
-    return doc.getBlocks()
+    return doc
+        .getBlocks()
         .filter((block: any) => {
             const attributes = block.getAttributes();
-            return attributes.style === "source" && (attributes.language === "js" || attributes.language === "javascript");
+            return (
+                attributes.style === "source" && (attributes.language === "js" || attributes.language === "javascript")
+            );
         })
         .map((block: any) => {
             // FIXME: workaround get lineno
@@ -101,12 +104,14 @@ export function parse(args: ParserArgs): ParsedResults {
                     end: endPostion
                 },
                 metadata: meta,
-                doctestOptions: doctestOptions ? {
-                    filePath: args.filePath,
-                    ...doctestOptions
-                } : {
-                    filePath: args.filePath
-                }
+                doctestOptions: doctestOptions
+                    ? {
+                          filePath: args.filePath,
+                          ...doctestOptions
+                      }
+                    : {
+                          filePath: args.filePath
+                      }
             };
             return parsedCode;
         });

@@ -92,7 +92,6 @@ doctest:metadata:{ ... } should be json string.
 Actual: ${optionString}
 `);
         }
-
     }
 
     get doctestOptions() {
@@ -116,7 +115,6 @@ doctest:options:{ ... } should be json string.
 Actual: ${optionString}
 `);
         }
-
     }
 
     /**
@@ -135,7 +133,6 @@ Actual: ${optionString}
         }
         return error.name === expectedErrorType;
     }
-
 
     /**
      * Return expected Error name if expected is defined.

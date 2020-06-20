@@ -37,7 +37,9 @@ export const createMockRequire = (packageDir: string, pkg?: any) => {
     };
 };
 
-export async function runPowerDoctest(options: RunPowerDoctestOption): Promise<{ status: "fulfilled" | "rejected"; code: string; value?: any; reason?: Error }[]> {
+export async function runPowerDoctest(
+    options: RunPowerDoctestOption
+): Promise<{ status: "fulfilled" | "rejected"; code: string; value?: any; reason?: Error }[]> {
     const requireMock = createMockRequire(options.packageDir, options.packageJSON);
     const results = (() => {
         if (options.contentType === "javascript") {
@@ -61,15 +63,18 @@ export async function runPowerDoctest(options: RunPowerDoctestOption): Promise<{
         return [];
     })();
     const promises = results.map(result => {
-        return test({
-            ...result,
-            doctestOptions: {
-                ...result.doctestOptions,
-                requireMock
+        return test(
+            {
+                ...result,
+                doctestOptions: {
+                    ...result.doctestOptions,
+                    requireMock
+                }
+            },
+            {
+                disableRunning: options.disableRunning
             }
-        }, {
-            disableRunning: options.disableRunning
-        });
+        );
     });
     const settledResults = await allSettled(promises);
     return settledResults.map((testResult: any, index: number) => {

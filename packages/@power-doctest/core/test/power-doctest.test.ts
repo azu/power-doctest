@@ -29,29 +29,38 @@ describe("core", function() {
             var result = convertCode(code, {
                 filePath: "test.js"
             });
-            assert.strictEqual(result, `var assert = require("power-assert");
+            assert.strictEqual(
+                result,
+                `var assert = require("power-assert");
 
 function addPrefix(text, prefix = "デフォルト:") {
   return prefix + text;
-}`.trim());
+}`.trim()
+            );
         });
     });
     describe("#convertAST", function() {
         it("add assert module to header", function() {
             var code = "var a = 1;";
             var resultAST = parseAndConvert(code);
-            astEqual(resultAST, `
+            astEqual(
+                resultAST,
+                `
             var assert = require("power-assert");
             var a = 1;
-            `);
+            `
+            );
         });
         it("add assert module to ", function() {
             var code = "var a = 1;";
             var resultAST = parseAndConvert(code);
-            astEqual(resultAST, `
+            astEqual(
+                resultAST,
+                `
             var assert = require("power-assert");
             var a = 1;
-            `);
+            `
+            );
         });
         it("module type", function() {
             var code = `
@@ -60,12 +69,15 @@ function addPrefix(text, prefix = "デフォルト:") {
             }
                 `;
             var resultAST = parseAndConvert(code);
-            astEqual(resultAST, `
+            astEqual(
+                resultAST,
+                `
             var assert = require("power-assert");
             export default function hello() {
                 var a = 1;
             }
-                `);
+                `
+            );
         });
 
         it("should support async function", function() {
@@ -104,4 +116,3 @@ console.log(a); // => 1
         });
     });
 });
-

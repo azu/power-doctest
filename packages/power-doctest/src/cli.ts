@@ -4,7 +4,8 @@ import meow from "meow";
 import { runPowerDoctest, RunPowerDoctestOption } from "./power-doctest";
 
 export async function run() {
-    const cli = meow(`
+    const cli = meow(
+        `
 	Usage
 	  $ power-doctest /path/to/file.{js,md,adoc}
 
@@ -16,16 +17,18 @@ export async function run() {
 	  $ power-doctest ./README.md
 	  $ power-doctest ./README.adoc
 	  $ power-doctest ./src/main.js
-`, {
-        flags: {
-            packageDir: {
-                type: "string"
-            },
-            defaultRunning: {
-                type: "boolean"
+`,
+        {
+            flags: {
+                packageDir: {
+                    type: "string"
+                },
+                defaultRunning: {
+                    type: "boolean"
+                }
             }
         }
-    });
+    );
     const disableRunning = cli.flags.disableRunning;
     const input = cli.input[0];
     if (!input) {
@@ -74,7 +77,7 @@ export async function run() {
     const rejected = results.filter(result => {
         return result.status === "rejected";
     });
-    const errors = rejected.map((result) => {
+    const errors = rejected.map(result => {
         const error = (result as any).reason;
         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
         return `Failed at ${filePathLineColumn}
@@ -89,8 +92,12 @@ ${result.code}
 Pass: ${passed.length}
 Fail: ${rejected.length}    
 Total: ${passed.length + rejected.length}
-${errors.length > 0 ? `Errors:
-${errors.join("\n")}` : ""}`;
+${
+    errors.length > 0
+        ? `Errors:
+${errors.join("\n")}`
+        : ""
+}`;
     if (rejected.length > 0) {
         throw new Error(message);
     }

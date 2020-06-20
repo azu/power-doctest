@@ -7,7 +7,9 @@ import generate from "@babel/generator";
 import assert from "assert";
 import { toAssertFromAST } from "comment-to-assert";
 import { injectAssertModule } from "./inject-assert";
+
 const babelPluginEspower = require("babel-plugin-espower");
+
 export interface convertCodeOption {
     filePath: string;
     babel?: ParserOptions;
@@ -23,7 +25,7 @@ export interface convertCodeOption {
 export function convertCode(code: string, options: convertCodeOption): string {
     const AST = parse(code, {
         sourceType: "module",
-        ...options.babel ? options.babel : {}
+        ...(options.babel ? options.babel : {})
     });
     const output = convertAST(AST, {
         assertBeforeCallbackName: options.assertBeforeCallbackName,
@@ -49,7 +51,6 @@ export interface convertASTOptions {
  */
 export function convertAST<T extends File>(AST: T, options: convertASTOptions): T {
     const boundEspower = (AST: T) => {
-        // FIXME: AST to AST
         const { code } = generate(AST, {
             comments: true
         });
@@ -72,9 +73,12 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
         return toAssertFromAST(AST, options);
     };
     const modifyMapFunctionList: ((ast: any) => any)[] = [commentToAssert, injectAssertModule, boundEspower];
-    return modifyMapFunctionList.reduce((AST, modify, index) => {
-        const result = modify(AST);
-        assert(result != null, modifyMapFunctionList[index].name + " return wrong result. result: " + result);
-        return result;
-    }, AST as T);
+    return modifyMapFunctionList.reduce(
+        (AST, modify, index) => {
+            const result = modify(AST);
+            assert(result != null, modifyMapFunctionList[index].name + " return wrong result. result: " + result);
+            return result;
+        },
+        AST as T
+    );
 }
