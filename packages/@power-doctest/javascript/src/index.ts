@@ -58,7 +58,7 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
             code: content,
             location: {
                 start: source.indexToPosition(0),
-                end: source.indexToPosition(content.length - 1)
+                end: source.indexToPosition(content.length - 1),
             },
             state: getState(content),
             expectedError: getExpectedError(content),
@@ -66,11 +66,11 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
             doctestOptions: options
                 ? {
                       filePath,
-                      ...options
+                      ...options,
                   }
                 : {
-                      filePath
-                  }
-        }
+                      filePath,
+                  },
+        },
     ];
 };

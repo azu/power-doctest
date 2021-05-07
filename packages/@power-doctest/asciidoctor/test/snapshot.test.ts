@@ -23,15 +23,15 @@ const stringify = (o: {}, baseDir: string): string => {
     );
 };
 describe("Snapshot testing", () => {
-    fs.readdirSync(fixturesDir).map(caseName => {
+    fs.readdirSync(fixturesDir).map((caseName) => {
         const normalizedTestName = caseName.replace(/-/g, " ");
-        it(`Test ${normalizedTestName}`, async function() {
+        it(`Test ${normalizedTestName}`, async function () {
             const fixtureDir = path.join(fixturesDir, caseName);
             const actualFilePath = path.join(fixtureDir, "input.adoc");
             const actualContent = fs.readFileSync(actualFilePath, "utf-8");
             const results = parse({
                 content: actualContent,
-                filePath: actualFilePath
+                filePath: actualFilePath,
             });
             const expectedFilePath = path.join(fixtureDir, "output.json");
             // Usage: update snapshots

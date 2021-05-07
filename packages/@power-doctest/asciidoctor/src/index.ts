@@ -101,17 +101,17 @@ export function parse(args: ParserArgs): ParsedResults {
                 expectedError: getExpectedError(attributes),
                 location: {
                     start: startPosition,
-                    end: endPostion
+                    end: endPostion,
                 },
                 metadata: meta,
                 doctestOptions: doctestOptions
                     ? {
                           filePath: args.filePath,
-                          ...doctestOptions
+                          ...doctestOptions,
                       }
                     : {
-                          filePath: args.filePath
-                      }
+                          filePath: args.filePath,
+                      },
             };
             return parsedCode;
         });

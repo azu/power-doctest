@@ -8,18 +8,18 @@ it("is valid types", () => {
             location: {
                 start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                 },
                 end: {
                     line: 1,
-                    column: 0
-                }
-            }
+                    column: 0,
+                },
+            },
         };
         return [code];
     };
     parse({
         content: "test",
-        filePath: "test.md"
+        filePath: "test.md",
     });
 });
