@@ -25,6 +25,10 @@ export async function run() {
                 },
                 defaultRunning: {
                     type: "boolean"
+                },
+                disableRunning: {
+                    type: "boolean",
+                    default: false
                 }
             }
         }
@@ -93,11 +97,11 @@ Pass: ${passed.length}
 Fail: ${rejected.length}    
 Total: ${passed.length + rejected.length}
 ${
-    errors.length > 0
-        ? `Errors:
+        errors.length > 0
+            ? `Errors:
 ${errors.join("\n")}`
-        : ""
-}`;
+            : ""
+    }`;
     if (rejected.length > 0) {
         throw new Error(message);
     }

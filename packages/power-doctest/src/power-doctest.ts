@@ -4,8 +4,7 @@ import { test } from "@power-doctest/tester";
 import { parse as parseJavaScript } from "@power-doctest/javascript";
 import { parse as parseMarkdown } from "@power-doctest/markdown";
 import { parse as parseAsciidoctor } from "@power-doctest/asciidoctor";
-
-const allSettled = require("promise.allsettled");
+import allSettled from "promise.allsettled";
 
 export interface RunPowerDoctestOption {
     contentType: "javascript" | "markdown" | "asciidoctor";
