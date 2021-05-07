@@ -72,7 +72,7 @@ export class DocTestController {
     }
 
     get doctestMetadata() {
-        const optionComment = this.comments.find(comment => {
+        const optionComment = this.comments.find((comment) => {
             return DOCTEST_METADATA.test(comment);
         });
         if (!optionComment) {
@@ -95,7 +95,7 @@ Actual: ${optionString}
     }
 
     get doctestOptions() {
-        const optionComment = this.comments.find(comment => {
+        const optionComment = this.comments.find((comment) => {
             return DOCTEST_OPTIONS.test(comment);
         });
         if (!optionComment) {
@@ -141,7 +141,7 @@ Actual: ${optionString}
      * @private
      */
     _getExpectedErrorName(comments: string[]): string | undefined {
-        const expectedErrorTypeComment = comments.find(comment => {
+        const expectedErrorTypeComment = comments.find((comment) => {
             return ERROR_TYPE_PATTERN.test(comment);
         });
         if (!expectedErrorTypeComment) {

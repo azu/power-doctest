@@ -11,7 +11,7 @@ import {
     isDirective,
     callExpression,
     identifier,
-    stringLiteral
+    stringLiteral,
 } from "@babel/types";
 import template from "@babel/template";
 
@@ -51,7 +51,7 @@ export function wrapAssert(
         actualNode,
         expectedNode,
         commentExpression,
-        id
+        id,
     }: { actualNode: any; expectedNode: any; commentExpression: string; id: string },
     options: wrapAssertOptions
 ): any {
@@ -72,7 +72,7 @@ export function wrapAssert(
                 actualNode: firstArgument,
                 expectedNode,
                 commentExpression,
-                id
+                id,
             },
             options
         );
@@ -82,7 +82,7 @@ export function wrapAssert(
                });AFTER_CALLBACK;`({
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE
+            ACTUAL_NODE,
         });
     } else if (expectedNode.type === "Resolve") {
         // getExpressionNodeFromCommentValue define the type
@@ -93,13 +93,13 @@ export function wrapAssert(
                     actualNode: { type: "Identifier", name: "v" },
                     expectedNode: expectedNode.node,
                     commentExpression,
-                    id
+                    id,
                 },
                 options
             )}
             return v;
         });`({
-            ARGS
+            ARGS,
         });
     } else if (expectedNode.type === "Reject") {
         const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
@@ -108,25 +108,25 @@ export function wrapAssert(
 });`({
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ARGS
+            ARGS,
         });
     } else if (isIdentifier(expectedNode) && expectedNode.name === "NaN") {
         return template`BEFORE_CALLBACK;assert.ok(isNaN(ACTUAL_NODE));AFTER_CALLBACK;`({
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE
+            ACTUAL_NODE,
         });
     } else if (isNullLiteral(expectedNode)) {
         return template`BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, null);AFTER_CALLBACK;`({
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE
+            ACTUAL_NODE,
         });
     } else if (isIdentifier(expectedNode) && expectedNode.name === "undefined") {
         return template`BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, undefined);AFTER_CALLBACK`({
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE
+            ACTUAL_NODE,
         });
     } else if (isLiteral(expectedNode)) {
         // Handle Directive Prorogue as string literal
@@ -135,14 +135,14 @@ export function wrapAssert(
                 BEFORE_CALLBACK,
                 AFTER_CALLBACK,
                 ACTUAL_NODE: (ACTUAL_NODE.value as any).extra.raw,
-                EXPECTED_NODE
+                EXPECTED_NODE,
             });
         } else {
             return template`BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE);AFTER_CALLBACK;`({
                 BEFORE_CALLBACK,
                 AFTER_CALLBACK,
                 ACTUAL_NODE,
-                EXPECTED_NODE
+                EXPECTED_NODE,
             });
         }
     } else {
@@ -150,7 +150,7 @@ export function wrapAssert(
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
             ACTUAL_NODE,
-            EXPECTED_NODE
+            EXPECTED_NODE,
         });
     }
     throw new Error("Unknown pattern: " + actualNode);

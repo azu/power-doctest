@@ -51,6 +51,7 @@ export interface convertASTOptions {
  */
 export function convertAST<T extends File>(AST: T, options: convertASTOptions): T {
     const boundEspower = (AST: T) => {
+        // @ts-expect-error: File is not Node?
         const { code } = generate(AST, {
             comments: true
         });
@@ -73,12 +74,9 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
         return toAssertFromAST(AST, options);
     };
     const modifyMapFunctionList: ((ast: any) => any)[] = [commentToAssert, injectAssertModule, boundEspower];
-    return modifyMapFunctionList.reduce(
-        (AST, modify, index) => {
-            const result = modify(AST);
-            assert(result != null, modifyMapFunctionList[index].name + " return wrong result. result: " + result);
-            return result;
-        },
-        AST as T
-    );
+    return modifyMapFunctionList.reduce((AST, modify, index) => {
+        const result = modify(AST);
+        assert(result != null, modifyMapFunctionList[index].name + " return wrong result. result: " + result);
+        return result;
+    }, AST as T);
 }

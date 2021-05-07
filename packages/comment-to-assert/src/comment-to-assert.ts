@@ -6,7 +6,7 @@ import {
     PROMISE_RESOLVE_COMMENT_PATTERN,
     tryGetCodeFromComments,
     wrapAssert,
-    wrapAssertOptions
+    wrapAssertOptions,
 } from "./ast-utils";
 import { transformFromAstSync, Node } from "@babel/core";
 import { identifier, isExpressionStatement, File } from "@babel/types";
@@ -29,7 +29,7 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
         }
         return {
             type: "Resolve",
-            node: getExpressionNodeFromCommentValue(match[1])
+            node: getExpressionNodeFromCommentValue(match[1]),
         };
     } else if (PROMISE_REJECT_COMMENT_PATTERN.test(message)) {
         const match = message.match(PROMISE_REJECT_COMMENT_PATTERN);
@@ -38,7 +38,7 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
         }
         return {
             type: "Reject",
-            node: getExpressionNodeFromCommentValue(match[1])
+            node: getExpressionNodeFromCommentValue(match[1]),
         };
     }
     try {
@@ -61,7 +61,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
     const ast = parse(code, {
         // parse in strict mode and allow module declarations
         sourceType: "module",
-        ...(options && options.babel ? options.babel : {})
+        ...(options && options.babel ? options.babel : {}),
     });
     if (!ast) {
         throw new Error("Can not parse the code");
@@ -80,7 +80,7 @@ export function toAssertFromSource(code: string, options?: toAssertFromSourceOpt
 export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptions = {}): T {
     const replaceSet = new Set();
     let id = 0;
-    traverse(ast as Node, {
+    traverse(ast, {
         exit(path) {
             if (!replaceSet.has(path.node) && path.node.trailingComments) {
                 const commentExpression = tryGetCodeFromComments(path.node.trailingComments);
@@ -92,7 +92,7 @@ export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptio
                             actualNode: actualNode,
                             expectedNode: commentExpressionNode,
                             commentExpression,
-                            id: String(`id:${id++}`)
+                            id: String(`id:${id++}`),
                         },
                         options
                     );
@@ -106,7 +106,7 @@ export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptio
                     replaceSet.add(path.node);
                 }
             }
-        }
+        },
     });
     return ast;
 }

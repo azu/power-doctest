@@ -21,7 +21,7 @@ Promise.reject(new Error("message")); // => Reject: "message"
     it("run throw code", () => {
         return run(`
 throw new Error("message from code");
-`).catch(error => {
+`).catch((error) => {
             assert.strictEqual(error.message, "message from code");
         });
     });
@@ -99,7 +99,7 @@ setTimeout(() => {
 3; // => "ng"
 `,
                 {
-                    runMode: "any"
+                    runMode: "any",
                 }
             )
         );
@@ -115,7 +115,7 @@ if( true ) {
 }
 `,
                 {
-                    timeout: 100 // 100ms
+                    timeout: 100, // 100ms
                 }
             )
         );

@@ -10,9 +10,9 @@ const trim = (s: unknown): string => {
 };
 
 describe("Snapshot testing", () => {
-    fs.readdirSync(fixturesDir).map(caseName => {
+    fs.readdirSync(fixturesDir).map((caseName) => {
         const normalizedTestName = caseName.replace(/-/g, " ");
-        it(`Test ${normalizedTestName}`, function(done) {
+        it(`Test ${normalizedTestName}`, function (done) {
             const fixtureDir = path.join(fixturesDir, caseName);
             const actualFilePath = path.join(fixtureDir, "input.js");
             const actualContent = fs.readFileSync(actualFilePath, "utf-8");
@@ -54,14 +54,14 @@ ${JSON.stringify(actual)}
                             if (actualCallCount === totalCountOfAssert) {
                                 done();
                             }
-                        }
+                        },
                     })
                 );
             } else {
                 vm.runInContext(
                     actual,
                     vm.createContext({
-                        assert
+                        assert,
                     })
                 );
                 done();

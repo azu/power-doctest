@@ -21,12 +21,16 @@ export async function run() {
         {
             flags: {
                 packageDir: {
-                    type: "string"
+                    type: "string",
                 },
                 defaultRunning: {
-                    type: "boolean"
-                }
-            }
+                    type: "boolean",
+                },
+                disableRunning: {
+                    type: "boolean",
+                    default: false,
+                },
+            },
         }
     );
     const disableRunning = cli.flags.disableRunning;
@@ -69,15 +73,15 @@ export async function run() {
         packageDir: cwd,
         packageJSON: pkg,
         filePath: input,
-        disableRunning: disableRunning
+        disableRunning: disableRunning,
     });
-    const passed = results.filter(result => {
+    const passed = results.filter((result) => {
         return result.status === "fulfilled";
     });
-    const rejected = results.filter(result => {
+    const rejected = results.filter((result) => {
         return result.status === "rejected";
     });
-    const errors = rejected.map(result => {
+    const errors = rejected.map((result) => {
         const error = (result as any).reason;
         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
         return `Failed at ${filePathLineColumn}

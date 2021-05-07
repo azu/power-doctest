@@ -6,9 +6,9 @@ import { convertCode } from "../src/power-doctest";
 
 const fixturesDir = path.join(__dirname, "snapshots");
 describe("Snapshot testing", () => {
-    fs.readdirSync(fixturesDir).map(caseName => {
+    fs.readdirSync(fixturesDir).map((caseName) => {
         const normalizedTestName = caseName.replace(/-/g, " ");
-        it(`Test ${normalizedTestName}`, async function() {
+        it(`Test ${normalizedTestName}`, async function () {
             const fixtureDir = path.join(fixturesDir, caseName);
             const actualFilePath = path.join(fixtureDir, "input.js");
             const actualContent = fs.readFileSync(actualFilePath, "utf-8");

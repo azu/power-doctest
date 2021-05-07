@@ -58,8 +58,8 @@ export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<voi
     }
     return run(parsedCode.code, {
         ...(oprions && oprions.defaultDoctestRunnerOptions ? oprions.defaultDoctestRunnerOptions : {}),
-        ...parsedCode.doctestOptions
-    }).catch(error => {
+        ...parsedCode.doctestOptions,
+    }).catch((error) => {
         // if it is expected error, resolve it
         if (parsedCode.expectedError && error.name === parsedCode.expectedError) {
             return Promise.resolve();
@@ -98,15 +98,15 @@ export function run(code: string, options: PowerDoctestRunnerOptions = {}): Prom
                 new Error(`Timeout error
 
 ${
-                    runMode === "all"
-                        ? `If you use { "runMode": "all" }, you should check all condition flow is passed.
+    runMode === "all"
+        ? `If you use { "runMode": "all" }, you should check all condition flow is passed.
 
 Total Assertion: ${totalAssertionCount}
 Executed Assertion: ${countOfExecutedAssertion}
 
 Also, you should consider to use { "runMode": "any" }`
-                        : ""
-                }`)
+        : ""
+}`)
             );
         }, timeout);
         // Test Runner like mocha listen unhandledRejection and uncaughtException
@@ -131,19 +131,19 @@ Also, you should consider to use { "runMode": "any" }`
             const currentUncaughtException = process.listeners("uncaughtException");
             const currentUnhandledRejection = process.listeners("unhandledRejection");
             originalUncaughtException
-                .filter(listener => {
+                .filter((listener) => {
                     // remove duplicated
                     return !currentUncaughtException.includes(listener);
                 })
-                .forEach(listener => {
+                .forEach((listener) => {
                     process.addListener("uncaughtException", listener);
                 });
             originalUnhandledRejection
-                .filter(listener => {
+                .filter((listener) => {
                     // remove duplicated
                     return !currentUnhandledRejection.includes(listener);
                 })
-                .forEach(listener => {
+                .forEach((listener) => {
                     process.addListener("unhandledRejection", listener);
                 });
             // clearTimeout
@@ -153,7 +153,7 @@ Also, you should consider to use { "runMode": "any" }`
         process.on("unhandledRejection", unhandledRejection as any);
         const poweredCode = convertCode(code, {
             assertAfterCallbackName: postCallbackName,
-            filePath: filePath
+            filePath: filePath,
         });
         // total count of assert
         totalAssertionCount = poweredCode.split(CALLBACK_FUNCTION_NAME).length - 1;
@@ -176,20 +176,20 @@ Also, you should consider to use { "runMode": "any" }`
                     }
                 },
                 // User defined context
-                ...context
+                ...context,
             },
             require: {
                 external: true,
                 builtin: ["*"],
                 mock: {
                     "power-assert": assert,
-                    ...options.requireMock
-                }
-            }
+                    ...options.requireMock,
+                },
+            },
         });
         try {
             const script = new VMScript(poweredCode, {
-                filename: options.filePath
+                filename: options.filePath,
             });
             vm.run(script);
         } catch (error) {

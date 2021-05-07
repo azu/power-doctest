@@ -4,7 +4,6 @@ import { test } from "@power-doctest/tester";
 import { parse as parseJavaScript } from "@power-doctest/javascript";
 import { parse as parseMarkdown } from "@power-doctest/markdown";
 import { parse as parseAsciidoctor } from "@power-doctest/asciidoctor";
-
 const allSettled = require("promise.allsettled");
 
 export interface RunPowerDoctestOption {
@@ -33,7 +32,7 @@ export const createMockRequire = (packageDir: string, pkg?: any) => {
         throw new Error("Not defined pkg.name" + pkg);
     }
     return {
-        [name]: require(mainFilepath)
+        [name]: require(mainFilepath),
     };
 };
 
@@ -45,34 +44,34 @@ export async function runPowerDoctest(
         if (options.contentType === "javascript") {
             return parseJavaScript({
                 content: options.content,
-                filePath: options.filePath
+                filePath: options.filePath,
             });
         }
         if (options.contentType === "markdown") {
             return parseMarkdown({
                 content: options.content,
-                filePath: options.filePath
+                filePath: options.filePath,
             });
         }
         if (options.contentType === "asciidoctor") {
             return parseAsciidoctor({
                 content: options.content,
-                filePath: options.filePath
+                filePath: options.filePath,
             });
         }
         return [];
     })();
-    const promises = results.map(result => {
+    const promises = results.map((result) => {
         return test(
             {
                 ...result,
                 doctestOptions: {
                     ...result.doctestOptions,
-                    requireMock
-                }
+                    requireMock,
+                },
             },
             {
-                disableRunning: options.disableRunning
+                disableRunning: options.disableRunning,
             }
         );
     });
@@ -82,13 +81,13 @@ export async function runPowerDoctest(
             return {
                 status: testResult.status,
                 value: testResult.value,
-                code: results[index].code
+                code: results[index].code,
             };
         } else {
             return {
                 status: testResult.status,
                 reason: testResult.reason as Error,
-                code: results[index].code
+                code: results[index].code,
             };
         }
     });

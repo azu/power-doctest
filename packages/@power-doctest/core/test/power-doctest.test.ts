@@ -20,9 +20,9 @@ const astEqual = (a: any, b: any) => {
     assert.strictEqual(generate(a).code, generate(ast as any).code);
 };
 
-describe("core", function() {
-    describe("#convertCode", function() {
-        it("should convert code to code", function() {
+describe("core", function () {
+    describe("#convertCode", function () {
+        it("should convert code to code", function () {
             var code = `function addPrefix(text, prefix = "デフォルト:") {
                 return prefix + text;
             }`;
@@ -39,8 +39,8 @@ function addPrefix(text, prefix = "デフォルト:") {
             );
         });
     });
-    describe("#convertAST", function() {
-        it("add assert module to header", function() {
+    describe("#convertAST", function () {
+        it("add assert module to header", function () {
             var code = "var a = 1;";
             var resultAST = parseAndConvert(code);
             astEqual(
@@ -51,7 +51,7 @@ function addPrefix(text, prefix = "デフォルト:") {
             `
             );
         });
-        it("add assert module to ", function() {
+        it("add assert module to ", function () {
             var code = "var a = 1;";
             var resultAST = parseAndConvert(code);
             astEqual(
@@ -62,7 +62,7 @@ function addPrefix(text, prefix = "デフォルト:") {
             `
             );
         });
-        it("module type", function() {
+        it("module type", function () {
             var code = `
             export default function hello() {
                 var a = 1;
@@ -80,7 +80,7 @@ function addPrefix(text, prefix = "デフォルト:") {
             );
         });
 
-        it("should support async function", function() {
+        it("should support async function", function () {
             var code = `
             async function hello() {
                 var a = 1;
@@ -92,7 +92,7 @@ function addPrefix(text, prefix = "デフォルト:") {
             const resultCode = generate(resultAST).code;
             assert.ok(resultCode.includes("assert.strictEqual"));
         });
-        it("convert assert to power-assert format, it contain assert function", function() {
+        it("convert assert to power-assert format, it contain assert function", function () {
             var code = `
             var a = 1;
             a; // => 1`;
@@ -100,7 +100,7 @@ function addPrefix(text, prefix = "デフォルト:") {
             const resultCode = generate(resultAST).code;
             assert.ok(resultCode.includes("assert.strictEqual"));
         });
-        it("should support callback function", function() {
+        it("should support callback function", function () {
             var code = `
 var a = 1;
 console.log(a); // => 1

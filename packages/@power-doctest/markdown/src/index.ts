@@ -46,22 +46,22 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
                 ? {
                       start: {
                           line: codeBlock.position.start.line,
-                          column: codeBlock.position.start.column
+                          column: codeBlock.position.start.column,
                       },
                       end: {
                           line: codeBlock.position.end.line,
-                          column: codeBlock.position.end.column
-                      }
+                          column: codeBlock.position.end.column,
+                      },
                   }
                 : {
                       start: {
                           line: 1,
-                          column: 0
+                          column: 0,
                       },
                       end: {
                           line: 1,
-                          column: 0
-                      }
+                          column: 0,
+                      },
                   },
             state: state,
             expectedError: expectedError,
@@ -69,11 +69,11 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
             doctestOptions: doctestOptions
                 ? {
                       filePath: filePath,
-                      ...doctestOptions
+                      ...doctestOptions,
                   }
                 : {
-                      filePath
-                  }
+                      filePath,
+                  },
         };
     });
 };

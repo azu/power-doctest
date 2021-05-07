@@ -1,4 +1,4 @@
-# power-doctest [![Build Status](https://travis-ci.org/azu/power-doctest.svg?branch=master)](https://travis-ci.org/azu/power-doctest)
+# power-doctest [![Actions Status: test](https://github.com/azu/power-doctest/workflows/test/badge.svg)](https://github.com/azu/power-doctest/actions?query=workflow%3A"test")
 
 A monorepo for power-doctest.
 
