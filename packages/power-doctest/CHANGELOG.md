@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/azu/power-doctest/compare/v5.2.2...v5.3.0) (2021-05-07)
+
+
+### Features
+
+* **deps:** support numeric separator ([#26](https://github.com/azu/power-doctest/issues/26)) ([f0ef57b](https://github.com/azu/power-doctest/commit/f0ef57b02e767576dde6a81582025a9f19db1143))
+
+
+
+
+
 ## [5.2.2](https://github.com/azu/power-doctest/compare/v5.2.1...v5.2.2) (2020-06-20)
 
 **Note:** Version bump only for package power-doctest
