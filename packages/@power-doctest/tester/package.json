@@ -53,9 +53,9 @@
     "prettier": "^2.2.1",
     "promise.allsettled": "^1.0.4",
     "strip-color": "^0.1.0",
-    "ts-node": "^9.1.1",
-    "ts-node-test-register": "^9.0.1",
-    "typescript": "^4.2.4"
+    "ts-node": "^10.4.0",
+    "ts-node-test-register": "^10.0.0",
+    "typescript": "^4.5.4"
   },
   "prettier": {
     "singleQuote": false,

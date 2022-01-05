@@ -5,7 +5,6 @@ import template from "@babel/template";
 import { Node } from "@babel/types";
 
 export function injectAssertModule(AST: Node) {
-    // @ts-ignore
     traverse(AST, {
         Program: {
             enter(path) {
