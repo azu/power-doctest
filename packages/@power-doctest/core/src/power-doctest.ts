@@ -51,7 +51,6 @@ export interface convertASTOptions {
  */
 export function convertAST<T extends File>(AST: T, options: convertASTOptions): T {
     const boundEspower = (AST: T) => {
-        // @ts-expect-error: File is not Node?
         const { code } = generate(AST, {
             comments: true
         });
