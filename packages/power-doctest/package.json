@@ -1,6 +1,6 @@
 {
   "name": "power-doctest",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "A command line tool for power-doctest.",
   "keywords": [
     "cli",
@@ -66,10 +66,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@power-doctest/asciidoctor": "^5.3.0",
-    "@power-doctest/javascript": "^5.3.0",
-    "@power-doctest/markdown": "^5.3.0",
-    "@power-doctest/tester": "^5.3.0",
+    "@power-doctest/asciidoctor": "^5.3.1",
+    "@power-doctest/javascript": "^5.3.1",
+    "@power-doctest/markdown": "^5.3.1",
+    "@power-doctest/tester": "^5.3.1",
     "meow": "^5.0.0",
     "promise.allsettled": "^1.0.5"
   },

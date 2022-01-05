@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/azu/power-doctest/compare/v5.3.0...v5.3.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* **deps:** Update babel dependencies to ^7.16.7 ([#28](https://github.com/azu/power-doctest/issues/28)) ([92d68cd](https://github.com/azu/power-doctest/commit/92d68cd8100839cf37c409480a3a932290ff2fbe))
+
+
+
+
+
 # [5.3.0](https://github.com/azu/power-doctest/compare/v5.2.2...v5.3.0) (2021-05-07)
 
 
