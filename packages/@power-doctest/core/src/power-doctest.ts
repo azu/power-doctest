@@ -54,20 +54,29 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
         const { code } = generate(AST, {
             comments: true
         });
-        const result = transformSync(code, {
-            plugins: [babelPluginEspower],
-            filename: options.filePath,
-            sourceFileName: options.filePath,
-            ast: true,
-            code: false,
-            configFile: false,
-            babelrc: false,
-            sourceType: "module"
-        });
-        if (!result) {
-            throw new Error("Fail to convert espower in power-doctest");
+        try {
+            const result = transformSync(code, {
+                plugins: [babelPluginEspower],
+                filename: options.filePath,
+                sourceFileName: options.filePath,
+                ast: true,
+                code: true,
+                configFile: false,
+                babelrc: false,
+                sourceType: "module",
+            });
+            if (!result) {
+                throw new Error("Fail to convert espower in power-doctest");
+            }
+            return result.ast;
+        } catch (error) {
+            if(process.env.DEBUG){
+                console.error("espower error", error);
+                console.log(code);
+                console.log(AST);
+            }
+            return AST;
         }
-        return result.ast;
     };
     const commentToAssert = (AST: T) => {
         return toAssertFromAST(AST, options);

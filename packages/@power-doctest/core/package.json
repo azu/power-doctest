@@ -29,12 +29,9 @@
     "@babel/template": "^7.16.7",
     "@babel/traverse": "^7.16.7",
     "@babel/types": "^7.16.7",
-    "ast-source": "^3.0.0",
     "babel-plugin-espower": "^3.0.1",
     "comment-to-assert": "^5.3.1",
     "espower": "^2.1.2",
-    "espree": "^9.3.0",
-    "esprima": "^4.0.1",
     "power-assert": "^1.6.1"
   },
   "devDependencies": {

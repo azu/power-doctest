@@ -40,7 +40,8 @@
   "dependencies": {
     "@power-doctest/core": "^5.3.1",
     "@power-doctest/types": "^5.3.1",
-    "vm2": "^3.9.3"
+    "vm2": "^3.9.3",
+    "power-assert": "^1.6.1"
   },
   "devDependencies": {
     "@power-doctest/javascript": "^5.3.1",
