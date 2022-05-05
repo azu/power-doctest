@@ -11,12 +11,13 @@
     ]
   },
   "devDependencies": {
-    "lerna": "^4.0.0",
-    "lint-staged": "^11.0.0",
-    "prettier": "^2.2.1"
+    "@lerna-lite/cli": "^1.1.1",
+    "@lerna-lite/run": "^1.1.1",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap && yarn run build",
+    "bootstrap": "yarn run build",
     "build": "lerna run build",
     "test": "lerna run test",
     "updateSnapshot": "lerna run updateSnapshot",
@@ -25,7 +26,8 @@
     "versionup:minor": "lerna version minor --conventional-commits",
     "versionup:major": "lerna version major --conventional-commits",
     "release": "lerna publish from-package",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepare": "git config --local core.hooksPath .githooks"
   },
   "repository": {
     "type": "git",
@@ -46,8 +48,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   }
 }

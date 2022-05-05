@@ -63,7 +63,7 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
                 code: true,
                 configFile: false,
                 babelrc: false,
-                sourceType: "module",
+                sourceType: "module"
             });
             if (!result) {
                 throw new Error("Fail to convert espower in power-doctest");
@@ -71,7 +71,7 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
             return result.ast;
         } catch (error) {
             // TODO: workaround https://github.com/azu/power-doctest/issues/29
-            if(process.env.DEBUG){
+            if (process.env.DEBUG) {
                 console.error("espower error", error);
                 console.log(code);
                 console.log(AST);
