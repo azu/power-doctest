@@ -70,6 +70,7 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
             }
             return result.ast;
         } catch (error) {
+            // TODO: workaround https://github.com/azu/power-doctest/issues/29
             if(process.env.DEBUG){
                 console.error("espower error", error);
                 console.log(code);
