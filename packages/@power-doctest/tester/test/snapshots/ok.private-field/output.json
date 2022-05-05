@@ -1,6 +1,5 @@
 [
     {
-        "status": "rejected",
-        "message": "SyntaxError"
+        "status": "fulfilled"
     }
 ]
