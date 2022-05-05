@@ -33,7 +33,7 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
         select.selectAll(`code[lang="javascript"]`, markdownAST)
     );
     return codeBlocks.map((codeBlock: UnistNode & { value: string | undefined }) => {
-        const codeValue: string = (codeBlock.value) || "";
+        const codeValue: string = codeBlock.value || "";
         const comments = getComments(codeBlock.parent, codeBlock);
         const docTestController = new DocTestController(comments);
         const state = docTestController.state;
@@ -44,36 +44,36 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
             code: codeValue,
             location: codeBlock.position
                 ? {
-                    start: {
-                        line: codeBlock.position.start.line,
-                        column: codeBlock.position.start.column
-                    },
-                    end: {
-                        line: codeBlock.position.end.line,
-                        column: codeBlock.position.end.column
-                    }
-                }
+                      start: {
+                          line: codeBlock.position.start.line,
+                          column: codeBlock.position.start.column,
+                      },
+                      end: {
+                          line: codeBlock.position.end.line,
+                          column: codeBlock.position.end.column,
+                      },
+                  }
                 : {
-                    start: {
-                        line: 1,
-                        column: 0
-                    },
-                    end: {
-                        line: 1,
-                        column: 0
-                    }
-                },
+                      start: {
+                          line: 1,
+                          column: 0,
+                      },
+                      end: {
+                          line: 1,
+                          column: 0,
+                      },
+                  },
             state: state,
             expectedError: expectedError,
             metadata: metadata,
             doctestOptions: doctestOptions
                 ? {
-                    filePath: filePath,
-                    ...doctestOptions
-                }
+                      filePath: filePath,
+                      ...doctestOptions,
+                  }
                 : {
-                    filePath
-                }
+                      filePath,
+                  },
         };
     });
 };
