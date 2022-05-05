@@ -3,174 +3,106 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.3.1](https://github.com/azu/power-doctest/compare/v5.3.0...v5.3.1) (2022-01-05)
+## [5.3.2](https://github.com/azu/power-doctest/compare/v5.3.1...v5.3.2) (2022-05-05)
 
+### Bug Fixes
+
+* ignore parse error on espower ([#30](https://github.com/azu/power-doctest/issues/30)) ([a9b9cbe](https://github.com/azu/power-doctest/commit/a9b9cbee91174161dea1b514fde1d1d97d1f8e2e))
+
+## [5.3.1](https://github.com/azu/power-doctest/compare/v5.3.0...v5.3.1) (2022-01-05)
 
 ### Bug Fixes
 
 * **deps:** Update babel dependencies to ^7.16.7 ([#28](https://github.com/azu/power-doctest/issues/28)) ([92d68cd](https://github.com/azu/power-doctest/commit/92d68cd8100839cf37c409480a3a932290ff2fbe))
 
-
-
-
-
 # [5.3.0](https://github.com/azu/power-doctest/compare/v5.2.2...v5.3.0) (2021-05-07)
-
 
 ### Features
 
 * **deps:** support numeric separator ([#26](https://github.com/azu/power-doctest/issues/26)) ([f0ef57b](https://github.com/azu/power-doctest/commit/f0ef57b02e767576dde6a81582025a9f19db1143))
 
-
-
-
-
 ## [5.2.2](https://github.com/azu/power-doctest/compare/v5.2.1...v5.2.2) (2020-06-20)
 
 **Note:** Version bump only for package root
 
-
-
-
-
 ## [5.2.1](https://github.com/azu/power-doctest/compare/v5.2.0...v5.2.1) (2020-06-20)
-
 
 ### Bug Fixes
 
 * **power-doctest:** fix error Cannot access 'totalAssertionCount' before initialization ([10b7e73](https://github.com/azu/power-doctest/commit/10b7e737ace75dfb20e7acf769738b798c893b7a))
 
-
-
-
-
 # [5.2.0](https://github.com/azu/power-doctest/compare/v5.1.3...v5.2.0) (2020-06-20)
-
 
 ### Bug Fixes
 
 * fix dirname ([7f6c5eb](https://github.com/azu/power-doctest/commit/7f6c5ebe2b0d491ec9d3c4c1357f7dc891865c4b))
 
-
 ### Features
 
 * **power-doctest:** support ES2020 ([ef624cb](https://github.com/azu/power-doctest/commit/ef624cb9312d62a69b72dcbbbff589557f9b93e5))
 
-
-
-
-
 ## [5.1.3](https://github.com/azu/power-doctest/compare/v5.1.2...v5.1.3) (2019-09-01)
-
 
 ### Bug Fixes
 
 * **power-doctest:** allow built-in modules ([cd6a4ed](https://github.com/azu/power-doctest/commit/cd6a4ed))
 
-
-
-
-
 ## [5.1.2](https://github.com/azu/power-doctest/compare/v5.1.1...v5.1.2) (2019-09-01)
-
 
 ### Bug Fixes
 
 * **core:** use module instead of file path ([bf65ac3](https://github.com/azu/power-doctest/commit/bf65ac3))
 * **power-assert:** fix README test ([e6af70e](https://github.com/azu/power-doctest/commit/e6af70e))
 
-
-
-
-
 ## [5.1.1](https://github.com/azu/power-doctest/compare/v5.1.0...v5.1.1) (2019-09-01)
-
 
 ### Bug Fixes
 
 * **cli:** rename @power-doctest/cli to power-doctest ([1c5060b](https://github.com/azu/power-doctest/commit/1c5060b))
 
-
-
-
-
 # [5.1.0](https://github.com/azu/power-doctest/compare/v5.0.1...v5.1.0) (2019-09-01)
-
 
 ### Features
 
 * **cli:** support asciidoctor ([4db0637](https://github.com/azu/power-doctest/commit/4db0637))
 
-
-
-
-
 ## [5.0.1](https://github.com/azu/power-doctest/compare/v5.0.0...v5.0.1) (2019-09-01)
 
 **Note:** Version bump only for package root
-
-
-
-
 
 # [5.0.0](https://github.com/azu/power-doctest/compare/v4.1.2...v5.0.0) (2019-09-01)
 
 **Note:** Version bump only for package root
 
-
-
-
-
 ## [4.1.2](https://github.com/azu/power-doctest/compare/v4.1.1...v4.1.2) (2019-09-01)
 
 **Note:** Version bump only for package root
 
-
-
-
-
 ## [4.1.1](https://github.com/azu/power-doctest/compare/v4.1.0...v4.1.1) (2019-09-01)
-
 
 ### Bug Fixes
 
 * **asciidoctor:** compute position form string match ([7eedda1](https://github.com/azu/power-doctest/commit/7eedda1))
 
-
-
-
-
 # [4.1.0](https://github.com/azu/power-doctest/compare/v4.0.1...v4.1.0) (2019-09-01)
-
 
 ### Features
 
 * **tester:** add `defaultDoctestRunnerOptions` ([3bcf8ed](https://github.com/azu/power-doctest/commit/3bcf8ed))
 
-
-
-
-
 ## [4.0.1](https://github.com/azu/power-doctest/compare/v4.0.0...v4.0.1) (2019-09-01)
-
 
 ### Bug Fixes
 
 * **cli:** add bin field ([dc36805](https://github.com/azu/power-doctest/commit/dc36805))
 
-
-
-
-
 # [4.0.0](https://github.com/azu/power-doctest/compare/v3.3.3...v4.0.0) (2019-09-01)
-
 
 ### Bug Fixes
 
 * **power-doctest:** add try-catch ([5e5e8da](https://github.com/azu/power-doctest/commit/5e5e8da))
 * **tester:** remove preTransform options ([c5fb80a](https://github.com/azu/power-doctest/commit/c5fb80a))
 * fix tester requireMock ([a4e0574](https://github.com/azu/power-doctest/commit/a4e0574))
-
 
 ### Features
 
@@ -179,116 +111,65 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **cli:** add CLI ([4bb1f7a](https://github.com/azu/power-doctest/commit/4bb1f7a))
 * **tester:** add default state ([9fc3aa8](https://github.com/azu/power-doctest/commit/9fc3aa8))
 
-
-
-
-
 ## [3.3.3](https://github.com/azu/power-doctest/compare/v3.3.2...v3.3.3) (2019-08-25)
-
 
 ### Bug Fixes
 
 * **power-doctest:** support Node.js 8 ([b2d63f0](https://github.com/azu/power-doctest/commit/b2d63f0))
 
-
-
-
-
 ## [3.3.2](https://github.com/azu/power-doctest/compare/v3.3.1...v3.3.2) (2019-08-25)
-
 
 ### Bug Fixes
 
 * **power-doctest:** disable babelrc ([d0a49b7](https://github.com/azu/power-doctest/commit/d0a49b7))
 
-
-
-
-
 ## [3.3.1](https://github.com/azu/power-doctest/compare/v3.3.0...v3.3.1) (2019-08-25)
-
 
 ### Bug Fixes
 
 * **power-doctest:** disable config file ([f610d2d](https://github.com/azu/power-doctest/commit/f610d2d))
 
-
-
-
-
 # [3.3.0](https://github.com/azu/power-doctest/compare/v3.2.1...v3.3.0) (2019-08-25)
-
 
 ### Features
 
 * **power-doctes:** support power-assert again ([09632ec](https://github.com/azu/power-doctest/commit/09632ec))
 
-
-
-
-
 ## [3.2.1](https://github.com/azu/power-doctest/compare/v3.2.0...v3.2.1) (2019-08-25)
-
 
 ### Bug Fixes
 
 * **power-doctest/javascript:** add filepath to run method ([40678bb](https://github.com/azu/power-doctest/commit/40678bb))
 
-
-
-
-
 # [3.2.0](https://github.com/azu/power-doctest/compare/v3.1.1...v3.2.0) (2019-08-25)
-
 
 ### Features
 
 * **markdown:** support `runCodeBlockNode` function ([657b1ed](https://github.com/azu/power-doctest/commit/657b1ed))
 
-
-
-
-
 ## [3.1.1](https://github.com/azu/power-doctest/compare/v3.1.0...v3.1.1) (2019-08-25)
-
 
 ### Bug Fixes
 
 * **@power-doctest/javascript:** release event listener ([47d4c04](https://github.com/azu/power-doctest/commit/47d4c04))
 
-
-
-
-
 # [3.1.0](https://github.com/azu/power-doctest/compare/v3.0.1...v3.1.0) (2019-08-25)
-
 
 ### Bug Fixes
 
 * **@power-doctest/javascript:** support No assertion code ([b00d3e3](https://github.com/azu/power-doctest/commit/b00d3e3))
 
-
 ### Features
 
 * **@power-doctest/markdown:** add lineNumber and columnNumber ([bbc3186](https://github.com/azu/power-doctest/commit/bbc3186))
 
-
-
-
-
 ## [3.0.1](https://github.com/azu/power-doctest/compare/v3.0.0...v3.0.1) (2019-08-25)
-
 
 ### Bug Fixes
 
 * **@power-doctest:** fix main ([c2baef9](https://github.com/azu/power-doctest/commit/c2baef9))
 
-
-
-
-
 # 3.0.0 (2019-08-25)
-
 
 ### Bug Fixes
 
@@ -305,7 +186,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **utils:** add missing extractionBody ([3bca03e](https://github.com/azu/power-doctest/commit/3bca03e))
 * array and directive string expression support ([1a6efcd](https://github.com/azu/power-doctest/commit/1a6efcd))
 * update node types ([6ad0195](https://github.com/azu/power-doctest/commit/6ad0195))
-
 
 ### Features
 
@@ -327,145 +207,98 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **util:** add #wrapNode function ([36baa81](https://github.com/azu/power-doctest/commit/36baa81))
 * support NaN assert ([117daeb](https://github.com/azu/power-doctest/commit/117daeb))
 
-
 ### BREAKING CHANGES
 
 * **assert:** assertion is strict by default
 
-
 # 2.2.0 (2019-08-24)
-
 
 ### Features
 
 * support assertBeforeCallbackName and assertAfterCallbackName options ([32f5ade](https://github.com/azu/power-doctest/commit/32f5ade))
 
-
-
 # 2.1.0 (2019-01-19)
-
 
 ### Features
 
 * **option:** support `asyncCallbackName` option ([0516ad5](https://github.com/azu/power-doctest/commit/0516ad5))
 
-
-
 # 2.0.0 (2019-01-19)
-
 
 ### Features
 
 * add options ([30c80cc](https://github.com/azu/power-doctest/commit/30c80cc))
 
-
-
 # 1.4.0 (2018-10-14)
-
 
 ### Features
 
 * **depsO:** upgrade ast-source@3.0 ([5bc4f71](https://github.com/azu/power-doctest/commit/5bc4f71))
 
-
-
 ## 1.3.2 (2018-02-27)
-
 
 ### Bug Fixes
 
 * **pacakge:** fix build script ([6c498ab](https://github.com/azu/power-doctest/commit/6c498ab))
 
-
-
 ## 1.3.1 (2017-11-23)
 
-
-
 # 1.3.0 (2017-09-10)
-
 
 ### Features
 
 * **npm:** update dpes ([5e75c54](https://github.com/azu/power-doctest/commit/5e75c54))
 
-
-
 # 1.2.0 (2016-11-19)
-
 
 ### Features
 
 * **npm:** update to espower@2.0 ([41afee6](https://github.com/azu/power-doctest/commit/41afee6))
 
-
-
 ## 1.1.1 (2016-07-29)
-
 
 ### Bug Fixes
 
 * **src:** fix transform ([2020f6f](https://github.com/azu/power-doctest/commit/2020f6f))
 
-
-
 # 1.1.0 (2016-06-16)
-
 
 ### Features
 
 * **ast:** support module type ([7e63fa0](https://github.com/azu/power-doctest/commit/7e63fa0))
 
-
-
 ## 1.0.1 (2015-08-09)
-
 
 ### Bug Fixes
 
 * **bin:** fix path to lib ([2f99c82](https://github.com/azu/power-doctest/commit/2f99c82))
 * **npm:** add esprima to dependencies ([e5529f3](https://github.com/azu/power-doctest/commit/e5529f3))
 
-
-
 # 1.0.0 (2015-08-09)
-
 
 ### Bug Fixes
 
 * **npm:** add concat-stream ([79e27ab](https://github.com/azu/power-doctest/commit/79e27ab))
 
-
 ### Features
 
 * **cli:** add cli for power-doctest ([d9e1a7c](https://github.com/azu/power-doctest/commit/d9e1a7c))
 
-
-
 ## 0.3.4 (2014-08-12)
 
-
-
 ## 0.3.3 (2014-07-21)
-
 
 ### Bug Fixes
 
 * show pass when assert failed ([402fe98](https://github.com/azu/power-doctest/commit/402fe98))
 
-
-
 ## 0.3.2 (2014-03-22)
-
 
 ### Bug Fixes
 
 * **memory-leak:** remove listeners when finished ([4b98531](https://github.com/azu/power-doctest/commit/4b98531))
 
-
-
 # 0.3.0 (2014-03-22)
-
 
 ### Bug Fixes
 
@@ -473,47 +306,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **reporter:** change default reporter. ([c3720d6](https://github.com/azu/power-doctest/commit/c3720d6)), closes [#8](https://github.com/azu/power-doctest/issues/8)
 * **travis:** update node.js on travis ([606f268](https://github.com/azu/power-doctest/commit/606f268))
 
-
-
 ## 0.2.5 (2014-03-02)
 
-
-
 ## 0.2.4 (2014-03-02)
-
 
 ### Features
 
 * **option:** add `extractConsole` option ([b7a76dc](https://github.com/azu/power-doctest/commit/b7a76dc))
 
-
-
 ## 0.2.1 (2013-12-08)
-
-
 
 # 0.2.0 (2013-12-08)
 
-
-
 ## 0.1.4 (2013-12-04)
-
-
 
 ## 0.1.3 (2013-12-04)
 
-
-
 ## 0.1.2 (2013-12-04)
-
-
 
 ## 0.1.1 (2013-12-04)
 
-
-
 # 0.1.0 (2013-12-01)
-
-
 
 ## 0.0.1 (2013-12-01)
