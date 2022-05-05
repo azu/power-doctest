@@ -17,7 +17,7 @@
     "prettier": "^2.6.2"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap && yarn run build",
+    "bootstrap": "yarn run build",
     "build": "lerna run build",
     "test": "lerna run test",
     "updateSnapshot": "lerna run updateSnapshot",
