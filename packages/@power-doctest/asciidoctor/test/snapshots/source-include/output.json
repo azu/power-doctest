@@ -8,8 +8,8 @@
                 "column": null
             },
             "end": {
-                "line": 1,
-                "column": 15
+                "line": 3,
+                "column": 2
             }
         },
         "doctestOptions": {

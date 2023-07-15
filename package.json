@@ -4,20 +4,13 @@
   "version": "1.0.0",
   "description": "monorepo root",
   "main": "index.js",
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "packages/@power-doctest/*"
-    ]
-  },
   "devDependencies": {
-    "@lerna-lite/cli": "^1.1.1",
-    "@lerna-lite/run": "^1.1.1",
-    "lint-staged": "^12.4.1",
-    "prettier": "^2.6.2"
+    "lerna": "^7.1.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0"
   },
   "scripts": {
-    "bootstrap": "yarn run build",
+    "bootstrap": "npm run build",
     "build": "lerna run build",
     "test": "lerna run test",
     "updateSnapshot": "lerna run updateSnapshot",
@@ -50,5 +43,6 @@
     "*.{js,jsx,ts,tsx,css}": [
       "prettier --write"
     ]
-  }
+  },
+  "packageManager": "pnpm@7.19.0"
 }

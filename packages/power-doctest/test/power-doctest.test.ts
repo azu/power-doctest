@@ -1,6 +1,6 @@
 import * as path from "path";
 import { runPowerDoctest } from "../src/power-doctest";
-import assert = require("assert");
+import * as assert from "assert";
 
 describe("runPowerDoctest", function () {
     it("should test", () => {

@@ -32,7 +32,6 @@ describe("core", function () {
             assert.strictEqual(
                 result,
                 `var assert = require("power-assert");
-
 function addPrefix(text, prefix = "デフォルト:") {
   return prefix + text;
 }`.trim()

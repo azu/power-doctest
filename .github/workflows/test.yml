@@ -9,14 +9,15 @@ jobs:
         node-version: [ 14, 16, 18 ]
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: |
-          yarn install
-          yarn bootstrap
+          corepack enable
+          pnpm install
+          pnpm run bootstrap
       - name: Test
-        run: yarn test
+        run: pnpm test
