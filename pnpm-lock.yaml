@@ -54,7 +54,6 @@ importers:
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       babel-plugin-espower: ^3.0.1
-      babel-preset-power-assert: ^3.0.0
       comment-to-assert: ^5.3.1
       espower: ^2.1.2
       mocha: ^10.2.0
@@ -80,7 +79,6 @@ importers:
       '@types/babel__traverse': 7.20.1
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      babel-preset-power-assert: 3.0.0_power-assert@1.6.1
       mocha: 10.2.0
       ts-node: 10.9.1_xj5cs2fmhcigm4w5bhhtewqeja
       ts-node-test-register: 10.0.0_ts-node@10.9.1
@@ -419,11 +417,6 @@ packages:
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.5
     dev: false
-
-  /@babel/helper-plugin-utils/7.22.5:
-    resolution: {integrity: sha512-uLls06UVKgFG9QD4OeFYLEGteMIAa5kpTPcFL28yuCIIzsf6ZyKZMllKVOCZFhiZ5ptnwX4mtKdWCBE/uT4amg==}
-    engines: {node: '>=6.9.0'}
-    dev: true
 
   /@babel/helper-simple-access/7.22.5:
     resolution: {integrity: sha512-n0H99E/K+Bika3++WNL17POvo4rKWZ7lZEp1Q+fStVbUi8nxPQEBOlTmCOxW/0JsS56SKKQ+ojAe2pHKJHN35w==}
@@ -1134,6 +1127,7 @@ packages:
 
   /acorn-es7-plugin/1.1.7:
     resolution: {integrity: sha512-7D+8kscFMf6F2t+8ZRYmv82CncDZETsaZ4dEl5lh3qQez7FVABk2Vz616SAbnIq1PbNsLVaZjl2oSkk5BWAKng==}
+    dev: false
 
   /acorn-globals/3.1.0:
     resolution: {integrity: sha512-uWttZCk96+7itPxK8xCzY86PnxKTMrReKDqrHzv42VQY0K30PUO8WY13WMOuI+cOdX4EIdzdvQ8k6jkuGRFMYw==}
@@ -1162,6 +1156,7 @@ packages:
     resolution: {integrity: sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: false
 
   /acorn/8.10.0:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
@@ -1300,6 +1295,7 @@ packages:
 
   /array-filter/1.0.0:
     resolution: {integrity: sha512-Ene1hbrinPZ1qPoZp7NSx4jQnh4nr7MtY78pHNb+yr8yHbxmTS7ChGW0a55JKA7TkRDeoQxK4GcJaCvBYplSKA==}
+    dev: false
 
   /array-find-index/1.0.2:
     resolution: {integrity: sha512-M1HQyIXcBGtVywBt8WVdim+lrNaK7VHp99Qt5pSNziXznKHViIBbXWtfRTpEFpF/c4FdfxNAsCCwPp5phBYJtw==}
@@ -1383,14 +1379,6 @@ packages:
       - debug
     dev: true
 
-  /babel-plugin-empower-assert/2.0.0_power-assert@1.6.1:
-    resolution: {integrity: sha512-xAzOOTEYIp8BnbHNmU7xKj7mePlPP3/bvFqcjBTeJBDzl+pne4ZjNcpOnaV6WUYnux3fcOOgRW622CsWlU4SGg==}
-    peerDependencies:
-      power-assert: ^1.0.0
-    dependencies:
-      power-assert: 1.6.1
-    dev: true
-
   /babel-plugin-espower/3.0.1:
     resolution: {integrity: sha512-Ms49U7VIAtQ/TtcqRbD6UBmJBUCSxiC3+zPc+eGqxKUIFO1lTshyEDRUjhoAbd2rWfwYf3cZ62oXozrd8W6J0A==}
     dependencies:
@@ -1401,16 +1389,7 @@ packages:
       espower-location-detector: 1.0.0
       espurify: 1.8.1
       estraverse: 4.3.0
-
-  /babel-preset-power-assert/3.0.0_power-assert@1.6.1:
-    resolution: {integrity: sha512-StkhBJsKdLemlsujCWjuHjjd/h+u7L2bgb/9/YsgBj1FBnE0BUthyaY8Xdpiqthf3NUudhd8BJMZFjGtXVKE6A==}
-    dependencies:
-      '@babel/helper-plugin-utils': 7.22.5
-      babel-plugin-empower-assert: 2.0.0_power-assert@1.6.1
-      babel-plugin-espower: 3.0.1
-    transitivePeerDependencies:
-      - power-assert
-    dev: true
+    dev: false
 
   /babel-runtime/6.26.0:
     resolution: {integrity: sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==}
@@ -1558,10 +1537,12 @@ packages:
       deep-equal: 1.1.1
       espurify: 1.8.1
       estraverse: 4.3.0
+    dev: false
 
   /call-signature/0.0.2:
     resolution: {integrity: sha512-qvYvkAVcoae0obt8OsZn0VEBHeEpvYIZDy1gGYtZDJG0fHawew+Mi0dBjieFz8F8dzQ2Kr19+nsDm+T5XFVs+Q==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /callsites/3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -1965,6 +1946,7 @@ packages:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
     requiresBuild: true
+    dev: false
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -2073,6 +2055,7 @@ packages:
       object-is: 1.1.5
       object-keys: 1.1.1
       regexp.prototype.flags: 1.5.0
+    dev: false
 
   /deep-is/0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -2121,6 +2104,7 @@ packages:
 
   /diff-match-patch/1.0.5:
     resolution: {integrity: sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw==}
+    dev: false
 
   /diff-sequences/29.4.3:
     resolution: {integrity: sha512-ofrBgwpPhCD85kMKtE9RYFFq6OC1A89oW2vvgWZNCwxrUpRUILopY7lsYyMDSjc8g6U6aiO0Qubg6r4Wgt5ZnA==}
@@ -2190,12 +2174,14 @@ packages:
     dependencies:
       call-signature: 0.0.2
       core-js: 2.6.12
+    dev: false
 
   /empower/1.3.1:
     resolution: {integrity: sha512-uB6/ViBaawOO/uujFADTK3SqdYlxYNn+N4usK9MRKZ4Hbn/1QSy8k2PezxCA2/+JGbF8vd/eOfghZ90oOSDZCA==}
     dependencies:
       core-js: 2.6.12
       empower-core: 1.2.0
+    dev: false
 
   /encoding/0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
@@ -2417,6 +2403,7 @@ packages:
       path-is-absolute: 1.0.1
       source-map: 0.5.7
       xtend: 4.0.2
+    dev: false
 
   /espower/2.1.2:
     resolution: {integrity: sha512-2qa3aEFtcgPB782jTKDPu82hOdw8+zJsWdOn12Tey8XlexHTqsYUIdLC2B7cUECENXly0vZblH1CEZcqttPNjw==}
@@ -2447,6 +2434,7 @@ packages:
     resolution: {integrity: sha512-ZDko6eY/o+D/gHCWyHTU85mKDgYcS4FJj7S+YD6WIInm7GQ6AnOjmcL4+buFV/JOztVLELi/7MmuGU5NHta0Mg==}
     dependencies:
       core-js: 2.6.12
+    dev: false
 
   /esrecurse/4.3.0:
     resolution: {integrity: sha512-KmfKL3b6G+RXvP8N1vr3Tq1kL/oCFgn2NYXEtqP8/L3pKapUA4G8cFVaoF3SU323CD4XypR/ffioHmkti6/Tag==}
@@ -2458,6 +2446,7 @@ packages:
   /estraverse/4.3.0:
     resolution: {integrity: sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==}
     engines: {node: '>=4.0'}
+    dev: false
 
   /estraverse/5.3.0:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
@@ -3114,6 +3103,7 @@ packages:
 
   /indexof/0.0.1:
     resolution: {integrity: sha512-i0G7hLJ1z0DE8dsqJa2rycj9dBmNKgXBvotXtZYXakU9oivfB9Uj2ZBC27qqef2U58/ZLwalxa1X/RDCdkHtVg==}
+    dev: false
 
   /inflight/1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
@@ -3422,6 +3412,7 @@ packages:
 
   /is-url/1.2.4:
     resolution: {integrity: sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==}
+    dev: false
 
   /is-weakref/1.0.2:
     resolution: {integrity: sha512-qctsuLZmIQ0+vSSMfoVvyFe2+GSEvnmZ2ezTup1SBse9+twCCeial6EEi3Nc2KFcf6+qz2FBPnjXsk8xhKSaPQ==}
@@ -4540,6 +4531,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.2.0
+    dev: false
 
   /object-keys/1.1.1:
     resolution: {integrity: sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==}
@@ -4878,6 +4870,7 @@ packages:
     dependencies:
       core-js: 2.6.12
       power-assert-context-traversal: 1.2.0
+    dev: false
 
   /power-assert-context-reducer-ast/1.2.0:
     resolution: {integrity: sha512-EgOxmZ/Lb7tw4EwSKX7ZnfC0P/qRZFEG28dx/690qvhmOJ6hgThYFm5TUWANDLK5NiNKlPBi5WekVGd2+5wPrw==}
@@ -4887,12 +4880,14 @@ packages:
       core-js: 2.6.12
       espurify: 1.8.1
       estraverse: 4.3.0
+    dev: false
 
   /power-assert-context-traversal/1.2.0:
     resolution: {integrity: sha512-NFoHU6g2umNajiP2l4qb0BRWD773Aw9uWdWYH9EQsVwIZnog5bd2YYLFCVvaxWpwNzWeEfZIon2xtyc63026pQ==}
     dependencies:
       core-js: 2.6.12
       estraverse: 4.3.0
+    dev: false
 
   /power-assert-formatter/1.4.1:
     resolution: {integrity: sha512-c2QzTk1a6BUumuzjffFUrsMlx2gqLEoeEMrx6gVaHzQ/zTBTibQGblaQslbv72eq9RJNFQXRryjTHoffIEz+ww==}
@@ -4904,15 +4899,18 @@ packages:
       power-assert-renderer-comparison: 1.2.0
       power-assert-renderer-diagram: 1.2.0
       power-assert-renderer-file: 1.2.0
+    dev: false
 
   /power-assert-renderer-assertion/1.2.0:
     resolution: {integrity: sha512-3F7Q1ZLmV2ZCQv7aV7NJLNK9G7QsostrhOU7U0RhEQS/0vhEqrRg2jEJl1jtUL4ZyL2dXUlaaqrmPv5r9kRvIg==}
     dependencies:
       power-assert-renderer-base: 1.1.1
       power-assert-util-string-width: 1.2.0
+    dev: false
 
   /power-assert-renderer-base/1.1.1:
     resolution: {integrity: sha512-aGCUi0NuNd/fVS6KKMLTjRP58cdlHlQKgXV4WKl3YlUhnN0d9QBEYOyvmiumdjk+5GuZmozvEmBIcTAcxEZqnw==}
+    dev: false
 
   /power-assert-renderer-comparison/1.2.0:
     resolution: {integrity: sha512-7c3RKPDBKK4E3JqdPtYRE9cM8AyX4LC4yfTvvTYyx8zSqmT5kJnXwzR0yWQLOavACllZfwrAGQzFiXPc5sWa+g==}
@@ -4922,6 +4920,7 @@ packages:
       power-assert-renderer-base: 1.1.1
       stringifier: 1.4.0
       type-name: 2.0.2
+    dev: false
 
   /power-assert-renderer-diagram/1.2.0:
     resolution: {integrity: sha512-JZ6PC+DJPQqfU6dwSmpcoD7gNnb/5U77bU5KgNwPPa+i1Pxiz6UuDeM3EUBlhZ1HvH9tMjI60anqVyi5l2oNdg==}
@@ -4930,16 +4929,19 @@ packages:
       power-assert-renderer-base: 1.1.1
       power-assert-util-string-width: 1.2.0
       stringifier: 1.4.0
+    dev: false
 
   /power-assert-renderer-file/1.2.0:
     resolution: {integrity: sha512-/oaVrRbeOtGoyyd7e4IdLP/jIIUFJdqJtsYzP9/88R39CMnfF/S/rUc8ZQalENfUfQ/wQHu+XZYRMaCEZmEesg==}
     dependencies:
       power-assert-renderer-base: 1.1.1
+    dev: false
 
   /power-assert-util-string-width/1.2.0:
     resolution: {integrity: sha512-lX90G0igAW0iyORTILZ/QjZWsa1MZ6VVY3L0K86e2eKun3S4LKPH4xZIl8fdeMYLfOjkaszbNSzf1uugLeAm2A==}
     dependencies:
       eastasianwidth: 0.2.0
+    dev: false
 
   /power-assert/1.6.1:
     resolution: {integrity: sha512-VWkkZV6Y+W8qLX/PtJu2Ur2jDPIs0a5vbP0TpKeybNcIXmT4vcKoVkyTp5lnQvTpY/DxacAZ4RZisHRHLJcAZQ==}
@@ -4949,6 +4951,7 @@ packages:
       power-assert-formatter: 1.4.1
       universal-deep-strict-equal: 1.2.2
       xtend: 4.0.2
+    dev: false
 
   /prelude-ls/1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
@@ -5577,6 +5580,7 @@ packages:
   /source-map/0.5.7:
     resolution: {integrity: sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
@@ -5701,6 +5705,7 @@ packages:
       core-js: 2.6.12
       traverse: 0.6.7
       type-name: 2.0.2
+    dev: false
 
   /stringify-entities/2.0.0:
     resolution: {integrity: sha512-fqqhZzXyAM6pGD9lky/GOPq6V4X0SeTAFBl0iXb/BzOegl40gpf/bV3QQP7zULNYvjr6+Dx8SCaDULjVoOru0A==}
@@ -5901,6 +5906,7 @@ packages:
 
   /traverse/0.6.7:
     resolution: {integrity: sha512-/y956gpUo9ZNCb99YjxG7OaslxZWHfCHAUUfshwqOXmxUIvqLjVO581BT+gM59+QV9tFe6/CGG53tsA1Y7RSdg==}
+    dev: false
 
   /trim-newlines/2.0.0:
     resolution: {integrity: sha512-MTBWv3jhVjTU7XR3IQHllbiJs8sc75a80OEhB6or/q7pLTWgQ0bMGQXXYQSrSuXe6WiKWDZ5txXY5P59a/coVA==}
@@ -6023,6 +6029,7 @@ packages:
 
   /type-name/2.0.2:
     resolution: {integrity: sha512-kkgkuqR/jKdKO5oh/I2SMu2dGbLXoJq0zkdgbxaqYK+hr9S9edwVVGf+tMUFTx2gH9TN2+Zu9JZ/Njonb3cjhA==}
+    dev: false
 
   /type/1.2.0:
     resolution: {integrity: sha512-+5nt5AAniqsCnu2cEQQdpzCAh33kVx8n0VoFidKpB1dVVLAN/F+bgVOqOJqOnEnrhp222clB5p3vUlD+1QAnfg==}
@@ -6192,6 +6199,7 @@ packages:
       array-filter: 1.0.0
       indexof: 0.0.1
       object-keys: 1.1.1
+    dev: false
 
   /universal-user-agent/6.0.0:
     resolution: {integrity: sha512-isyNax3wXoKaulPDZWHQqbmIx1k2tb9fb3GGDBRxCscfYV2Ch7WxPArBsFEG8s/safwXTT7H4QGhaIkTp9447w==}
