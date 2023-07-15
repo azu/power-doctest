@@ -175,37 +175,35 @@ Also, you should consider to use { "runMode": "any" }`
             const script = new vm.Script(poweredCode, {
                 filename: options.filePath,
             });
-            script.runInNewContext(
-                vm.createContext({
-                    require: (moduleName: string) => {
-                        if (moduleName === "power-assert") {
-                            return assert;
-                        }
-                        // options.requireMock
-                        if (options.requireMock && Object.hasOwnProperty.call(options.requireMock, moduleName)) {
-                            return options.requireMock[moduleName];
-                        }
-                        return require(moduleName);
-                    },
-                    [postCallbackName]: (_id: string) => {
-                        countOfExecutedAssertion++;
-                        if (runMode === "all" && countOfExecutedAssertion === totalAssertionCount) {
-                            // when all finish
-                            restoreListener();
-                            resolve();
-                        } else if (runMode === "any") {
-                            // when anyone finish
-                            restoreListener();
-                            resolve();
-                        }
-                    },
-                    ...HostBuildIns,
-                    ...context,
-                }),
-                {
-                    timeout,
-                }
-            );
+            const vmContext = vm.createContext({
+                require: (moduleName: string) => {
+                    if (moduleName === "power-assert") {
+                        return assert;
+                    }
+                    // options.requireMock
+                    if (options.requireMock && Object.hasOwnProperty.call(options.requireMock, moduleName)) {
+                        return options.requireMock[moduleName];
+                    }
+                    return require(moduleName);
+                },
+                [postCallbackName]: (_id: string) => {
+                    countOfExecutedAssertion++;
+                    if (runMode === "all" && countOfExecutedAssertion === totalAssertionCount) {
+                        // when all finish
+                        restoreListener();
+                        resolve();
+                    } else if (runMode === "any") {
+                        // when anyone finish
+                        restoreListener();
+                        resolve();
+                    }
+                },
+                ...HostBuildIns,
+                ...context,
+            });
+            script.runInNewContext(vmContext, {
+                timeout,
+            });
         } catch (error) {
             restoreListener();
             reject(error);
