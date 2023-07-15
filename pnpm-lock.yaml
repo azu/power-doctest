@@ -18,7 +18,6 @@ importers:
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       asciidoctor: ^3.0.2
-      cross-env: ^7.0.3
       mocha: ^10.2.0
       prettier: ^3.0.0
       rimraf: ^5.0.1
@@ -33,7 +32,6 @@ importers:
     devDependencies:
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      cross-env: 7.0.3
       mocha: 10.2.0
       prettier: 3.0.0
       rimraf: 5.0.1
@@ -55,12 +53,9 @@ importers:
       '@types/babel__traverse': ^7.14.2
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
-      ast-equal: ^1.0.2
       babel-plugin-espower: ^3.0.1
-      babel-preset-jsdoc-to-assert: ^5.0.0
       babel-preset-power-assert: ^3.0.0
       comment-to-assert: ^5.3.1
-      cross-env: ^7.0.3
       espower: ^2.1.2
       mocha: ^10.2.0
       power-assert: ^1.6.1
@@ -85,10 +80,7 @@ importers:
       '@types/babel__traverse': 7.20.1
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      ast-equal: 1.1.0
-      babel-preset-jsdoc-to-assert: 5.0.0
       babel-preset-power-assert: 3.0.0_power-assert@1.6.1
-      cross-env: 7.0.3
       mocha: 10.2.0
       ts-node: 10.9.1_xj5cs2fmhcigm4w5bhhtewqeja
       ts-node-test-register: 10.0.0_ts-node@10.9.1
@@ -99,7 +91,6 @@ importers:
       '@power-doctest/types': ^5.3.1
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
-      cross-env: ^7.0.3
       mocha: ^10.2.0
       prettier: ^3.0.0
       rimraf: ^5.0.1
@@ -113,7 +104,6 @@ importers:
     devDependencies:
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      cross-env: 7.0.3
       mocha: 10.2.0
       prettier: 3.0.0
       rimraf: 5.0.1
@@ -128,7 +118,6 @@ importers:
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       '@types/unist': ^3.0.0
-      cross-env: ^7.0.3
       mocha: ^10.2.0
       prettier: ^3.0.0
       remark: ^11.0.2
@@ -153,7 +142,6 @@ importers:
     devDependencies:
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      cross-env: 7.0.3
       mocha: 10.2.0
       prettier: 3.0.0
       rimraf: 5.0.1
@@ -169,7 +157,6 @@ importers:
       '@power-doctest/types': ^5.3.1
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
-      cross-env: ^7.0.3
       husky: ^8.0.3
       lint-staged: ^13.2.3
       mocha: ^10.2.0
@@ -188,7 +175,6 @@ importers:
       '@power-doctest/javascript': link:../javascript
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      cross-env: 7.0.3
       husky: 8.0.3
       lint-staged: 13.2.3
       mocha: 10.2.0
@@ -203,7 +189,6 @@ importers:
     specifiers:
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
-      cross-env: ^7.0.3
       mocha: ^10.2.0
       prettier: ^3.0.0
       rimraf: ^5.0.1
@@ -213,7 +198,6 @@ importers:
     devDependencies:
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      cross-env: 7.0.3
       mocha: 10.2.0
       prettier: 3.0.0
       rimraf: 5.0.1
@@ -235,7 +219,6 @@ importers:
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       concat-stream: ^2.0.0
-      cross-env: ^7.0.3
       husky: ^8.0.3
       lint-staged: ^13.2.3
       mocha: ^10.2.0
@@ -257,7 +240,6 @@ importers:
       '@types/babel__traverse': 7.20.1
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
-      cross-env: 7.0.3
       husky: 8.0.3
       lint-staged: 13.2.3
       mocha: 10.2.0
@@ -276,7 +258,6 @@ importers:
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       '@types/promise.allsettled': ^1.0.3
-      cross-env: ^7.0.3
       meow: ^5.0.0
       mocha: ^10.2.0
       prettier: ^3.0.0
@@ -297,7 +278,6 @@ importers:
       '@types/mocha': 10.0.1
       '@types/node': 20.4.2
       '@types/promise.allsettled': 1.0.3
-      cross-env: 7.0.3
       mocha: 10.2.0
       prettier: 3.0.0
       rimraf: 5.0.1
@@ -1166,12 +1146,6 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /acorn/1.2.2:
-    resolution: {integrity: sha512-FsqWmApWGMGLKKNpHt12PMc5AK7BaZee0WRh04fCysmTzHe+rrKOa2MKjORhnzfpe4r0JnfdqHn02iDA9Dqj2A==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-    dev: true
-
   /acorn/3.3.0:
     resolution: {integrity: sha512-OLUyIIZ7mF5oaAUT1w0TFqQS81q3saT46x8t7ukpPjMNk+nbs4ZHhs7ToV8EWnLYLepjETXd4XaCE4uxkMeqUw==}
     engines: {node: '>=0.4.0'}
@@ -1383,14 +1357,6 @@ packages:
       - chokidar
     dev: false
 
-  /ast-equal/1.1.0:
-    resolution: {integrity: sha512-B/gAN646+AszsgiHA2DTkPEwYGY5OnWB9nLrPaDFewA84PqIAq9nBYEYa1NVR5El6jMZt4PRKh7/IPRbRcXL8Q==}
-    dependencies:
-      escodegen: 1.14.3
-      esprima: 2.7.3
-      power-assert: 0.11.0
-    dev: true
-
   /astral-regex/2.0.0:
     resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==}
     engines: {node: '>=8'}
@@ -1435,20 +1401,6 @@ packages:
       espower-location-detector: 1.0.0
       espurify: 1.8.1
       estraverse: 4.3.0
-
-  /babel-plugin-jsdoc-to-assert/4.0.0:
-    resolution: {integrity: sha512-Yo7E8E1Z+dln8l2vstKCBCLcQfHYDxhZYZm4uu4jmE7MnnidHsefcFAC99R2i6KjZY/JhpO3ynvOgpmSKZ7/zg==}
-    dependencies:
-      doctrine: 2.1.0
-      jsdoc-to-assert: 2.8.0
-    dev: true
-
-  /babel-preset-jsdoc-to-assert/5.0.0:
-    resolution: {integrity: sha512-M/eSKhKsgeEuaJ6CK11ZygFIhcqr2LFG0UqZt/lsaFtGvOuZAApAKfe9R263oFjXHC5gQfKYdZW7DKOlUsgvJA==}
-    dependencies:
-      '@babel/helper-plugin-utils': 7.22.5
-      babel-plugin-jsdoc-to-assert: 4.0.0
-    dev: true
 
   /babel-preset-power-assert/3.0.0_power-assert@1.6.1:
     resolution: {integrity: sha512-StkhBJsKdLemlsujCWjuHjjd/h+u7L2bgb/9/YsgBj1FBnE0BUthyaY8Xdpiqthf3NUudhd8BJMZFjGtXVKE6A==}
@@ -2032,14 +1984,6 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
 
-  /cross-env/7.0.3:
-    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
-    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
-    hasBin: true
-    dependencies:
-      cross-spawn: 7.0.3
-    dev: true
-
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -2132,6 +2076,7 @@ packages:
 
   /deep-is/0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
+    dev: false
 
   /defaults/1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
@@ -2199,13 +2144,6 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /doctrine/2.1.0:
-    resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      esutils: 2.0.3
-    dev: true
-
   /doctypes/1.1.0:
     resolution: {integrity: sha512-LLBi6pEqS6Do3EKQ3J0NqHWV5hhb78Pi8vvESYwyOy2c31ZEZVdtitdzsQsKb7878PEERhzUk0ftqGhG6Mz+pQ==}
     dev: false
@@ -2224,10 +2162,6 @@ packages:
 
   /duplexer/0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
-    dev: true
-
-  /eastasianwidth/0.1.1:
-    resolution: {integrity: sha512-jqG4b6XUnaQf0SrCeTi4NVLetPQM44xmkyadAXqaqCQsa2zqy9NWMdSOTNC0reqQ0zj+ePFAIh3TYlcXc6MZLQ==}
     dev: true
 
   /eastasianwidth/0.2.0:
@@ -2256,13 +2190,6 @@ packages:
     dependencies:
       call-signature: 0.0.2
       core-js: 2.6.12
-
-  /empower/0.11.0:
-    resolution: {integrity: sha512-EYFQ8BRXV/DvHm9gCQrHivosfOgpTTL/hasqxGJP61eFVXkKvRzo4pDW+hA1p4Q3NHeXq8wo16q9HbsG75DFiA==}
-    dependencies:
-      escallmatch: 1.5.0
-      xtend: 4.0.2
-    dev: true
 
   /empower/1.3.1:
     resolution: {integrity: sha512-uB6/ViBaawOO/uujFADTK3SqdYlxYNn+N4usK9MRKZ4Hbn/1QSy8k2PezxCA2/+JGbF8vd/eOfghZ90oOSDZCA==}
@@ -2449,6 +2376,7 @@ packages:
     dependencies:
       call-matcher: 1.1.0
       esprima: 2.7.3
+    dev: false
 
   /escape-string-regexp/1.0.5:
     resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
@@ -2470,6 +2398,7 @@ packages:
       optionator: 0.8.3
     optionalDependencies:
       source-map: 0.6.1
+    dev: false
 
   /escope/3.6.0:
     resolution: {integrity: sha512-75IUQsusDdalQEW/G/2esa87J7raqdJF+Ca0/Xm5C3Q58Nr4yVYjZGp/P1+2xiEVgXRrA39dpRb8LcshajbqDQ==}
@@ -2507,6 +2436,7 @@ packages:
     resolution: {integrity: sha512-OarPfz0lFCiW4/AV2Oy1Rp9qu0iusTKqykwTspGCZtPxmF81JR4MmIebvF1F9+UOKth2ZubLQ4XGGaU+hSn99A==}
     engines: {node: '>=0.10.0'}
     hasBin: true
+    dev: false
 
   /esprima/4.0.1:
     resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
@@ -2525,11 +2455,6 @@ packages:
       estraverse: 5.3.0
     dev: false
 
-  /estraverse/3.1.0:
-    resolution: {integrity: sha512-JjhbPaYzDMWsgbYz3d/RvB/4LfCzvDjJ6R0UuKLDAzWeXoeoc7BPqu/LThnJ3fjeZjaJxZbDUI7ld8HUj0oRjw==}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /estraverse/4.3.0:
     resolution: {integrity: sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==}
     engines: {node: '>=4.0'}
@@ -2542,6 +2467,7 @@ packages:
   /esutils/2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /event-emitter/0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
@@ -2631,6 +2557,7 @@ packages:
 
   /fast-levenshtein/2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
+    dev: false
 
   /fastq/1.15.0:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
@@ -2972,11 +2899,6 @@ packages:
       ignore: 5.2.4
       merge2: 1.4.1
       slash: 3.0.0
-    dev: true
-
-  /googlediff/0.1.0:
-    resolution: {integrity: sha512-71ZD3jCKckWRnh1DTPJABge1uZwwqMTUD1qyiao2VkAKvsO1keNf7/PGKXaDNGrq7EHOm1Z8TVT5jvG3SQuZAg==}
-    engines: {node: '>=0.8.0'}
     dev: true
 
   /gopd/1.0.1:
@@ -3602,13 +3524,6 @@ packages:
       argparse: 2.0.1
     dev: true
 
-  /jsdoc-to-assert/2.8.0:
-    resolution: {integrity: sha512-wrDXqzQV0NOnfrKKwY1gusfw4K8Jw8huzVKG+23wnhKe7LBRoLsnvJ5pY/D3GqJN9vj5JXY+NhHFP2p7AUW+Ww==}
-    dependencies:
-      doctrine: 2.1.0
-      object-assign: 4.1.1
-    dev: true
-
   /jsesc/2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
     engines: {node: '>=4'}
@@ -3770,6 +3685,7 @@ packages:
     dependencies:
       prelude-ls: 1.1.2
       type-check: 0.3.2
+    dev: false
 
   /libnpmaccess/7.0.2:
     resolution: {integrity: sha512-vHBVMw1JFMTgEk15zRsJuSAg7QtGGHpUSEfnbcRL1/gTBag9iEfJbyjpDmdJmwMhvpoLoNBtdAUCdGnaP32hhw==}
@@ -4613,6 +4529,7 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /object-inspect/1.12.3:
     resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
@@ -4675,6 +4592,7 @@ packages:
       prelude-ls: 1.1.2
       type-check: 0.3.2
       word-wrap: 1.2.3
+    dev: false
 
   /ora/5.4.1:
     resolution: {integrity: sha512-5b6Y85tPxZZ7QytO+BQzysW31HJku27cRIlkbAXaNx+BdcVi+LlRFmVXzeF6a7JCwJpyw5c4b+YSVImQIrBpuQ==}
@@ -4976,19 +4894,6 @@ packages:
       core-js: 2.6.12
       estraverse: 4.3.0
 
-  /power-assert-formatter/0.11.0:
-    resolution: {integrity: sha512-cW4J1lSr3iJRhvb9GNFGllxNk7+80yl3hm8OgTmnOLQCuAhJvhDlYk67opkjXIie269HHivor8qWTEp2pUR+Sg==}
-    dependencies:
-      acorn: 1.2.2
-      eastasianwidth: 0.1.1
-      estraverse: 3.1.0
-      googlediff: 0.1.0
-      object-keys: 1.1.1
-      stringifier: 1.4.0
-      type-name: 1.1.0
-      xtend: 4.0.2
-    dev: true
-
   /power-assert-formatter/1.4.1:
     resolution: {integrity: sha512-c2QzTk1a6BUumuzjffFUrsMlx2gqLEoeEMrx6gVaHzQ/zTBTibQGblaQslbv72eq9RJNFQXRryjTHoffIEz+ww==}
     dependencies:
@@ -5036,14 +4941,6 @@ packages:
     dependencies:
       eastasianwidth: 0.2.0
 
-  /power-assert/0.11.0:
-    resolution: {integrity: sha512-MtjQI01F8DNkU9Ng1AO6BXQoNwh2T6bFVIMK0mHDJCtDDxGGxuKwQJUO0OMMlZHKqRS6SY3xQTIpOxwsmsyNoA==}
-    dependencies:
-      empower: 0.11.0
-      power-assert-formatter: 0.11.0
-      xtend: 4.0.2
-    dev: true
-
   /power-assert/1.6.1:
     resolution: {integrity: sha512-VWkkZV6Y+W8qLX/PtJu2Ur2jDPIs0a5vbP0TpKeybNcIXmT4vcKoVkyTp5lnQvTpY/DxacAZ4RZisHRHLJcAZQ==}
     dependencies:
@@ -5056,6 +4953,7 @@ packages:
   /prelude-ls/1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
     engines: {node: '>= 0.8.0'}
+    dev: false
 
   /prettier/3.0.0:
     resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
@@ -6096,6 +5994,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dependencies:
       prelude-ls: 1.1.2
+    dev: false
 
   /type-fest/0.18.1:
     resolution: {integrity: sha512-OIAYXk8+ISY+qTOwkHtKqzAuxchoMiD9Udx+FSGQDuiRR+PJKJHc2NJAXlbhkGwTt/4/nKZxELY1w3ReWOL8mw==}
@@ -6120,10 +6019,6 @@ packages:
   /type-fest/0.8.1:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
-    dev: true
-
-  /type-name/1.1.0:
-    resolution: {integrity: sha512-CDtdRdtLvu7B9rJSiD17HJsvzX/ieeSEjzktXaCOTPkJLko2MS+xi9Um9EbQp+ChwRoFgFKCD0OU1P5UGjehqw==}
     dev: true
 
   /type-name/2.0.2:
@@ -6462,6 +6357,7 @@ packages:
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /wordwrap/0.0.2:
     resolution: {integrity: sha512-xSBsCeh+g+dinoBv3GAOWM4LcVVO68wLXRanibtBSdUvkGWQRGeE9P7IwU9EmDDi4jA6L44lz15CGMwdw9N5+Q==}
