@@ -30,7 +30,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
+    "build": "tsc -p .",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
     "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",
@@ -46,7 +46,6 @@
     "@power-doctest/javascript": "^5.3.1",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.2",
-    "cross-env": "^7.0.3",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "mocha": "^10.2.0",

@@ -35,7 +35,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
+    "build": "tsc -p .",
     "clean": "rimraf lib/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
@@ -54,7 +54,6 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.2",
     "@types/promise.allsettled": "^1.0.3",
-    "cross-env": "^7.0.3",
     "mocha": "^10.2.0",
     "prettier": "^3.0.0",
     "rimraf": "^5.0.1",

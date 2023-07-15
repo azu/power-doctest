@@ -17,7 +17,7 @@
   "main": "lib/power-doctest.js",
   "types": "lib/power-doctest.d.ts",
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
+    "build": "tsc -p .",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
     "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
@@ -45,7 +45,6 @@
     "ast-equal": "^1.0.2",
     "babel-preset-jsdoc-to-assert": "^5.0.0",
     "babel-preset-power-assert": "^3.0.0",
-    "cross-env": "^7.0.3",
     "mocha": "^10.2.0",
     "ts-node": "^10.4.0",
     "ts-node-test-register": "^10.0.0",
