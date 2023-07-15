@@ -181,6 +181,10 @@ Also, you should consider to use { "runMode": "any" }`
                         if (moduleName === "power-assert") {
                             return assert;
                         }
+                        // options.requireMock
+                        if (options.requireMock && Object.hasOwnProperty.call(options.requireMock, moduleName)) {
+                            return options.requireMock[moduleName];
+                        }
                         return require(moduleName);
                     },
                     [postCallbackName]: (_id: string) => {
@@ -197,7 +201,6 @@ Also, you should consider to use { "runMode": "any" }`
                     },
                     ...HostBuildIns,
                     ...context,
-                    ...options.requireMock,
                 }),
                 {
                     timeout,
