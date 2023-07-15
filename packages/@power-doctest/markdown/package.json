@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/markdown",
-  "version": "5.3.2",
+  "version": "5.3.3",
   "description": "A Markdown parser for power-doctest.",
   "keywords": [
     "doctest",
@@ -57,8 +57,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@power-doctest/javascript": "^5.3.1",
-    "@power-doctest/types": "^5.3.1",
+    "@power-doctest/javascript": "^5.3.3",
+    "@power-doctest/types": "^5.3.3",
     "@types/unist": "^3.0.0",
     "remark": "^11.0.2",
     "unist-util-find-all-between": "^1.0.6",

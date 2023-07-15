@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.3](https://github.com/azu/power-doctest-runner/compare/v5.3.2...v5.3.3) (2023-07-15)
+
+
+### Bug Fixes
+
+* **tester:** use `vm` instead of `vm2` ([#33](https://github.com/azu/power-doctest-runner/issues/33)) ([b21c710](https://github.com/azu/power-doctest-runner/commit/b21c710e6628569ec973785857521971bb3eed2f))
+
+
+
+
+
 ## [5.3.2](https://github.com/azu/power-doctest-runner/compare/v5.3.1...v5.3.2) (2022-05-05)
 
 ### Bug Fixes

@@ -14,7 +14,7 @@ importers:
 
   packages/@power-doctest/asciidoctor:
     specifiers:
-      '@power-doctest/types': ^5.3.1
+      '@power-doctest/types': ^5.3.3
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       asciidoctor: ^3.0.2
@@ -54,7 +54,7 @@ importers:
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       babel-plugin-espower: ^3.0.1
-      comment-to-assert: ^5.3.1
+      comment-to-assert: ^5.3.3
       espower: ^2.1.2
       mocha: ^10.2.0
       power-assert: ^1.6.1
@@ -86,7 +86,7 @@ importers:
 
   packages/@power-doctest/javascript:
     specifiers:
-      '@power-doctest/types': ^5.3.1
+      '@power-doctest/types': ^5.3.3
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       mocha: ^10.2.0
@@ -111,8 +111,8 @@ importers:
 
   packages/@power-doctest/markdown:
     specifiers:
-      '@power-doctest/javascript': ^5.3.1
-      '@power-doctest/types': ^5.3.1
+      '@power-doctest/javascript': ^5.3.3
+      '@power-doctest/types': ^5.3.3
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       '@types/unist': ^3.0.0
@@ -150,9 +150,9 @@ importers:
 
   packages/@power-doctest/tester:
     specifiers:
-      '@power-doctest/core': ^5.3.2
-      '@power-doctest/javascript': ^5.3.1
-      '@power-doctest/types': ^5.3.1
+      '@power-doctest/core': ^5.3.3
+      '@power-doctest/javascript': ^5.3.3
+      '@power-doctest/types': ^5.3.3
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2
       husky: ^8.0.3
@@ -248,10 +248,10 @@ importers:
 
   packages/power-doctest:
     specifiers:
-      '@power-doctest/asciidoctor': ^5.3.1
-      '@power-doctest/javascript': ^5.3.1
-      '@power-doctest/markdown': ^5.3.2
-      '@power-doctest/tester': ^5.3.2
+      '@power-doctest/asciidoctor': ^5.3.3
+      '@power-doctest/javascript': ^5.3.3
+      '@power-doctest/markdown': ^5.3.3
+      '@power-doctest/tester': ^5.3.3
       '@types/meow': ^5.0.0
       '@types/mocha': ^10.0.1
       '@types/node': ^20.4.2

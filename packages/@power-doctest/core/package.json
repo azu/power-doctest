@@ -1,6 +1,6 @@
 {
   "name": "@power-doctest/core",
-  "version": "5.3.2",
+  "version": "5.3.3",
   "description": "power-doctest core library",
   "homepage": "https://github.com/azu/power-doctest",
   "repository": {
@@ -30,7 +30,7 @@
     "@babel/traverse": "^7.16.7",
     "@babel/types": "^7.16.7",
     "babel-plugin-espower": "^3.0.1",
-    "comment-to-assert": "^5.3.1",
+    "comment-to-assert": "^5.3.3",
     "espower": "^2.1.2",
     "power-assert": "^1.6.1"
   },

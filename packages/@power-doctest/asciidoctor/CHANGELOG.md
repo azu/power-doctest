@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.3](https://github.com/azu/power-doctest/compare/v5.3.2...v5.3.3) (2023-07-15)
+
+**Note:** Version bump only for package @power-doctest/asciidoctor
+
+
+
+
+
 ## [5.3.1](https://github.com/azu/power-doctest/compare/v5.3.0...v5.3.1) (2022-01-05)
 
 
