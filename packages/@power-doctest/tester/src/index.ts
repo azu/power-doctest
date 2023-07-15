@@ -200,9 +200,7 @@ Also, you should consider to use { "runMode": "any" }`
                         ...context,
                         ...options.requireMock,
                     },
-                    {
-                        microtaskMode: "afterEvaluate",
-                    }
+                    {}
                 ),
                 {
                     timeout,
