@@ -176,32 +176,29 @@ Also, you should consider to use { "runMode": "any" }`
                 filename: options.filePath,
             });
             script.runInNewContext(
-                vm.createContext(
-                    {
-                        require: (moduleName: string) => {
-                            if (moduleName === "power-assert") {
-                                return assert;
-                            }
-                            return require(moduleName);
-                        },
-                        [postCallbackName]: (_id: string) => {
-                            countOfExecutedAssertion++;
-                            if (runMode === "all" && countOfExecutedAssertion === totalAssertionCount) {
-                                // when all finish
-                                restoreListener();
-                                resolve();
-                            } else if (runMode === "any") {
-                                // when anyone finish
-                                restoreListener();
-                                resolve();
-                            }
-                        },
-                        ...HostBuildIns,
-                        ...context,
-                        ...options.requireMock,
+                vm.createContext({
+                    require: (moduleName: string) => {
+                        if (moduleName === "power-assert") {
+                            return assert;
+                        }
+                        return require(moduleName);
                     },
-                    {}
-                ),
+                    [postCallbackName]: (_id: string) => {
+                        countOfExecutedAssertion++;
+                        if (runMode === "all" && countOfExecutedAssertion === totalAssertionCount) {
+                            // when all finish
+                            restoreListener();
+                            resolve();
+                        } else if (runMode === "any") {
+                            // when anyone finish
+                            restoreListener();
+                            resolve();
+                        }
+                    },
+                    ...HostBuildIns,
+                    ...context,
+                    ...options.requireMock,
+                }),
                 {
                     timeout,
                 }
