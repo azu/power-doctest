@@ -1,4 +1,4 @@
-import StructuredSource from "structured-source";
+import { StructuredSource } from "structured-source";
 import { ParsedCode, ParsedResults, ParserArgs } from "@power-doctest/types";
 import * as fs from "fs";
 import * as path from "path";

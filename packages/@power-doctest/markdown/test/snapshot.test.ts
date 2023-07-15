@@ -7,7 +7,7 @@ import { parse } from "../src";
 const fixturesDir = path.join(__dirname, "snapshots");
 
 const trimUndefinedProperty = <T>(o: T, baseDir: string): T => {
-    return JSON.parse(stringify(o, baseDir));
+    return JSON.parse(stringify(o as {}, baseDir));
 };
 const stringify = (o: {}, baseDir: string): string => {
     return JSON.stringify(
@@ -19,7 +19,7 @@ const stringify = (o: {}, baseDir: string): string => {
                 return value;
             }
         },
-        4
+        4,
     );
 };
 describe("Snapshot testing", () => {

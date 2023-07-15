@@ -51,16 +51,16 @@
     "@types/babel__generator": "^7.6.4",
     "@types/babel__template": "^7.4.1",
     "@types/babel__traverse": "^7.14.2",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^15.0.2",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.4.2",
     "cross-env": "^7.0.3",
-    "husky": "^6.0.0",
-    "lint-staged": "^11.0.0",
-    "mocha": "^8.4.0",
-    "prettier": "^2.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "mocha": "^10.2.0",
+    "prettier": "^3.0.0",
     "ts-node": "^10.4.0",
     "ts-node-test-register": "^10.0.0",
-    "typescript": "^4.5.4"
+    "typescript": "^5.1.6"
   },
   "email": "azuciao@gmail.com",
   "lint-staged": {

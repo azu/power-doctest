@@ -1,5 +1,5 @@
 import { ParsedResults, ParserArgs } from "@power-doctest/types";
-import StructuredSource from "structured-source";
+import { StructuredSource } from "structured-source";
 
 const getState = (code: string): "enabled" | "disabled" | "none" => {
     if (/\/\/\s*doctest-disable(d)?/.test(code)) {
