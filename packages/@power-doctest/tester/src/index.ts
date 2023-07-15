@@ -1,8 +1,8 @@
-import { NodeVM, VMScript } from "vm2";
 import { convertCode } from "@power-doctest/core";
 import { ParsedCode } from "@power-doctest/types";
 // @ts-expect-error: no types
 import assert from "power-assert";
+import * as vm from "vm";
 
 export interface PowerDoctestRunnerOptions {
     // pseudo file path for code
@@ -159,39 +159,55 @@ Also, you should consider to use { "runMode": "any" }`
         totalAssertionCount = poweredCode.split(CALLBACK_FUNCTION_NAME).length - 1;
         // current count of assert
         countOfExecutedAssertion = 0;
-        const vm = new NodeVM({
-            console: options.console ? "inherit" : "off",
-            timeout: timeout,
-            sandbox: {
-                [postCallbackName]: (_id: string) => {
-                    countOfExecutedAssertion++;
-                    if (runMode === "all" && countOfExecutedAssertion === totalAssertionCount) {
-                        // when all finish
-                        restoreListener();
-                        resolve();
-                    } else if (runMode === "any") {
-                        // when anyone finish
-                        restoreListener();
-                        resolve();
-                    }
-                },
-                // User defined context
-                ...context,
-            },
-            require: {
-                external: true,
-                builtin: ["*"],
-                mock: {
-                    "power-assert": assert,
-                    ...options.requireMock,
-                },
-            },
-        });
         try {
-            const script = new VMScript(poweredCode, {
+            const HostBuildIns = Object.freeze({
+                __proto__: null,
+                version: parseInt(process.versions.node.split(".")[0]),
+                process,
+                console,
+                setTimeout,
+                setInterval,
+                setImmediate,
+                clearTimeout,
+                clearInterval,
+                clearImmediate,
+            });
+            const script = new vm.Script(poweredCode, {
                 filename: options.filePath,
             });
-            vm.run(script);
+            script.runInNewContext(
+                vm.createContext(
+                    {
+                        require: (moduleName: string) => {
+                            if (moduleName === "power-assert") {
+                                return assert;
+                            }
+                            return require(moduleName);
+                        },
+                        [postCallbackName]: (_id: string) => {
+                            countOfExecutedAssertion++;
+                            if (runMode === "all" && countOfExecutedAssertion === totalAssertionCount) {
+                                // when all finish
+                                restoreListener();
+                                resolve();
+                            } else if (runMode === "any") {
+                                // when anyone finish
+                                restoreListener();
+                                resolve();
+                            }
+                        },
+                        ...HostBuildIns,
+                        ...context,
+                        ...options.requireMock,
+                    },
+                    {
+                        microtaskMode: "afterEvaluate",
+                    }
+                ),
+                {
+                    timeout,
+                }
+            );
         } catch (error) {
             restoreListener();
             reject(error);
