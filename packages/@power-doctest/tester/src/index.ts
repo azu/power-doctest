@@ -1,8 +1,8 @@
-import { NodeVM, VMScript } from "vm2";
 import { convertCode } from "@power-doctest/core";
 import { ParsedCode } from "@power-doctest/types";
 // @ts-expect-error: no types
 import assert from "power-assert";
+import * as vm from "vm";
 
 export interface PowerDoctestRunnerOptions {
     // pseudo file path for code
@@ -159,10 +159,33 @@ Also, you should consider to use { "runMode": "any" }`
         totalAssertionCount = poweredCode.split(CALLBACK_FUNCTION_NAME).length - 1;
         // current count of assert
         countOfExecutedAssertion = 0;
-        const vm = new NodeVM({
-            console: options.console ? "inherit" : "off",
-            timeout: timeout,
-            sandbox: {
+        try {
+            const HostBuildIns = Object.freeze({
+                __proto__: null,
+                version: parseInt(process.versions.node.split(".")[0]),
+                process,
+                console,
+                setTimeout,
+                setInterval,
+                setImmediate,
+                clearTimeout,
+                clearInterval,
+                clearImmediate,
+            });
+            const script = new vm.Script(poweredCode, {
+                filename: options.filePath,
+            });
+            const vmContext = vm.createContext({
+                require: (moduleName: string) => {
+                    if (moduleName === "power-assert") {
+                        return assert;
+                    }
+                    // options.requireMock
+                    if (options.requireMock && Object.hasOwnProperty.call(options.requireMock, moduleName)) {
+                        return options.requireMock[moduleName];
+                    }
+                    return require(moduleName);
+                },
                 [postCallbackName]: (_id: string) => {
                     countOfExecutedAssertion++;
                     if (runMode === "all" && countOfExecutedAssertion === totalAssertionCount) {
@@ -175,23 +198,12 @@ Also, you should consider to use { "runMode": "any" }`
                         resolve();
                     }
                 },
-                // User defined context
+                ...HostBuildIns,
                 ...context,
-            },
-            require: {
-                external: true,
-                builtin: ["*"],
-                mock: {
-                    "power-assert": assert,
-                    ...options.requireMock,
-                },
-            },
-        });
-        try {
-            const script = new VMScript(poweredCode, {
-                filename: options.filePath,
             });
-            vm.run(script);
+            script.runInNewContext(vmContext, {
+                timeout,
+            });
         } catch (error) {
             restoreListener();
             reject(error);
