@@ -1,42 +1,37 @@
 import * as fs from "fs";
 import * as path from "path";
-import meow from "meow";
+import { parseArgs } from "node:util";
 import { runPowerDoctest, RunPowerDoctestOption } from "./power-doctest";
 
+const USAGE = `Usage:
+  $ power-doctest /path/to/file.{js,md,adoc}
+
+Options:
+  --packageDir      Current Working directory. Should put package.json in the directory.
+  --disableRunning  Disable running test case that has not state.
+
+Examples:
+  $ power-doctest ./README.md
+  $ power-doctest ./README.adoc
+  $ power-doctest ./src/main.js`;
+
 export async function run() {
-    const cli = meow(
-        `
-	Usage
-	  $ power-doctest /path/to/file.{js,md,adoc}
+    const options = {
+        packageDir: { type: "string" },
+        defaultRunning: { type: "boolean" },
+        disableRunning: { type: "boolean", default: false },
+    } as const;
 
-	Options
-	  --packageDir  Current Working directory. Should put package.json in the directory.
-	  --disableRunning Disable running test case that has not state.
+    const { values: flags, positionals } = parseArgs({
+        options,
+        allowPositionals: true,
+    });
 
-	Examples
-	  $ power-doctest ./README.md
-	  $ power-doctest ./README.adoc
-	  $ power-doctest ./src/main.js
-`,
-        {
-            flags: {
-                packageDir: {
-                    type: "string",
-                },
-                defaultRunning: {
-                    type: "boolean",
-                },
-                disableRunning: {
-                    type: "boolean",
-                    default: false,
-                },
-            },
-        }
-    );
-    const disableRunning = cli.flags.disableRunning;
-    const input = cli.input[0];
+    const disableRunning = flags.disableRunning;
+    const input = positionals[0];
     if (!input) {
-        throw new Error("Should pass file");
+        console.log(USAGE);
+        throw new Error("No input file specified. Please provide a file path as an argument.");
     }
     const content = fs.readFileSync(input, "utf-8");
     const asciidoctExt = [".adoc", ".asc", ".asciidoctor"];
@@ -58,7 +53,7 @@ export async function run() {
     if (!contentType) {
         throw new Error("Not supported file type" + input);
     }
-    const cwd = cli.flags.packageDir || process.cwd();
+    const cwd = flags.packageDir || process.cwd();
     const pkgFilePath = path.join(cwd, "package.json");
     const pkg = (() => {
         try {
