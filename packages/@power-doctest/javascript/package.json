@@ -29,7 +29,7 @@
   },
   "scripts": {
     "build": "tsc -p .",
-    "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
     "clean": "rimraf lib/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",

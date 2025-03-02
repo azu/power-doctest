@@ -237,24 +237,24 @@ ${codeValue}
 
 ## Development
 
-Require [Yarn](https://yarnpkg.com/)
+Require [pnpm](https://pnpm.io/)
  
 Install project
 
-    yarn install
-    yarn boostrap
+    pnpm install
+    pnpm boostrap
 
 Build
 
-    yarn run build
+    pnpm run build
 
 Test
 
-    yarn test
+    pnpm test
     
 Release: use npm
 
     npm run versionup
-    # GH_TOKEN="${GITHUB_TOKEN}" yarn run versionup:patch --create-release=github
+    # GH_TOKEN="${GITHUB_TOKEN}" npm run versionup:patch --create-release=github
     # prepare release note
     npm relase
