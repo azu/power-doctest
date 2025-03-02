@@ -30,7 +30,7 @@
     "@babel/traverse": "^7.16.7",
     "@babel/types": "^7.16.7",
     "babel-plugin-espower": "^3.0.1",
-    "comment-to-assert": "^5.3.3",
+    "comment-to-assert": "workspace:^",
     "espower": "^2.1.2",
     "power-assert": "^1.6.1"
   },

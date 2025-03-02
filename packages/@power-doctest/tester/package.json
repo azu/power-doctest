@@ -38,12 +38,12 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
-    "@power-doctest/core": "^5.3.3",
-    "@power-doctest/types": "^5.3.3",
+    "@power-doctest/core": "workspace:^",
+    "@power-doctest/types": "workspace:^",
     "power-assert": "^1.6.1"
   },
   "devDependencies": {
-    "@power-doctest/javascript": "^5.3.3",
+    "@power-doctest/javascript": "workspace:^",
     "@types/mocha": "^10.0.1",
     "@types/node": "^22.13.8",
     "husky": "^9.1.7",

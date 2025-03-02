@@ -64,10 +64,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@power-doctest/asciidoctor": "^5.3.3",
-    "@power-doctest/javascript": "^5.3.3",
-    "@power-doctest/markdown": "^5.3.3",
-    "@power-doctest/tester": "^5.3.3",
+    "@power-doctest/asciidoctor": "workspace:^",
+    "@power-doctest/javascript": "workspace:^",
+    "@power-doctest/markdown": "workspace:^",
+    "@power-doctest/tester": "workspace:^",
     "meow": "^5.0.0",
     "promise.allsettled": "^1.0.5"
   },
