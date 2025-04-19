@@ -42,7 +42,7 @@
     "tabWidth": 4
   },
   "dependencies": {
-    "@power-doctest/types": "^5.3.3",
+    "@power-doctest/types": "workspace:^",
     "structured-source": "^4.0.0"
   },
   "devDependencies": {

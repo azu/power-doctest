@@ -21,8 +21,8 @@ importers:
   packages/@power-doctest/asciidoctor:
     dependencies:
       '@power-doctest/types':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../types
       asciidoctor:
         specifier: ^3.0.2
         version: 3.0.4(chokidar@3.6.0)
@@ -76,8 +76,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       comment-to-assert:
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../../comment-to-assert
       espower:
         specifier: ^2.1.2
         version: 2.1.2
@@ -122,8 +122,8 @@ importers:
   packages/@power-doctest/javascript:
     dependencies:
       '@power-doctest/types':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../types
       structured-source:
         specifier: ^4.0.0
         version: 4.0.0
@@ -156,13 +156,13 @@ importers:
   packages/@power-doctest/markdown:
     dependencies:
       '@power-doctest/javascript':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../javascript
       '@power-doctest/types':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../types
       '@types/unist':
-        specifier: ^3.0.0
+        specifier: ^3.0.3
         version: 3.0.3
       remark:
         specifier: ^11.0.2
@@ -171,10 +171,10 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6
       unist-util-find-before:
-        specifier: ^2.0.4
+        specifier: ^2.0.5
         version: 2.0.5
       unist-util-parents:
-        specifier: ^1.0.2
+        specifier: ^1.0.3
         version: 1.0.3
       unist-util-select:
         specifier: ^2.0.2
@@ -211,18 +211,18 @@ importers:
   packages/@power-doctest/tester:
     dependencies:
       '@power-doctest/core':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../core
       '@power-doctest/types':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../types
       power-assert:
         specifier: ^1.6.1
         version: 1.6.1
     devDependencies:
       '@power-doctest/javascript':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../javascript
       '@types/mocha':
         specifier: ^10.0.1
         version: 10.0.10
@@ -304,6 +304,9 @@ importers:
       concat-stream:
         specifier: ^2.0.0
         version: 2.0.0
+      structured-source:
+        specifier: ^4.0.0
+        version: 4.0.0
     devDependencies:
       '@types/babel__core':
         specifier: ^7.1.18
@@ -348,17 +351,17 @@ importers:
   packages/power-doctest:
     dependencies:
       '@power-doctest/asciidoctor':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../@power-doctest/asciidoctor
       '@power-doctest/javascript':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../@power-doctest/javascript
       '@power-doctest/markdown':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../@power-doctest/markdown
       '@power-doctest/tester':
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: workspace:^
+        version: link:../@power-doctest/tester
       meow:
         specifier: ^5.0.0
         version: 5.0.0
@@ -732,24 +735,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@power-doctest/asciidoctor@5.3.3':
-    resolution: {integrity: sha512-BXmV+LAtOAAiEogfYgPZAm/sIm3kxFaMULpaYbUbUMcn6bDDf6+Ae/kIo8HVoFTHh9Vfbw3dA/sNy4cbVT4xkg==}
-
-  '@power-doctest/core@5.3.3':
-    resolution: {integrity: sha512-tLKaEZ4lv7WkQG5Y5tVuZWmXGKN7TDxlDHe0NC4NFB69UMXmwHG9Fb/gZbGGKFqYWN+sSe6DBvPs8QM7sB7vPw==}
-
-  '@power-doctest/javascript@5.3.3':
-    resolution: {integrity: sha512-u/XmauoXLN1sj64kmOBXVCdjMryPIH3CSqo1dnQ3ReEq9sU6FUi1xV715xvpCBPcI8UFjCb5ckms4S+inDHaew==}
-
-  '@power-doctest/markdown@5.3.3':
-    resolution: {integrity: sha512-YyDJyl6LJz4SWT7RMaRj4y0NXReXUJKk70tYDGijLStMPQK3iYL4jpS44sBdG04f2aZZV7JN4t1Wn7YbfbpabQ==}
-
-  '@power-doctest/tester@5.3.3':
-    resolution: {integrity: sha512-TyuZ3XhZ1OaeAvvG+VwBsDiPghEQPk46+T18ox1B8eNHuKNBXZBlVuTWJBCy4UDQ0pYJSjd0Jj8RArZxDqTOcw==}
-
-  '@power-doctest/types@5.3.3':
-    resolution: {integrity: sha512-x9HETox7FWwF92+lHVRjvKUyXvNTBCSBQJWIqwF0mGKJNuEF/VIJ06kd3i9ikvkGUuCQkBKlwQcdQRZGcz1pgQ==}
 
   '@sigstore/bundle@2.3.2':
     resolution: {integrity: sha512-wueKWDk70QixNLB363yHc2D2ItTgYiMTdPwK8D9dKQMR3ZQ0c35IxP5xnwQ8cNLoCgCRcHf14kE+CLIvNX1zmA==}
@@ -1251,10 +1236,6 @@ packages:
   commander@5.1.0:
     resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}
     engines: {node: '>= 6'}
-
-  comment-to-assert@5.3.3:
-    resolution: {integrity: sha512-XiHwBAFcZDJ2CuaJmBU0pdkT9yV4CuugqPeWLx2anlYG6r5FhfXETbTUFlTVAUfe3cGXNbaQj/hDV6qGT8Oi5g==}
-    hasBin: true
 
   common-ancestor-path@1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
@@ -4460,54 +4441,6 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@power-doctest/asciidoctor@5.3.3':
-    dependencies:
-      '@power-doctest/types': 5.3.3
-      asciidoctor: 3.0.4(chokidar@3.6.0)
-      structured-source: 4.0.0
-    transitivePeerDependencies:
-      - chokidar
-
-  '@power-doctest/core@5.3.3':
-    dependencies:
-      '@babel/core': 7.26.9
-      '@babel/parser': 7.26.9
-      '@babel/template': 7.26.9
-      '@babel/traverse': 7.26.9
-      '@babel/types': 7.26.9
-      babel-plugin-espower: 3.0.1
-      comment-to-assert: 5.3.3
-      espower: 2.1.2
-      power-assert: 1.6.1
-    transitivePeerDependencies:
-      - supports-color
-
-  '@power-doctest/javascript@5.3.3':
-    dependencies:
-      '@power-doctest/types': 5.3.3
-      structured-source: 4.0.0
-
-  '@power-doctest/markdown@5.3.3':
-    dependencies:
-      '@power-doctest/javascript': 5.3.3
-      '@power-doctest/types': 5.3.3
-      '@types/unist': 3.0.3
-      remark: 11.0.2
-      unist-util-find-all-between: 1.0.6
-      unist-util-find-before: 2.0.5
-      unist-util-parents: 1.0.3
-      unist-util-select: 2.0.2
-
-  '@power-doctest/tester@5.3.3':
-    dependencies:
-      '@power-doctest/core': 5.3.3
-      '@power-doctest/types': 5.3.3
-      power-assert: 1.6.1
-    transitivePeerDependencies:
-      - supports-color
-
-  '@power-doctest/types@5.3.3': {}
-
   '@sigstore/bundle@2.3.2':
     dependencies:
       '@sigstore/protobuf-specs': 0.3.3
@@ -5000,17 +4933,6 @@ snapshots:
   commander@13.1.0: {}
 
   commander@5.1.0: {}
-
-  comment-to-assert@5.3.3:
-    dependencies:
-      '@babel/core': 7.26.9
-      '@babel/parser': 7.26.9
-      '@babel/template': 7.26.9
-      '@babel/traverse': 7.26.9
-      '@babel/types': 7.26.9
-      concat-stream: 2.0.0
-    transitivePeerDependencies:
-      - supports-color
 
   common-ancestor-path@1.0.1: {}
 
