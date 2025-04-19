@@ -1,79 +1,79 @@
 {
-  "name": "@power-doctest/tester",
-  "version": "5.3.3",
-  "description": "A Test Runner for A power-doctest.",
-  "keywords": [
-    "doctest",
-    "node.js",
-    "testing",
-    "vm"
-  ],
-  "homepage": "https://github.com/azu/power-doctest-runner",
-  "bugs": {
-    "url": "https://github.com/azu/power-doctest-runner/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/azu/power-doctest-runner.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "files": [
-    "bin/",
-    "lib/",
-    "src/"
-  ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "scripts": {
-    "build": "tsc -p .",
-    "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.ts\"",
-    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-    "watch": "tsc -p . --watch",
-    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
-  },
-  "dependencies": {
-    "@power-doctest/core": "workspace:^",
-    "@power-doctest/types": "workspace:^",
-    "power-assert": "^1.6.1"
-  },
-  "devDependencies": {
-    "@power-doctest/javascript": "workspace:^",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^22.13.8",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "mocha": "^11.1.0",
-    "prettier": "^3.0.0",
-    "promise.allsettled": "^1.0.4",
-    "strip-color": "^0.1.0",
-    "ts-node": "^10.4.0",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "^5.1.6"
-  },
-  "prettier": {
-    "singleQuote": false,
-    "printWidth": 120,
-    "tabWidth": 4
-  },
-  "husky": {
-    "hooks": {
-      "precommit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
+    "name": "@power-doctest/tester",
+    "version": "5.3.4",
+    "description": "A Test Runner for A power-doctest.",
+    "keywords": [
+        "doctest",
+        "node.js",
+        "testing",
+        "vm"
+    ],
+    "homepage": "https://github.com/azu/power-doctest-runner",
+    "bugs": {
+        "url": "https://github.com/azu/power-doctest-runner/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/azu/power-doctest-runner.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "files": [
+        "bin/",
+        "lib/",
+        "src/"
+    ],
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "directories": {
+        "lib": "lib",
+        "test": "test"
+    },
+    "scripts": {
+        "build": "tsc -p .",
+        "prepublish": "npm run --if-present build",
+        "test": "mocha \"test/**/*.ts\"",
+        "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+        "watch": "tsc -p . --watch",
+        "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
+    },
+    "dependencies": {
+        "@power-doctest/core": "workspace:^",
+        "@power-doctest/types": "workspace:^",
+        "power-assert": "^1.6.1"
+    },
+    "devDependencies": {
+        "@power-doctest/javascript": "workspace:^",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^22.13.8",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.4.3",
+        "mocha": "^11.1.0",
+        "prettier": "^3.0.0",
+        "promise.allsettled": "^1.0.4",
+        "strip-color": "^0.1.0",
+        "ts-node": "^10.4.0",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "^5.1.6"
+    },
+    "prettier": {
+        "singleQuote": false,
+        "printWidth": 120,
+        "tabWidth": 4
+    },
+    "husky": {
+        "hooks": {
+            "precommit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,css}": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
 }

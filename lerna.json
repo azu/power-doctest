@@ -1,5 +1,5 @@
 {
-  "version": "5.3.3",
-  "npmClient": "pnpm",
-  "includeMergedTags": true
+    "version": "5.3.4",
+    "npmClient": "pnpm",
+    "includeMergedTags": true
 }

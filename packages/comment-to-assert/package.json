@@ -1,78 +1,78 @@
 {
-  "name": "comment-to-assert",
-  "version": "5.3.3",
-  "description": "convert line comment to assert.",
-  "keywords": [
-    "ast",
-    "doctest",
-    "testing"
-  ],
-  "homepage": "https://github.com/azu/comment-to-assert",
-  "bugs": {
-    "url": "https://github.com/azu/comment-to-assert/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/azu/comment-to-assert.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "files": [
-    "lib",
-    "src",
-    "bin"
-  ],
-  "main": "lib/comment-to-assert.js",
-  "types": "lib/comment-to-assert.d.ts",
-  "bin": {
-    "comment-to-assert": "./bin/cmd.js"
-  },
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "build": "tsc -p .",
-    "example": "npm i && npm run build && cd example && npm test",
-    "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.ts\"",
-    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-    "watch": "tsc -p . --watch"
-  },
-  "dependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/parser": "^7.16.7",
-    "@babel/template": "^7.16.7",
-    "@babel/traverse": "^7.16.7",
-    "@babel/types": "^7.16.7",
-    "concat-stream": "^2.0.0",
-    "structured-source": "^4.0.0"
-  },
-  "devDependencies": {
-    "@types/babel__core": "^7.1.18",
-    "@types/babel__generator": "^7.6.4",
-    "@types/babel__template": "^7.4.1",
-    "@types/babel__traverse": "^7.14.2",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^22.13.8",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "mocha": "^11.1.0",
-    "prettier": "^3.0.0",
-    "ts-node": "^10.4.0",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "^5.1.6"
-  },
-  "email": "azuciao@gmail.com",
-  "lint-staged": {
-    "*.{ts,tsx,css}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "post-commit": "git reset",
-      "pre-commit": "lint-staged"
+    "name": "comment-to-assert",
+    "version": "5.3.4",
+    "description": "convert line comment to assert.",
+    "keywords": [
+        "ast",
+        "doctest",
+        "testing"
+    ],
+    "homepage": "https://github.com/azu/comment-to-assert",
+    "bugs": {
+        "url": "https://github.com/azu/comment-to-assert/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/azu/comment-to-assert.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "files": [
+        "lib",
+        "src",
+        "bin"
+    ],
+    "main": "lib/comment-to-assert.js",
+    "types": "lib/comment-to-assert.d.ts",
+    "bin": {
+        "comment-to-assert": "./bin/cmd.js"
+    },
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "build": "tsc -p .",
+        "example": "npm i && npm run build && cd example && npm test",
+        "prepublish": "npm run --if-present build",
+        "test": "mocha \"test/**/*.ts\"",
+        "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+        "watch": "tsc -p . --watch"
+    },
+    "dependencies": {
+        "@babel/core": "^7.16.7",
+        "@babel/parser": "^7.16.7",
+        "@babel/template": "^7.16.7",
+        "@babel/traverse": "^7.16.7",
+        "@babel/types": "^7.16.7",
+        "concat-stream": "^2.0.0",
+        "structured-source": "^4.0.0"
+    },
+    "devDependencies": {
+        "@types/babel__core": "^7.1.18",
+        "@types/babel__generator": "^7.6.4",
+        "@types/babel__template": "^7.4.1",
+        "@types/babel__traverse": "^7.14.2",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^22.13.8",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.4.3",
+        "mocha": "^11.1.0",
+        "prettier": "^3.0.0",
+        "ts-node": "^10.4.0",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "^5.1.6"
+    },
+    "email": "azuciao@gmail.com",
+    "lint-staged": {
+        "*.{ts,tsx,css}": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "post-commit": "git reset",
+            "pre-commit": "lint-staged"
+        }
     }
-  }
 }
