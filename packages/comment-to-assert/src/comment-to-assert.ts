@@ -13,8 +13,9 @@ import { identifier, isExpressionStatement, File } from "@babel/types";
 import { parse, parseExpression, ParserOptions } from "@babel/parser";
 import traverse from "@babel/traverse";
 
-function getExpressionNodeFromCommentValue(string: string): { type: string } & { [index: string]: any } {
-    const message = string.trim();
+function getExpressionNodeFromCommentValue(commentValue: string): { type: string } & { [index: string]: any } {
+    // trim and remove trailing semicolon;
+    const message = commentValue.trim().replace(/;$/, "");
     if (ERROR_COMMENT_PATTERN.test(message)) {
         const match = message.match(ERROR_COMMENT_PATTERN);
         if (!match) {
@@ -42,7 +43,7 @@ function getExpressionNodeFromCommentValue(string: string): { type: string } & {
         };
     }
     try {
-        return parseExpression(string);
+        return parseExpression(message);
     } catch (e) {
         console.error(`Can't parse comments // => expression`);
         throw e;
@@ -94,10 +95,10 @@ export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptio
                             commentExpression,
                             id: String(`id:${id++}`),
                         },
-                        options
+                        options,
                     );
                     if (Array.isArray(replacement)) {
-                        // prevent ∞ loop
+                        // prevent ∞ loopf
                         path.node.trailingComments = null;
                         path.replaceWithMultiple(replacement);
                     } else {
