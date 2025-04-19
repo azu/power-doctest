@@ -1,4 +1,4 @@
-const assert = require("assert");
+import assert from "assert";
 import { convertAST, convertASTOptions, convertCode } from "../src/power-doctest";
 import { parse } from "@babel/parser";
 import generate from "@babel/generator";
