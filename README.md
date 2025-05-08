@@ -74,9 +74,9 @@ Use [@power-doctest/tester](./packages/@power-doctest/tester) and [@power-doctes
 ```js
 import { test } from "@power-doctest/tester";
 import { parse } from "@power-doctest/javascript";
-const globby = require("globby");
-const fs = require("fs");
-const path = require("path");
+import globby from "globby";
+import fs from "node:fs";
+import path from "node:path";
 // doctest for source/**/*.js
 describe("doctest:js", function() {
     const sourceDir = path.join(__dirname, "..", "source");
@@ -95,8 +95,7 @@ describe("doctest:js", function() {
             const parsedCode = parsedResults[0];
             return test(parsedCode).catch(error => {
                 // Stack Trace like
-                console.error(`StrictEvalError: strict eval is failed
-    at strictEval (${filePath}:1:1)`);
+                console.error(`Failed to execute script: ${filePath}`);
                 return Promise.reject(error);
             });
         });
@@ -115,9 +114,9 @@ Use [@power-doctest/tester](./packages/@power-doctest/tester) and [@power-doctes
 ```js
 import { test } from "@power-doctest/tester";
 import { parse } from "@power-doctest/markdown";
-const globby = require("globby");
-const fs = require("fs");
-const path = require("path");
+import globby from "globby";
+import fs from "node:fs";
+import path from "node:path";
 const transform = (code) => {
     return code; // you need pre transform for the code if needed.
 };
@@ -152,7 +151,7 @@ describe("doctest:md", function() {
                         }
                     }).catch(error => {
                         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
-                        console.error(`Markdown Doctest is failed
+                        console.error(`Markdown Doctest failed:
   at ${filePathLineColumn}
 
 ----------
@@ -177,11 +176,11 @@ ${codeValue}
 Use [@power-doctest/tester](./packages/@power-doctest/tester) and [@power-doctest/asciidoctor](./packages/@power-doctest/asciidoctor) in [Mocha](https://mochajs.org/).
 
 ```js
-const { test } = require("@power-doctest/tester");
-const { parse } = require("@power-doctest/asciidoctor");
-const globby = require("globby");
-const fs = require("fs");
-const path = require("path");
+import { test } from "@power-doctest/tester";
+import { parse } from "@power-doctest/asciidoctor";
+import globby from "globby";
+import fs from "node:fs";
+import path from "node:path";
 // Avoid "do not support nested sections" Error
 // Replace Header with Dummy text
 const replaceDummyHeader = (content) => {
@@ -211,11 +210,11 @@ describe("doctest:adoc", function () {
             const dirName = path.dirname(filePath).split(path.sep).pop();
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
-                const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
+                const testCaseName = codeValue.slice(0, 32).replace(/[\r\\n]/g, "_");
                 it(dirName + ": " + testCaseName, function () {
                     return test(parsedCode).catch(error => {
                         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
-                        console.error(`Asciidoc Doctest is failed
+                        console.error(`Asciidoc Doctest failed:
   at ${filePathLineColumn}
 
 ----------
