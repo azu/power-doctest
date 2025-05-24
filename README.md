@@ -8,7 +8,7 @@ power-doctest is a project that provide doctest system for JavaScript.
 
 - Run Comments as Assertions
 - Support JavaScript, Markdown Code Block, Asciidoctor Code Block
-- Control doctest behavior from comments 
+- Control doctest behavior from comments
 
 ## Packages
 
@@ -33,7 +33,7 @@ power-doctest is a project that provide doctest system for JavaScript.
 power-doctest is consisted of two parts.
 
 - Comment Assertion Syntax
-- Doctest Control Annotation 
+- Doctest Control Annotation
 
 ### Comment Assertion Syntax
 
@@ -48,7 +48,7 @@ These comment will be canistered to assertion.
 | `[1, 2, 3]; // => [3, 4, 5]`                      | `assert.deepStrictEqual([1, 2, 3], [3, 4, 5])`               |
 | `console.log({ a: 1 }): // => { b: 2 }`            | `assert.deepStrictEqual({ a: 1 }, { b: 2 })`                 |
 | `throw new Error("message"); // => Error: "message"` | `assert.throws(function() {throw new Error("message"); });"` |
-| `Promise.resolve(1); // Resolve: 2`               | `Promise.resolve(Promise.resolve(1)).then(v => { assert.strictEqual(1, 2) }) ` |
+| `Promise.resolve(1); // Resolve: 2`               | `Promise.resolve(Promise.resolve(1)).then(v => { assert.strictEqual(1, 2) })` |
 | `Promise.reject(1); // Reject: 2`                 | `assert.rejects(Promise.reject(1))`                          |
 
 For more details, see [comment-to-assert](https://www.npmjs.com/package/comment-to-assert).
@@ -237,11 +237,11 @@ ${codeValue}
 ## Development
 
 Require [pnpm](https://pnpm.io/)
- 
+
 Install project
 
     pnpm install
-    pnpm boostrap
+    pnpm bootstrap
 
 Build
 
@@ -256,4 +256,4 @@ Release: use npm
     npm run versionup
     # GH_TOKEN="${GITHUB_TOKEN}" npm run versionup:patch --create-release=github
     # prepare release note
-    npm relase
+    npm release
