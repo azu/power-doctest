@@ -153,4 +153,5 @@ export function wrapAssert(
             EXPECTED_NODE,
         });
     }
+    throw new Error("Unknown pattern: " + actualNode);
 }
