@@ -87,5 +87,5 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
         const result = modify(AST);
         assert(result != null, modifyMapFunctionList[index].name + " return wrong result. result: " + result);
         return result;
-    }, AST as T);
+    }, AST);
 }
