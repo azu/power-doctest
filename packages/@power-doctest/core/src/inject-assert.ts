@@ -8,7 +8,7 @@ export function injectAssertModule(AST: Node) {
     traverse(AST, {
         Program: {
             enter(path) {
-                (path as any).unshiftContainer("body", template`var assert = require("power-assert")`());
+                path.unshiftContainer("body", template`var assert = require("power-assert")`());
             }
         }
     });

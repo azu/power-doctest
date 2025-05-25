@@ -21,9 +21,9 @@ export function tryGetCodeFromComments(comments: ReadonlyArray<Comment>) {
     if (comments.length === 0) {
         return;
     }
-    var comment = comments[0];
+    const comment = comments[0];
     if (comment.type === "CommentBlock" || comment.type === "CommentLine") {
-        var matchResult = comment.value.match(commentCodeRegExp);
+        const matchResult = comment.value.match(commentCodeRegExp);
         if (matchResult && matchResult[1]) {
             return matchResult[1];
         }
@@ -53,7 +53,7 @@ export function wrapAssert(
         commentExpression,
         id,
     }: { actualNode: any; expectedNode: any; commentExpression: string; id: string },
-    options: wrapAssertOptions
+    options: wrapAssertOptions,
 ): any {
     assert.notStrictEqual(typeof expectedNode, "undefined");
     const ACTUAL_NODE = actualNode;
@@ -74,7 +74,7 @@ export function wrapAssert(
                 commentExpression,
                 id,
             },
-            options
+            options,
         );
     } else if (isIdentifier(expectedNode) && ERROR_COMMENT_PATTERN.test(expectedNode.name)) {
         return template`BEFORE_CALLBACK;assert.throws(function() {
@@ -95,7 +95,7 @@ export function wrapAssert(
                     commentExpression,
                     id,
                 },
-                options
+                options,
             )}
             return v;
         });`({

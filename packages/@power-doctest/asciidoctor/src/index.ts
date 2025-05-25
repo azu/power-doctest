@@ -87,11 +87,11 @@ export function parse(args: ParserArgs): ParsedResults {
         })
         .map((block: any) => {
             // FIXME: workaround get lineno
-            // asciidoctor.js does not suport lineno for the block
+            // asciidoctor.js does not support lineno for the block
             const code: string = block.getSource();
             const index = args.content.indexOf(code);
             const startPosition = structuredSource.indexToPosition(index);
-            const endPostion = structuredSource.indexToPosition(index + code.length);
+            const endPosition = structuredSource.indexToPosition(index + code.length);
             const attributes: {} = block.getAttributes();
             const meta = getMeta(attributes);
             const doctestOptions = getOptions(attributes);
@@ -101,7 +101,7 @@ export function parse(args: ParserArgs): ParsedResults {
                 expectedError: getExpectedError(attributes),
                 location: {
                     start: startPosition,
-                    end: endPostion,
+                    end: endPosition,
                 },
                 metadata: meta,
                 doctestOptions: doctestOptions
