@@ -61,7 +61,7 @@
         "@power-doctest/types": "workspace:^",
         "@types/unist": "^3.0.3",
         "remark": "^11.0.2",
-        "unist-util-find-all-between": "^1.0.6",
+        "unist-util-find-all-between": "^2.1.0",
         "unist-util-find-before": "^2.0.5",
         "unist-util-parents": "^1.0.3",
         "unist-util-select": "^2.0.2"
