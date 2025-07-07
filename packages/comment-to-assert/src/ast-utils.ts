@@ -39,6 +39,19 @@ export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
 export const PROMISE_RESOLVE_COMMENT_PATTERN = /^Resolve:\s*(.*?)\s*$/;
 export const PROMISE_REJECT_COMMENT_PATTERN = /^Reject:\s*(.*?)\s*$/;
 
+/**
+ * Creates Babel AST statement(s) from a template string, handling callback placeholders.
+ * 
+ * This function solves the "Found multiple statements but wanted one" error that occurs
+ * when Babel template tries to generate multiple statements but expects a single statement.
+ * When callbacks are present, it returns an array of statements; otherwise a single statement.
+ * 
+ * @param templateStr - Template string containing BEFORE_CALLBACK and AFTER_CALLBACK placeholders
+ * @param templateVars - Variables to substitute in the template
+ * @param beforeCallback - Optional callback to execute before the main statement
+ * @param afterCallback - Optional callback to execute after the main statement
+ * @returns Single statement or array of statements depending on callback presence
+ */
 function createStatement(templateStr: string, templateVars: any, beforeCallback?: any, afterCallback?: any) {
     if (beforeCallback && afterCallback) {
         const statements = [];
