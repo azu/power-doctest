@@ -86,25 +86,57 @@ export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptio
             if (!replaceSet.has(path.node) && path.node.trailingComments) {
                 const commentExpression = tryGetCodeFromComments(path.node.trailingComments);
                 if (commentExpression) {
-                    const commentExpressionNode = getExpressionNodeFromCommentValue(commentExpression);
-                    const actualNode = isExpressionStatement(path.node) ? path.node.expression : path.node;
-                    const replacement = wrapAssert(
-                        {
-                            actualNode: actualNode,
-                            expectedNode: commentExpressionNode,
-                            commentExpression,
-                            id: String(`id:${id++}`),
-                        },
-                        options,
-                    );
-                    if (Array.isArray(replacement)) {
-                        // prevent ∞ loopf
-                        path.node.trailingComments = null;
-                        path.replaceWithMultiple(replacement);
-                    } else {
-                        path.replaceWith(replacement);
+                    try {
+                        const commentExpressionNode = getExpressionNodeFromCommentValue(commentExpression);
+                        const actualNode = isExpressionStatement(path.node) ? path.node.expression : path.node;
+
+                        // Check if the node type is valid for assertion
+                        const nodeType = path.node.type;
+                        const lineNumber = path.node.loc?.start.line;
+
+                        if (
+                            nodeType === "VariableDeclaration" ||
+                            nodeType === "FunctionDeclaration" ||
+                            nodeType === "ClassDeclaration" ||
+                            nodeType === "ImportDeclaration"
+                        ) {
+                            throw new Error(
+                                `Cannot add assertion to ${nodeType}${lineNumber ? ` at line ${lineNumber}` : ""}. ` +
+                                    `Comment assertions (// => ${commentExpression}) can only be added to expressions, not declarations. ` +
+                                    `Try adding the assertion after an expression statement instead.`,
+                            );
+                        }
+
+                        const replacement = wrapAssert(
+                            {
+                                actualNode: actualNode,
+                                expectedNode: commentExpressionNode,
+                                commentExpression,
+                                id: String(`id:${id++}`),
+                            },
+                            options,
+                        );
+                        if (Array.isArray(replacement)) {
+                            // prevent ∞ loopf
+                            path.node.trailingComments = null;
+                            path.replaceWithMultiple(replacement);
+                        } else {
+                            path.replaceWith(replacement);
+                        }
+                        replaceSet.add(path.node);
+                    } catch (error) {
+                        // If the error already has line information, re-throw it
+                        if (error instanceof Error && error.message.includes("at line")) {
+                            throw error;
+                        }
+
+                        // Otherwise, add line information if available
+                        const lineNumber = path.node.loc?.start.line;
+                        if (error instanceof Error && lineNumber) {
+                            throw new Error(`Error at line ${lineNumber}: ${error.message}`);
+                        }
+                        throw error;
                     }
-                    replaceSet.add(path.node);
                 }
             }
         },
