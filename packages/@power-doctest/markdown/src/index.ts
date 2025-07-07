@@ -11,6 +11,8 @@ type UnistParentNode = import("unist").Parent;
 type UnistNode = import("unist").Node & {
     parent: UnistParentNode;
 };
+
+const processor = remark();
 const getComments = (parentNode: UnistParentNode, codeNode: UnistNode) => {
     const nonHtmlNode = findBefore(parentNode, codeNode, (node: any) => {
         return node.type !== "html";
@@ -26,7 +28,6 @@ const getComments = (parentNode: UnistParentNode, codeNode: UnistNode) => {
  * Parse Markdown code and return ParseResult object.
  */
 export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
-    const processor = remark();
     const markdownAST = attachParents(processor.parse(content));
     const codeBlocks = [
         ...selectAll(`code[lang="js"]`, markdownAST),
