@@ -3,11 +3,13 @@
 import { parse, ParserOptions } from "@babel/parser";
 import { File } from "@babel/types";
 import { transformSync } from "@babel/core";
-import generate from "@babel/generator";
 import assert from "assert";
 import { toAssertFromAST } from "comment-to-assert";
-import { injectAssertModule } from "./inject-assert";
+import { injectAssertModule } from "./inject-assert.js";
+import { createRequire } from "module";
 
+const require = createRequire(import.meta.url);
+const generate = require("@babel/generator").default;
 const babelPluginEspower = require("babel-plugin-espower");
 
 export interface convertCodeOption {

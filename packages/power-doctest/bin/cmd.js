@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-require("../lib/cli")
-    .run()
+import { run } from "../lib/cli.js";
+
+run()
     .then((result) => {
         console.log(result);
     })

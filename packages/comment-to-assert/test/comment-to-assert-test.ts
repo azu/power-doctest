@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { toAssertFromSource } from "../src/comment-to-assert";
+import { toAssertFromSource } from "../src/comment-to-assert.js";
 
 describe("comment-to-assert", function () {
     describe("when invalid source", function () {

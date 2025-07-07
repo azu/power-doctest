@@ -13,7 +13,7 @@ import {
     identifier,
     stringLiteral,
 } from "@babel/types";
-import template from "@babel/template";
+import * as template from "@babel/template";
 
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
 
@@ -38,6 +38,33 @@ function isConsole(node: any): node is CallExpression & { expression: any } {
 export const ERROR_COMMENT_PATTERN = /^([a-zA-Z]*?Error)/;
 export const PROMISE_RESOLVE_COMMENT_PATTERN = /^Resolve:\s*(.*?)\s*$/;
 export const PROMISE_REJECT_COMMENT_PATTERN = /^Reject:\s*(.*?)\s*$/;
+
+function createStatement(templateStr: string, templateVars: any, beforeCallback?: any, afterCallback?: any) {
+    if (beforeCallback && afterCallback) {
+        const statements = [];
+        statements.push(template.statement`BEFORE_CALLBACK;`({ BEFORE_CALLBACK: beforeCallback }));
+        const mainTemplate = templateStr.replace(/BEFORE_CALLBACK;|;AFTER_CALLBACK/g, "");
+        statements.push(template.statement(mainTemplate)(templateVars));
+        statements.push(template.statement`AFTER_CALLBACK;`({ AFTER_CALLBACK: afterCallback }));
+        return statements;
+    } else if (beforeCallback) {
+        const statements = [];
+        statements.push(template.statement`BEFORE_CALLBACK;`({ BEFORE_CALLBACK: beforeCallback }));
+        const mainTemplate = templateStr.replace(/BEFORE_CALLBACK;|;AFTER_CALLBACK/g, "");
+        statements.push(template.statement(mainTemplate)(templateVars));
+        return statements;
+    } else if (afterCallback) {
+        const statements = [];
+        const mainTemplate = templateStr.replace(/BEFORE_CALLBACK;|;AFTER_CALLBACK/g, "");
+        statements.push(template.statement(mainTemplate)(templateVars));
+        statements.push(template.statement`AFTER_CALLBACK;`({ AFTER_CALLBACK: afterCallback }));
+        return statements;
+    } else {
+        // No callbacks, use single statement
+        const baseTemplate = templateStr.replace(/BEFORE_CALLBACK;|;AFTER_CALLBACK/g, "");
+        return template.statement(baseTemplate)(templateVars);
+    }
+}
 
 export interface wrapAssertOptions {
     // callback name before assert
@@ -77,17 +104,16 @@ export function wrapAssert(
             options,
         );
     } else if (isIdentifier(expectedNode) && ERROR_COMMENT_PATTERN.test(expectedNode.name)) {
-        return template`BEFORE_CALLBACK;assert.throws(function() {
-                    ACTUAL_NODE
-               });AFTER_CALLBACK;`({
+        return createStatement(
+            "BEFORE_CALLBACK;assert.throws(function() { ACTUAL_NODE });AFTER_CALLBACK;",
+            { ACTUAL_NODE },
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE,
-        });
+        );
     } else if (expectedNode.type === "Resolve") {
         // getExpressionNodeFromCommentValue define the type
         const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
-        return template`Promise.resolve(ARGS).then(v => {
+        return template.statement`Promise.resolve(ARGS).then(v => {
             ${wrapAssert(
                 {
                     actualNode: { type: "Identifier", name: "v" },
@@ -103,55 +129,73 @@ export function wrapAssert(
         });
     } else if (expectedNode.type === "Reject") {
         const ARGS = isConsole(actualNode) ? actualNode.arguments[0] : actualNode;
-        return template`BEFORE_CALLBACK;assert.rejects(ARGS).then(() => {
-        AFTER_CALLBACK;
-});`({
-            BEFORE_CALLBACK,
-            AFTER_CALLBACK,
-            ARGS,
-        });
+        if (BEFORE_CALLBACK || AFTER_CALLBACK) {
+            if (AFTER_CALLBACK) {
+                return createStatement(
+                    "BEFORE_CALLBACK;assert.rejects(ARGS).then(() => { AFTER_CALLBACK; });",
+                    { ARGS, AFTER_CALLBACK },
+                    BEFORE_CALLBACK,
+                    undefined,
+                );
+            } else {
+                return createStatement(
+                    "BEFORE_CALLBACK;assert.rejects(ARGS);AFTER_CALLBACK;",
+                    { ARGS },
+                    BEFORE_CALLBACK,
+                    AFTER_CALLBACK,
+                );
+            }
+        } else {
+            return template.statement`assert.rejects(ARGS).then(() => {});`({
+                ARGS,
+            });
+        }
     } else if (isIdentifier(expectedNode) && expectedNode.name === "NaN") {
-        return template`BEFORE_CALLBACK;assert.ok(isNaN(ACTUAL_NODE));AFTER_CALLBACK;`({
+        return createStatement(
+            "BEFORE_CALLBACK;assert.ok(isNaN(ACTUAL_NODE));AFTER_CALLBACK;",
+            { ACTUAL_NODE },
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE,
-        });
+        );
     } else if (isNullLiteral(expectedNode)) {
-        return template`BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, null);AFTER_CALLBACK;`({
+        return createStatement(
+            "BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, null);AFTER_CALLBACK;",
+            { ACTUAL_NODE },
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE,
-        });
+        );
     } else if (isIdentifier(expectedNode) && expectedNode.name === "undefined") {
-        return template`BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, undefined);AFTER_CALLBACK`({
+        return createStatement(
+            "BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, undefined);AFTER_CALLBACK;",
+            { ACTUAL_NODE },
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE,
-        });
+        );
     } else if (isLiteral(expectedNode)) {
         // Handle Directive Prorogue as string literal
         if (isDirective(ACTUAL_NODE)) {
-            return template`BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE);AFTER_CALLBACK;`({
+            const actualValue = (ACTUAL_NODE.value as any).extra.raw;
+            return createStatement(
+                "BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE);AFTER_CALLBACK;",
+                { ACTUAL_NODE: actualValue, EXPECTED_NODE },
                 BEFORE_CALLBACK,
                 AFTER_CALLBACK,
-                ACTUAL_NODE: (ACTUAL_NODE.value as any).extra.raw,
-                EXPECTED_NODE,
-            });
+            );
         } else {
-            return template`BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE);AFTER_CALLBACK;`({
+            return createStatement(
+                "BEFORE_CALLBACK;assert.strictEqual(ACTUAL_NODE, EXPECTED_NODE);AFTER_CALLBACK;",
+                { ACTUAL_NODE, EXPECTED_NODE },
                 BEFORE_CALLBACK,
                 AFTER_CALLBACK,
-                ACTUAL_NODE,
-                EXPECTED_NODE,
-            });
+            );
         }
     } else {
-        return template`BEFORE_CALLBACK;assert.deepStrictEqual(ACTUAL_NODE, EXPECTED_NODE);AFTER_CALLBACK;`({
+        return createStatement(
+            "BEFORE_CALLBACK;assert.deepStrictEqual(ACTUAL_NODE, EXPECTED_NODE);AFTER_CALLBACK;",
+            { ACTUAL_NODE, EXPECTED_NODE },
             BEFORE_CALLBACK,
             AFTER_CALLBACK,
-            ACTUAL_NODE,
-            EXPECTED_NODE,
-        });
+        );
     }
     throw new Error("Unknown pattern: " + actualNode);
 }

@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { parseArgs } from "node:util";
-import { runPowerDoctest, RunPowerDoctestOption } from "./power-doctest";
+import { runPowerDoctest, RunPowerDoctestOption } from "./power-doctest.js";
 
 const USAGE = `Usage:
   $ power-doctest /path/to/file.{js,md,adoc}
@@ -55,9 +55,10 @@ export async function run() {
     }
     const cwd = flags.packageDir || process.cwd();
     const pkgFilePath = path.join(cwd, "package.json");
-    const pkg = (() => {
+    const pkg = await (async () => {
         try {
-            return require(pkgFilePath);
+            const packageJsonContent = await fs.promises.readFile(pkgFilePath, "utf8");
+            return JSON.parse(packageJsonContent);
         } catch (error) {
             return;
         }

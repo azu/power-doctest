@@ -1,10 +1,14 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
-import { run, test } from "../src";
+import { fileURLToPath } from "url";
+import { run, test } from "../src/index.js";
 import { parse } from "@power-doctest/javascript";
 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const allSettled = require("promise.allsettled");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const trimUndefinedProperty = <T>(o: T): T => {
     return JSON.parse(JSON.stringify(o));
 };
@@ -44,7 +48,7 @@ describe("Snapshot testing", () => {
                 `
 ${fixtureDir}
 ${actual}
-`
+`,
             );
         });
         it(`Test ${normalizedTestName}`, async function () {
@@ -68,7 +72,7 @@ ${actual}
                         };
                     }
                     return result;
-                })
+                }),
             );
             const expectedFilePath = path.join(fixtureDir, "output.json");
             // Usage: update snapshots
