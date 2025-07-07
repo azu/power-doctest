@@ -16,6 +16,7 @@
         "url": "https://github.com/azu/comment-to-assert.git"
     },
     "license": "MIT",
+    "type": "module",
     "author": "azu",
     "files": [
         "lib",
@@ -24,6 +25,12 @@
     ],
     "main": "lib/comment-to-assert.js",
     "types": "lib/comment-to-assert.d.ts",
+    "exports": {
+        ".": {
+            "import": "./lib/comment-to-assert.js",
+            "types": "./lib/comment-to-assert.d.ts"
+        }
+    },
     "bin": {
         "comment-to-assert": "./bin/cmd.js"
     },

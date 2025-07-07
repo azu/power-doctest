@@ -2,7 +2,7 @@
   "compilerOptions": {
     /* Basic Options */
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "newLine": "LF",

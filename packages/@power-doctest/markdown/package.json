@@ -16,6 +16,7 @@
         "url": "https://github.com/azu/power-doctest.git"
     },
     "license": "MIT",
+    "type": "module",
     "author": "azu",
     "files": [
         "bin/",
@@ -24,6 +25,12 @@
     ],
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./lib/index.js",
+            "types": "./lib/index.d.ts"
+        }
+    },
     "directories": {
         "lib": "lib",
         "test": "test"
