@@ -4,7 +4,7 @@ import { test } from "@power-doctest/tester";
 import { parse as parseJavaScript } from "@power-doctest/javascript";
 import { parse as parseMarkdown } from "@power-doctest/markdown";
 import { parse as parseAsciidoctor } from "@power-doctest/asciidoctor";
-import allSettled from "promise.allsettled";
+// Native Promise.allSettled is available in Node.js 12.9.0+
 
 export interface RunPowerDoctestOption {
     contentType: "javascript" | "markdown" | "asciidoctor";
@@ -76,7 +76,7 @@ export async function runPowerDoctest(
             },
         );
     });
-    const settledResults = await allSettled(promises);
+    const settledResults = await Promise.allSettled(promises);
     return settledResults.map((testResult: any, index: number) => {
         if (testResult.status === "fulfilled") {
             return {
