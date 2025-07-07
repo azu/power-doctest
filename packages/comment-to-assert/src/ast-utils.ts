@@ -13,7 +13,10 @@ import {
     identifier,
     stringLiteral,
 } from "@babel/types";
-import * as template from "@babel/template";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const template = require("@babel/template").default;
 
 const commentCodeRegExp = /=>\s*?(.*?)$/i;
 
@@ -41,11 +44,11 @@ export const PROMISE_REJECT_COMMENT_PATTERN = /^Reject:\s*(.*?)\s*$/;
 
 /**
  * Creates Babel AST statement(s) from a template string, handling callback placeholders.
- * 
+ *
  * This function solves the "Found multiple statements but wanted one" error that occurs
  * when Babel template tries to generate multiple statements but expects a single statement.
  * When callbacks are present, it returns an array of statements; otherwise a single statement.
- * 
+ *
  * @param templateStr - Template string containing BEFORE_CALLBACK and AFTER_CALLBACK placeholders
  * @param templateVars - Variables to substitute in the template
  * @param beforeCallback - Optional callback to execute before the main statement
