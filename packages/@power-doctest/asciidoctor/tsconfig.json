@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "newLine": "LF",
     "outDir": "./lib/",
-    "target": "es5",
+    "target": "es2022",
     "sourceMap": true,
     "declaration": true,
     "jsx": "preserve",
