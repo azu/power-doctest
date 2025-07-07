@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "newLine": "LF",
     "outDir": "./lib/",
-    "target": "es2015",
+    "target": "es2022",
     "sourceMap": true,
     "declaration": true,
     "jsx": "preserve",

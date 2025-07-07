@@ -1,7 +1,9 @@
 import assert from "assert";
-import { convertAST, convertASTOptions, convertCode } from "../src/power-doctest";
+import { convertAST, convertASTOptions, convertCode } from "../src/power-doctest.js";
 import { parse } from "@babel/parser";
-import generate from "@babel/generator";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const generate = require("@babel/generator").default;
 
 function parseAndConvert(code: string, options?: convertASTOptions): any {
     const AST = parse(code, {

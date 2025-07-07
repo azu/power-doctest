@@ -1,9 +1,11 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
+import { fileURLToPath } from "url";
 // transform function
-import { convertCode } from "../src/power-doctest";
+import { convertCode } from "../src/power-doctest.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturesDir = path.join(__dirname, "snapshots");
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir).map((caseName) => {

@@ -17,6 +17,7 @@
         "url": "https://github.com/azu/power-doctest-runner.git"
     },
     "license": "MIT",
+    "type": "module",
     "author": "azu",
     "files": [
         "bin/",
@@ -25,6 +26,12 @@
     ],
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./lib/index.js",
+            "types": "./lib/index.d.ts"
+        }
+    },
     "directories": {
         "lib": "lib",
         "test": "test"
@@ -50,7 +57,6 @@
         "lint-staged": "^16.1.2",
         "mocha": "^11.7.1",
         "prettier": "^3.6.2",
-        "promise.allsettled": "^1.0.4",
         "strip-color": "^0.1.0",
         "ts-node": "^10.4.0",
         "ts-node-test-register": "^10.0.0",

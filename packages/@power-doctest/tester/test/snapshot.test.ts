@@ -1,10 +1,12 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
-import { run, test } from "../src";
+import { fileURLToPath } from "url";
+import { run, test } from "../src/index.js";
 import { parse } from "@power-doctest/javascript";
 
-const allSettled = require("promise.allsettled");
+// Native Promise.allSettled is available in Node.js 12.9.0+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const trimUndefinedProperty = <T>(o: T): T => {
     return JSON.parse(JSON.stringify(o));
 };
@@ -44,7 +46,7 @@ describe("Snapshot testing", () => {
                 `
 ${fixtureDir}
 ${actual}
-`
+`,
             );
         });
         it(`Test ${normalizedTestName}`, async function () {
@@ -58,7 +60,7 @@ ${actual}
             const promises = parsedResults.map((result) => {
                 return test(result);
             });
-            const actual = await allSettled(promises);
+            const actual = await Promise.allSettled(promises);
             const results = trimUndefinedProperty(
                 actual.map((result: any) => {
                     if (result.status === "rejected") {
@@ -68,7 +70,7 @@ ${actual}
                         };
                     }
                     return result;
-                })
+                }),
             );
             const expectedFilePath = path.join(fixtureDir, "output.json");
             // Usage: update snapshots

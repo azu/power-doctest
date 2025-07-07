@@ -1,8 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
-import { parse } from "../src";
+import { fileURLToPath } from "url";
+import { parse } from "../src/index.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturesDir = path.join(__dirname, "snapshots");
 
 const trimUndefinedProperty = <T>(o: T, baseDir: string): T => {

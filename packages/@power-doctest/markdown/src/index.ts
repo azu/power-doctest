@@ -1,5 +1,5 @@
 import { ParserArgs, ParsedResults } from "@power-doctest/types";
-import { DocTestController } from "./DocTestController";
+import { DocTestController } from "./DocTestController.js";
 
 type UnistParentNode = import("unist").Parent;
 // unist-util-parents
@@ -7,6 +7,8 @@ type UnistNode = import("unist").Node & {
     parent: UnistParentNode;
 };
 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const remark = require("remark")();
 const select = require("unist-util-select");
 const attachParents = require("unist-util-parents");
@@ -30,7 +32,7 @@ export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
     const markdownAST = attachParents(remark.parse(content));
     const codeBlocks = [].concat(
         select.selectAll(`code[lang="js"]`, markdownAST),
-        select.selectAll(`code[lang="javascript"]`, markdownAST)
+        select.selectAll(`code[lang="javascript"]`, markdownAST),
     );
     return codeBlocks.map((codeBlock: UnistNode & { value: string | undefined }) => {
         const codeValue: string = codeBlock.value || "";

@@ -1,4 +1,4 @@
-import { run } from "../src/index";
+import { run } from "../src/index.js";
 import * as assert from "assert";
 
 describe("run", () => {
@@ -29,7 +29,7 @@ throw new Error("message from code");
         return assert.doesNotReject(
             run(`
 1 // => 1
-`)
+`),
         );
     });
     it("run sync code with array", () => {
@@ -37,7 +37,7 @@ throw new Error("message from code");
             run(`
 const array = [1, 2, 3];
 console.log(array); // => [1, 2, 3]
-`)
+`),
         );
     });
     it("run async code with Promise", () => {
@@ -47,7 +47,7 @@ Promise.resolve().then(() => {
     console.log(1); // => 1
     console.log(2); // => 2    
 });
-`)
+`),
         );
     });
     it("run async code with setTimeout", () => {
@@ -57,7 +57,7 @@ setTimeout(() => {
     console.log(1); // => 1
     console.log(2); // => 2    
 }, 100);
-`)
+`),
         );
     });
     it("does reject code with promise in async", () => {
@@ -67,7 +67,7 @@ Promise.resolve().then(() => {
     console.log(1); // => 2
 })
 `),
-            "should be rejected"
+            "should be rejected",
         );
     });
     it("does reject code with setTimeout in async", () => {
@@ -76,7 +76,7 @@ Promise.resolve().then(() => {
 setTimeout(() => {
     console.log(1); // => 2
 }, 100);
-`)
+`),
         );
     });
 
@@ -86,7 +86,7 @@ setTimeout(() => {
 1; // => 1
 2; // => 2
 3; // => 3
-`)
+`),
         );
     });
     it("does resolve when anyone asserted", () => {
@@ -100,8 +100,8 @@ setTimeout(() => {
 `,
                 {
                     runMode: "any",
-                }
-            )
+                },
+            ),
         );
     });
     it("does timeout because all assertion never called", () => {
@@ -116,8 +116,8 @@ if( true ) {
 `,
                 {
                     timeout: 100, // 100ms
-                }
-            )
+                },
+            ),
         );
     });
 });

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [Unreleased]
+
+### Features
+
+* **migration:** Complete CommonJS to ESM migration ([#48](https://github.com/azu/power-doctest/issues/48))
+  - Convert all packages to ES Modules format
+  - Update TypeScript configuration for ESM support (`module: "nodenext"`, `moduleResolution: "nodenext"`)
+  - Add `"type": "module"` and `exports` fields to all package.json files
+  - Convert require() statements to import statements across all packages
+  - Add proper .js extensions to relative imports for ESM compatibility
+  - Fix Babel template and traverse compatibility issues
+  - Update Mocha configuration to use ESM loader (`ts-node/esm`)
+  - Add createRequire polyfills for CJS dependencies (Asciidoctor, Babel plugins)
+  - Fix comment-to-assert multiple statements handling for callbacks
+  - Add __dirname polyfills using fileURLToPath for ESM compatibility
+  - Convert prettier configuration to ESM format
+
+### Breaking Changes
+
+* **BREAKING:** This release migrates the entire project from CommonJS to ES Modules
+  - Node.js 14+ with ESM support is now required
+  - Import statements must include .js extensions for relative imports
+  - Configuration files (prettier.config.js) are now in ESM format
+  - All packages now use `"type": "module"` in package.json
+
 ## [5.3.3](https://github.com/azu/power-doctest/compare/v5.3.2...v5.3.3) (2023-07-15)
 
 

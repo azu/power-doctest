@@ -7,11 +7,14 @@ import {
     tryGetCodeFromComments,
     wrapAssert,
     wrapAssertOptions,
-} from "./ast-utils";
+} from "./ast-utils.js";
 import { transformFromAstSync, Node } from "@babel/core";
 import { identifier, isExpressionStatement, File } from "@babel/types";
 import { parse, parseExpression, ParserOptions } from "@babel/parser";
-import traverse from "@babel/traverse";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const traverse = require("@babel/traverse").default;
 
 function getExpressionNodeFromCommentValue(commentValue: string): { type: string } & { [index: string]: any } {
     // trim and remove trailing semicolon;
@@ -82,7 +85,7 @@ export function toAssertFromAST<T extends File>(ast: T, options: wrapAssertOptio
     const replaceSet = new Set();
     let id = 0;
     traverse(ast, {
-        exit(path) {
+        exit(path: any) {
             if (!replaceSet.has(path.node) && path.node.trailingComments) {
                 const commentExpression = tryGetCodeFromComments(path.node.trailingComments);
                 if (commentExpression) {

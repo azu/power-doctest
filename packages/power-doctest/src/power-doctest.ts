@@ -4,7 +4,7 @@ import { test } from "@power-doctest/tester";
 import { parse as parseJavaScript } from "@power-doctest/javascript";
 import { parse as parseMarkdown } from "@power-doctest/markdown";
 import { parse as parseAsciidoctor } from "@power-doctest/asciidoctor";
-const allSettled = require("promise.allsettled");
+// Native Promise.allSettled is available in Node.js 12.9.0+
 
 export interface RunPowerDoctestOption {
     contentType: "javascript" | "markdown" | "asciidoctor";
@@ -15,7 +15,7 @@ export interface RunPowerDoctestOption {
     disableRunning: boolean;
 }
 
-export const createMockRequire = (packageDir: string, pkg?: any) => {
+export const createMockRequire = async (packageDir: string, pkg?: any) => {
     if (!pkg) {
         return {};
     }
@@ -31,15 +31,16 @@ export const createMockRequire = (packageDir: string, pkg?: any) => {
     if (!name) {
         throw new Error("Not defined pkg.name" + pkg);
     }
+    const module = await import(mainFilepath);
     return {
-        [name]: require(mainFilepath),
+        [name]: module.default || module,
     };
 };
 
 export async function runPowerDoctest(
-    options: RunPowerDoctestOption
+    options: RunPowerDoctestOption,
 ): Promise<{ status: "fulfilled" | "rejected"; code: string; value?: any; reason?: Error }[]> {
-    const requireMock = createMockRequire(options.packageDir, options.packageJSON);
+    const requireMock = await createMockRequire(options.packageDir, options.packageJSON);
     const results = (() => {
         if (options.contentType === "javascript") {
             return parseJavaScript({
@@ -72,10 +73,10 @@ export async function runPowerDoctest(
             },
             {
                 disableRunning: options.disableRunning,
-            }
+            },
         );
     });
-    const settledResults = await allSettled(promises);
+    const settledResults = await Promise.allSettled(promises);
     return settledResults.map((testResult: any, index: number) => {
         if (testResult.status === "fulfilled") {
             return {

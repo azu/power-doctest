@@ -19,6 +19,7 @@
         "url": "https://github.com/azu/power-doctest.git"
     },
     "license": "MIT",
+    "type": "module",
     "author": "azu",
     "bin": {
         "power-doctest": "./bin/cmd.js"
@@ -30,6 +31,12 @@
     ],
     "main": "lib/power-doctest.js",
     "types": "lib/power-doctest.d.ts",
+    "exports": {
+        ".": {
+            "import": "./lib/power-doctest.js",
+            "types": "./lib/power-doctest.d.ts"
+        }
+    },
     "directories": {
         "lib": "lib",
         "test": "test"
@@ -52,7 +59,6 @@
     "devDependencies": {
         "@types/mocha": "^10.0.1",
         "@types/node": "^24.0.10",
-        "@types/promise.allsettled": "^1.0.3",
         "mocha": "^11.7.1",
         "prettier": "^3.6.2",
         "rimraf": "^6.0.1",
@@ -68,8 +74,7 @@
         "@power-doctest/javascript": "workspace:^",
         "@power-doctest/markdown": "workspace:^",
         "@power-doctest/tester": "workspace:^",
-        "meow": "^5.0.0",
-        "promise.allsettled": "^1.0.5"
+        "meow": "^5.0.0"
     },
     "engines": {
         "node": ">=16.17.0"
