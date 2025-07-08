@@ -49,7 +49,7 @@ export interface testOptions {
 	defaultDoctestRunnerOptions?: PowerDoctestRunnerOptions;
 }
 
-export type PowerDoctTestError = Error & {
+export type PowerDocTestError = Error & {
 	// file path of the code
 	fileName?: string;
 	// line number of the code
