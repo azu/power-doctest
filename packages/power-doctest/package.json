@@ -74,7 +74,7 @@
         "@power-doctest/javascript": "workspace:^",
         "@power-doctest/markdown": "workspace:^",
         "@power-doctest/tester": "workspace:^",
-        "meow": "^5.0.0"
+        "meow": "^13.2.0"
     },
     "engines": {
         "node": ">=16.17.0"

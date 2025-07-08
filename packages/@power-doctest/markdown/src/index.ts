@@ -1,5 +1,10 @@
 import { ParserArgs, ParsedResults } from "@power-doctest/types";
 import { DocTestController } from "./DocTestController.js";
+import { remark } from "remark";
+import { selectAll } from "unist-util-select";
+import { parents as attachParents } from "unist-util-parents";
+import findAllBetween from "unist-util-find-all-between";
+import { findBefore } from "unist-util-find-before";
 
 type UnistParentNode = import("unist").Parent;
 // unist-util-parents
@@ -7,15 +12,9 @@ type UnistNode = import("unist").Node & {
     parent: UnistParentNode;
 };
 
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const remark = require("remark")();
-const select = require("unist-util-select");
-const attachParents = require("unist-util-parents");
-const findAllBetween = require("unist-util-find-all-between");
-const findBefore = require("unist-util-find-before");
+const processor = remark();
 const getComments = (parentNode: UnistParentNode, codeNode: UnistNode) => {
-    const nonHtmlNode = findBefore(parentNode, codeNode, (node: UnistNode) => {
+    const nonHtmlNode = findBefore(parentNode, codeNode, (node: any) => {
         return node.type !== "html";
     });
     const startNode = nonHtmlNode ? nonHtmlNode : parentNode.children[0];
@@ -29,12 +28,12 @@ const getComments = (parentNode: UnistParentNode, codeNode: UnistNode) => {
  * Parse Markdown code and return ParseResult object.
  */
 export const parse = ({ content, filePath }: ParserArgs): ParsedResults => {
-    const markdownAST = attachParents(remark.parse(content));
-    const codeBlocks = [].concat(
-        select.selectAll(`code[lang="js"]`, markdownAST),
-        select.selectAll(`code[lang="javascript"]`, markdownAST),
-    );
-    return codeBlocks.map((codeBlock: UnistNode & { value: string | undefined }) => {
+    const markdownAST = attachParents(processor.parse(content));
+    const codeBlocks = [
+        ...selectAll(`code[lang="js"]`, markdownAST),
+        ...selectAll(`code[lang="javascript"]`, markdownAST),
+    ];
+    return codeBlocks.map((codeBlock: any) => {
         const codeValue: string = codeBlock.value || "";
         const comments = getComments(codeBlock.parent, codeBlock);
         const docTestController = new DocTestController(comments);

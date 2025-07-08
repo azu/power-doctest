@@ -1,36 +1,41 @@
 import * as fs from "fs";
 import * as path from "path";
-import { parseArgs } from "node:util";
+import meow from "meow";
 import { runPowerDoctest, RunPowerDoctestOption } from "./power-doctest.js";
 
-const USAGE = `Usage:
-  $ power-doctest /path/to/file.{js,md,adoc}
-
-Options:
-  --packageDir      Current Working directory. Should put package.json in the directory.
-  --disableRunning  Disable running test case that has not state.
-
-Examples:
-  $ power-doctest ./README.md
-  $ power-doctest ./README.adoc
-  $ power-doctest ./src/main.js`;
-
 export async function run() {
-    const options = {
-        packageDir: { type: "string" },
-        defaultRunning: { type: "boolean" },
-        disableRunning: { type: "boolean", default: false },
-    } as const;
+    const cli = meow(
+        `
+    Usage:
+      $ power-doctest /path/to/file.{js,md,adoc}
 
-    const { values: flags, positionals } = parseArgs({
-        options,
-        allowPositionals: true,
-    });
+    Options:
+      --packageDir      Current Working directory. Should put package.json in the directory.
+      --disableRunning  Disable running test case that has not state.
 
-    const disableRunning = flags.disableRunning;
-    const input = positionals[0];
+    Examples:
+      $ power-doctest ./README.md
+      $ power-doctest ./README.adoc
+      $ power-doctest ./src/main.js
+    `,
+        {
+            importMeta: import.meta,
+            flags: {
+                packageDir: {
+                    type: "string",
+                },
+                disableRunning: {
+                    type: "boolean",
+                    default: false,
+                },
+            },
+        },
+    );
+
+    const disableRunning = cli.flags.disableRunning;
+    const input = cli.input[0];
     if (!input) {
-        console.log(USAGE);
+        cli.showHelp();
         throw new Error("No input file specified. Please provide a file path as an argument.");
     }
     const content = fs.readFileSync(input, "utf-8");
@@ -53,7 +58,7 @@ export async function run() {
     if (!contentType) {
         throw new Error("Not supported file type" + input);
     }
-    const cwd = flags.packageDir || process.cwd();
+    const cwd = cli.flags.packageDir || process.cwd();
     const pkgFilePath = path.join(cwd, "package.json");
     const pkg = await (async () => {
         try {

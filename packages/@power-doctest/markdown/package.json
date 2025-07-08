@@ -67,10 +67,10 @@
         "@power-doctest/javascript": "workspace:^",
         "@power-doctest/types": "workspace:^",
         "@types/unist": "^3.0.3",
-        "remark": "^11.0.2",
+        "remark": "^15.0.1",
         "unist-util-find-all-between": "^2.1.0",
-        "unist-util-find-before": "^2.0.5",
-        "unist-util-parents": "^1.0.3",
-        "unist-util-select": "^2.0.2"
+        "unist-util-find-before": "^4.0.1",
+        "unist-util-parents": "^3.0.0",
+        "unist-util-select": "^5.1.0"
     }
 }
