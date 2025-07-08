@@ -49,6 +49,18 @@ export interface testOptions {
 	defaultDoctestRunnerOptions?: PowerDoctestRunnerOptions;
 }
 
+export type PowerDoctTestError = Error & {
+	// file path of the code
+	fileName?: string;
+	// line number of the code
+	lineNumber?: number;
+	// column number of the code
+	columnNumber?: number;
+	// metadata of the code
+	meta?: {
+		[index: string]: unknown;
+	};
+};
 export function test(parsedCode: ParsedCode, oprions?: testOptions): Promise<void> {
 	if (parsedCode.state === "disabled") {
 		return Promise.resolve();
@@ -115,7 +127,7 @@ Also, you should consider to use { "runMode": "any" }`
 		const originalUncaughtException = process.listeners("uncaughtException");
 		process.removeAllListeners("uncaughtException");
 		process.removeAllListeners("unhandledRejection");
-		const unhandledRejection = (reason: {}, _promise: Promise<any>): void => {
+		const unhandledRejection = (reason: {}, _promise: Promise<void>): void => {
 			restoreListener();
 			reject(reason);
 		};
