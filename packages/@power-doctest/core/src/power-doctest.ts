@@ -70,7 +70,8 @@ export function convertAST<T extends File>(AST: T, options: convertASTOptions): 
 			}
 			return result.ast;
 		} catch (error) {
-			// TODO: workaround https://github.com/azu/power-doctest/issues/29
+			// Fallback to original AST when espower fails to parse newer syntax like private fields
+			// This ensures compatibility with modern JavaScript features
 			if (process.env.DEBUG) {
 				console.error("espower error", error);
 				console.log(code);
