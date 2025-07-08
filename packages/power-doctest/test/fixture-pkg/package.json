@@ -1,4 +1,4 @@
 {
-  "name": "test-module",
-  "main": "index.js"
+	"name": "test-module",
+	"main": "index.js"
 }

@@ -1,48 +1,44 @@
 {
-  "private": true,
-  "name": "root",
-  "version": "1.0.0",
-  "description": "monorepo root",
-  "main": "index.js",
-  "devDependencies": {
-    "lerna": "^8.2.3",
-    "lint-staged": "^16.1.2",
-    "prettier": "^3.6.2"
-  },
-  "scripts": {
-    "bootstrap": "npm run build",
-    "build": "lerna run build",
-    "test": "lerna run test",
-    "updateSnapshot": "lerna run updateSnapshot",
-    "versionup": "lerna version",
-    "versionup:patch": "lerna version patch",
-    "versionup:minor": "lerna version minor",
-    "versionup:major": "lerna version major",
-    "release": "lerna publish from-package",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/azu/power-doctest.git"
-  },
-  "keywords": [],
-  "author": "azu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/azu/power-doctest/issues"
-  },
-  "homepage": "https://github.com/azu/power-doctest",
-  "prettier": {
-    "singleQuote": false,
-    "printWidth": 120,
-    "tabWidth": 4,
-    "trailingComma": "none"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write"
-    ]
-  },
-  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
+	"private": true,
+	"name": "root",
+	"version": "1.0.0",
+	"description": "monorepo root",
+	"main": "index.js",
+	"devDependencies": {
+		"@biomejs/biome": "^2.0.6",
+		"lerna": "^8.2.3",
+		"lint-staged": "^16.1.2"
+	},
+	"scripts": {
+		"bootstrap": "npm run build",
+		"build": "lerna run build",
+		"test": "lerna run test",
+		"updateSnapshot": "lerna run updateSnapshot",
+		"versionup": "lerna version",
+		"versionup:patch": "lerna version patch",
+		"versionup:minor": "lerna version minor",
+		"versionup:major": "lerna version major",
+		"release": "lerna publish from-package",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"format": "biome format --write .",
+		"prepare": "git config --local core.hooksPath .githooks"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/azu/power-doctest.git"
+	},
+	"keywords": [],
+	"author": "azu",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/azu/power-doctest/issues"
+	},
+	"homepage": "https://github.com/azu/power-doctest",
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,json,jsonc}": [
+			"biome check --write"
+		]
+	},
+	"packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
 }

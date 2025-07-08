@@ -1,83 +1,76 @@
 {
-    "name": "power-doctest",
-    "version": "5.3.5",
-    "description": "A command line tool for power-doctest.",
-    "keywords": [
-        "cli",
-        "doctest",
-        "javascript",
-        "npm",
-        "readme",
-        "test"
-    ],
-    "homepage": "https://github.com/azu/power-doctest/tree/master/packages/@power-doctest/cli/",
-    "bugs": {
-        "url": "https://github.com/azu/power-doctest/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/azu/power-doctest.git"
-    },
-    "license": "MIT",
-    "type": "module",
-    "author": "azu",
-    "bin": {
-        "power-doctest": "./bin/cmd.js"
-    },
-    "files": [
-        "bin/",
-        "lib/",
-        "src/"
-    ],
-    "main": "lib/power-doctest.js",
-    "types": "lib/power-doctest.d.ts",
-    "exports": {
-        ".": {
-            "import": "./lib/power-doctest.js",
-            "types": "./lib/power-doctest.d.ts"
-        }
-    },
-    "directories": {
-        "lib": "lib",
-        "test": "test"
-    },
-    "scripts": {
-        "build": "tsc -p .",
-        "clean": "rimraf lib/",
-        "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-        "prepublish": "npm run --if-present build",
-        "test": "npm run test:unit && npm run test:readme",
-        "test:unit": "mocha \"test/**/*.ts\"",
-        "test:readme": "npm run build && ./bin/cmd.js README.md",
-        "watch": "tsc -p . --watch"
-    },
-    "prettier": {
-        "printWidth": 120,
-        "singleQuote": false,
-        "tabWidth": 4
-    },
-    "devDependencies": {
-        "@types/mocha": "^10.0.1",
-        "@types/node": "^24.0.10",
-        "mocha": "^11.7.1",
-        "prettier": "^3.6.2",
-        "rimraf": "^6.0.1",
-        "ts-node": "^10.4.0",
-        "ts-node-test-register": "^10.0.0",
-        "typescript": "^5.8.3"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "dependencies": {
-        "@power-doctest/asciidoctor": "workspace:^",
-        "@power-doctest/javascript": "workspace:^",
-        "@power-doctest/markdown": "workspace:^",
-        "@power-doctest/tester": "workspace:^",
-        "meow": "^13.2.0"
-    },
-    "engines": {
-        "node": ">=16.17.0"
-    },
-    "gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
+	"name": "power-doctest",
+	"version": "5.3.5",
+	"description": "A command line tool for power-doctest.",
+	"keywords": [
+		"cli",
+		"doctest",
+		"javascript",
+		"npm",
+		"readme",
+		"test"
+	],
+	"homepage": "https://github.com/azu/power-doctest/tree/master/packages/@power-doctest/cli/",
+	"bugs": {
+		"url": "https://github.com/azu/power-doctest/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/azu/power-doctest.git"
+	},
+	"license": "MIT",
+	"type": "module",
+	"author": "azu",
+	"bin": {
+		"power-doctest": "./bin/cmd.js"
+	},
+	"files": [
+		"bin/",
+		"lib/",
+		"src/"
+	],
+	"main": "lib/power-doctest.js",
+	"types": "lib/power-doctest.d.ts",
+	"exports": {
+		".": {
+			"import": "./lib/power-doctest.js",
+			"types": "./lib/power-doctest.d.ts"
+		}
+	},
+	"directories": {
+		"lib": "lib",
+		"test": "test"
+	},
+	"scripts": {
+		"build": "tsc -p .",
+		"clean": "rimraf lib/",
+		"prepublish": "npm run --if-present build",
+		"test": "npm run test:unit && npm run test:readme",
+		"test:unit": "mocha \"test/**/*.ts\"",
+		"test:readme": "npm run build && ./bin/cmd.js README.md",
+		"watch": "tsc -p . --watch"
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^24.0.10",
+		"mocha": "^11.7.1",
+		"rimraf": "^6.0.1",
+		"ts-node": "^10.4.0",
+		"ts-node-test-register": "^10.0.0",
+		"typescript": "^5.8.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@power-doctest/asciidoctor": "workspace:^",
+		"@power-doctest/javascript": "workspace:^",
+		"@power-doctest/markdown": "workspace:^",
+		"@power-doctest/tester": "workspace:^",
+		"meow": "^13.2.0"
+	},
+	"engines": {
+		"node": ">=16.17.0"
+	},
+	"gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
 }

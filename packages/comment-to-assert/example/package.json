@@ -1,14 +1,14 @@
 {
-  "name": "example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm i && node example.js"
-  },
-  "author": "azu",
-  "license": "MIT",
-  "dependencies": {
-    "comment-to-assert": "file:.."
-  }
+	"name": "example",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "npm i && node example.js"
+	},
+	"author": "azu",
+	"license": "MIT",
+	"dependencies": {
+		"comment-to-assert": "file:.."
+	}
 }

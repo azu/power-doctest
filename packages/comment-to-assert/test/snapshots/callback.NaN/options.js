@@ -1,4 +1,4 @@
 export default {
-    assertBeforeCallbackName: "beforeCallback",
-    assertAfterCallbackName: "afterCallback"
+	assertBeforeCallbackName: "beforeCallback",
+	assertAfterCallbackName: "afterCallback",
 };

@@ -1,68 +1,68 @@
 {
-    "name": "@power-doctest/core",
-    "version": "5.3.5",
-    "description": "power-doctest core library",
-    "homepage": "https://github.com/azu/power-doctest",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/azu/power-doctest.git"
-    },
-    "license": "MIT",
-    "type": "module",
-    "author": "azu",
-    "files": [
-        "bin",
-        "src",
-        "lib"
-    ],
-    "main": "lib/power-doctest.js",
-    "types": "lib/power-doctest.d.ts",
-    "exports": {
-        ".": {
-            "import": "./lib/power-doctest.js",
-            "types": "./lib/power-doctest.d.ts"
-        }
-    },
-    "scripts": {
-        "build": "tsc -p .",
-        "prepublish": "npm run --if-present build",
-        "test": "mocha \"test/**/*.ts\"",
-        "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-        "watch": "tsc -p . --watch"
-    },
-    "dependencies": {
-        "@babel/core": "^7.28.0",
-        "@babel/parser": "^7.28.0",
-        "@babel/template": "^7.27.2",
-        "@babel/traverse": "^7.28.0",
-        "@babel/types": "^7.28.0",
-        "babel-plugin-espower": "^3.0.1",
-        "comment-to-assert": "workspace:^",
-        "espower": "^2.1.2",
-        "power-assert": "^1.6.1"
-    },
-    "devDependencies": {
-        "@babel/generator": "^7.28.0",
-        "@types/babel__core": "^7.1.18",
-        "@types/babel__generator": "^7.27.0",
-        "@types/babel__template": "^7.4.1",
-        "@types/babel__traverse": "^7.20.7",
-        "@types/mocha": "^10.0.1",
-        "@types/node": "^24.0.10",
-        "mocha": "^11.7.1",
-        "ts-node": "^10.4.0",
-        "ts-node-test-register": "^10.0.0",
-        "typescript": "^5.8.3"
-    },
-    "peerDependecies": {},
-    "tags": [
-        "doctest",
-        "power-assert",
-        "testing",
-        "AST"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
+	"name": "@power-doctest/core",
+	"version": "5.3.5",
+	"description": "power-doctest core library",
+	"homepage": "https://github.com/azu/power-doctest",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/azu/power-doctest.git"
+	},
+	"license": "MIT",
+	"type": "module",
+	"author": "azu",
+	"files": [
+		"bin",
+		"src",
+		"lib"
+	],
+	"main": "lib/power-doctest.js",
+	"types": "lib/power-doctest.d.ts",
+	"exports": {
+		".": {
+			"import": "./lib/power-doctest.js",
+			"types": "./lib/power-doctest.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "tsc -p .",
+		"prepublish": "npm run --if-present build",
+		"test": "mocha \"test/**/*.ts\"",
+		"updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+		"watch": "tsc -p . --watch"
+	},
+	"dependencies": {
+		"@babel/core": "^7.28.0",
+		"@babel/parser": "^7.28.0",
+		"@babel/template": "^7.27.2",
+		"@babel/traverse": "^7.28.0",
+		"@babel/types": "^7.28.0",
+		"babel-plugin-espower": "^3.0.1",
+		"comment-to-assert": "workspace:^",
+		"espower": "^2.1.2",
+		"power-assert": "^1.6.1"
+	},
+	"devDependencies": {
+		"@babel/generator": "^7.28.0",
+		"@types/babel__core": "^7.1.18",
+		"@types/babel__generator": "^7.27.0",
+		"@types/babel__template": "^7.4.1",
+		"@types/babel__traverse": "^7.20.7",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^24.0.10",
+		"mocha": "^11.7.1",
+		"ts-node": "^10.4.0",
+		"ts-node-test-register": "^10.0.0",
+		"typescript": "^5.8.3"
+	},
+	"peerDependecies": {},
+	"tags": [
+		"doctest",
+		"power-assert",
+		"testing",
+		"AST"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
 }
