@@ -1,6 +1,6 @@
 {
 	"name": "@power-doctest/markdown",
-	"version": "5.3.5",
+	"version": "6.0.0",
 	"description": "A Markdown parser for power-doctest.",
 	"keywords": [
 		"doctest",

@@ -1,6 +1,6 @@
 {
 	"name": "power-doctest",
-	"version": "5.3.5",
+	"version": "6.0.0",
 	"description": "A command line tool for power-doctest.",
 	"keywords": [
 		"cli",
