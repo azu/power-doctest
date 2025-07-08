@@ -11,7 +11,7 @@
 		"sourceMap": true,
 		"declaration": true,
 		"jsx": "preserve",
-		"lib": ["es2018", "dom"],
+		"lib": ["es2022", "dom"],
 		/* Strict Type-Checking Options */
 		"strict": true,
 		/* Additional Checks */
