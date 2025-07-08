@@ -69,7 +69,7 @@ export class DocTestController {
 		return this.expectedErrorName !== undefined;
 	}
 
-	get doctestMetadata(): unknown {
+	get doctestMetadata(): {} | undefined {
 		const optionComment = this.comments.find((comment) => {
 			return DOCTEST_METADATA.test(comment);
 		});
@@ -92,7 +92,7 @@ Actual: ${optionString}
 		}
 	}
 
-	get doctestOptions(): unknown {
+	get doctestOptions(): {} | undefined {
 		const optionComment = this.comments.find((comment) => {
 			return DOCTEST_OPTIONS.test(comment);
 		});

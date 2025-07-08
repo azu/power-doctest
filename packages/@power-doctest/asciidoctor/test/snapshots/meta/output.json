@@ -1,22 +1,22 @@
 [
-	{
-		"code": "const str = \"string\";\nconsole.log(str); // => \"string\"",
-		"state": "none",
-		"location": {
-			"start": {
-				"line": 3,
-				"column": 0
-			},
-			"end": {
-				"line": 4,
-				"column": 32
-			}
-		},
-		"metadata": {
-			"ECMAScript": 2017
-		},
-		"doctestOptions": {
-			"filePath": "input.adoc"
-		}
-	}
+    {
+        "code": "const str = \"string\";\nconsole.log(str); // => \"string\"",
+        "state": "none",
+        "location": {
+            "start": {
+                "line": 3,
+                "column": 0
+            },
+            "end": {
+                "line": 4,
+                "column": 32
+            }
+        },
+        "metadata": {
+            "ECMAScript": 2017
+        },
+        "doctestOptions": {
+            "filePath": "input.adoc"
+        }
+    }
 ]

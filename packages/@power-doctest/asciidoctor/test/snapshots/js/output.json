@@ -1,19 +1,19 @@
 [
-	{
-		"code": "const str = \"string\";\nconsole.log(str);",
-		"state": "none",
-		"location": {
-			"start": {
-				"line": 3,
-				"column": 0
-			},
-			"end": {
-				"line": 4,
-				"column": 17
-			}
-		},
-		"doctestOptions": {
-			"filePath": "input.adoc"
-		}
-	}
+    {
+        "code": "const str = \"string\";\nconsole.log(str);",
+        "state": "none",
+        "location": {
+            "start": {
+                "line": 3,
+                "column": 0
+            },
+            "end": {
+                "line": 4,
+                "column": 17
+            }
+        },
+        "doctestOptions": {
+            "filePath": "input.adoc"
+        }
+    }
 ]

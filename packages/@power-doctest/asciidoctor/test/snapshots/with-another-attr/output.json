@@ -1,70 +1,70 @@
 [
-	{
-		"code": "async function doAsync() {\n    return \"値\";\n}\n// doAsync関数はPromiseを返す\ndoAsync().then(function(value){\n    console.log(value); // => \"値\"\n});",
-		"state": "none",
-		"location": {
-			"start": {
-				"line": 10,
-				"column": 0
-			},
-			"end": {
-				"line": 16,
-				"column": 3
-			}
-		},
-		"doctestOptions": {
-			"filePath": "input.adoc"
-		}
-	},
-	{
-		"code": "// 通常の関数でPromiseインスタンスを返している\nfunction doAsync() {\n    return Promise.resolve(\"値\");\n}\ndoAsync().then(function(value){\n    console.log(value); // => \"値\"\n});",
-		"state": "none",
-		"location": {
-			"start": {
-				"line": 25,
-				"column": 0
-			},
-			"end": {
-				"line": 31,
-				"column": 3
-			}
-		},
-		"doctestOptions": {
-			"filePath": "input.adoc"
-		}
-	},
-	{
-		"code": "function fetchBookTitle(){\n    // Fetch APIは指定URLのリソースを取得しPromiseを返す関数\n    return fetch(\"https://azu.github.io/promises-book/json/book.json\").then(function(res){\n        return res.json(); // レスポンスをJSON形式としてパースする\n    }).then(function(json){\n        return json.title; // JSONからtitleプロパティを取り出す\n    });\n}\n\nfunction main(){\n    fetchBookTitle().then(function(title){\n        console.log(title); // => \"JavaScript Promiseの本\"\n    });\n}\n\nmain();",
-		"state": "none",
-		"location": {
-			"start": {
-				"line": 56,
-				"column": 0
-			},
-			"end": {
-				"line": 71,
-				"column": 7
-			}
-		},
-		"doctestOptions": {
-			"filePath": "input.adoc"
-		}
-	},
-	{
-		"code": "// `async`をつけて`fetchBookTitle`関数をAsync Functionとして定義\nasync function fetchBookTitle(){\n    // リクエストしてリソースを取得する\n    const res = await fetch(\"https://azu.github.io/promises-book/json/book.json\");\n    // レスポンスをJSON形式としてパースする\n    const json = await res.json();\n    // JSONからtitleプロパティを取り出す\n    return json.title;\n}\n\n// `async`をつけて`main`関数をAsync Functionとして定義\nasync function main(){\n    // `await`式で`fetchBookTitle`の非同期処理が完了するまで待つ\n    // `fetchBookTitle`がresolveした値が返り値になる\n    const title = await fetchBookTitle();\n    console.log(title); // => \"JavaScript Promiseの本\"\n}\n\nmain();",
-		"state": "none",
-		"location": {
-			"start": {
-				"line": 80,
-				"column": 0
-			},
-			"end": {
-				"line": 98,
-				"column": 7
-			}
-		},
-		"doctestOptions": {
-			"filePath": "input.adoc"
-		}
-	}
+    {
+        "code": "async function doAsync() {\n    return \"値\";\n}\n// doAsync関数はPromiseを返す\ndoAsync().then(function(value){\n    console.log(value); // => \"値\"\n});",
+        "state": "none",
+        "location": {
+            "start": {
+                "line": 10,
+                "column": 0
+            },
+            "end": {
+                "line": 16,
+                "column": 3
+            }
+        },
+        "doctestOptions": {
+            "filePath": "input.adoc"
+        }
+    },
+    {
+        "code": "// 通常の関数でPromiseインスタンスを返している\nfunction doAsync() {\n    return Promise.resolve(\"値\");\n}\ndoAsync().then(function(value){\n    console.log(value); // => \"値\"\n});",
+        "state": "none",
+        "location": {
+            "start": {
+                "line": 25,
+                "column": 0
+            },
+            "end": {
+                "line": 31,
+                "column": 3
+            }
+        },
+        "doctestOptions": {
+            "filePath": "input.adoc"
+        }
+    },
+    {
+        "code": "function fetchBookTitle(){\n    // Fetch APIは指定URLのリソースを取得しPromiseを返す関数\n    return fetch(\"https://azu.github.io/promises-book/json/book.json\").then(function(res){\n        return res.json(); // レスポンスをJSON形式としてパースする\n    }).then(function(json){\n        return json.title; // JSONからtitleプロパティを取り出す\n    });\n}\n\nfunction main(){\n    fetchBookTitle().then(function(title){\n        console.log(title); // => \"JavaScript Promiseの本\"\n    });\n}\n\nmain();",
+        "state": "none",
+        "location": {
+            "start": {
+                "line": 56,
+                "column": 0
+            },
+            "end": {
+                "line": 71,
+                "column": 7
+            }
+        },
+        "doctestOptions": {
+            "filePath": "input.adoc"
+        }
+    },
+    {
+        "code": "// `async`をつけて`fetchBookTitle`関数をAsync Functionとして定義\nasync function fetchBookTitle(){\n    // リクエストしてリソースを取得する\n    const res = await fetch(\"https://azu.github.io/promises-book/json/book.json\");\n    // レスポンスをJSON形式としてパースする\n    const json = await res.json();\n    // JSONからtitleプロパティを取り出す\n    return json.title;\n}\n\n// `async`をつけて`main`関数をAsync Functionとして定義\nasync function main(){\n    // `await`式で`fetchBookTitle`の非同期処理が完了するまで待つ\n    // `fetchBookTitle`がresolveした値が返り値になる\n    const title = await fetchBookTitle();\n    console.log(title); // => \"JavaScript Promiseの本\"\n}\n\nmain();",
+        "state": "none",
+        "location": {
+            "start": {
+                "line": 80,
+                "column": 0
+            },
+            "end": {
+                "line": 98,
+                "column": 7
+            }
+        },
+        "doctestOptions": {
+            "filePath": "input.adoc"
+        }
+    }
 ]

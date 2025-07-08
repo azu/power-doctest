@@ -1,20 +1,20 @@
 [
-	{
-		"code": "+++++++",
-		"state": "none",
-		"expectedError": "SyntaxError",
-		"location": {
-			"start": {
-				"line": 4,
-				"column": 0
-			},
-			"end": {
-				"line": 4,
-				"column": 7
-			}
-		},
-		"doctestOptions": {
-			"filePath": "input.adoc"
-		}
-	}
+    {
+        "code": "+++++++",
+        "state": "none",
+        "expectedError": "SyntaxError",
+        "location": {
+            "start": {
+                "line": 4,
+                "column": 0
+            },
+            "end": {
+                "line": 4,
+                "column": 7
+            }
+        },
+        "doctestOptions": {
+            "filePath": "input.adoc"
+        }
+    }
 ]

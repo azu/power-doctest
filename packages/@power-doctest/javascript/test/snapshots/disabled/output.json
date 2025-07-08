@@ -1,19 +1,19 @@
 [
-	{
-		"code": "// doctest-disabled\nconst array = [1, 2, 3];\nconsole.log(array); // => [1,2,3]\n",
-		"location": {
-			"start": {
-				"line": 1,
-				"column": 0
-			},
-			"end": {
-				"line": 3,
-				"column": 33
-			}
-		},
-		"state": "disabled",
-		"doctestOptions": {
-			"filePath": "input.js"
-		}
-	}
+    {
+        "code": "// doctest-disabled\nconst array = [1, 2, 3];\nconsole.log(array); // => [1,2,3]\n",
+        "location": {
+            "start": {
+                "line": 1,
+                "column": 0
+            },
+            "end": {
+                "line": 3,
+                "column": 33
+            }
+        },
+        "state": "disabled",
+        "doctestOptions": {
+            "filePath": "input.js"
+        }
+    }
 ]
