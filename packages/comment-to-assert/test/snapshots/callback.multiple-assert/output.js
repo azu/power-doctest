@@ -10,9 +10,9 @@ beforeCallback("id:2");
 assert.deepStrictEqual([1, 2, 3], [1, 2, 3]);
 afterCallback("id:2");
 // => [1,2,3]
-Promise.resolve(Promise.resolve(1)).then(v => {
-  beforeCallback("id:3");
-  assert.strictEqual(v, 1);
-  afterCallback("id:3");
-  return v;
+Promise.resolve(Promise.resolve(1)).then((v) => {
+	beforeCallback("id:3");
+	assert.strictEqual(v, 1);
+	afterCallback("id:3");
+	return v;
 }); // => Resolve: 1

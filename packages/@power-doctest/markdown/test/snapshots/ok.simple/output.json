@@ -1,36 +1,36 @@
 [
-    {
-        "code": "console.log(1); // => 1",
-        "location": {
-            "start": {
-                "line": 5,
-                "column": 1
-            },
-            "end": {
-                "line": 7,
-                "column": 4
-            }
-        },
-        "state": "none",
-        "doctestOptions": {
-            "filePath": "input.md"
-        }
-    },
-    {
-        "code": "console.log(\"str\"); // => \"str\"",
-        "location": {
-            "start": {
-                "line": 11,
-                "column": 1
-            },
-            "end": {
-                "line": 13,
-                "column": 4
-            }
-        },
-        "state": "none",
-        "doctestOptions": {
-            "filePath": "input.md"
-        }
-    }
+	{
+		"code": "console.log(1); // => 1",
+		"location": {
+			"start": {
+				"line": 5,
+				"column": 1
+			},
+			"end": {
+				"line": 7,
+				"column": 4
+			}
+		},
+		"state": "none",
+		"doctestOptions": {
+			"filePath": "input.md"
+		}
+	},
+	{
+		"code": "console.log(\"str\"); // => \"str\"",
+		"location": {
+			"start": {
+				"line": 11,
+				"column": 1
+			},
+			"end": {
+				"line": 13,
+				"column": 4
+			}
+		},
+		"state": "none",
+		"doctestOptions": {
+			"filePath": "input.md"
+		}
+	}
 ]

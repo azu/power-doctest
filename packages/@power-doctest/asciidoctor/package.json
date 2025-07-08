@@ -1,71 +1,64 @@
 {
-    "name": "@power-doctest/asciidoctor",
-    "version": "5.3.5",
-    "description": "A Asciidoctor parser for power-doctest.",
-    "keywords": [
-        "asciidoc",
-        "asciidoctor",
-        "doctest"
-    ],
-    "homepage": "https://github.com/azu/power-doctest/tree/master/packages/@power-doctest/asciidoctor/",
-    "bugs": {
-        "url": "https://github.com/azu/power-doctest/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/azu/power-doctest.git"
-    },
-    "license": "MIT",
-    "type": "module",
-    "author": "azu",
-    "files": [
-        "bin/",
-        "lib/",
-        "src/"
-    ],
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "exports": {
-        ".": {
-            "import": "./lib/index.js",
-            "types": "./lib/index.d.ts"
-        }
-    },
-    "directories": {
-        "lib": "lib",
-        "test": "test"
-    },
-    "scripts": {
-        "build": "tsc -p .",
-        "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-        "clean": "rimraf lib/",
-        "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-        "prepublish": "npm run --if-present build",
-        "test": "mocha \"test/**/*.ts\"",
-        "watch": "tsc -p . --watch"
-    },
-    "prettier": {
-        "printWidth": 120,
-        "singleQuote": false,
-        "tabWidth": 4
-    },
-    "dependencies": {
-        "@power-doctest/types": "workspace:^",
-        "asciidoctor": "^3.0.2",
-        "structured-source": "^4.0.0"
-    },
-    "devDependencies": {
-        "@types/mocha": "^10.0.1",
-        "@types/node": "^24.0.10",
-        "mocha": "^11.7.1",
-        "prettier": "^3.6.2",
-        "rimraf": "^6.0.1",
-        "ts-node": "^10.4.0",
-        "ts-node-test-register": "^10.0.0",
-        "typescript": "^5.8.3"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
+	"name": "@power-doctest/asciidoctor",
+	"version": "5.3.5",
+	"description": "A Asciidoctor parser for power-doctest.",
+	"keywords": [
+		"asciidoc",
+		"asciidoctor",
+		"doctest"
+	],
+	"homepage": "https://github.com/azu/power-doctest/tree/master/packages/@power-doctest/asciidoctor/",
+	"bugs": {
+		"url": "https://github.com/azu/power-doctest/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/azu/power-doctest.git"
+	},
+	"license": "MIT",
+	"type": "module",
+	"author": "azu",
+	"files": [
+		"bin/",
+		"lib/",
+		"src/"
+	],
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./lib/index.js",
+			"types": "./lib/index.d.ts"
+		}
+	},
+	"directories": {
+		"lib": "lib",
+		"test": "test"
+	},
+	"scripts": {
+		"build": "tsc -p .",
+		"updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+		"clean": "rimraf lib/",
+		"prepublish": "npm run --if-present build",
+		"test": "mocha \"test/**/*.ts\"",
+		"watch": "tsc -p . --watch"
+	},
+	"dependencies": {
+		"@power-doctest/types": "workspace:^",
+		"asciidoctor": "^3.0.2",
+		"structured-source": "^4.0.0"
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^24.0.10",
+		"mocha": "^11.7.1",
+		"rimraf": "^6.0.1",
+		"ts-node": "^10.4.0",
+		"ts-node-test-register": "^10.0.0",
+		"typescript": "^5.8.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"gitHead": "f5473fe0c929896882fb8201e23745a9116b1159"
 }

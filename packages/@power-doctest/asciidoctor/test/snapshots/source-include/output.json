@@ -1,19 +1,19 @@
 [
-    {
-        "code": "console.log(\"from source.js\");\n",
-        "state": "none",
-        "location": {
-            "start": {
-                "line": 0,
-                "column": null
-            },
-            "end": {
-                "line": 3,
-                "column": 2
-            }
-        },
-        "doctestOptions": {
-            "filePath": "input.adoc"
-        }
-    }
+	{
+		"code": "console.log(\"from source.js\");\n",
+		"state": "none",
+		"location": {
+			"start": {
+				"line": 0,
+				"column": null
+			},
+			"end": {
+				"line": 3,
+				"column": 2
+			}
+		},
+		"doctestOptions": {
+			"filePath": "input.adoc"
+		}
+	}
 ]

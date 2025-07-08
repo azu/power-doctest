@@ -1,20 +1,20 @@
 [
-    {
-        "code": "// doctest-error: SyntaxError\n++++++\n",
-        "location": {
-            "start": {
-                "line": 1,
-                "column": 0
-            },
-            "end": {
-                "line": 2,
-                "column": 6
-            }
-        },
-        "state": "none",
-        "expectedError": "SyntaxError",
-        "doctestOptions": {
-            "filePath": "input.js"
-        }
-    }
+	{
+		"code": "// doctest-error: SyntaxError\n++++++\n",
+		"location": {
+			"start": {
+				"line": 1,
+				"column": 0
+			},
+			"end": {
+				"line": 2,
+				"column": 6
+			}
+		},
+		"state": "none",
+		"expectedError": "SyntaxError",
+		"doctestOptions": {
+			"filePath": "input.js"
+		}
+	}
 ]

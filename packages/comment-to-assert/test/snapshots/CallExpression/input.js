@@ -1,4 +1,4 @@
-var a = function() {
-    return 1;
+var a = function () {
+	return 1;
 };
 a(); // => 1
